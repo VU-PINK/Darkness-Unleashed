@@ -3,7 +3,7 @@
 
 ---Change Settings here
 --Use Time Vote (true/false)
---Activates Voting for Used Time (morning/noon/evening/night)
+--Activates Voting for Used Time (morning/noon/evening/night/none)
 local TimeVote = false
 
 ---Custom Settings
@@ -16,7 +16,7 @@ if TimeVote == false then
     --true to use mod, false to not use mod
     --Standard              (   'bool, time '   )
     Map.Bazaar            = (   'true, night'   )
-    Map.Teheran           = (   'true, morning' )
+    Map.Teheran           = (   'true, none'    )
     Map.Caspian           = (   'false, noon'   )
     Map.Seine             = (   'true, night'   )
     Map.Firestorm         = (   'true, night'   )
