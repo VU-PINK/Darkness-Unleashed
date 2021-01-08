@@ -1,5 +1,5 @@
-require 'presets'
-require 'settings'
+require '__shared/presets'
+require '__shared/settings'
 
 --Concept:
 Events:Subscribe('Level:LoadingInfo', function(screenInfo)
@@ -7,29 +7,23 @@ Events:Subscribe('Level:LoadingInfo', function(screenInfo)
         -- Bazaar
         if SharedUtils:GetLevelName():match("MP_001") then
               if Map.Bazaar == ('true, night') then
-                  Preset.Night
+                  Preset.Night()
                   print('Using Preset Night on Grand Bazaar')
               elseif Map.Bazaar == ('true, morning') then
-                  Preset.Morning
+                  Preset.Morning()
                   print('Using Preset Morning on Grand Bazaar')
               elseif Map.Bazaar == ('true, noon') then
-                  Preset.Noon
+                  Preset.Noon()
                   print('Using Preset Noon on Grand Bazaar')
               elseif Map.Bazaar == ('true, evening') then
-                  Preset.Evening
+                  Preset.Evening()
                   print('Using Preset Evening on Grand Bazaar')
-              elseif Map.Bazaar == (false, none) then
+              elseif Map.Bazaar == ('false, none') then
                   print('Not Changing Map Time')
-                  return end
+                  return
               else
                   print('Wrong Configuration')
-                  return end
+                  return
               end
         end
-
-
-
-
-
-
 end)
