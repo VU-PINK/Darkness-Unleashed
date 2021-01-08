@@ -225,14 +225,14 @@ function Night()
                 fog.start = 2
 
                 fog.fogColorStart = 2
-                fog.fogColorEnd = 65
-                fog.fogColor = Vec3(0.0012, 0.0012, 0.0012)
+                fog.fogColorEnd = 55
+                fog.fogColor = Vec3(0.0005, 0.0005, 0.0005)
                 fog.fogColorCurve = Vec4(0.25, 0.18, 0.14, 0.000)
 
-                fog.transparencyFadeStart = 2
-                fog.transparencyFadeEnd = 65
+                --fog.transparencyFadeStart = 2
+                --fog.transparencyFadeEnd = 65
 
-                fog.endValue = 80
+                fog.endValue = 65
 
         end
 
@@ -253,7 +253,7 @@ function Night()
                 local color = ColorCorrectionComponentData(instance)
                 color:MakeWritable()
 
-                color.brightness = Vec3(0.9, 0.9, 0.9)
+                color.brightness = Vec3(0.95, 0.95, 0.95)
                 color.contrast = Vec3(1.10, 1.10, 1.10)
                 color.saturation = Vec3(1, 1.005, 1.005)
 
