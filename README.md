@@ -15,14 +15,16 @@ CREATED DEV BRANCH
 - Karkand
 - (Should work on almost all maps tho, needs testing)
 
-### Standard Preset "Evening" works "well" on:
+### Standard Preset "Morning" works "well" on:
 
 - Karkand (Standard Setting)
-- Seine Crossing
+- Seine Crossing 
+- Davamand Peak (with CC on)
+
 
 (Currently Tested Maps only)
 
 
-### Standard Preset "Evening" doesn´t work on:
+### Standard Preset "Morning" doesn´t work on:
 
-- Kharg Island
+- Caspian Border
