@@ -21,3 +21,8 @@ CREATED DEV BRANCH
 - Seine Crossing
 
 (Currently Tested Maps only)
+
+
+### Standard Preset "Evening" doesn´t work on:
+
+- Kharg Island
