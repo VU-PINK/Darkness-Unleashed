@@ -20,6 +20,7 @@ CREATED DEV BRANCH
 - Karkand (Standard Setting)
 - Seine Crossing 
 - Davamand Peak (with CC on)
+- Sabalan Pipeline (without CC)
 
 
 (Currently Tested Maps only)
