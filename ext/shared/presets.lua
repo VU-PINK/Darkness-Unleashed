@@ -260,6 +260,11 @@ function Night()
       local color = ColorCorrectionComponentData(instance)
       color:MakeWritable()
 
+      color.brightness = Vec3(0.8, 0.8, 0.8)
+      color.contrast = Vec3(1.3, 1.3, 1.3)
+      color.saturation = Vec3(1.1, 1.1, 1.1)
+      color.hue = 210
+
       if instance.partition.name == 'ui/assets/menuvisualenvironment' then
           color.brightness = Vec3(1, 1, 1)
           color.contrast = Vec3(1, 1, 1)
@@ -376,8 +381,182 @@ function Night()
   end)
 end
 
-
-
+-------------------------------------------------------------------------------
+Preset.Night = Morning()
+--Sun East
 function Morning()
+  --remove some fx elements
+  local RemoveFx = require('removeFx')
+
+  Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+
+  	local levelDestroyEvent = Events:Subscribe('Level:Destroy', OnLevelDestroy)
+
+  	RemoveFx()
+  end)
+
+  -- Deregistering, uninstalling and uninstalling in case the next level isn't MP_001
+  function OnLevelDestroy()
+
+  	entityFactoryCreateFromBlueprint = nil
+  	flagProgress = nil
+
+  end
+
+  Events:Subscribe('Partition:Loaded', function(partition)
+
+      for _, instance in pairs(partition.instances) do
+
+          if instance:Is('WorldRenderSettings') then
+              local renderSettings = WorldRenderSettings(instance)
+              renderSettings:MakeWritable()
+
+              renderSettings.lensFlaresEnable = false;
+
+          end
+
+          if instance:Is('BlurEffectData') then
+              local blur = BlurEffectData(instance)
+              blur:MakeWritable()
+
+              blur.explosionStrength = 0;
+              blur.bulletStrength = 0;
+              blur.explosionFalloffSpeed = 100;
+              blur.bulletFalloffSpeed = 100;
+
+          end
+
+          if instance:Is('ColorCorrectionComponentData') then
+              local color = ColorCorrectionComponentData(instance)
+              color:MakeWritable()
+              color.brightness = Vec3(0.8, 0.8, 0.8)
+              color.contrast = Vec3(1.1, 1.1, 1.1)
+              color.saturation = Vec3(1.1, 1.1, 1.1)
+          end
+
+          if instance:Is('OutdoorLightComponentData') then
+              local outdoor = OutdoorLightComponentData(instance)
+              outdoor:MakeWritable()
+              outdoor.sunColor = Vec3(0.5, 0.5, 0.6)
+              outdoor.skyColor = Vec3(0.5, 0.5, 0.6)
+              outdoor.groundColor = Vec3(0.1, 0, 0)
+              outdoor.sunRotationY = 55;
+              outdoor.sunRotationX = -40;
+  			--outdoor.skyEnvmapShadowScale = 0.5
+          end
+
+          if instance:Is('SkyComponentData') then
+     			local sky = SkyComponentData(instance)
+     			sky:MakeWritable()
+     			sky.sunSize = 0.15;
+     		end
+
+          if instance:Is('TonemapComponentData') then
+              local tonemap = TonemapComponentData(instance)
+              tonemap:MakeWritable()
+
+              --tonemap.bloomScale = tonemap.bloomScale * 0.5;
+              --tonemap.maxExposure = tonemap.maxExposure * 0.1;
+              --tonemap.minExposure = tonemap.minExposure * 0.1;
+              --tonemap.exposureAdjustTime = tonemap.exposureAdjustTime * 0.75;
+
+          end
+
+          if instance:Is('FogComponentData') then
+              local fog = FogComponentData(instance)
+              fog:MakeWritable()
+
+              fog.enable = false;
+
+          end
+
+          if instance:Is('FilmGrainData') then
+              local filmGrain = CharacterLightingData(instance)
+              filmGrain:MakeWritable()
+
+              filmGrain.randomEnable = false;
+              filmGrain.linearFilteringEnable = false;
+              filmGrain.enable = false;
+
+          end
+
+          if instance:Is('SunFlareComponentData') then
+              local flare = SunFlareComponentData(instance)
+              flare:MakeWritable()
+
+              flare.enable = false;
+              flare.element1Enable = false;
+              flare.element2Enable = false;
+              flare.element3Enable = false;
+              flare.element4Enable = false;
+              flare.element5Enable = false;
+          end
+
+          if instance:Is('MeshAsset') then
+              if
+                  instance.partition.name:match('mp_011/objects/mp011_backdrop') or
+                  instance.partition.name:match('mp_012/terrain/mp012_matte') or
+                  instance.partition.name:match('mp_012/objects/smokestacks') or
+                  instance.partition.name:match('mp_017/objects/mp011_backdrop') or
+                  instance.partition.name:match('mp_017/terrain/mp012_matte') or
+                  instance.partition.name:match('mp_017/objects/smokestacks') or
+                  instance.partition.name:match('mp_018/terrain/mp018_matte')
+              then
+                  local mesh = MeshAsset(instance)
+                  mesh:MakeWritable()
+
+                  for _, value in pairs(mesh.materials) do
+                      value:MakeWritable()
+                      value.shader.shader = nil
+                  end
+              end
+          end
+
+          if instance:Is('MeshMaterialVariation') then
+              if instance.partition.name:match('mp_012/objects/smokestacks') then
+                  local variation = MeshMaterialVariation(instance)
+                  variation:MakeWritable()
+                  variation.shader.shader = nil
+              end
+              if instance.partition.name:match('mp_017/objects/smokestacks') then
+                  local variation = MeshMaterialVariation(instance)
+                  variation:MakeWritable()
+                  variation.shader.shader = nil
+              end
+          end
+
+          if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
+            local s_Instance = ColorCorrectionComponentData(instance)
+            s_Instance:MakeWritable()
+            s_Instance.enable = false
+            s_Instance.brightness = Vec3(1, 1, 1)
+            s_Instance.contrast = Vec3(1.2, 1.2, 1.2)
+            s_Instance.saturation = Vec3(1.2, 1.2, 1.2)
+          end
+          if instance.instanceGuid == Guid('46FE1C37-5B7E-490C-8239-2EB2D6045D7B') then -- oob FX/VisualEnviroments/OutofCombat/OutofCombat
+            local s_Instance = ColorCorrectionComponentData(instance)
+            s_Instance:MakeWritable()
+            s_Instance.enable = false
+            s_Instance.brightness = Vec3(0.8, 0.8, 0.8)
+            s_Instance.contrast = Vec3(1, 1, 1)
+            s_Instance.saturation = Vec3(1, 1, 1)
+          end
+
+          if instance.instanceGuid == Guid('36C2CEAE-27D2-45F3-B3F5-B831FE40ED9B') then -- FX/VisualEnviroments/OutofCombat/OutofCombat
+            local s_Instance = FilmGrainComponentData(instance)
+            s_Instance:MakeWritable()
+            s_Instance.enable = false
+          end
+
+          if instance:Is('VignetteComponentData') then
+            local vignetteData = VignetteComponentData(instance)
+
+            vignetteData:MakeWritable()
+            vignetteData.enable = false;
+          end
+
+      end
+  end)
+
 
 end
