@@ -22,6 +22,7 @@ CREATED DEV BRANCH
 - Seine Crossing 
 - Davamand Peak (with CC on)
 - Sabalan Pipeline (without CC)
+- Bandar Desert (without CC)
 
 
 (Currently Tested Maps only)
