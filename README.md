@@ -9,11 +9,12 @@ CREATED DEV BRANCH
 - Automatic ColorCorrection Enabling Server-Side
 
 
-### Standard Preset "Night" works "well" on:
+### Standard Preset "Night" works "well" on (CC enabled):
 
 - Bazaar (Standard Setting)
 - Karkand
 - (Should work on almost all maps tho, needs testing)
+- Sabalan Pipeline
 
 ### Standard Preset "Morning" works "well" on:
 
