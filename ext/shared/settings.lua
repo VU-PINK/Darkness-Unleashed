@@ -12,11 +12,10 @@
     -- Select Maps and Time:
         Map = {
 
-        --true to use mod, false to not use mod
         --Standard
         ['Bazaar.Night']      = true,
         --Teheran           = (   true, 'none'    ),
-        --Caspian           = (   false, 'noon'   ),
+        ['Caspian.Morning']   = true,
         --Seine             = (   true, 'night'   ),
         --Firestorm         = (   true, 'night'   ),
         --Davamand          = (   true, 'night'   ),
