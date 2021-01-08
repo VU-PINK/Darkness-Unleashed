@@ -47,7 +47,7 @@ if TimeVote == false then
     Map.Azadi             = (   'true, night'   )
     Map.Epicenter         = (   'true, night'   )
     Map.Markaz            = (   'true, night'   )
-    Map.Talah Market      = (   'true, night'   )
+    Map.Talah             = (   'true, night'   )
 
     --DLC EG
     Map.Kiasar            = (   'true, night'   )
