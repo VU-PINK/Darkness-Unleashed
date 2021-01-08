@@ -18,7 +18,7 @@
         ['Caspian.Morning']   = true,
         --Seine             = (   true, 'night'   ),
         --Firestorm         = (   true, 'night'   ),
-        --Davamand          = (   true, 'night'   ),
+        ['Davamand.Morning']  = true,
         --Noshar            = (   true, 'night'   ),
         --Kharg             = (   true, 'night'   ),
         --Metro             = (   true, 'night'   ),

@@ -50,4 +50,26 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   return
               end
         end
+
+		    if string.find(levelName, "MP_013") then
+              if Map['Davamand.Night'] then
+                  print('Calling Preset Night on Davamand Peak')
+                  Night()
+              elseif Map['Davamand.Morning'] then
+                  print('Calling Preset Morning on Davamand Peak')
+                  Morning()
+              --elseif Settings.Map[1] == (true, 'noon') then
+                  --Presets.Preset.Noon()
+                  --print('Using Preset Noon on Grand Bazaar')
+              --elseif Settings.Map[1] == (true, 'evening') then
+                  --Presets.Preset.Evening()
+                  --print('Using Preset Evening on Grand Bazaar')
+              --elseif Settings.Map[1] == (false, 'none') then
+                  --print('Not Changing Map Time')
+                  --return
+              else
+                  print('Wrong Configuration')
+                  return
+              end
+        end
 end)

@@ -384,7 +384,7 @@ function Night()
         	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight3PGuid))
         end)
 
-        print('Using Preset Night on Grand Bazaar')
+        print('Using Preset Night')
 end
 
 -------------------------------------------------------------------------------
@@ -414,7 +414,7 @@ function Morning()
         function PatchSunFlareComponentData(instance)
                 local flare = SunFlareComponentData(instance)
                 flare:MakeWritable()
-                local flaremultiplier = 0.1
+                local flaremultiplier = 0.15
 
                 flare.element1Size = flare.element1Size*flaremultiplier
                 flare.element2Size = flare.element2Size*flaremultiplier
@@ -535,5 +535,5 @@ function Morning()
                 end
         end
 
-        print('Using Preset Morning on Grand Bazaar')
+        print('Using Preset Morning')
 end
