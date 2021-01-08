@@ -1,10 +1,12 @@
 # VU-DarkNight
 
+CREATED DEV BRANCH
+
 ## TODO
 - Add Map Vote Function (morning, noon, evening, night)
 - Easier Config (Maplist, Times, Fog, Light)
-
-
+- Real-Time-Configuration
+- Automatic ColorCorrection Enabling Server-Side
 
 
 ### Standard Preset "Night" works "well" on:
@@ -19,3 +21,8 @@
 - Seine Crossing
 
 (Currently Tested Maps only)
+
+
+### Standard Preset "Evening" doesn´t work on:
+
+- Kharg Island
