@@ -1,26 +1,28 @@
-require '__shared/presets'
-require '__shared/settings'
+local Presets = require '__shared/presets'
+local Settings = require '__shared/settings'
 
 --Concept:
-Events:Subscribe('Level:LoadingInfo', function(screenInfo)
+Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+
+        print(levelName)
 
         -- Bazaar
-        if SharedUtils:GetLevelName():match("MP_001") then
-              if Map.Bazaar == ('true, night') then
-                  Preset.Night()
-                  print('Using Preset Night on Grand Bazaar')
-              elseif Map.Bazaar == ('true, morning') then
-                  Preset.Morning()
+        if string.find(levelName, "MP_001") then
+              if Map['Bazaar.Night'] then
+                  print('Calling Preset Night on Grand Bazaar')
+                  Night()
+              elseif Settings.Map['Bazaar.Morning'] then
                   print('Using Preset Morning on Grand Bazaar')
-              elseif Map.Bazaar == ('true, noon') then
-                  Preset.Noon()
-                  print('Using Preset Noon on Grand Bazaar')
-              elseif Map.Bazaar == ('true, evening') then
-                  Preset.Evening()
-                  print('Using Preset Evening on Grand Bazaar')
-              elseif Map.Bazaar == ('false, none') then
-                  print('Not Changing Map Time')
-                  return
+                  Morning()
+              --elseif Settings.Map[1] == (true, 'noon') then
+                  --Presets.Preset.Noon()
+                  --print('Using Preset Noon on Grand Bazaar')
+              --elseif Settings.Map[1] == (true, 'evening') then
+                  --Presets.Preset.Evening()
+                  --print('Using Preset Evening on Grand Bazaar')
+              --elseif Settings.Map[1] == (false, 'none') then
+                  --print('Not Changing Map Time')
+                  --return
               else
                   print('Wrong Configuration')
                   return

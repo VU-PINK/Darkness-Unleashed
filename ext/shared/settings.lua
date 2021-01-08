@@ -4,58 +4,56 @@
 ---Change Settings here
 --Use Time Vote (true/false)
 --Activates Voting for Used Time (morning/noon/evening/night/none)
-local TimeVote = false
+--TimeVote = false
 
 ---Custom Settings
 --MapList
-if TimeVote == false then
+---if TimeVote == false then
     -- Select Maps and Time:
-    function MapName(bool, time)
-        local Map = MapName()
-        Map:MakeWritable()
+        Map = {
 
         --true to use mod, false to not use mod
-        --Standard              (   'bool, time '   )
-        Map.Bazaar            = (   'true, night'   )
-        Map.Teheran           = (   'true, none'    )
-        Map.Caspian           = (   'false, noon'   )
-        Map.Seine             = (   'true, night'   )
-        Map.Firestorm         = (   'true, night'   )
-        Map.Davamand          = (   'true, night'   )
-        Map.Noshar            = (   'true, night'   )
-        Map.Kharg             = (   'true, night'   )
-        Map.Metro             = (   'true, night'   )
+        --Standard
+        ['Bazaar.Night']      = true,
+        --Teheran           = (   true, 'none'    ),
+        --Caspian           = (   false, 'noon'   ),
+        --Seine             = (   true, 'night'   ),
+        --Firestorm         = (   true, 'night'   ),
+        --Davamand          = (   true, 'night'   ),
+        --Noshar            = (   true, 'night'   ),
+        --Kharg             = (   true, 'night'   ),
+        --Metro             = (   true, 'night'   ),
 
         --DLC B2K
-        Map.Gulf              = (   'true, night'   )
-        Map.Karkand           = (   'true, night'   )
-        Map.Sharqi            = (   'true, night'   )
-        Map.Wake              = (   'true, night'   )
+        --Gulf              = (   true, 'night'   ),
+        --Karkand           = (   true, 'night'   ),
+        --Sharqi            = (   true, 'night'   ),
+        --Wake              = (   true, 'night'   ),
 
         --DLC CQ
-        Map.Donya             = (   'true, night'   )
-        Map.Operation925      = (   'true, night'   )
-        Map.Scrapmetal        = (   'true, night'   )
-        Map.Ziba              = (   'true, night'   )
+        --Donya             = (   true, 'night'   ),
+        --Operation925      = (   true, 'night'   ),
+        --Scrapmetal        = (   true, 'night'   ),
+        --Ziba              = (   true, 'night'   ),
 
         --DLC AK
-        Map.Alborz            = (   'true, night'   )
-        Map.Armored           = (   'true, night'   )
-        Map.Bandar            = (   'true, night'   )
-        Map.DeathValley       = (   'true, night'   )
+        --Alborz            = (   true, 'night'   ),
+        --Armored           = (   true, 'night'   ),
+        --Bandar            = (   true, 'night'   ),
+        --DeathValley       = (   true, 'night'   ),
 
         --DLC AF
-        Map.Azadi             = (   'true, night'   )
-        Map.Epicenter         = (   'true, night'   )
-        Map.Markaz            = (   'true, night'   )
-        Map.Talah             = (   'true, night'   )
+        --Azadi             = (   true, 'night'   ),
+        --Epicenter         = (   true, 'night'   ),
+        --Markaz            = (   true, 'night'   ),
+        --Talah             = (   true, 'night'   ),
 
         --DLC EG
-        Map.Kiasar            = (   'true, night'   )
-        Map.Nebandan          = (   'true, night'   )
-        Map.Riverside         = (   'true, night'   )
-        Map.Pipeline          = (   'true, night'   )
+        --Kiasar            = (   true, 'night'   ),
+        --Nebandan          = (   true, 'night'   ),
+        --Riverside         = (   true, 'night'   ),
+        --Pipeline          = (   true, 'night'   )
 
-    end
+        }
 
-end
+--end

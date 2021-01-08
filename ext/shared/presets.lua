@@ -2,15 +2,7 @@ require '__shared/settings'
 
 
 ---Presets
-function Presets()
-    local Preset = Presets()
-
-    Preset:MakeWritable()
-
-    --PresetNight
-    Preset.Night = Night()
-
-    function Night()
+function Night()
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
         local emitters = {
         -- MP_Subway
@@ -192,8 +184,8 @@ function Presets()
                 sky:MakeWritable()
 
                 sky.brightnessScale = 0.001
-                sky.sunSize = 0.01
-                sky.sunScale = 0.01
+                sky.sunSize = 1
+                sky.sunScale = 15
 
                 sky.cloudLayer1SunLightIntensity = 0
                 sky.cloudLayer1SunLightPower = 0
@@ -234,13 +226,13 @@ function Presets()
 
                 fog.fogColorStart = 2
                 fog.fogColorEnd = 65
-                fog.fogColor = Vec3(0.0003, 0.0003, 0.0003)
+                fog.fogColor = Vec3(0.0012, 0.0012, 0.0012)
                 fog.fogColorCurve = Vec4(0.25, 0.18, 0.14, 0.000)
 
                 fog.transparencyFadeStart = 2
-                fog.transparencyFadeEnd = 60
+                fog.transparencyFadeEnd = 65
 
-                fog.endValue = 125
+                fog.endValue = 80
 
         end
 
@@ -248,11 +240,11 @@ function Presets()
                 local tonemap = TonemapComponentData(instance)
                 tonemap:MakeWritable()
 
-                tonemap.minExposure = 0.1
+                tonemap.minExposure = 1
                 tonemap.maxExposure = 4
 
-                tonemap.exposureAdjustTime = 0.5
-                tonemap.middleGray = 0.02
+                tonemap.exposureAdjustTime = 1
+                tonemap.middleGray = 1.25
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
@@ -261,10 +253,9 @@ function Presets()
                 local color = ColorCorrectionComponentData(instance)
                 color:MakeWritable()
 
-                color.brightness = Vec3(0.8, 0.8, 0.8)
-                color.contrast = Vec3(1.3, 1.3, 1.3)
-                color.saturation = Vec3(1.1, 1.1, 1.1)
-                color.hue = 210
+                color.brightness = Vec3(0.9, 0.9, 0.9)
+                color.contrast = Vec3(1.10, 1.10, 1.10)
+                color.saturation = Vec3(1, 1.005, 1.005)
 
                 if instance.partition.name == 'ui/assets/menuvisualenvironment' then
                     color.brightness = Vec3(1, 1, 1)
@@ -358,7 +349,7 @@ function Presets()
         	spotLight.coneOuterAngle = 35
         	spotLight.orthoWidth = 7
         	spotLight.orthoHeight = 7
-        	spotLight.frustumFov = 30 --size
+        	spotLight.frustumFov = 37.5 --size
         	spotLight.castShadowsEnable = true
         	spotLight.castShadowsMinLevel = QualityLevel.QualityLevel_Ultra
         	spotLight.shape = 1
@@ -380,12 +371,13 @@ function Presets()
         	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight1PGuid))
         	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight3PGuid))
         end)
-          end
+
+        print('Using Preset Night on Grand Bazaar')
+end
 
 -------------------------------------------------------------------------------
-    Preset.Night = Morning()
     --Sun East
-    function Morning()
+function Morning()
     --remove some fx elements
         local RemoveFx = require('removeFx')
 
@@ -559,5 +551,4 @@ function Presets()
         end
     end)
 
-    end
 end
