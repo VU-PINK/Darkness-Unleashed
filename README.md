@@ -24,6 +24,12 @@ CREATED DEV BRANCH
 - Sabalan Pipeline (without CC)
 - Bandar Desert (without CC)
 
+### Standard Preset "Morning" works "ehh" on:
+
+- Operation Firestorm (without CC)
+
+
+
 
 (Currently Tested Maps only)
 
