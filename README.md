@@ -15,6 +15,7 @@ CREATED DEV BRANCH
 - Karkand
 - (Should work on almost all maps tho, needs testing)
 - Sabalan Pipeline
+- Operation Metro 
 
 ### Standard Preset "Morning" works "well" on:
 
@@ -27,7 +28,7 @@ CREATED DEV BRANCH
 ### Standard Preset "Morning" works "ehh" on:
 
 - Operation Firestorm (without CC)
-
+- Operation Metro (without CC)
 
 
 
