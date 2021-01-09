@@ -544,10 +544,10 @@ function Morning()
                 local tonemap = TonemapComponentData(instance)
                 tonemap:MakeWritable()
 
-                --tonemap.minExposure = 0.1
+                tonemap.minExposure = 1
                 tonemap.maxExposure = 8
 
-                tonemap.exposureAdjustTime = 1
+                tonemap.exposureAdjustTime = 1.5
                 --tonemap.middleGray = 5
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
