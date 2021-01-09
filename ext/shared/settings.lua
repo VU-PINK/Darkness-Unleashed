@@ -14,41 +14,41 @@
 
         --Standard
         ['Bazaar.Night']      = true,
-        --Teheran           = (   true, 'none'    ),
-        ['Caspian.Morning']   = true,
-        --Seine             = (   true, 'night'   ),
+        ['Teheran.Morning']   = true,
+        ['Caspian.Night']   = true,
+        ['Seine.Night']     = true,
         ['Firestorm.Morning']         = true,
-        ['Davamand.Morning']  = true,
+        ['Davamand.Night']  = true,
         --Noshar            = (   true, 'night'   ),
         --Kharg             = (   true, 'night'   ),
-        ['Metro.Morning']     = true,
+        ['Metro.Night']     = true,
 
         --DLC B2K
-        --Gulf              = (   true, 'night'   ),
+        ['Gulf.Morning']      = true,
         --Karkand           = (   true, 'night'   ),
         --Sharqi            = (   true, 'night'   ),
-        --Wake              = (   true, 'night'   ),
+        ['Wake.Morning']              = true,
 
         --DLC CQ
         --Donya             = (   true, 'night'   ),
         --Operation925      = (   true, 'night'   ),
-        --Scrapmetal        = (   true, 'night'   ),
+        ['Scrapmetal.Night']  = true,
         --Ziba              = (   true, 'night'   ),
 
         --DLC AK
         --Alborz            = (   true, 'night'   ),
-        --Armored           = (   true, 'night'   ),
+        ['Shield.Night']   = true,
         ['Bandar.Morning']    = true,
         --DeathValley       = (   true, 'night'   ),
 
         --DLC AF
         --Azadi             = (   true, 'night'   ),
-        --Epicenter         = (   true, 'night'   ),
+        ['Epicenter.Night'] = true,
         --Markaz            = (   true, 'night'   ),
         --Talah             = (   true, 'night'   ),
 
         --DLC EG
-        --Kiasar            = (   true, 'night'   ),
+        ['Kiasar.Night']            = true,
         --Nebandan          = (   true, 'night'   ),
         --Riverside         = (   true, 'night'   ),
         ['Pipeline.Morning']  = true,
