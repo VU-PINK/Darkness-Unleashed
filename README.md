@@ -16,6 +16,8 @@ CREATED DEV BRANCH
 - (Should work on almost all maps tho, needs testing)
 - Sabalan Pipeline
 - Operation Metro 
+- Seine Crossing
+- Caspian Border
 
 ### Standard Preset "Morning" works "well" on:
 
