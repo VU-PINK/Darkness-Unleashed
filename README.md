@@ -4,7 +4,7 @@ CREATED DEV BRANCH
 
 ## TODO
 - Add Map Vote Function (morning, noon, evening, night)
-- Easier Config (Maplist, Times, Fog, Light)
+- Easier Config (Fog, Light)
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side
 
