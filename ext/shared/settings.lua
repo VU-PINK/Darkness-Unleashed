@@ -17,11 +17,11 @@
         --Teheran           = (   true, 'none'    ),
         ['Caspian.Morning']   = true,
         --Seine             = (   true, 'night'   ),
-        --Firestorm         = (   true, 'night'   ),
+        ['Firestorm.Morning']         = true,
         ['Davamand.Morning']  = true,
         --Noshar            = (   true, 'night'   ),
         --Kharg             = (   true, 'night'   ),
-        --Metro             = (   true, 'night'   ),
+        ['Metro.Morning']     = true,
 
         --DLC B2K
         --Gulf              = (   true, 'night'   ),
@@ -38,7 +38,7 @@
         --DLC AK
         --Alborz            = (   true, 'night'   ),
         --Armored           = (   true, 'night'   ),
-        --Bandar            = (   true, 'night'   ),
+        ['Bandar.Morning']    = true,
         --DeathValley       = (   true, 'night'   ),
 
         --DLC AF
@@ -51,7 +51,7 @@
         --Kiasar            = (   true, 'night'   ),
         --Nebandan          = (   true, 'night'   ),
         --Riverside         = (   true, 'night'   ),
-        --Pipeline          = (   true, 'night'   )
+        ['Pipeline.Morning']  = true,
 
         }
 
