@@ -13,45 +13,45 @@
         Map = {
 
         --Standard
-        ['Bazaar.Night']      = true,
-        ['Teheran.Morning']   = true,
-        ['Caspian.Night']   = true,
-        ['Seine.Night']     = true,
-        ['Firestorm.Morning']         = true,
-        ['Davamand.Night']  = true,
-        --Noshar            = (   true, 'night'   ),
-        --Kharg             = (   true, 'night'   ),
-        ['Metro.Night']     = true,
+        ['Bazaar.Night']                      = true,             --MP_001      | Grand Bazaar
+        ['Teheran.Morning']                   = true,             --MP_003      | Teheran Highway
+        ['Caspian.Night']                     = true,             --MP_007      | Caspian Border
+        ['Seine.Night']                       = true,             --MP_011      | Seine Crossing
+        ['Firestorm.Morning']                 = true,             --MP_012      | Operation Firestorm
+        ['Davamand.Night']                    = true,             --MP_013      | Davamand Peak
+        ['Noshahr.Night']                     = true,             --MP_017      | Noshahr Canals
+        ['Kharg.Morning']                     = true,             --MP_018      | Kharg Island
+        ['Metro.Night']                       = true,             --MP_Subway   | Operation Metro
 
-        --DLC B2K
-        ['Gulf.Morning']      = true,
-        --Karkand           = (   true, 'night'   ),
-        --Sharqi            = (   true, 'night'   ),
-        ['Wake.Morning']              = true,
+        --DLC Back to Karkand
+        ['Karkand.Night']                     = true,             --XP1_001     | Strike at Karkand
+        ['Gulf.Morning']                      = true,             --XP1_002     | Gulf of Oman
+        ['Sharqi.Night']                      = true,             --XP1_003     | Sharqi Peninsula
+        ['Wake.Morning']                      = true,             --XP1_004     | Wake Island
 
-        --DLC CQ
-        --Donya             = (   true, 'night'   ),
-        --Operation925      = (   true, 'night'   ),
-        ['Scrapmetal.Night']  = true,
-        --Ziba              = (   true, 'night'   ),
+        --DLC Close Quarters
+        ['Donya.Night']                       = true,             --XP2_Palace  | Donya Fortress
+        ['Operation925.Night']                = true,             --XP2_Office  | Operation 925
+        ['Scrapmetal.Night']                  = true,             --XP2_Factory | Scrapmetal
+        ['Ziba.Night']                        = true,             --XP2_Skybar  | Ziba Tower
 
-        --DLC AK
-        --Alborz            = (   true, 'night'   ),
-        ['Shield.Night']   = true,
-        ['Bandar.Morning']    = true,
-        --DeathValley       = (   true, 'night'   ),
+        --DLC Armored Kill
+        ['Alborz.Night']                      = true,             --XP3_Alborz  | Alborz Mountains
+        ['Shield.Night']                      = true,             --XP3_Shield  | Armored Shield
+        ['Bandar.Morning']                    = true,             --XP3_Desert  | Bandar Desert
+        ['Death.Morning']                     = true,             --XP3_Valley  | Death Valley
 
-        --DLC AF
-        --Azadi             = (   true, 'night'   ),
-        ['Epicenter.Night'] = true,
-        --Markaz            = (   true, 'night'   ),
-        --Talah             = (   true, 'night'   ),
+        --DLC Aftermath
+        ['Azadi.Night']                       = true,             --XP4_Parl    | Azadi Palace
+        ['Epicenter.Night']                   = true,             --XP4_Quake   | Epicenter
+        ['Markaz.Night']                      = true,             --XP4_FD      | Markaz Monolith
+        ['Talah.Night']                       = true,             --XP4_Rubble  | Talah Market
 
-        --DLC EG
-        ['Kiasar.Night']            = true,
-        --Nebandan          = (   true, 'night'   ),
-        --Riverside         = (   true, 'night'   ),
-        ['Pipeline.Morning']  = true,
+        --DLC End Game
+        ['Riverside.Night']                   = true,             --XP5_001     | Operation Riverside
+        ['Nebandan.Morning']                  = true,             --XP5_002     | Nebandan Flats
+        ['Kiasar.Night']                      = true,             --XP5_003     | Kiasar Railroad
+        ['Pipeline.Morning']                  = true,             --XP5_004     | Sabalan Pipeline
 
         }
 
