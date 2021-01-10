@@ -8,6 +8,7 @@ CREATED DEV BRANCH
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side
 - Look into Illuminating Mortar Sheels from Campaign
+- Create & Test More Presets
 
 ### Standard Preset "Night" works "well" on (CC enabled):
 
