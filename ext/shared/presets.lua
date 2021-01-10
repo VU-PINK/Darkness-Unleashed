@@ -660,8 +660,8 @@ function Bright_Night()
                 local outdoor = OutdoorLightComponentData(instance)
                 outdoor:MakeWritable()
 
-                outdoor.sunColor = Vec3(0.02, 0.02, 0.03)
-                outdoor.skyColor = Vec3(0.01, 0.01, 0.01)
+                outdoor.sunColor = Vec3(0.02, 0.02, 0.04)
+                outdoor.skyColor = Vec3(0.01, 0.01, 0.02)
                 outdoor.groundColor = Vec3(0, 0, 0)
 
                 outdoor.skyEnvmapShadowScale = 0.5
@@ -714,7 +714,7 @@ function Bright_Night()
 
                 fog.fogColorStart = 2
                 fog.fogColorEnd = 40
-                fog.fogColor = Vec3(0.0005, 0.0005, 0.0000000015)
+                fog.fogColor = Vec3(0.0004, 0.0003, 0.0000000015)
                 fog.fogColorCurve = Vec4(0.30, 0.20, 0.15, 0)
 
                 --fog.transparencyFadeStart = 2
@@ -728,7 +728,7 @@ function Bright_Night()
                 local tonemap = TonemapComponentData(instance)
                 tonemap:MakeWritable()
 
-                tonemap.minExposure = 3
+                tonemap.minExposure = 5
                 tonemap.maxExposure = 14
 
                 tonemap.exposureAdjustTime = 1.5

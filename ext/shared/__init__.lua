@@ -227,9 +227,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Karkand.Morning'] then
                   print('Calling Preset Morning on Strike at Karkand')
                   Morning()
-              --elseif Settings.Map[1] == (true, 'noon') then
-                  --Presets.Preset.Noon()
-                  --print('Using Preset Noon on Grand Bazaar')
+              elseif Map['Karkand.Bright_Night'] then
+                  print('Using Preset Bright Night on Strike at Karkand')
+                  Bright_Night()
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
