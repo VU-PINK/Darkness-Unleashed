@@ -56,3 +56,104 @@
         }
 
 --end
+
+-- Fog and Brightness Settings - DarkNight Preset
+
+--generalSetting
+generalfogMultiplier                          = 1.0
+generalbrightnessMultiplier                   = 1.0
+
+
+--CustomMapSettings
+--Standard
+Bazaar_fogMultiplier                          = generalfogMultiplier * 1.0
+Bazaar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Teheran_fogMultiplier                         = generalfogMultiplier * 1.0
+Teheran_brightnessMultiplier                  = generalbrightnessMultiplier * 1.0
+
+Caspian_fogMultiplier                         = generalfogMultiplier * 1.0
+Caspian_brightnessMultiplier                  = generalbrightnessMultiplier * 1.0
+
+Seine_fogMultiplier                           = generalfogMultiplier * 1.0
+Seine_brightnessMultiplier                    = generalbrightnessMultiplier * 1.0
+
+Firestorm_fogMultiplier                       = generalfogMultiplier * 1.0
+Firestorm_brightnessMultiplier                = generalbrightnessMultiplier * 1.0
+
+Davamand_fogMultiplier                        = generalfogMultiplier * 1.0
+Davamand_brightnessMultiplier                 = generalbrightnessMultiplier * 1.0
+
+Noshahr_fogMultiplier                         = generalfogMultiplier * 1.0
+Noshahr_brightnessMultiplier                  = generalbrightnessMultiplier * 1.0
+
+Kharg_fogMultiplier                           = generalfogMultiplier * 1.0
+Kharg_brightnessMultiplier                    = generalbrightnessMultiplier * 1.0
+
+Metro_fogMultiplier                           = generalfogMultiplier * 1.0
+Metro_brightnessMultiplier                    = generalbrightnessMultiplier * 1.0
+
+--DLC Back to Karkand
+Karkand_fogMultiplier                         = generalfogMultiplier * 1.0
+Karkand_brightnessMultiplier                  = generalbrightnessMultiplier * 1.0
+
+Gulf_fogMultiplier                            = generalfogMultiplier * 1.0
+Gulf_brightnessMultiplier                     = generalbrightnessMultiplier * 1.0
+
+Sharqi_fogMultiplier                          = generalfogMultiplier * 1.0
+Sharqi_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Wake_fogMultiplier                            = generalfogMultiplier * 1.0
+Wake_brightnessMultiplier                     = generalbrightnessMultiplier * 1.0
+
+--DLC Close Quarters
+Bazaar_fogMultiplier                          = generalfogMultiplier * 1.0
+Bazaar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Bazaar_fogMultiplier                          = generalfogMultiplier * 1.0
+Bazaar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Bazaar_fogMultiplier                          = generalfogMultiplier * 1.0
+Bazaar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Bazaar_fogMultiplier                          = generalfogMultiplier * 1.0
+Bazaar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+--DLC Armored Kill
+Alborz_fogMultiplier                          = generalfogMultiplier * 1.0
+Alborz_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Shield_fogMultiplier                          = generalfogMultiplier * 1.0
+Shield_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Bandar_fogMultiplier                          = generalfogMultiplier * 1.0
+Bandar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Death_fogMultiplier                           = generalfogMultiplier * 1.0
+Death_brightnessMultiplier                    = generalbrightnessMultiplier * 1.0
+
+--DLC Aftermath
+Azadi_fogMultiplier                           = generalfogMultiplier * 1.0
+Azadi_brightnessMultiplier                    = generalbrightnessMultiplier * 1.0
+
+Epicenter_fogMultiplier                       = generalfogMultiplier * 1.0
+Epicenter_brightnessMultiplier                = generalbrightnessMultiplier * 1.0
+
+Markaz_fogMultiplier                          = generalfogMultiplier * 1.0
+Markaz_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Talah_fogMultiplier                           = generalfogMultiplier * 1.0
+Talah_brightnessMultiplier                    = generalbrightnessMultiplier * 1.0
+
+--DLC End Game
+Riverside_fogMultiplier                       = generalfogMultiplier * 1.0
+Riverside_brightnessMultiplier                = generalbrightnessMultiplier * 1.0
+
+Kiasar_fogMultiplier                          = generalfogMultiplier * 1.0
+Kiasar_brightnessMultiplier                   = generalbrightnessMultiplier * 1.0
+
+Nebandan_fogMultiplier                        = generalfogMultiplier * 1.0
+Nebandan_brightnessMultiplier                 = generalbrightnessMultiplier * 1.0
+
+Pipeline_fogMultiplier                        = generalfogMultiplier * 1.0
+Pipeline_brightnessMultiplier                 = generalbrightnessMultiplier * 1.0

@@ -1,4 +1,4 @@
-require '__shared/settings'
+local Settings = require '__shared/settings'
 
 
 ---Presets
@@ -231,7 +231,7 @@ function Night()
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.00000003
+                sky.brightnessScale = 0.00000003 * CustomBrightness
                 sky.sunSize = 15
                 sky.sunScale = 15
 
@@ -270,11 +270,11 @@ function Night()
                 fog.enable = true
                 fog.fogColorEnable = true
 
-                fog.start = 2
+                fog.start = 2 
 
                 fog.fogColorStart = 2
                 fog.fogColorEnd = 40
-                fog.fogColor = Vec3(0.0005, 0.0005, 0.0000000015)
+                fog.fogColor = Vec3(0.0005, 0.0005, 0.0000000015) * CustomFog
                 fog.fogColorCurve = Vec4(0.30, 0.20, 0.15, 0)
 
                 --fog.transparencyFadeStart = 2

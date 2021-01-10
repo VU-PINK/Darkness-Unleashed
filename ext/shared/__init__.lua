@@ -1,6 +1,9 @@
 local Presets = require '__shared/presets'
 local Settings = require '__shared/settings'
 
+CustomBrightness = nil
+CustomFog = nil
+
 --Concept:
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
 
@@ -12,6 +15,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Bazaar
         if string.find(levelName, "MP_001") then
               if Map['Bazaar.Night'] then
+                  CustomBrightness = Bazaar_brightnessMultiplier
+                  CustomFog = Bazaar_fogMultiplier
                   print('Calling Preset Night on Grand Bazaar')
                   Night()
               elseif Map['Bazaar.Morning'] then
