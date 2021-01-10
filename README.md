@@ -6,9 +6,9 @@ CREATED DEV BRANCH
 - Add Map Vote Function (morning, noon, evening, night)
 - Easier Config (Fog, Light)
 - Real-Time-Configuration
-- Automatic ColorCorrection Enabling Server-Side
+- Automatic ColorCorrection Enabling Server-Side  ✔
 - Look into Illuminating Mortar Sheels from Campaign
-- Create & Test More Presets
+- Create & Test More Presets (Bright_Night , Evening, Afternoon )
 
 ### Standard Preset "Night" works "well" on (CC enabled):
 
@@ -16,14 +16,14 @@ CREATED DEV BRANCH
 - Karkand
 - (Should work on almost all maps tho, needs testing)
 - Sabalan Pipeline
-- Operation Metro 
+- Operation Metro
 - Seine Crossing
 - Caspian Border
 
 ### Standard Preset "Morning" works "well" on:
 
 - Karkand (Standard Setting)
-- Seine Crossing 
+- Seine Crossing
 - Davamand Peak (with CC on)
 - Sabalan Pipeline (without CC)
 - Bandar Desert (without CC)
