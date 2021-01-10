@@ -27,9 +27,6 @@ CREATED DEV BRANCH
 - Davamand Peak (with CC on)
 - Sabalan Pipeline (without CC)
 - Bandar Desert (without CC)
-
-### Standard Preset "Morning" works "ehh" on:
-
 - Operation Firestorm (without CC)
 - Operation Metro (without CC)
 
