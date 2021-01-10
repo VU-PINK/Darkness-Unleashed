@@ -195,6 +195,8 @@ function Night()
                     PatchEmitterTemplateData(instance)
                 elseif instance:Is('EffectEntityData') then
                     PatchEffectEntityData(instance)
+								elseif instance:Is('LocalLightEntityData') then
+										DynamicLights(instance)
                 end
                 DisableBackgrounds(instance)
             end
@@ -229,17 +231,17 @@ function Night()
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.000000001
+                sky.brightnessScale = 0.00000001
                 sky.sunSize = 15
                 sky.sunScale = 15
 
-                sky.cloudLayer1SunLightIntensity = 0.0001
+                sky.cloudLayer1SunLightIntensity = 0.0007
                 sky.cloudLayer1SunLightPower = 0.0001
-                sky.cloudLayer1AmbientLightIntensity = 0.0001
+                sky.cloudLayer1AmbientLightIntensity = 0.0007
 
-                sky.cloudLayer2SunLightIntensity = 0.0001
+                sky.cloudLayer2SunLightIntensity = 0.0007
                 sky.cloudLayer2SunLightPower = 0.0001
-                sky.cloudLayer2AmbientLightIntensity = 0.0001
+                sky.cloudLayer2AmbientLightIntensity = 0.0007
 
                 sky.staticEnvmapScale = 0.001
                 sky.skyEnvmap8BitTexScale = 0.001
@@ -358,8 +360,14 @@ function Night()
                 end
         end
 
+				function DynamicLights(instance)
+								local Dynamic = LocalLightEntityData(instance)
+										Dynamic:MakeWritable()
+										Dynamic.visible = true
+										Dynamic.enlightenEnable = true
+				end
 
-        --Additions by Lesley & IllustrisJack
+        --Extra Additions by Lesley & IllustrisJack
 
         function DisableBackgrounds(instance)
                 if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
@@ -401,12 +409,12 @@ function Night()
         	local spotLight = SpotLightEntityData(instance)
         	instance:MakeWritable()
 
-        	spotLight.radius = 180
+        	spotLight.radius = 220
         	spotLight.intensity = 3.5 --brightness
         	spotLight.coneOuterAngle = 35
         	spotLight.orthoWidth = 7
         	spotLight.orthoHeight = 7
-        	spotLight.frustumFov = 42 --size
+        	spotLight.frustumFov = 36 --size
         	spotLight.castShadowsEnable = true
         	spotLight.castShadowsMinLevel = QualityLevel.QualityLevel_Ultra
         	spotLight.shape = 1

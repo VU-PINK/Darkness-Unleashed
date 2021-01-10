@@ -27,7 +27,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
 
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
-					emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 0.75
+					emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 0.82
 					emitterTemplate.maxSpawnDistance = 2000
 				end
 
