@@ -1,9 +1,142 @@
-local Settings = require '__shared/settings'
+require '__shared/settings'
+
+
+
+
+--Custom Map Settings Brightness/Fog
+--Fcklua
+
 
 
 ---Presets
-function Night()
+function Night(Map)
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
+					local BrightnessMultiplicator
+					local FogMultiplicator
+					--------------------------------- Standard --------------------------------------
+					if Map == 1 then
+							BrightnessMultiplicator = generalbrightness[1] * Bazaar_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Bazaar_fogMultiplier[1]
+					end
+					if Map == 2 then
+							BrightnessMultiplicator = generalbrightness[1] * Teheran_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Teheran_fogMultiplier[1]
+					end
+					if Map == 3 then
+							BrightnessMultiplicator = generalbrightness[1] * Caspian_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Caspian_fogMultiplier[1]
+					end
+					if Map == 4 then
+							BrightnessMultiplicator = generalbrightness[1] * Seine_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Seine_fogMultiplier[1]
+					end
+					if Map == 5 then
+							BrightnessMultiplicator = generalbrightness[1] * Firestorm_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Firestorm_fogMultiplier[1]
+					end
+					if Map == 6 then
+							BrightnessMultiplicator = generalbrightness[1] * Davamand_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Davamand_fogMultiplier[1]
+					end
+					if Map == 7 then
+							BrightnessMultiplicator = generalbrightness[1] * Noshahr_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Noshahr_fogMultiplier[1]
+					end
+					if Map == 8 then
+							BrightnessMultiplicator = generalbrightness[1] * Kharg_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Kharg_fogMultiplier[1]
+					end
+					if Map == 9 then
+							BrightnessMultiplicator = generalbrightness[1] * Metro_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Metro_fogMultiplier[1]
+					end
+						------------------------- DLC - Back to Karkand ----------------------
+					if Map == 10 then
+							BrightnessMultiplicator = generalbrightness[1] * Karkand_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Karkand_fogMultiplier[1]
+					end
+					if Map == 11 then
+							BrightnessMultiplicator = generalbrightness[1] * Gulf_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Gulf_fogMultiplier[1]
+					end
+					if Map == 12 then
+							BrightnessMultiplicator = generalbrightness[1] * Sharqi_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Sharqi_fogMultiplier[1]
+					end
+					if Map == 13 then
+							BrightnessMultiplicator = generalbrightness[1] * Wake_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Wake_fogMultiplier[1]
+					end
+						----------------------- DLC - Close Quarters -------------------------
+					if Map == 14 then
+							BrightnessMultiplicator = generalbrightness[1] * Donya_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Donya_fogMultiplier[1]
+					end
+					if Map == 15 then
+							BrightnessMultiplicator = generalbrightness[1] * Operation925_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Operation925_fogMultiplier[1]
+					end
+					if Map == 16 then
+							BrightnessMultiplicator = generalbrightness[1] * Scrapmetal_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Scrapmetal_fogMultiplier[1]
+					end
+					if Map == 17 then
+							BrightnessMultiplicator = generalbrightness[1] * Ziba_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Ziba_fogMultiplier[1]
+					end
+						---------------------- DLC - Armored Kill ----------------------------
+					if Map == 18 then
+							BrightnessMultiplicator = generalbrightness[1] * Alborz_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Alborz_fogMultiplier[1]
+					end
+					if Map == 19 then
+							BrightnessMultiplicator = generalbrightness[1] * Shield_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Shield_fogMultiplier[1]
+					end
+					if Map == 20 then
+							BrightnessMultiplicator = generalbrightness[1] * Bandar_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Bandar_fogMultiplier[1]
+					end
+					if Map == 21 then
+							BrightnessMultiplicator = generalbrightness[1] * Death_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Death_fogMultiplier[1]
+					end
+						----------------------- DLC - Aftermath ------------------------------
+					if Map == 22 then
+							BrightnessMultiplicator = generalbrightness[1] * Azadi_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Azadi_fogMultiplier[1]
+					end
+					if Map == 23 then
+							BrightnessMultiplicator = generalbrightness[1] * Epicenter_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Epicenter_fogMultiplier[1]
+					end
+					if Map == 24 then
+							BrightnessMultiplicator = generalbrightness[1] * Markaz_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Markaz_fogMultiplier[1]
+					end
+					if Map == 25 then
+							BrightnessMultiplicator = generalbrightness[1] * Talah_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Talah_fogMultiplier[1]
+					end
+						----------------------- DLC - End Game -------------------------------
+					if Map == 26 then
+							BrightnessMultiplicator = generalbrightness[1] * Riverside_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Riverside_fogMultiplier[1]
+					end
+					if Map == 27 then
+							BrightnessMultiplicator = generalbrightness[1] * Nebandan_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Nebandan_fogMultiplier[1]
+					end
+					if Map == 28 then
+							BrightnessMultiplicator = generalbrightness[1] * Kiasar_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Kiasar_fogMultiplier[1]
+					end
+					if Map == 29 then
+							BrightnessMultiplicator = generalbrightness[1] * Pipeline_brightnessMultiplier[1]
+							FogMultiplicator = generalfog[1] * Pipeline_fogMultiplier[1]
+					end
+					print("BrightnessMultiplicator: " ..BrightnessMultiplicator)
+					print("FogMultiplicator: " ..FogMultiplicator)
 	local emitters = {
 	    -- MP_Subway
 	    ['fx/ambient/levelspecific/mp15/emitters/em_amb_mp15_background_smokepillar_m_01'] = true,
@@ -220,37 +353,39 @@ function Night()
                 local outdoor = OutdoorLightComponentData(instance)
                 outdoor:MakeWritable()
 
-                outdoor.sunColor = Vec3(0.02, 0.02, 0.03)
+                outdoor.sunColor = Vec3(0.02, 0.02, 0.02)
                 outdoor.skyColor = Vec3(0.01, 0.01, 0.01)
                 outdoor.groundColor = Vec3(0, 0, 0)
 
                 outdoor.skyEnvmapShadowScale = 0.5
         end
 
+--
         function PatchSkyComponentData(instance)
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.00000003 * CustomBrightness
+                sky.brightnessScale = 0.0005
+
                 sky.sunSize = 15
                 sky.sunScale = 15
 
                 sky.cloudLayer1SunLightIntensity = 0.0001
                 sky.cloudLayer1SunLightPower = 0.0001
-                sky.cloudLayer1AmbientLightIntensity = 0.0001
+                sky.cloudLayer1AmbientLightIntensity = 0.0005
 
                 sky.cloudLayer2SunLightIntensity = 0.0001
                 sky.cloudLayer2SunLightPower = 0.0001
-                sky.cloudLayer2AmbientLightIntensity = 0.0001
+                sky.cloudLayer2AmbientLightIntensity = 0.0005
 
-                sky.staticEnvmapScale = 0.001
-                sky.skyEnvmap8BitTexScale = 0.001
+                sky.staticEnvmapScale = 0.05
+                sky.skyEnvmap8BitTexScale = 0.05
 
                 if
                     sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_city_01' or
                     sky.partition.name == 'levels/mp_011/lighting/ve_mp_011_day01'
                 then
-                    sky.staticEnvmapScale = 0.01
+                    sky.staticEnvmapScale = 0.05
                 end
 
                 if sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_subway_01' then
@@ -270,16 +405,16 @@ function Night()
                 fog.enable = true
                 fog.fogColorEnable = true
 
-                fog.start = 2 
+                fog.start = 2
 
                 fog.fogColorStart = 2
                 fog.fogColorEnd = 40
-                fog.fogColor = Vec3(0.0005, 0.0005, 0.0000000015) * CustomFog
-                fog.fogColorCurve = Vec4(0.30, 0.20, 0.15, 0)
+								--print(Settings.CustomFog)
+                fog.fogColor = Vec3(0.0005, 0.0005, 0.0000000015)
+                fog.fogColorCurve = Vec4((0.30*FogMultiplicator), (0.20*FogMultiplicator), (0.15*FogMultiplicator), 0)
 
-                --fog.transparencyFadeStart = 2
-                --fog.transparencyFadeEnd = 65
-
+                --print(fog.fogColor)
+                fog.transparencyFadeEnd = 50
                 fog.endValue = 65
 
         end
@@ -292,7 +427,7 @@ function Night()
                 tonemap.maxExposure = 6
 
                 tonemap.exposureAdjustTime = 1.5
-                tonemap.middleGray = 4.5
+                tonemap.middleGray = (4.5*BrightnessMultiplicator)
                 tonemap.bloomScale = tonemap.bloomScale * 0.5
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
@@ -301,10 +436,11 @@ function Night()
         function PatchColorCorrectionComponentData(instance)
                 local color = ColorCorrectionComponentData(instance)
                 color:MakeWritable()
-
-                color.brightness = Vec3(0.98, 0.98, 0.98)
+								--print("old brightness" .. color.brightness)
+                color.brightness = Vec3((0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator))
+								--print("new brightness" .. color.brightness)
                 color.contrast = Vec3(1.10, 1.10, 1.10)
-                color.saturation = Vec3(1, 1.005, 1.005)
+                color.saturation = Vec3(1.22, 1.25, 1.5)
         end
 
         function PatchEnlightenComponentData(instance)
@@ -442,7 +578,7 @@ end
 
 -------------------------------------------------------------------------------
 
-function Bright_Night()
+function Bright_Night(CustomBrightness, CustomFog)
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
 	local emitters = {
 	    -- MP_Subway
@@ -877,11 +1013,11 @@ function Bright_Night()
         	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight3PGuid))
         end)
 
-        print('Using Preset Night')
+        print('Using Preset Bright_Night')
 end
 
 -------------------------------------------------------------------------------
-function Morning()
+function Morning(Map)
   ----
         Events:Subscribe('Partition:Loaded', function(partition)
             for _, instance in pairs(partition.instances) do
