@@ -231,17 +231,17 @@ function Night()
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.00000001
+                sky.brightnessScale = 0.00000003
                 sky.sunSize = 15
                 sky.sunScale = 15
 
-                sky.cloudLayer1SunLightIntensity = 0.0007
+                sky.cloudLayer1SunLightIntensity = 0.0001
                 sky.cloudLayer1SunLightPower = 0.0001
-                sky.cloudLayer1AmbientLightIntensity = 0.0007
+                sky.cloudLayer1AmbientLightIntensity = 0.0001
 
-                sky.cloudLayer2SunLightIntensity = 0.0007
+                sky.cloudLayer2SunLightIntensity = 0.0001
                 sky.cloudLayer2SunLightPower = 0.0001
-                sky.cloudLayer2AmbientLightIntensity = 0.0007
+                sky.cloudLayer2AmbientLightIntensity = 0.0001
 
                 sky.staticEnvmapScale = 0.001
                 sky.skyEnvmap8BitTexScale = 0.001
@@ -367,7 +367,7 @@ function Night()
 										Dynamic.enlightenEnable = true
 				end
 
-        --Extra Additions by Lesley & IllustrisJack
+        --Additions by Lesley & IllustrisJack
 
         function DisableBackgrounds(instance)
                 if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
