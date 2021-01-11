@@ -742,7 +742,7 @@ end)
 
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode, round, roundsPerMap)
-      NetEvents:Broadcast("FailProtection", "Check")
+    NetEvents:Broadcast("FailProtection", "Check")
 end)
 
 NetEvents:Subscribe('FailProtection', function(data)
