@@ -1,6 +1,5 @@
-# VU-DarkNight
+# Darkness Unleashed
 
-CREATED DEV BRANCH
 
 ## TODO
 - Add Map Vote Function (morning, noon, evening, night)
