@@ -1,4 +1,4 @@
-# VU-DarkNight
+# Darkness Unleashed
 
 ## TODO
 - Add Map Vote Function (morning, noon, evening, night)
