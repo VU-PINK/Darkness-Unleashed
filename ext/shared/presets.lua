@@ -574,6 +574,17 @@ function Night(Map)
         end)
 
         print('Using Preset Night')
+
+				--FailProtection
+				Events:Subscribe('Player:Joining', function(name, playerGuid, ipAddress, accountGuid)
+						NetEvents:Subscribe('FailProtection', function(data)
+								print('Got NetEvent from server with data:' .. data)
+								if data == 'Check' then
+								NetEvents:Send('FailProtection', "OK" ..name "," ..playerGuid)
+								else
+								NetEvents:Send('FailProtection', "NoCheck" ..name "," ..playerGuid)
+						end)
+				end)
 end
 
 -------------------------------------------------------------------------------
@@ -1014,6 +1025,18 @@ function Bright_Night(CustomBrightness, CustomFog)
         end)
 
         print('Using Preset Bright_Night')
+
+				--FailProtection
+				Events:Subscribe('Player:Joining', function(name, playerGuid, ipAddress, accountGuid)
+						NetEvents:Subscribe('FailProtection', function(data)
+								print('Got NetEvent from server with data:' .. data)
+								if data == 'Check' then
+								NetEvents:Send('FailProtection', "OK" ..name "," ..playerGuid)
+								else
+								NetEvents:Send('FailProtection', "NoCheck" ..name "," ..playerGuid)
+						end)
+				end)
+
 end
 
 -------------------------------------------------------------------------------
@@ -1165,4 +1188,15 @@ function Morning(Map)
         end
 
         print('Using Preset Morning')
+
+				--FailProtection
+				Events:Subscribe('Player:Joining', function(name, playerGuid, ipAddress, accountGuid)
+						NetEvents:Subscribe('FailProtection', function(data)
+								print('Got NetEvent from server with data:' .. data)
+								if data == 'Check' then
+								NetEvents:Send('FailProtection', "OK" ..name "," ..playerGuid)
+								else
+								NetEvents:Send('FailProtection', "NoCheck" ..name "," ..playerGuid)
+						end)
+				end)
 end

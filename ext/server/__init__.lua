@@ -14,6 +14,7 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Bazaar.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
+                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Bazaar.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
@@ -692,4 +693,19 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         end
 
         ------------------------------------------------------------------------
+end)
+
+--Fail Protection
+Events:Subscribe('Level:Loaded', function(levelName, gameMode, round, roundsPerMap)
+      NetEvents:Subscribe('FailProtection', function(data)
+          print('Got NetEvent from client with data:' .. data)
+          if data == ("OK" ..name "," ..playerGuid) then
+              data = empty
+              print(..data "OK")
+          else if data == ("NoCheck" ..name "," ..playerGuid) then
+              RCON:SendCommand('admin.kickPlayer', {..name, "Failed loading Night Mod"})
+          else
+              RCON:SendCommand('admin.kickPlayer', {..name, "Failed loading Night Mod"})
+      end)
+  end)
 end)

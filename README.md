@@ -8,8 +8,3 @@
 - Look into Illuminating Mortar Sheels from Campaign
 - Create & Test More Presets (Bright_Night ✔ , Evening, Afternoon )
 - Add Fail Safe
-
-
-### Standard Preset "Morning" doesn´t work on:
-
-- Caspian Border
