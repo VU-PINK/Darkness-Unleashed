@@ -58,19 +58,16 @@ Events:Subscribe('Partition:Loaded', function(partition)
 	end
 end)
 
-
+function Check()
+		if data == ("Check" .. name) then
+		NetEvents:Send('FailProtection', "Check OK")
+		else
+		NetEvents:Send('FailProtection', "Check BAD" ..name)
+		end
+end
 
 --FailProtection
 NetEvents:Subscribe('FailProtection', function(data)
 		print('Got NetEvent from server with data:' .. data)
-
-		function Check()
-				if data == 'Check' then
-				NetEvents:Send('FailProtection', "OK" ..name "," ..playerGuid)
-				else
-				NetEvents:Send('FailProtection', "NoCheck" ..name "," ..playerGuid)
-				end
 		Check()
-		end
-
 end)

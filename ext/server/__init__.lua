@@ -737,27 +737,26 @@ end)
 --Fail Protection
 
 Events:Subscribe('Player:Joining', function(name, playerGuid, ipAddress, accountGuid)
-    NetEvents:Broadcast("FailProtection", "Check")
+    NetEvents:Broadcast("FailProtection", "Check" .. name)
 end)
 
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode, round, roundsPerMap)
-    NetEvents:Broadcast("FailProtection", "Check")
+    NetEvents:Broadcast("FailProtection", "Check" .. name)
 end)
 
 NetEvents:Subscribe('FailProtection', function(data)
     print('Got NetEvent from client with data: ' .. data)
     local player = name
-    print(name)
-    print(data)
-    --if data == ("OK" .. name "," ..playerGuid) then
-        --data = ("empty")
-        --print(data .. "OK")
-    --else if data == ("NoCheck" .. name "," .. playerGuid) then
-        --player:kick(playerGuid)
-        --print("Kicking..." .. data)
-    --else
-        --player:kick(playerGuid)
-        --print("Kicking..." .. data)
+    print("Player" ..player)
+    if data == ("Check OK") then
+        data = ("OK")
+        print(data)
+    else if data == ("Check BAD" .. name) then
+        player:kick(player)
+        print("Kicking..." .. player)
+    else
+        player:kick(player)
+        print("Kicking..." .. player)
     --end
 end)
