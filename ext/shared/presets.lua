@@ -438,7 +438,7 @@ function Night(Map)
 								--print("old brightness" .. color.brightness)
                 color.brightness = Vec3((0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator))
 								--print("new brightness" .. color.brightness)
-                color.contrast = Vec3(1.10, 1.10, 1.10)
+                color.contrast = Vec3(1.^05, 1.05, 1.05)
                 color.saturation = Vec3(1.22, 1.25, 1.5)
         end
 
