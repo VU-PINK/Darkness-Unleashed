@@ -14,17 +14,14 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Bazaar.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Bazaar Night")
               elseif Map['Bazaar.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Bazaar Morning")
               elseif Map['Bazaar.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Bazaar Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -43,17 +40,14 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Teheran.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Teheran Night")
               elseif Map['Teheran.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Teheran Morning")
               elseif Map['Teheran.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Teheran Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -72,15 +66,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Caspian.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Caspian.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Caspian.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Caspian Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -99,15 +90,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Seine.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Seine.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Seine.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Seine Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -126,15 +114,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Firestorm.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Firestorm.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Firestorm.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Firestorm Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -153,15 +138,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Davamand.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Davamand.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Davamand.Bright_Night'] then
                 RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                 print('Blue-Filter enabled')
-                NetEvents:Broadcast("FailProtection", "Check")
                 ServerUtils:SetCustomMapName("Davamand Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -188,7 +170,6 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Noshar.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Noshar Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -215,7 +196,6 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Kharg.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Kharg Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -242,7 +222,6 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Metro.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Metro Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -264,15 +243,13 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Karkand.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
+                  print('Sending NetEvent')
               elseif Map['Karkand.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Karkand.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Karkand Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -291,15 +268,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Gulf.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Gulf.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Gulf.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Gulf Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -318,15 +292,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Sharqi.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Sharqi.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Sharqi.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Sharqi Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -345,15 +316,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Wake.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Wake.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Wake.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Wake Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -375,15 +343,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Donya.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Donya.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Donya.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Donya Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -402,15 +367,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Operation925.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Operation925.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Operation925.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Operation925 Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -429,15 +391,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Scrapmetal.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Scrapmetal.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Scrapmetal.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Scrapmetal Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -456,15 +415,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Ziba.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Ziba.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Ziba.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Ziba Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -486,15 +442,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Alborz.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Alborz.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Alborz.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Alborz Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -513,15 +466,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Shield.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Shield.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Shield.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Shield Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -540,15 +490,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Bandar.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Bandar.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Bandar.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Bandar Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -567,15 +514,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Death.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Death.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Death.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Valley Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -597,15 +541,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Azadi.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Azadi.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Azadi.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Azadi Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -624,15 +565,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Epicenter.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Epicenter.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Epicenter.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Epicenter Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -651,15 +589,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Markaz.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Markaz.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Markaz.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Markaz Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -678,15 +613,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Talah.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Talah.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Talah.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Talah Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -708,15 +640,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Riverside.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Riverside.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Riverside.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Riverside Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -735,16 +664,13 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Nebandan.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Nebandan.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
-              elseif Map['Riverside.Bright_Night'] then
+              elseif Map['Nebandan.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
-                  ServerUtils:SetCustomMapName("Riverside Bright Night")
+                  ServerUtils:SetCustomMapName("Nebandan Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -762,15 +688,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Kiasar.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Kiasar.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Kiasar.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Kiasar Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -789,15 +712,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               if Map['Pipeline.Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Pipeline.Morning'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
               elseif Map['Pipeline.Bright_Night'] then
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
-                  NetEvents:Broadcast("FailProtection", "Check")
                   ServerUtils:SetCustomMapName("Pipeline Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
@@ -815,18 +735,29 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
 end)
 
 --Fail Protection
+
+Events:Subscribe('Player:Joining', function(name, playerGuid, ipAddress, accountGuid)
+    NetEvents:Broadcast("FailProtection", "Check")
+end)
+
+
 Events:Subscribe('Level:Loaded', function(levelName, gameMode, round, roundsPerMap)
-      NetEvents:Subscribe('FailProtection', function(data)
-          print('Got NetEvent from client with data:' .. data)
-          if data == ("OK" ..name "," ..playerGuid) then
-              data = empty
-              print(..data "OK")
-          else if data == ("NoCheck" ..name "," ..playerGuid) then
-              RCON:SendCommand('admin.kickPlayer', {..name, "Failed loading Night Mod"})
-              print("Kicking..." ..data)
-          else
-              RCON:SendCommand('admin.kickPlayer', {..name, "Failed loading Night Mod"})
-              print("Kicking..." ..data)
-      end)
-  end)
+      NetEvents:Broadcast("FailProtection", "Check")
+end)
+
+NetEvents:Subscribe('FailProtection', function(data)
+    print('Got NetEvent from client with data: ' .. data)
+    local player = name
+    print(name)
+    print(data)
+    --if data == ("OK" .. name "," ..playerGuid) then
+        --data = ("empty")
+        --print(data .. "OK")
+    --else if data == ("NoCheck" .. name "," .. playerGuid) then
+        --player:kick(playerGuid)
+        --print("Kicking..." .. data)
+    --else
+        --player:kick(playerGuid)
+        --print("Kicking..." .. data)
+    --end
 end)
