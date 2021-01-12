@@ -438,7 +438,7 @@ function Night(Map)
 								--print("old brightness" .. color.brightness)
                 color.brightness = Vec3((0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator))
 								--print("new brightness" .. color.brightness)
-                color.contrast = Vec3(1.^05, 1.05, 1.05)
+                color.contrast = Vec3(1.10, 1.10, 1.10)
                 color.saturation = Vec3(1.22, 1.25, 1.5)
         end
 
@@ -864,11 +864,11 @@ function Bright_Night(CustomBrightness, CustomFog)
                 local tonemap = TonemapComponentData(instance)
                 tonemap:MakeWritable()
 
-                tonemap.minExposure = 5
-                tonemap.maxExposure = 14
+                tonemap.minExposure = 0.1
+                tonemap.maxExposure = 1.2
 
                 tonemap.exposureAdjustTime = 1.5
-                tonemap.middleGray = 8
+                tonemap.middleGray = 10
                 tonemap.bloomScale = tonemap.bloomScale * 0.5
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
@@ -985,12 +985,12 @@ function Bright_Night(CustomBrightness, CustomFog)
         	local spotLight = SpotLightEntityData(instance)
         	instance:MakeWritable()
 
-        	spotLight.radius = 220
-        	spotLight.intensity = 3.5 --brightness
-        	spotLight.coneOuterAngle = 35
+        	spotLight.radius = 100
+        	spotLight.intensity = 1 --brightness
+        	spotLight.coneOuterAngle = 50
         	spotLight.orthoWidth = 7
         	spotLight.orthoHeight = 7
-        	spotLight.frustumFov = 36 --size
+        	spotLight.frustumFov = 38 --size
         	spotLight.castShadowsEnable = true
         	spotLight.castShadowsMinLevel = QualityLevel.QualityLevel_Ultra
         	spotLight.shape = 1
@@ -1059,12 +1059,12 @@ function Morning(Map)
                 local outdoor = OutdoorLightComponentData(instance)
                 outdoor:MakeWritable()
 
-                outdoor.sunColor = Vec3(0.25, 0.2, 0.15)
-                outdoor.skyColor = Vec3(0, 0, 0)
+                outdoor.sunColor = Vec3(0.45, 0.22, 0.15)
+                outdoor.skyColor = Vec3(0.45, 0.22, 0)
                 outdoor.groundColor = outdoor.skyColor/2
 
-                outdoor.sunRotationY = 14;
-                outdoor.sunRotationX = 260;
+                outdoor.sunRotationY = 9.5;
+                outdoor.sunRotationX = 255;
 
         end
 
@@ -1072,7 +1072,7 @@ function Morning(Map)
               local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.70
+                sky.brightnessScale = 0.45
                 --sky.sunSize = 1
                 --sky.sunScale = 15
 
@@ -1114,9 +1114,9 @@ function Morning(Map)
                 --fog.start = 35
 
                 fog.fogColorStart = 5
-                fog.fogColorEnd = 120
+                fog.fogColorEnd = 100
                 fog.fogColor = Vec3(0.005, 0.005, 0.005)
-                fog.fogColorCurve = Vec4(0.02, 0.01, 0.005, 0.000)
+                fog.fogColorCurve = Vec4(0.04, 0.035, 0.03, 0.000)
 
                 --fog.transparencyFadeStart = 2
                 --fog.transparencyFadeEnd = 80
@@ -1129,11 +1129,11 @@ function Morning(Map)
                 local tonemap = TonemapComponentData(instance)
                 tonemap:MakeWritable()
 
-                tonemap.minExposure = 1
-                tonemap.maxExposure = 8
+                tonemap.minExposure = 3
+                tonemap.maxExposure = 6
 
                 tonemap.exposureAdjustTime = 1.5
-                --tonemap.middleGray = 5
+                tonemap.middleGray = 3
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
@@ -1142,9 +1142,9 @@ function Morning(Map)
                 local color = ColorCorrectionComponentData(instance)
                 color:MakeWritable()
 
-                color.brightness = Vec3(0.95, 0.95, 0.95)
-                color.contrast = Vec3(1, 1, 1)
-                color.saturation = Vec3(1.10, 1.05, 1.05)
+                color.brightness = Vec3(0.9, 0.9, 0.9)
+                color.contrast = Vec3(1.1, 1.1, 1.1)
+                color.saturation = Vec3(1.2, 1.15, 1.15)
         end
 
         function DisableBackgrounds(instance)
