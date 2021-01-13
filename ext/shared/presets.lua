@@ -1065,10 +1065,10 @@ function Morning(Map)
 
                 outdoor.sunColor = Vec3(0.45, 0.22, 0.15)
                 outdoor.skyColor = Vec3(0.45, 0.22, 0)
-                --outdoor.groundColor = outdoor.skyColor/2
+                outdoor.groundColor = outdoor.skyColor/2
 
                 outdoor.sunRotationY = 9.5;
-                outdoor.sunRotationX = 277;
+                outdoor.sunRotationX = 255;
 
         end
 
@@ -1138,7 +1138,6 @@ function Morning(Map)
 
                 tonemap.exposureAdjustTime = 1.5
                 tonemap.middleGray = 3
-								tonemap.bloomScale = tonemap.bloomScale * 0.5
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
