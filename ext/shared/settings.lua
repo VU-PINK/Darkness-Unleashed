@@ -14,7 +14,7 @@
         --Standard
         ['Bazaar.Night']                      = true,             --MP_001      | Grand Bazaar
         ['Teheran.Morning']                   = true,             --MP_003      | Teheran Highway
-        ['Caspian.Morning']                     = true,             --MP_007      | Caspian Border
+        ['Caspian.Morning']                   = true,             --MP_007      | Caspian Border
         ['Seine.Night']                       = true,             --MP_011      | Seine Crossing
         ['Firestorm.Morning']                 = true,             --MP_012      | Operation Firestorm
         ['Davamand.Night']                    = true,             --MP_013      | Davamand Peak
@@ -36,7 +36,7 @@
 
         --DLC Armored Kill
         ['Alborz.Night']                      = true,             --XP3_Alborz  | Alborz Mountains
-        ['Shield.Bright_Night']                      = true,             --XP3_Shield  | Armored Shield
+        ['Shield.Bright_Night']               = true,             --XP3_Shield  | Armored Shield
         ['Bandar.Morning']                    = true,             --XP3_Desert  | Bandar Desert
         ['Death.Morning']                     = true,             --XP3_Valley  | Death Valley
 

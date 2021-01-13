@@ -574,6 +574,7 @@ function Night(Map)
 
         print('Using Preset Night')
 
+return true
 end
 
 -------------------------------------------------------------------------------
@@ -1015,6 +1016,7 @@ function Bright_Night(CustomBrightness, CustomFog)
 
         print('Using Preset Bright_Night')
 
+return true
 end
 
 -------------------------------------------------------------------------------
@@ -1167,5 +1169,5 @@ function Morning(Map)
 
         print('Using Preset Morning')
 
-
+return true
 end
