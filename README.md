@@ -2,7 +2,7 @@
 
 ## TODO
 - Add Map Vote Function (morning, noon, evening, night)
-- Easier Config (Fog, Light) ✔
+- Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++) 
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side  ✔
 - Look into Illuminating Mortar Sheels from Campaign
