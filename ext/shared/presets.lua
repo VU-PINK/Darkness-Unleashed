@@ -500,6 +500,8 @@ function Night(Map)
 										Dynamic:MakeWritable()
 										Dynamic.visible = true
 										Dynamic.enlightenEnable = true
+										Dynamic.specularEnable = true
+										Dynamic.castShadowsEnable = true
 				end
 
         --Additions by Lesley & IllustrisJack
