@@ -13,10 +13,10 @@
 
         --Standard
         ['Bazaar.Night']                      = true,             --MP_001      | Grand Bazaar
-        ['Teheran.Morning']                   = true,             --MP_003      | Teheran Highway
-        ['Caspian.Morning']                   = true,             --MP_007      | Caspian Border
+        ['Teheran.Night']                   = true,             --MP_003      | Teheran Highway
+        ['Caspian.Night']                   = true,             --MP_007      | Caspian Border
         ['Seine.Night']                       = true,             --MP_011      | Seine Crossing
-        ['Firestorm.Morning']                 = true,             --MP_012      | Operation Firestorm
+        ['Firestorm.Night']                 = true,             --MP_012      | Operation Firestorm
         ['Davamand.Night']                    = true,             --MP_013      | Davamand Peak
         ['Noshahr.Night']                     = true,             --MP_017      | Noshahr Canals
         ['Kharg.Night']                       = true,             --MP_018      | Kharg Island
@@ -24,7 +24,7 @@
 
         --DLC Back to Karkand
         ['Karkand.Night']                     = true,             --XP1_001     | Strike at Karkand
-        ['Gulf.Bright_Night']                 = true,             --XP1_002     | Gulf of Oman
+        ['Gulf.Night']                 = true,             --XP1_002     | Gulf of Oman
         ['Sharqi.Night']                      = true,             --XP1_003     | Sharqi Peninsula
         ['Wake.Morning']                      = true,             --XP1_004     | Wake Island
 
@@ -36,9 +36,9 @@
 
         --DLC Armored Kill
         ['Alborz.Night']                      = true,             --XP3_Alborz  | Alborz Mountains
-        ['Shield.Bright_Night']               = true,             --XP3_Shield  | Armored Shield
-        ['Bandar.Morning']                    = true,             --XP3_Desert  | Bandar Desert
-        ['Death.Morning']                     = true,             --XP3_Valley  | Death Valley
+        ['Shield.Night']               = true,             --XP3_Shield  | Armored Shield
+        ['Bandar.Night']                    = true,             --XP3_Desert  | Bandar Desert
+        ['Death.Night']                     = true,             --XP3_Valley  | Death Valley
 
         --DLC Aftermath
         ['Azadi.Night']                       = true,             --XP4_Parl    | Azadi Palace
@@ -48,9 +48,9 @@
 
         --DLC End Game
         ['Riverside.Night']                   = true,             --XP5_001     | Operation Riverside
-        ['Nebandan.Morning']                  = true,             --XP5_002     | Nebandan Flats
+        ['Nebandan.Night']                  = true,             --XP5_002     | Nebandan Flats
         ['Kiasar.Night']                      = true,             --XP5_003     | Kiasar Railroad
-        ['Pipeline.Morning']                  = true,             --XP5_004     | Sabalan Pipeline
+        ['Pipeline.Night']                  = true,             --XP5_004     | Sabalan Pipeline
 
         }
 

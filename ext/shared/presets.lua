@@ -1139,7 +1139,7 @@ function Morning(Map)
                 tonemap.exposureAdjustTime = 1.5
                 tonemap.middleGray = 3
 								tonemap.bloomScale = tonemap.bloomScale * 0.5
-								
+
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
 
