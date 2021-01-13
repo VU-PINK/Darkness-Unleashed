@@ -71,7 +71,7 @@ generalfog                                    = {1.0}
 
 --CustomMapSettings
 --Standard
-Bazaar_brightnessMultiplier                   = {1.5}
+Bazaar_brightnessMultiplier                   = {1.7}
 Bazaar_fogMultiplier                          = {1}
 
 Teheran_brightnessMultiplier                  = {1.0}
