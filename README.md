@@ -8,5 +8,5 @@
 - Look into Illuminating Mortar Sheels from Campaign
 - Create & Test More Presets (Bright_Night ✔ , Evening, Afternoon )
 - Add Fail Safe ✔
-- Rotate Skybox (Gulf of Oman ,...)
+- Rotate Skybox on certain Maps (Gulf of Oman ,...)
 - Remove Specmaps on puddles / windows because they look terrible
