@@ -1,14 +1,5 @@
-require '__shared/presets'
+local Presets = require '__shared/presets'
 local Settings = require '__shared/settings'
-
-
---CustomBrightness = generalbrightnessMultiplier[1] * Bazaar_brightnessMultiplier[1]
---CustomFog = generalfogMultiplier[1] * Bazaar_fogMultiplier[1]
---print(CustomBrightness)
---print(CustomFog)
-
-
-
 
 --Concept:
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
@@ -21,14 +12,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Bazaar
         if string.find(levelName, "MP_001") then
               if Map['Bazaar.Night'] then
-                  print('Calling Preset Night on Grand Bazaar')
-                  Night(1)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Bazaar Night")
               elseif Map['Bazaar.Morning'] then
-                  print('Calling Preset Morning on Grand Bazaar')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Bazaar Morning")
               elseif Map['Bazaar.Bright_Night'] then
-                  print('Calling Preset Bright Night on Grand Bazaar')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Bazaar Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -44,14 +39,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Teheran Highway
         if string.find(levelName, "MP_003") then
               if Map['Teheran.Night'] then
-                  print('Calling Preset Night on Teheran Highway')
-                  Night(2)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Teheran Night")
               elseif Map['Teheran.Morning'] then
-                  print('Calling Preset Morning on Teheran Highway')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Teheran Morning")
               elseif Map['Teheran.Bright_Night'] then
-                  print('Calling Preset Bright Night on Teheran Highway')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Teheran Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -67,14 +66,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Caspian Border
         if string.find(levelName, "MP_007") then
               if Map['Caspian.Night'] then
-                  print('Calling Preset Night on Caspian Border')
-                  Night(3)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Caspian Night")
               elseif Map['Caspian.Morning'] then
-                  print('Calling Preset Morning on Caspian Border')
-                  Morning()
-                elseif Map['Caspian.Bright_Night'] then
-                    print('Calling Preset Bright Night on Caspian Border')
-                    Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Caspian Morning")
+              elseif Map['Caspian.Bright_Night'] then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Caspian Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -90,14 +93,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Seine Crossing
         if string.find(levelName, "MP_011") then
               if Map['Seine.Night'] then
-                  print('Calling Preset Night on Seine Crossing')
-                  Night(4)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Seine Night")
               elseif Map['Seine.Morning'] then
-                  print('Calling Preset Morning on Seine Crossing')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Seine Morning")
               elseif Map['Seine.Bright_Night'] then
-                  print('Calling Preset Bright Night on Seine Crossing')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Seine Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -113,14 +120,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Operation Firestorm
         if string.find(levelName, "MP_012") then
               if Map['Firestorm.Night'] then
-                  print('Calling Preset Night on Operation Firestorm')
-                  Night(5)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Firestorm Night")
               elseif Map['Firestorm.Morning'] then
-                  print('Calling Preset Morning on Operation Firestorm')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Firestorm Morning")
               elseif Map['Firestorm.Bright_Night'] then
-                  print('Calling Preset Bright Night on Operation Firestorm')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Firestorm Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -136,14 +147,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Davamand Peak
 		    if string.find(levelName, "MP_013") then
               if Map['Davamand.Night'] then
-                  print('Calling Preset Night on Davamand Peak')
-                  Night(6)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Davamand Night")
               elseif Map['Davamand.Morning'] then
-                  print('Calling Preset Morning on Davamand Peak')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Davamand Morning")
               elseif Map['Davamand.Bright_Night'] then
-                  print('Calling Preset Bright Night on Davamand Peak')
-                  Bright_Night()
+                RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                print('Blue-Filter enabled')
+                ServerUtils:SetCustomMapName("Davamand Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -159,14 +174,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Noshahr Canals
 		    if string.find(levelName, "MP_017") then
               if Map['Noshahr.Night'] then
-                  print('Calling Preset Night on Noshahr Canals')
-                  Night(7)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Noshahr Night")
               elseif Map['Noshahr.Morning'] then
-                  print('Calling Preset Morning on Noshahr Canals')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Noshahr Morning")
               elseif Map['Noshar.Bright_Night'] then
-                  print('Calling Preset Bright Night on Noshar Canals')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Noshahr Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -182,14 +201,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Noshahr Canals
         if string.find(levelName, "MP_018") then
               if Map['Kharg.Night'] then
-                  print('Calling Preset Night on Kharg Island')
-                  Night(8)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Kharg Night")
               elseif Map['Kharg.Morning'] then
-                  print('Calling Preset Morning on Kharg Island')
-                  Morning()
-              elseif Map['Teheran.Bright_Night'] then
-                  print('Calling Preset Bright Night on Kharg Island')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Kharg Morning")
+              elseif Map['Kharg.Bright_Night'] then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Kharg Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -205,14 +228,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Operation Metro
         if string.find(levelName, "MP_Subway") then
               if Map['Metro.Night'] then
-                  print('Calling Preset Night on Operation Metro')
-                  Night(9)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Metro Night")
               elseif Map['Metro.Morning'] then
-                  print('Calling Preset Morning on Operation Metro')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Metro Morning")
               elseif Map['Metro.Bright_Night'] then
-                  print('Calling Preset Bright Night on Operation Metro')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Metro Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -231,14 +258,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Back to Karkand
         if string.find(levelName, "XP1_001") then
               if Map['Karkand.Night'] then
-                  print('Calling Preset Night on Strike at Karkand')
-                  Night(10)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Karkand Night")
               elseif Map['Karkand.Morning'] then
-                  print('Calling Preset Morning on Strike at Karkand')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Karkand Morning")
               elseif Map['Karkand.Bright_Night'] then
-                  print('Using Preset Bright Night on Strike at Karkand')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Karkand Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -254,14 +285,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Gulf of Oman
         if string.find(levelName, "XP1_002") then
               if Map['Gulf.Night'] then
-                  print('Calling Preset Night on Gulf of Oman')
-                  Night(11)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Gulf Night")
               elseif Map['Gulf.Morning'] then
-                  print('Calling Preset Morning on Gulf of Oman')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Gulf Morning")
               elseif Map['Gulf.Bright_Night'] then
-                  print('Using Preset Bright Night on Gulf of Oman')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Gulf Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -277,14 +312,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Sharqi Peninsula
         if string.find(levelName, "XP1_003") then
               if Map['Sharqi.Night'] then
-                  print('Calling Preset Night on Sharqi Peninsula')
-                  Night(12)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Sharqi Night")
               elseif Map['Sharqi.Morning'] then
-                  print('Calling Preset Morning on Sharqi Peninsula')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Sharqi Morning")
               elseif Map['Sharqi.Bright_Night'] then
-                  print('Calling Preset Bright Night on Teheran Highway')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Sharqi Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -300,14 +339,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Wake Island
         if string.find(levelName, "XP1_004") then
               if Map['Wake.Night'] then
-                  print('Calling Preset Night on Wake Island')
-                  Night(13)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Wake Night")
               elseif Map['Wake.Morning'] then
-                  print('Calling Preset Morning on Wake Island')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Wake Morning")
               elseif Map['Wake.Bright_Night'] then
-                  print('Calling Preset Bright Night on Teheran Highway')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Wake Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -326,14 +369,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Donya Fortress
         if string.find(levelName, "XP2_Palace") then
               if Map['Donya.Night'] then
-                  print('Calling Preset Night on Donya Fortress')
-                  Night(14)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Donya Night")
               elseif Map['Donya.Morning'] then
-                  print('Calling Preset Morning on Donya Fortress')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Donya Morning")
               elseif Map['Donya.Bright_Night'] then
-                  print('Calling Preset Bright Night on Donya Fortress')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Donya Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -349,14 +396,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Operation 925
         if string.find(levelName, "XP2_Office") then
               if Map['Operation925.Night'] then
-                  print('Calling Preset Night on Operation 925')
-                  Night(15)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Operation 925 Night")
               elseif Map['Operation925.Morning'] then
-                  print('Calling Preset Morning on Operation 925')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Operation 925 Morning")
               elseif Map['Operation925.Bright_Night'] then
-                  print('Calling Preset Bright Night on Operation 925')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Operation 925 Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -372,14 +423,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Scrapmetal
         if string.find(levelName, "XP2_Factory") then
               if Map['Scrapmetal.Night'] then
-                  print('Calling Preset Night on Scrapmetal')
-                  Night(16)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Scrapmetal Night")
               elseif Map['Scrapmetal.Morning'] then
-                  print('Calling Preset Morning on Scrapmetal')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Scrapmetal Morning")
               elseif Map['Scrapmetal.Bright_Night'] then
-                  print('Calling Preset Bright Night on Scrapmetal')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Scrapmetal Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -395,14 +450,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Ziba Tower
         if string.find(levelName, "XP2_Skybar") then
               if Map['Ziba.Night'] then
-                  print('Calling Preset Night on Ziba Tower')
-                  Night(17)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Ziba Night")
               elseif Map['Ziba.Morning'] then
-                  print('Calling Preset Morning on Ziba Tower')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Ziba Morning")
               elseif Map['Ziba.Bright_Night'] then
-                  print('Calling Preset Bright Night on Ziba Tower')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Ziba Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -421,14 +480,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Alborz Mountains
         if string.find(levelName, "XP3_Alborz") then
               if Map['Alborz.Night'] then
-                  print('Calling Preset Night on Alborz Mountains')
-                  Night(18)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Alborz Night")
               elseif Map['Alborz.Morning'] then
-                  print('Calling Preset Morning on Alborz Mountains')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Alborz Morning")
               elseif Map['Alborz.Bright_Night'] then
-                  print('Calling Preset Bright Night on Alborz Mountains')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Alborz Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -444,14 +507,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Armored Shield
         if string.find(levelName, "XP3_Shield") then
               if Map['Shield.Night'] then
-                  print('Calling Preset Night on Armored Shield')
-                  Night(19)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Shield Night")
               elseif Map['Shield.Morning'] then
-                  print('Calling Preset Morning on Armored Shield')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Shield Morning")
               elseif Map['Shield.Bright_Night'] then
-                  print('Calling Preset Bright Night on Armored Shield')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Shield Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -467,14 +534,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Bandar Desert
         if string.find(levelName, "XP3_Desert") then
               if Map['Bandar.Night'] then
-                  print('Calling Preset Night on Bandar Desert')
-                  Night(20)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Bandar Night")
               elseif Map['Bandar.Morning'] then
-                  print('Calling Preset Morning on Bandar Desert')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Bandar Morning")
               elseif Map['Bandar.Bright_Night'] then
-                  print('Calling Preset Bright Night on Bandar Desert')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Bandar Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -490,14 +561,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Death Valley
         if string.find(levelName, "XP3_Valley") then
               if Map['Death.Night'] then
-                  print('Calling Preset Night on Death Valley')
-                  Night(21)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Death Night")
               elseif Map['Death.Morning'] then
-                  print('Calling Preset Morning on Death Valley')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Death Morning")
               elseif Map['Death.Bright_Night'] then
-                  print('Calling Preset Bright Night on Death Valley')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Death Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -516,14 +591,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Azadi Palace
         if string.find(levelName, "XP4_Parl") then
               if Map['Azadi.Night'] then
-                  print('Calling Preset Night on Azadi Palace')
-                  Night(22)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Azadi Night")
               elseif Map['Azadi.Morning'] then
-                  print('Calling Preset Morning on Azadi Palace')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Azadi Morning")
               elseif Map['Azadi.Bright_Night'] then
-                  print('Calling Preset Bright Night on Azadi Palace')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Azadi Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -539,14 +618,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Epicenter
         if string.find(levelName, "XP4_Quake") then
               if Map['Epicenter.Night'] then
-                  print('Calling Preset Night on Epicenter')
-                  Night(23)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Epicenter Night")
               elseif Map['Epicenter.Morning'] then
-                  print('Calling Preset Morning on Epicenter')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Epicenter Morning")
               elseif Map['Epicenter.Bright_Night'] then
-                  print('Calling Preset Bright Night on Epicenter')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Epicenter Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -562,14 +645,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Markaz Monolith
         if string.find(levelName, "XP4_FD") then
               if Map['Markaz.Night'] then
-                  print('Calling Preset Night on Markaz Monolith')
-                  Night(24)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Markaz Night")
               elseif Map['Markaz.Morning'] then
-                  print('Calling Preset Morning on Markaz Monolith')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Markaz Morning")
               elseif Map['Markaz.Bright_Night'] then
-                  print('Calling Preset Bright Night on Markaz Monolith')
-                  Bright_Night()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Markaz Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -585,17 +672,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Talah Market
         if string.find(levelName, "XP4_Rubble") then
               if Map['Talah.Night'] then
-                  print('Calling Preset Night on Talah Market')
-                  Night(25)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Talah Night")
               elseif Map['Talah.Morning'] then
-                  print('Calling Preset Morning on Talah Market')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Talah Morning")
               elseif Map['Talah.Bright_Night'] then
-                    print('Calling Preset Bright Night on Talah Market')
-                    Bright_Night()
-              --elseif Settings.Map[1] == (true, 'noon') then
-                  --Presets.Preset.Noon()
-                  --print('Using Preset Noon on Grand Bazaar')
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Talah Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -614,17 +702,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Operation Riverside
         if string.find(levelName, "XP5_001") then
               if Map['Riverside.Night'] then
-                  print('Calling Preset Night on Operation Riverside')
-                  Night(26)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Riverside Night")
               elseif Map['Riverside.Morning'] then
-                  print('Calling Preset Morning on Operation Riverside')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Riverside Morning")
               elseif Map['Riverside.Bright_Night'] then
-                    print('Calling Preset Bright Night on Operation Riverside')
-                    Bright_Night()
-              --elseif Settings.Map[1] == (true, 'noon') then
-                  --Presets.Preset.Noon()
-                  --print('Using Preset Noon on Grand Bazaar')
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Riverside Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -640,17 +729,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Nebandan Flats
         if string.find(levelName, "XP5_002") then
               if Map['Nebandan.Night'] then
-                  print('Calling Preset Night on Nebandan Flats')
-                  Night(27)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Nebandan Night")
               elseif Map['Nebandan.Morning'] then
-                  print('Calling Preset Morning on Nebandan Flats')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Nebandan Morning")
               elseif Map['Nebandan.Bright_Night'] then
-                    print('Calling Preset Bright Night on Nebandan Flats')
-                    Bright_Night()
-              --elseif Settings.Map[1] == (true, 'noon') then
-                  --Presets.Preset.Noon()
-                  --print('Using Preset Noon on Grand Bazaar')
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Nebandan Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -666,17 +756,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Kiasar Railroad
         if string.find(levelName, "XP5_003") then
               if Map['Kiasar.Night'] then
-                  print('Calling Preset Night on Kiasar Railroad')
-                  Night(28)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Kiasar Night")
               elseif Map['Kiasar.Morning'] then
-                  print('Calling Preset Morning on Kiasar Railroad')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Kiasar Morning")
               elseif Map['Kiasar.Bright_Night'] then
-                    print('Calling Preset Bright Night on Kiasar Railroad')
-                    Bright_Night()
-              --elseif Settings.Map[1] == (true, 'noon') then
-                  --Presets.Preset.Noon()
-                  --print('Using Preset Noon on Grand Bazaar')
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Kiasar Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -692,17 +783,18 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         -- Sabalan Pipeline
         if string.find(levelName, "XP5_004") then
               if Map['Pipeline.Night'] then
-                  print('Calling Preset Night on Sabalan Pipeline')
-                  Night(29)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.SunFlareEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Pipeline Night")
               elseif Map['Pipeline.Morning'] then
-                  print('Calling Preset Morning on Sabalan Pipeline')
-                  Morning()
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  print('Blue-Filter disabled')
+                  ServerUtils:SetCustomMapName("Pipeline Morning")
               elseif Map['Pipeline.Bright_Night'] then
-                    print('Calling Preset Bright Night on Sabalan Pipeline')
-                    Bright_Night()
-              --elseif Settings.Map[1] == (true, 'noon') then
-                  --Presets.Preset.Noon()
-                  --print('Using Preset Noon on Grand Bazaar')
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  print('Blue-Filter enabled')
+                  ServerUtils:SetCustomMapName("Pipeline Bright Night")
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -717,3 +809,29 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
 
         ------------------------------------------------------------------------
 end)
+
+--Check
+Events:Subscribe('Player:Created', function(player)
+
+    if player ~= nil then
+      if Check() == true then
+          return
+      else
+          player:Kick()
+      end
+    end
+
+end)
+
+
+--
+
+function Check()
+    if Night()==true or Morning()==true or Bright_Night()==true then
+        print("Preset Load OK")
+				return true
+    else
+        print("Preset Load FAIL")
+				return false
+    end
+end

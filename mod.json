@@ -1,9 +1,9 @@
 {
-    "Name": "VUDarkNight",
+    "Name": "Darkness Unleashed",
     "Description": "Custom Night Mode Experience",
     "Authors": ["Based on night-time by Reirei; Authors: Lesley & IllustrisJack"],
-    "Tags": ["vu-darknight"],
-    "Version": "0.1",
+    "Tags": ["darkness-unleashed"],
+    "Version": "1",
     "HasVeniceEXT": true,
     "Dependencies": {
         "veniceext": "^1.0.0"
