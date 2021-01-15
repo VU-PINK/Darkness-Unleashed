@@ -5,7 +5,7 @@
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side  ✔
 - Add Fail Safe ✔
-- Force all to 100% Brightness ✔
+- Force all to specific Brightness ✔
 - Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
 - FixMapLighting
 - Look into Illuminating Mortar Sheels from Campaign
