@@ -1,15 +1,14 @@
 ## TODO Core
 - Add Map Vote Function (morning, noon, evening, night)
-- Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
+- Rotate Skybox on certain Maps (Gulf of Oman ,...) 
+- Create & Test More Presets (Bright_Night ✔ , Evening, Afternoon )
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side  ✔
-- Look into Illuminating Mortar Sheels from Campaign
-- Create & Test More Presets (Bright_Night ✔ , Evening, Afternoon )
 - Add Fail Safe ✔
-- Rotate Skybox on certain Maps (Gulf of Oman ,...)
-- Force all to 100% Brightness
+- Force all to 100% Brightness ✔
+- Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
 - FixMapLighting
-
+- Look into Illuminating Mortar Sheels from Campaign
 
 ## FUTURE FEATURE IDEAS / PLANS
 - Ticketbased "Time" System
