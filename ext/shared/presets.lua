@@ -3,7 +3,6 @@ require '__shared/functions'
 
 local Classes = require '__shared/classes'
 
-
 ---Presets
 function Night(Map)
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
@@ -459,11 +458,11 @@ function Night(Map)
         	instance:MakeWritable()
 
         	spotLight.radius = 220
-        	spotLight.intensity = 3.5 --brightness
+        	spotLight.intensity = 1.75 --brightness
         	spotLight.coneOuterAngle = 35
         	spotLight.orthoWidth = 7
         	spotLight.orthoHeight = 7
-        	spotLight.frustumFov = 36 --size
+        	spotLight.frustumFov = 40 --size
         	spotLight.castShadowsEnable = true
         	spotLight.castShadowsMinLevel = QualityLevel.QualityLevel_Ultra
         	spotLight.shape = 1
@@ -494,6 +493,7 @@ end
 -------------------------------------------------------------------------------
 
 function Bright_Night(CustomBrightness, CustomFog)
+	SkyboxRotation:Rotate(Map)
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
 	local emitters = {
 	    -- MP_Subway
@@ -737,6 +737,8 @@ function Bright_Night(CustomBrightness, CustomFog)
                 sky.staticEnvmapScale = 0.005
                 sky.skyEnvmap8BitTexScale = 0.005
 
+								sky.panoramicRotation = rotation
+
                 if
                     sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_city_01' or
                     sky.partition.name == 'levels/mp_011/lighting/ve_mp_011_day01'
@@ -938,6 +940,7 @@ end
 
 -------------------------------------------------------------------------------
 function Morning(Map)
+	SkyboxRotation:Rotate(Map)
   ----
         Events:Subscribe('Partition:Loaded', function(partition)
             for _, instance in pairs(partition.instances) do
@@ -992,6 +995,8 @@ function Morning(Map)
                 sky:MakeWritable()
 
                 sky.brightnessScale = 0.45
+
+								sky.panoramicRotation = rotation
                 --sky.sunSize = 1
                 --sky.sunScale = 15
 

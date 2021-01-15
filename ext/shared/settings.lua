@@ -58,10 +58,6 @@
 
 -- Fog and Brightness Settings - DarkNight Preset
 
---generalSetting
---generalbrightnessMultiplier                   = {50}
---generalfogMultiplier                          = {10}
-
 --function BrightnessMultiplier()
 generalbrightness                             = {0.65}
 generalfog                                    = {1.0}
