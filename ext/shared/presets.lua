@@ -198,8 +198,8 @@ function Night(Map)
                     PatchMeshMaterialVariation(instance)
                 elseif instance:Is('EmitterTemplateData') then
                     PatchEmitterTemplateData(instance)
-                elseif instance:Is('EffectEntityData') then
-                    PatchEffectEntityData(instance)
+                --elseif instance:Is('EffectEntityData') then
+                    --PatchEffectEntityData(instance)
 								elseif instance:Is('LocalLightEntityData') then
 										DynamicLights(instance)
 								elseif instance:Is('LensFlareEntityData') then
@@ -458,7 +458,7 @@ function Night(Map)
         	instance:MakeWritable()
 
         	spotLight.radius = 220
-        	spotLight.intensity = 1.75 --brightness
+        	spotLight.intensity = 1.4 --brightness
         	spotLight.coneOuterAngle = 35
         	spotLight.orthoWidth = 7
         	spotLight.orthoHeight = 7

@@ -25,10 +25,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(1)
               elseif Map['Bazaar.Morning'] then
                   print('Calling Preset Morning on Grand Bazaar')
-                  Morning()
+                  Morning(1)
               elseif Map['Bazaar.Bright_Night'] then
                   print('Calling Preset Bright Night on Grand Bazaar')
-                  Bright_Night()
+                  Bright_Night(1)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -48,10 +48,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(2)
               elseif Map['Teheran.Morning'] then
                   print('Calling Preset Morning on Teheran Highway')
-                  Morning()
+                  Morning(2)
               elseif Map['Teheran.Bright_Night'] then
                   print('Calling Preset Bright Night on Teheran Highway')
-                  Bright_Night()
+                  Bright_Night(2)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -71,10 +71,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(3)
               elseif Map['Caspian.Morning'] then
                   print('Calling Preset Morning on Caspian Border')
-                  Morning()
+                  Morning(3)
                 elseif Map['Caspian.Bright_Night'] then
                     print('Calling Preset Bright Night on Caspian Border')
-                    Bright_Night()
+                    Bright_Night(3)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -94,10 +94,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(4)
               elseif Map['Seine.Morning'] then
                   print('Calling Preset Morning on Seine Crossing')
-                  Morning()
+                  Morning(4)
               elseif Map['Seine.Bright_Night'] then
                   print('Calling Preset Bright Night on Seine Crossing')
-                  Bright_Night()
+                  Bright_Night(4)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -117,10 +117,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(5)
               elseif Map['Firestorm.Morning'] then
                   print('Calling Preset Morning on Operation Firestorm')
-                  Morning()
+                  Morning(5)
               elseif Map['Firestorm.Bright_Night'] then
                   print('Calling Preset Bright Night on Operation Firestorm')
-                  Bright_Night()
+                  Bright_Night(5)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -140,10 +140,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(6)
               elseif Map['Davamand.Morning'] then
                   print('Calling Preset Morning on Davamand Peak')
-                  Morning()
+                  Morning(6)
               elseif Map['Davamand.Bright_Night'] then
                   print('Calling Preset Bright Night on Davamand Peak')
-                  Bright_Night()
+                  Bright_Night(6)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -163,10 +163,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(7)
               elseif Map['Noshahr.Morning'] then
                   print('Calling Preset Morning on Noshahr Canals')
-                  Morning()
+                  Morning(7)
               elseif Map['Noshar.Bright_Night'] then
                   print('Calling Preset Bright Night on Noshar Canals')
-                  Bright_Night()
+                  Bright_Night(7)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -186,10 +186,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(8)
               elseif Map['Kharg.Morning'] then
                   print('Calling Preset Morning on Kharg Island')
-                  Morning()
+                  Morning(8)
               elseif Map['Teheran.Bright_Night'] then
                   print('Calling Preset Bright Night on Kharg Island')
-                  Bright_Night()
+                  Bright_Night(8)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -209,10 +209,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(9)
               elseif Map['Metro.Morning'] then
                   print('Calling Preset Morning on Operation Metro')
-                  Morning()
+                  Morning(9)
               elseif Map['Metro.Bright_Night'] then
                   print('Calling Preset Bright Night on Operation Metro')
-                  Bright_Night()
+                  Bright_Night(9)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -235,10 +235,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(10)
               elseif Map['Karkand.Morning'] then
                   print('Calling Preset Morning on Strike at Karkand')
-                  Morning()
+                  Morning(10)
               elseif Map['Karkand.Bright_Night'] then
                   print('Using Preset Bright Night on Strike at Karkand')
-                  Bright_Night()
+                  Bright_Night(10)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -258,10 +258,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(11)
               elseif Map['Gulf.Morning'] then
                   print('Calling Preset Morning on Gulf of Oman')
-                  Morning()
+                  Morning(11)
               elseif Map['Gulf.Bright_Night'] then
                   print('Using Preset Bright Night on Gulf of Oman')
-                  Bright_Night()
+                  Bright_Night(11)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -281,10 +281,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(12)
               elseif Map['Sharqi.Morning'] then
                   print('Calling Preset Morning on Sharqi Peninsula')
-                  Morning()
+                  Morning(12)
               elseif Map['Sharqi.Bright_Night'] then
                   print('Calling Preset Bright Night on Teheran Highway')
-                  Bright_Night()
+                  Bright_Night(12)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -304,10 +304,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(13)
               elseif Map['Wake.Morning'] then
                   print('Calling Preset Morning on Wake Island')
-                  Morning()
+                  Morning(13)
               elseif Map['Wake.Bright_Night'] then
                   print('Calling Preset Bright Night on Teheran Highway')
-                  Bright_Night()
+                  Bright_Night(13)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -330,10 +330,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(14)
               elseif Map['Donya.Morning'] then
                   print('Calling Preset Morning on Donya Fortress')
-                  Morning()
+                  Morning(14)
               elseif Map['Donya.Bright_Night'] then
                   print('Calling Preset Bright Night on Donya Fortress')
-                  Bright_Night()
+                  Bright_Night(14)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -353,10 +353,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(15)
               elseif Map['Operation925.Morning'] then
                   print('Calling Preset Morning on Operation 925')
-                  Morning()
+                  Morning(15)
               elseif Map['Operation925.Bright_Night'] then
                   print('Calling Preset Bright Night on Operation 925')
-                  Bright_Night()
+                  Bright_Night(15)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -376,10 +376,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(16)
               elseif Map['Scrapmetal.Morning'] then
                   print('Calling Preset Morning on Scrapmetal')
-                  Morning()
+                  Morning(16)
               elseif Map['Scrapmetal.Bright_Night'] then
                   print('Calling Preset Bright Night on Scrapmetal')
-                  Bright_Night()
+                  Bright_Night(16)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -399,10 +399,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(17)
               elseif Map['Ziba.Morning'] then
                   print('Calling Preset Morning on Ziba Tower')
-                  Morning()
+                  Morning(17)
               elseif Map['Ziba.Bright_Night'] then
                   print('Calling Preset Bright Night on Ziba Tower')
-                  Bright_Night()
+                  Bright_Night(17)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -425,10 +425,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(18)
               elseif Map['Alborz.Morning'] then
                   print('Calling Preset Morning on Alborz Mountains')
-                  Morning()
+                  Morning(18)
               elseif Map['Alborz.Bright_Night'] then
                   print('Calling Preset Bright Night on Alborz Mountains')
-                  Bright_Night()
+                  Bright_Night(18)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -448,10 +448,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(19)
               elseif Map['Shield.Morning'] then
                   print('Calling Preset Morning on Armored Shield')
-                  Morning()
+                  Morning(19)
               elseif Map['Shield.Bright_Night'] then
                   print('Calling Preset Bright Night on Armored Shield')
-                  Bright_Night()
+                  Bright_Night(19)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -471,10 +471,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(20)
               elseif Map['Bandar.Morning'] then
                   print('Calling Preset Morning on Bandar Desert')
-                  Morning()
+                  Morning(20)
               elseif Map['Bandar.Bright_Night'] then
                   print('Calling Preset Bright Night on Bandar Desert')
-                  Bright_Night()
+                  Bright_Night(20)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -494,10 +494,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(21)
               elseif Map['Death.Morning'] then
                   print('Calling Preset Morning on Death Valley')
-                  Morning()
+                  Morning(21)
               elseif Map['Death.Bright_Night'] then
                   print('Calling Preset Bright Night on Death Valley')
-                  Bright_Night()
+                  Bright_Night(21)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -520,10 +520,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(22)
               elseif Map['Azadi.Morning'] then
                   print('Calling Preset Morning on Azadi Palace')
-                  Morning()
+                  Morning(22)
               elseif Map['Azadi.Bright_Night'] then
                   print('Calling Preset Bright Night on Azadi Palace')
-                  Bright_Night()
+                  Bright_Night(22)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -543,10 +543,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(23)
               elseif Map['Epicenter.Morning'] then
                   print('Calling Preset Morning on Epicenter')
-                  Morning()
+                  Morning(23)
               elseif Map['Epicenter.Bright_Night'] then
                   print('Calling Preset Bright Night on Epicenter')
-                  Bright_Night()
+                  Bright_Night(23)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -566,10 +566,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(24)
               elseif Map['Markaz.Morning'] then
                   print('Calling Preset Morning on Markaz Monolith')
-                  Morning()
+                  Morning(24)
               elseif Map['Markaz.Bright_Night'] then
                   print('Calling Preset Bright Night on Markaz Monolith')
-                  Bright_Night()
+                  Bright_Night(24)
               --elseif Settings.Map[1] == (true, 'evening') then
                   --Presets.Preset.Evening()
                   --print('Using Preset Evening on Grand Bazaar')
@@ -589,10 +589,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(25)
               elseif Map['Talah.Morning'] then
                   print('Calling Preset Morning on Talah Market')
-                  Morning()
+                  Morning(25)
               elseif Map['Talah.Bright_Night'] then
                     print('Calling Preset Bright Night on Talah Market')
-                    Bright_Night()
+                    Bright_Night(25)
               --elseif Settings.Map[1] == (true, 'noon') then
                   --Presets.Preset.Noon()
                   --print('Using Preset Noon on Grand Bazaar')
@@ -618,10 +618,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(26)
               elseif Map['Riverside.Morning'] then
                   print('Calling Preset Morning on Operation Riverside')
-                  Morning()
+                  Morning(26)
               elseif Map['Riverside.Bright_Night'] then
                     print('Calling Preset Bright Night on Operation Riverside')
-                    Bright_Night()
+                    Bright_Night(26)
               --elseif Settings.Map[1] == (true, 'noon') then
                   --Presets.Preset.Noon()
                   --print('Using Preset Noon on Grand Bazaar')
@@ -644,10 +644,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(27)
               elseif Map['Nebandan.Morning'] then
                   print('Calling Preset Morning on Nebandan Flats')
-                  Morning()
+                  Morning(27)
               elseif Map['Nebandan.Bright_Night'] then
                     print('Calling Preset Bright Night on Nebandan Flats')
-                    Bright_Night()
+                    Bright_Night(27)
               --elseif Settings.Map[1] == (true, 'noon') then
                   --Presets.Preset.Noon()
                   --print('Using Preset Noon on Grand Bazaar')
@@ -670,10 +670,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(28)
               elseif Map['Kiasar.Morning'] then
                   print('Calling Preset Morning on Kiasar Railroad')
-                  Morning()
+                  Morning(28)
               elseif Map['Kiasar.Bright_Night'] then
                     print('Calling Preset Bright Night on Kiasar Railroad')
-                    Bright_Night()
+                    Bright_Night(28)
               --elseif Settings.Map[1] == (true, 'noon') then
                   --Presets.Preset.Noon()
                   --print('Using Preset Noon on Grand Bazaar')
@@ -696,10 +696,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Night(29)
               elseif Map['Pipeline.Morning'] then
                   print('Calling Preset Morning on Sabalan Pipeline')
-                  Morning()
+                  Morning(29)
               elseif Map['Pipeline.Bright_Night'] then
                     print('Calling Preset Bright Night on Sabalan Pipeline')
-                    Bright_Night()
+                    Bright_Night(29)
               --elseif Settings.Map[1] == (true, 'noon') then
                   --Presets.Preset.Noon()
                   --print('Using Preset Noon on Grand Bazaar')
