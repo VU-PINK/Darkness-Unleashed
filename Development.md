@@ -8,6 +8,8 @@
 - Force all to specific Brightness ✔
 - Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
 - FixMapLighting
+
+## TODO SECONDARY
 - Look into Illuminating Mortar Sheels from Campaign
 
 ## FUTURE FEATURE IDEAS / PLANS
