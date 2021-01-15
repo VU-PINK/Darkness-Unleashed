@@ -23,7 +23,7 @@
         ['Metro.Night']                       = true,             --MP_Subway   | Operation Metro
 
         --DLC Back to Karkand
-        ['Karkand.Night']                     = true,             --XP1_001     | Strike at Karkand
+        ['Karkand.Evening']                   = true,             --XP1_001     | Strike at Karkand
         ['Gulf.Bright_Night']                 = true,             --XP1_002     | Gulf of Oman
         ['Sharqi.Night']                      = true,             --XP1_003     | Sharqi Peninsula
         ['Wake.Morning']                      = true,             --XP1_004     | Wake Island

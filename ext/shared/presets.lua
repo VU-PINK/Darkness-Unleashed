@@ -384,8 +384,7 @@ function Night(Map)
 				end
 
 				-- CustomUserSettings
-				local UserSettings_userBrightnessMin
-				local UserSettings_userBrightnessMax
+
 				local UserSettings_brightness
 
 				local UserSettingsSaved = false
@@ -492,7 +491,7 @@ end
 
 -------------------------------------------------------------------------------
 
-function Bright_Night(CustomBrightness, CustomFog)
+function Bright_Night(Map)
 	SkyboxRotation:Rotate(Map)
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
 	local emitters = {
@@ -786,7 +785,7 @@ function Bright_Night(CustomBrightness, CustomFog)
 
                 tonemap.exposureAdjustTime = 1.5
                 tonemap.middleGray = 10
-                tonemap.bloomScale = tonemap.bloomScale * 0.5
+                tonemap.bloomScale = tonemap.bloomScale * 0.25
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
@@ -929,11 +928,31 @@ function Bright_Night(CustomBrightness, CustomFog)
         	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight3PGuid))
         end)
 
+
+				-- CustomUserSettings
+				local UserSettings_brightness
+
+				local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+										if 	PostProcessing ~= nil and UserSettingsSaved == false then
+												PostProcessing = GlobalPostProcessSettings(PostProcessing)
+												UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+												UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+												UserSettings_brightness = PostProcessing.brightness
+												print('Saving User Settings:')
+												print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+												print('Brightness_Max: '..UserSettings_userBrightnessMax)
+												UserSettingsSaved = true
+										end
+
+										if UserSettingsSaved == true then
+												PostProcessing.userBrightnessMin = UserSettings_userBrightnessMin
+												PostProcessing.userBrightnessMax = UserSettings_userBrightnessMax
+												PostProcessing.brightness = Vec3(1.0, 1.0, 1.0)
+												print('Changed PostProcessing')
+										end
+
         print('Using Preset Bright_Night')
-
-
-
-
 
 return true
 end
@@ -981,7 +1000,7 @@ function Morning(Map)
                 local outdoor = OutdoorLightComponentData(instance)
                 outdoor:MakeWritable()
 
-                outdoor.sunColor = Vec3(0.45, 0.22, 0.15)
+								outdoor.sunColor = Vec3(0.45, 0.22, 0.15)
                 outdoor.skyColor = Vec3(0.45, 0.22, 0)
                 outdoor.groundColor = outdoor.skyColor/2
 
@@ -1057,7 +1076,7 @@ function Morning(Map)
                 --tonemap.maxExposure = 6
 
                 tonemap.exposureAdjustTime = 1.5
-                tonemap.middleGray = 3
+                --tonemap.middleGray = 3
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
@@ -1089,7 +1108,213 @@ function Morning(Map)
                 end
         end
 
+				-- CustomUserSettings
+				local UserSettings_brightness
+
+				local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+										if 	PostProcessing ~= nil and UserSettingsSaved == false then
+												PostProcessing = GlobalPostProcessSettings(PostProcessing)
+												UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+												UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+												UserSettings_brightness = PostProcessing.brightness
+												print('Saving User Settings:')
+												print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+												print('Brightness_Max: '..UserSettings_userBrightnessMax)
+												UserSettingsSaved = true
+										end
+
+										if UserSettingsSaved == true then
+												PostProcessing.userBrightnessMin = UserSettings_userBrightnessMin
+												PostProcessing.userBrightnessMax = UserSettings_userBrightnessMax
+												PostProcessing.brightness = Vec3(1.0, 1.0, 1.0)
+												print('Changed PostProcessing')
+										end
+
+
+
         print('Using Preset Morning')
+
+return true
+end
+
+-------------------------------------------------------------------------------
+function Evening(Map)
+	SkyboxRotation:Rotate(Map)
+  ----
+        Events:Subscribe('Partition:Loaded', function(partition)
+            for _, instance in pairs(partition.instances) do
+                if instance:Is('OutdoorLightComponentData') then
+                    PatchOutdoorLightComponentData(instance)
+                --elseif instance:Is('SkyComponentData') then
+                    --PatchSkyComponentData(instance)
+                elseif instance:Is('FogComponentData') then
+                    PatchFogComponentData(instance)
+                elseif instance:Is('TonemapComponentData') then
+                    PatchTonemapComponentData(instance)
+                elseif instance:Is('ColorCorrectionComponentData') then
+                    PatchColorCorrectionComponentData(instance)
+                elseif instance:Is('SkyComponentData') then
+                    PatchSkyComponentData(instance)
+                elseif instance:Is('SunFlareComponentData') then
+                    PatchSunFlareComponentData(instance)
+                end
+            DisableBackgrounds(instance)
+            end
+        end)
+
+        function PatchSunFlareComponentData(instance)
+                local flare = SunFlareComponentData(instance)
+                flare:MakeWritable()
+                local flaremultiplier = 0.15
+
+                flare.element1Size = flare.element1Size*flaremultiplier
+                flare.element2Size = flare.element2Size*flaremultiplier
+                flare.element3Size = flare.element3Size*flaremultiplier
+                flare.element4Size = flare.element4Size*flaremultiplier
+                flare.element5Size = flare.element5Size*flaremultiplier
+
+
+        end
+
+        function PatchOutdoorLightComponentData(instance)
+                local outdoor = OutdoorLightComponentData(instance)
+                outdoor:MakeWritable()
+
+								outdoor.sunColor = Vec3(0.9, 0.6, 0)
+		            outdoor.skyColor = Vec3(0.9, 0.6, 0)
+		            outdoor.groundColor = Vec3(0, 0, 0)
+
+		            outdoor.sunRotationY = 55;
+		            outdoor.sunRotationX = 15;
+
+        end
+
+        function PatchSkyComponentData(instance)
+              local sky = SkyComponentData(instance)
+                sky:MakeWritable()
+
+                sky.brightnessScale = 1
+
+								sky.panoramicRotation = rotation
+                --sky.sunSize = 1
+                --sky.sunScale = 15
+
+                --sky.cloudLayer1SunLightIntensity = 0
+                --sky.cloudLayer1SunLightPower = 0
+                --sky.cloudLayer1AmbientLightIntensity = 0.08
+
+                --sky.cloudLayer2SunLightIntensity = 0.1
+                --sky.cloudLayer2SunLightPower = 0.2
+                --sky.cloudLayer2AmbientLightIntensity = 0.08
+
+                --sky.staticEnvmapScale = 0.005
+                --sky.skyEnvmap8BitTexScale = 0.005
+
+                --if
+                --    sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_city_01' or
+                --    sky.partition.name == 'levels/mp_011/lighting/ve_mp_011_day01'
+                --then
+                --    sky.staticEnvmapScale = 0.01
+                --end
+
+                --if sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_subway_01' then
+                --    local partitionGuid = Guid('36536A99-7BE3-11E0-8611-A913E18AE9A4') -- levels/sp_paris/lighting/sp_paris_static_envmap
+                --    local instanceGuid = Guid('64EE680C-405E-2E81-E327-6DF58605AB0B') -- TextureAsset
+
+                --    ResourceManager:RegisterInstanceLoadHandlerOnce(partitionGuid, instanceGuid, function(loadedInstance)
+                --        sky.staticEnvmapTexture = TextureAsset(loadedInstance)
+                --    end)
+              --  end
+        end
+
+        function PatchFogComponentData(instance)
+                local fog = FogComponentData(instance)
+                fog:MakeWritable()
+
+                fog.enable = true
+                fog.fogColorEnable = true
+
+                --fog.start = 35
+
+                fog.fogColorStart = 5
+                fog.fogColorEnd = 100
+                fog.fogColor = Vec3(0.005, 0.005, 0.005)
+                fog.fogColorCurve = Vec4(0.04, 0.035, 0.03, 0.000)
+
+                --fog.transparencyFadeStart = 2
+                --fog.transparencyFadeEnd = 80
+
+                --fog.endValue = 150
+
+        end
+
+        function PatchTonemapComponentData(instance)
+                local tonemap = TonemapComponentData(instance)
+                tonemap:MakeWritable()
+
+                --tonemap.minExposure = 3
+                --tonemap.maxExposure = 6
+
+                tonemap.exposureAdjustTime = 1.5
+                tonemap.middleGray = 3
+
+                tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
+        end
+
+        function PatchColorCorrectionComponentData(instance)
+                local color = ColorCorrectionComponentData(instance)
+                color:MakeWritable()
+
+                color.brightness = Vec3(0.8, 0.8, 0.8)
+                color.contrast = Vec3(1.1, 1.1, 1.1)
+                color.saturation = Vec3(1.1, 1.1, 1.1)
+        end
+
+        function DisableBackgrounds(instance)
+                if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
+                    local s_Instance = ColorCorrectionComponentData(instance)
+                    s_Instance:MakeWritable()
+                    s_Instance.enable = false
+                end
+                if instance.instanceGuid == Guid('46FE1C37-5B7E-490C-8239-2EB2D6045D7B') then -- oob FX/VisualEnviroments/OutofCombat/OutofCombat
+                    local s_Instance = ColorCorrectionComponentData(instance)
+                    s_Instance:MakeWritable()
+                    s_Instance.enable = false
+                end
+                if instance.instanceGuid == Guid('36C2CEAE-27D2-45F3-B3F5-B831FE40ED9B') then -- FX/VisualEnviroments/OutofCombat/OutofCombat
+                    local s_Instance = FilmGrainComponentData(instance)
+                    s_Instance:MakeWritable()
+                    s_Instance.enable = false
+                end
+        end
+
+				-- CustomUserSettings
+				local UserSettings_brightness
+
+				local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+										if 	PostProcessing ~= nil and UserSettingsSaved == false then
+												PostProcessing = GlobalPostProcessSettings(PostProcessing)
+												UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+												UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+												UserSettings_brightness = PostProcessing.brightness
+												print('Saving User Settings:')
+												print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+												print('Brightness_Max: '..UserSettings_userBrightnessMax)
+												UserSettingsSaved = true
+										end
+
+										if UserSettingsSaved == true then
+												PostProcessing.userBrightnessMin = UserSettings_userBrightnessMin
+												PostProcessing.userBrightnessMax = UserSettings_userBrightnessMax
+												PostProcessing.brightness = Vec3(1.0, 1.0, 1.0)
+												print('Changed PostProcessing')
+										end
+
+
+
+        print('Using Preset Evening')
 
 return true
 end
