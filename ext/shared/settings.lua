@@ -63,7 +63,7 @@
 --generalfogMultiplier                          = {10}
 
 --function BrightnessMultiplier()
-generalbrightness                             = {1.0}
+generalbrightness                             = {0.65}
 generalfog                                    = {1.0}
 --return brightness, fog
 --end

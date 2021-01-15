@@ -4,11 +4,6 @@ require '__shared/functions'
 local Classes = require '__shared/classes'
 
 
-local BrightnessMultiplicator
-local FogMultiplicator
-local rotation
-
-
 ---Presets
 function Night(Map)
   --Code by Reirei ; Custom Settings + Extra Code by Lesley & IllustrisJack
@@ -208,11 +203,11 @@ function Night(Map)
                     PatchEffectEntityData(instance)
 								elseif instance:Is('LocalLightEntityData') then
 										DynamicLights(instance)
-								elseif instance:Is('GlobalPostProcessSettings') then
-									 	ForceBrightness()
+								elseif instance:Is('LensFlareEntityData') then
+										PatchLensFlareEntityData(instance)
                 end
-                DisableBackgrounds(instance)
             end
+
         end)
 
         Events:Subscribe('Level:LoadResources', function(level)
@@ -245,7 +240,7 @@ function Night(Map)
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.0005
+                sky.brightnessScale = (0.0005*BrightnessMultiplicator)
 
                 sky.sunSize = 15
                 sky.sunScale = 15
@@ -306,11 +301,7 @@ function Night(Map)
                 local tonemap = TonemapComponentData(instance)
                 tonemap:MakeWritable()
 
-                --tonemap.minExposure = 3
-                --tonemap.maxExposure = 6
-
                 tonemap.exposureAdjustTime = 1.5
-                tonemap.middleGray = (4.5*BrightnessMultiplicator)
                 tonemap.bloomScale = tonemap.bloomScale * 0.25
 
                 tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
@@ -320,9 +311,9 @@ function Night(Map)
                 local color = ColorCorrectionComponentData(instance)
                 color:MakeWritable()
 								--print("old brightness" .. color.brightness)
-                color.brightness = Vec3((0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator), (0.98*BrightnessMultiplicator))
+                --color.brightness = Vec3((1*BrightnessMultiplicator), (1*BrightnessMultiplicator), (1*BrightnessMultiplicator))
 								--print("new brightness" .. color.brightness)
-                color.contrast = Vec3(1.30, 1.30, 1.30)
+                color.contrast = Vec3(1.05, 1.05, 1.05)
                 color.saturation = Vec3(1.22, 1.25, 1.5)
         end
 
@@ -365,7 +356,6 @@ function Night(Map)
                 if emitters[instance.partition.name] then
                     local template = EmitterTemplateData(instance)
                     template:MakeWritable()
-
                     template.emissive = false
                 end
         end
@@ -387,31 +377,64 @@ function Night(Map)
 										Dynamic.specularEnable = true
 				end
 
-				function ForceBrightness(instance)
-								local Brightness100 = GlobalPostProcessSettings(instance)
-										Brightness100:MakeWritable()
-										Brightness100.userBrightnessMin = 100
+
+				function PatchLensFlareEntityData(instance)
+								 local flares = LensFlareEntityData(instance)
+								 flares:MakeWritable()
+								 flares.visible = false
 				end
 
-        --Additions by Lesley & IllustrisJack
+				-- CustomUserSettings
+				local UserSettings_userBrightnessMin
+				local UserSettings_userBrightnessMax
+				local UserSettings_brightness
 
-        function DisableBackgrounds(instance)
-                if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
-                    local s_Instance = ColorCorrectionComponentData(instance)
-                    s_Instance:MakeWritable()
-                    s_Instance.enable = false
-                end
-                if instance.instanceGuid == Guid('46FE1C37-5B7E-490C-8239-2EB2D6045D7B') then -- oob FX/VisualEnviroments/OutofCombat/OutofCombat
-                    local s_Instance = ColorCorrectionComponentData(instance)
-                    s_Instance:MakeWritable()
-                    s_Instance.enable = false
-                end
-                if instance.instanceGuid == Guid('36C2CEAE-27D2-45F3-B3F5-B831FE40ED9B') then -- FX/VisualEnviroments/OutofCombat/OutofCombat
-                    local s_Instance = FilmGrainComponentData(instance)
-                    s_Instance:MakeWritable()
-                    s_Instance.enable = false
-                end
-        end
+				local UserSettingsSaved = false
+
+				local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+										if 	PostProcessing ~= nil and UserSettingsSaved == false then
+												PostProcessing = GlobalPostProcessSettings(PostProcessing)
+												UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+												UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+												UserSettings_brightness = PostProcessing.brightness
+												print('Saving User Settings:')
+												print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+												print('Brightness_Max: '..UserSettings_userBrightnessMax)
+												UserSettingsSaved = true
+										end
+
+										if UserSettingsSaved == true then
+												PostProcessing.userBrightnessMin = 1
+												PostProcessing.userBrightnessMax = 1
+												PostProcessing.brightness = Vec3(1.5, 1.5, 1.5)
+												print('Changed PostProcessing')
+										end
+
+
+
+				-----------
+
+
+
+
+        --function DisableBackgrounds(instance)
+              --  if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
+                    --local s_Instance = ColorCorrectionComponentData(instance)
+                    --s_Instance:MakeWritable()
+                    --s_Instance.enable = false
+                --end
+                --if instance.instanceGuid == Guid('46FE1C37-5B7E-490C-8239-2EB2D6045D7B') then -- oob FX/VisualEnviroments/OutofCombat/OutofCombat
+                    --local s_Instance = ColorCorrectionComponentData(instance)
+                    --s_Instance:MakeWritable()
+                    --s_Instance.enable = false
+                --end
+                --if instance.instanceGuid == Guid('36C2CEAE-27D2-45F3-B3F5-B831FE40ED9B') then -- FX/VisualEnviroments/OutofCombat/OutofCombat
+                    --local s_Instance = FilmGrainComponentData(instance)
+                    --s_Instance:MakeWritable()
+                    --s_Instance.enable = false
+                --end
+        --end
 
 
         --Remove Backdrop / Ring around the Map
@@ -836,8 +859,6 @@ function Bright_Night(CustomBrightness, CustomFog)
 				end
 
 
-        --Additions by Lesley & IllustrisJack
-
         function DisableBackgrounds(instance)
                 if instance.instanceGuid == Guid('9CDAC6C3-9D3E-48F1-B8D9-737DB28AE936') then -- menu UI/Assets/MenuVisualEnvironment
                     local s_Instance = ColorCorrectionComponentData(instance)
@@ -907,6 +928,10 @@ function Bright_Night(CustomBrightness, CustomFog)
         end)
 
         print('Using Preset Bright_Night')
+
+
+
+
 
 return true
 end
