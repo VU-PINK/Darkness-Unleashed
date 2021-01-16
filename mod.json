@@ -3,7 +3,7 @@
     "Description": "Custom Night Mode Experience",
     "Authors": ["Based on night-time by Reirei; Authors: Lesley & IllustrisJack"],
     "Tags": ["darkness-unleashed"],
-    "Version": "1",
+    "Version": "1.0",
     "HasVeniceEXT": true,
     "Dependencies": {
         "veniceext": "^1.0.0"
