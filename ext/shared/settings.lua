@@ -76,7 +76,7 @@ Teheran_fogMultiplier                         = {1}
 Caspian_brightnessMultiplier                  = {0.80}
 Caspian_fogMultiplier                         = {1}
 
-Seine_brightnessMultiplier                    = {1.2}
+Seine_brightnessMultiplier                    = {1.35}
 Seine_fogMultiplier                           = {1}
 
 Firestorm_brightnessMultiplier                = {1.2}
@@ -153,7 +153,7 @@ Riverside_fogMultiplier                       = {1}
 Nebandan_brightnessMultiplier                 = {1.2}
 Nebandan_fogMultiplier                        = {1}
 
-Kiasar_brightnessMultiplier                   = {1.2}
+Kiasar_brightnessMultiplier                   = {1.5}
 Kiasar_fogMultiplier                          = {1}
 
 Pipeline_brightnessMultiplier                 = {1.2}

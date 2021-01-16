@@ -166,10 +166,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Kharg.Morning'] then
                   print('Calling Preset Morning on Kharg Island')
                   Morning(8)
-              elseif Map['Teheran.Bright_Night'] then
+              elseif Map['Kharg.Bright_Night'] then
                   print('Calling Preset Bright Night on Kharg Island')
                   Bright_Night(8)
-              elseif Map['Teheran.Evening'] then
+              elseif Map['Kharg.Evening'] then
                   print('Calling Preset Evening on Kharg Island')
                   Evening(8)
               else

@@ -721,22 +721,21 @@ function Bright_Night(Map)
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.0000001
+                sky.brightnessScale = 0.00001
                 sky.sunSize = 15
                 sky.sunScale = 15
 
                 sky.cloudLayer1SunLightIntensity = 0.005
                 sky.cloudLayer1SunLightPower = 0.0001
-                sky.cloudLayer1AmbientLightIntensity = 0.005
+                sky.cloudLayer1AmbientLightIntensity = 0.01
 
                 sky.cloudLayer2SunLightIntensity = 0.0001
                 sky.cloudLayer2SunLightPower = 0.0001
-                sky.cloudLayer2AmbientLightIntensity = 0.005
+                sky.cloudLayer2AmbientLightIntensity = 0.01
 
-                sky.staticEnvmapScale = 0.005
-                sky.skyEnvmap8BitTexScale = 0.005
+                sky.staticEnvmapScale = 0.009
+                sky.skyEnvmap8BitTexScale = 0.009
 
-								sky.panoramicRotation = rotation
 
                 if
                     sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_city_01' or
@@ -1318,8 +1317,8 @@ function Evening(Map)
                     PatchColorCorrectionComponentData(instance)
                 elseif instance:Is('EnlightenComponentData') then
                     PatchEnlightenComponentData(instance)
-                --elseif instance:Is('SunFlareComponentData') then
-                --    PatchSunFlareComponentData(instance)
+                elseif instance:Is('SunFlareComponentData') then
+                    PatchSunFlareComponentData(instance)
                 elseif instance:Is('MeshAsset') then
                     PatchMeshAsset(instance)
                 --elseif instance:Is('MeshMaterialVariation') then
@@ -1346,18 +1345,17 @@ function Evening(Map)
 		    	end
 				end)
 
-        function PatchOutdoorLightComponentData(instance)
+				function PatchOutdoorLightComponentData(instance)
                 local outdoor = OutdoorLightComponentData(instance)
                 outdoor:MakeWritable()
 
-                outdoor.sunColor = Vec3(0.35, 0.15, 0.05)
-                outdoor.skyColor = Vec3(0.35, 0.15, 0.05)
-                outdoor.groundColor = Vec3(0, 0, 0)
+								outdoor.sunColor = Vec3(1.0, 0.5, 0.2)
+		            outdoor.skyColor = Vec3((1.0/2), (0.5/2), (0.2/2))
+		            outdoor.groundColor = Vec3(0, 0, 0)
 
-                outdoor.skyEnvmapShadowScale = 1
+                outdoor.sunRotationY = 15;
+                outdoor.sunRotationX = 50;
 
-								outdoor.sunRotationY = 9;
-								outdoor.sunRotationX = 255;
         end
 
 --
@@ -1365,22 +1363,20 @@ function Evening(Map)
                 local sky = SkyComponentData(instance)
                 sky:MakeWritable()
 
-                sky.brightnessScale = 0.2
+                sky.brightnessScale = 0.22
 
-                sky.sunScale = 10
+                --sky.cloudLayer1SunLightIntensity = 0
+                --sky.cloudLayer1SunLightPower = 0.05
+                --sky.cloudLayer1AmbientLightIntensity = 0.05
 
-                sky.cloudLayer1SunLightIntensity = 0.1
-                sky.cloudLayer1SunLightPower = 0.1
-                sky.cloudLayer1AmbientLightIntensity = 0.4
+                --sky.cloudLayer2SunLightIntensity = 0
+                --sky.cloudLayer2SunLightPower = 0.05
+                --sky.cloudLayer2AmbientLightIntensity = 0.05
 
-                sky.cloudLayer2SunLightIntensity = 0.1
-                sky.cloudLayer2SunLightPower = 0.1
-                sky.cloudLayer2AmbientLightIntensity = 0.4
+                --sky.staticEnvmapScale = 0.01
+                --sky.skyEnvmap8BitTexScale = 0.01
 
-                sky.staticEnvmapScale = 1
-                sky.skyEnvmap8BitTexScale = 1
-
-								--sky.panoramicRotation = rotation
+								sky.panoramicRotation = rotation
 
 
                 if
@@ -1437,8 +1433,9 @@ function Evening(Map)
 								--print("old brightness" .. color.brightness)
                 --color.brightness = Vec3((1*BrightnessMultiplicator), (1*BrightnessMultiplicator), (1*BrightnessMultiplicator))
 								--print("new brightness" .. color.brightness)
-                color.contrast = Vec3(1.1, 1.1, 1.1)
-                color.saturation = Vec3(1.15, 1.1, 1.1)
+								color.brightness = Vec3(0.55, 0.55, 0.55)
+		            color.contrast = Vec3(1.3, 1.3, 1.3)
+		            color.saturation = Vec3(1.25, 1.2, 1.2)
         end
 
         function PatchEnlightenComponentData(instance)
@@ -1448,11 +1445,18 @@ function Evening(Map)
                 enlighten.enable = false
         end
 
-        function PatchSunFlareComponentData(instance)
+				function PatchSunFlareComponentData(instance)
                 local flare = SunFlareComponentData(instance)
                 flare:MakeWritable()
+                local flaremultiplier = 0.15
 
-                flare.excluded = true
+                flare.element1Size = flare.element1Size*flaremultiplier
+                flare.element2Size = flare.element2Size*flaremultiplier
+                flare.element3Size = flare.element3Size*flaremultiplier
+                flare.element4Size = flare.element4Size*flaremultiplier
+                flare.element5Size = flare.element5Size*flaremultiplier
+
+
         end
 
         function PatchMeshAsset(instance)
@@ -1497,7 +1501,7 @@ function Evening(Map)
 								local Dynamic = LocalLightEntityData(instance)
 										Dynamic:MakeWritable()
 										Dynamic.visible = true
-										Dynamic.enlightenEnable = true
+										Dynamic.enlightenEnable = false
 										Dynamic.specularEnable = false
 				end
 

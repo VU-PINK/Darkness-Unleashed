@@ -59,7 +59,7 @@ function SkyboxRotation:Rotate(mapid)
       end
 
       if mapid == 13 then
-          rotation = 0
+          rotation = 200
       end
 
       if mapid == 14 then
