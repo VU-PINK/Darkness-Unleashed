@@ -985,7 +985,7 @@ function Morning(Map)
                 outdoor.skyColor = Vec3(0.5, 0.3, 0.3)
                 outdoor.groundColor = outdoor.skyColor/2
 
-                outdoor.sunRotationY = 9.5;
+                outdoor.sunRotationY = 11;
                 outdoor.sunRotationX = 255;
 
         end
