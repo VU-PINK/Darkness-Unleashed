@@ -61,7 +61,7 @@ Join our Team: https://discord.gg/jy2x8gUany
 
 ![alt text](https://cdn.discordapp.com/attachments/799963847842070568/800094068323123210/Client_Screenshot_2021.01.16_-_21.07.41.64.png)
 
-![alt text](https://cdn.discordapp.com/attachments/799963847842070568/800094013583392809/Client_Screenshot_2021.01.16_-_21.05.50.63.png)
+![alt text](https://cdn.discordapp.com/attachments/799963847842070568/800094333159997470/Client_Screenshot_2021.01.16_-_21.09.03.09.png)
 
 
 **Preset Evening:**
