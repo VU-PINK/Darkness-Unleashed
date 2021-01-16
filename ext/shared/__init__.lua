@@ -146,10 +146,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Noshahr.Morning'] then
                   print('Calling Preset Morning on Noshahr Canals')
                   Morning(7)
-              elseif Map['Noshar.Bright_Night'] then
+              elseif Map['Noshahr.Bright_Night'] then
                   print('Calling Preset Bright Night on Noshar Canals')
                   Bright_Night(7)
-              elseif Map['Noshar.Evening'] then
+              elseif Map['Noshahr.Evening'] then
                   print('Calling Preset Evening on Noshar Canals')
                   Evening(7)
               else
