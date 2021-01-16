@@ -65,7 +65,9 @@
 
 -- Fog and Brightness Settings - DarkNight Preset
 
---function BrightnessMultiplier()
+-- To Change General Brightness and Fog:
+-- Brightness: The higher the setting, the brighter. [recommended: max 1.5]
+-- Fog: Lowering this setting will make fog darker and more prominent.
 generalbrightness                             = {0.65}
 generalfog                                    = {0.9}
 --return brightness, fog
