@@ -1,3 +1,5 @@
+require '__shared/presets'
+
 --Configure Smoke, Muzzle & Emmiters
 Events:Subscribe('Partition:Loaded', function(partition)
 	for _, instance in pairs(partition.instances) do
@@ -56,4 +58,35 @@ Events:Subscribe('Partition:Loaded', function(partition)
 			end
 		end
 	end
+end)
+
+-- Unload stuff
+Events:Subscribe('Extension:Unloading', function()
+		-- User Settings
+		print("User: " .. UserSettings_userBrightnessMin)
+		print("User: " .. UserSettings_userBrightnessMax)
+    if UserSettingsSaved == true then
+	    	print('Unloading PP Settings')
+				PostProcessingUnload = ResourceManager:GetSettings("GlobalPostProcessSettings")
+				PostProcessingUnload = GlobalPostProcessSettings(PostProcessing)
+	    	PostProcessingUnload.userBrightnessMin = UserSettings_userBrightnessMin
+	    	PostProcessingUnload.userBrightnessMax = UserSettings_userBrightnessMax
+	    	PostProcessingUnload.brightness = UserSettings_brightness
+	    	print('Unloaded PP Settings')
+				UserSettingsSaved = false
+    end
+		-- Reset Water
+		local visual = ResourceManager:GetSettings("VisualTerrainSettings")
+		if visual ~= nil then
+				visual = VisualTerrainSettings(visual)
+				visual.drawWaterEnable = true
+				print('Water reset')
+		end
+		-- Reset edgeModels
+		local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+		if badstuff ~= nil then
+				badstuff = GameRenderSettings(badstuff)
+				badstuff.edgeModelsEnable = true
+				print('Edge Models reset')
+		end
 end)

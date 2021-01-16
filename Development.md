@@ -1,14 +1,19 @@
 ## TODO Core
+- Update Notifier ✔
 - Add Map Vote Function (morning, noon, evening, night)
-- Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
+- Rotate Skybox on certain Maps (Gulf of Oman✔ ,...)
+- Create & Test More Presets (Bright_Night ✔ , Evening ✔, Afternoon )
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side  ✔
-- Look into Illuminating Mortar Sheels from Campaign
-- Create & Test More Presets (Bright_Night ✔ , Evening, Afternoon )
 - Add Fail Safe ✔
-- Rotate Skybox on certain Maps (Gulf of Oman ,...)
-- Remove Specmaps on puddles / windows because they look terrible (Seems to sometimes work well and sometimes bad)
-- Force all to 100% Brightness
+- Force all to specific Brightness ✔
+- Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
+- FixMapLighting
+- Clean up Code
+
+
+## TODO SECONDARY
+- Look into Illuminating Mortar Sheels from Campaign
 
 ## FUTURE FEATURE IDEAS / PLANS
 - Ticketbased "Time" System
