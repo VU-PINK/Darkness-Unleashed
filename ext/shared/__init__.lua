@@ -615,15 +615,3 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
 
         ------------------------------------------------------------------------
 end)
-
--- Unload stuff
-Events:Subscribe('Extension:Unloading', function()
-PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
-    if UserSettingsSaved == true then
-    print('Unloading PP Settings')
-    PostProcessing.userBrightnessMin = UserSettings_userBrightnessMin
-    PostProcessing.userBrightnessMax = UserSettings_userBrightnessMax
-    PostProcessing.brightness = Vec3(1.0, 1.0, 1.0)
-    print('Unloaded PP Settings')
-    end
-end)
