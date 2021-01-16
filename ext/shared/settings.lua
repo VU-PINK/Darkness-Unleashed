@@ -11,6 +11,9 @@
     -- Select Maps and Time:
         Map = {
 
+-- To Change Preset on a Map do "Mapname.PresetName" (Preset Names: Night, Bright_Night, Morning, Evening)
+
+
         --Standard
         ['Bazaar.Night']                      = true,             --MP_001      | Grand Bazaar
         ['Teheran.Morning']                   = true,             --MP_003      | Teheran Highway
