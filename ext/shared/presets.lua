@@ -1089,6 +1089,22 @@ function Morning(Map)
                 end
         end
 
+				-- Reset Water
+				local visual = ResourceManager:GetSettings("VisualTerrainSettings")
+				if visual ~= nil then
+						visual = VisualTerrainSettings(visual)
+						visual.drawWaterEnable = true
+						print('Water reset')
+				end
+
+				-- Reset edgeModels
+				local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+				if badstuff ~= nil then
+						badstuff = GameRenderSettings(badstuff)
+						badstuff.edgeModelsEnable = true
+						print('Edge Models reset')
+				end
+
 				-- CustomUserSettings
 
 				local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
@@ -1494,6 +1510,13 @@ function Evening(Map)
 								 local flares = LensFlareEntityData(instance)
 								 flares:MakeWritable()
 								 flares.visible = false
+				end
+				-- Reset Water
+				local visual = ResourceManager:GetSettings("VisualTerrainSettings")
+				if visual ~= nil then
+						visual = VisualTerrainSettings(visual)
+						visual.drawWaterEnable = true
+						print('Water reset')
 				end
 
 				--Remove Backdrop / Ring around the Map
