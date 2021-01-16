@@ -1,5 +1,9 @@
 # Darkness Unleashed
 
+**Tutorial**
+Download the files and add them to your Mods folder --> go to: Darkness Unleashed/ext/shared/settings --> choose desired Presets 
+--> add Darkness Unleashed to your ModList.txt --> Enjoy! <3
+
 The true dark night mod and more!
 *Inspired by Reirei*
 *by Lesley & IllustrisJack*
