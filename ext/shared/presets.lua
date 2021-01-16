@@ -878,8 +878,8 @@ function Bright_Night(Map)
         	local spotLight = SpotLightEntityData(instance)
         	instance:MakeWritable()
 
-        	spotLight.radius = 120
-        	spotLight.intensity = 1.4 --brightness
+        	spotLight.radius = 140
+        	spotLight.intensity = 1.28 --brightness
         	spotLight.coneOuterAngle = 50
         	spotLight.orthoWidth = 7
         	spotLight.orthoHeight = 7
