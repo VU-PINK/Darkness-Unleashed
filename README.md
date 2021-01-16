@@ -1,6 +1,6 @@
 # Darkness Unleashed
 
-##Tutorial
+## Tutorial
 Download the files and add them to your Mods folder --> go to: Darkness Unleashed/ext/shared/settings --> choose desired Presets 
 --> add Darkness Unleashed to your ModList.txt --> Enjoy! <3
 
