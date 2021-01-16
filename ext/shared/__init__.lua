@@ -210,10 +210,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   print('Calling Preset Morning on Strike at Karkand')
                   Morning(10)
               elseif Map['Karkand.Bright_Night'] then
-                  print('Using Preset Bright Night on Strike at Karkand')
+                  print('Calling Preset Bright Night on Strike at Karkand')
                   Bright_Night(10)
               elseif Map['Karkand.Evening'] then
-                  print('Using Preset Evening on Strike at Karkand')
+                  print('Calling Preset Evening on Strike at Karkand')
                   Evening(10)
               else
                   print('Wrong Configuration')
@@ -230,10 +230,10 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   print('Calling Preset Morning on Gulf of Oman')
                   Morning(11)
               elseif Map['Gulf.Bright_Night'] then
-                  print('Using Preset Bright Night on Gulf of Oman')
+                  print('Calling Preset Bright Night on Gulf of Oman')
                   Bright_Night(11)
               elseif Map['Gulf.Evening'] then
-                  print('Using Preset Evening on Gulf of Oman')
+                  print('Calling Preset Evening on Gulf of Oman')
                   Evening(11)
               else
                   print('Wrong Configuration')
@@ -614,4 +614,16 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         end
 
         ------------------------------------------------------------------------
+end)
+
+-- Unload stuff
+Events:Subscribe('Extension:Unloading', function()
+PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+    if UserSettingsSaved == true then
+    print('Unloading PP Settings')
+    PostProcessing.userBrightnessMin = UserSettings_userBrightnessMin
+    PostProcessing.userBrightnessMax = UserSettings_userBrightnessMax
+    PostProcessing.brightness = Vec3(1.0, 1.0, 1.0)
+    print('Unloaded PP Settings')
+    end
 end)

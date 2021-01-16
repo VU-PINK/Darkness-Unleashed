@@ -27,7 +27,7 @@ function SkyboxRotation:Rotate(mapid)
       end
 
       if mapid == 5 then
-          rotation = 0
+          rotation = 170
       end
 
       if mapid == 6 then
@@ -35,7 +35,7 @@ function SkyboxRotation:Rotate(mapid)
       end
 
       if mapid == 7 then
-          rotation = 0
+          rotation = 170
       end
 
       if mapid == 8 then
@@ -63,7 +63,7 @@ function SkyboxRotation:Rotate(mapid)
       end
 
       if mapid == 14 then
-          rotation = 0
+          rotation = 80
       end
 
       if mapid == 15 then
@@ -119,7 +119,7 @@ function SkyboxRotation:Rotate(mapid)
       end
 
       if mapid == 28 then
-          rotation = 0
+          rotation = 70
       end
 
       if mapid == 29 then

@@ -1,7 +1,29 @@
 local Presets = require '__shared/presets'
 local Settings = require '__shared/settings'
+local Version = require('__shared/version')
 
---Concept:
+function getCurrentVersion()
+    options = HttpOptions({}, 10);
+    options.verifyCertificate = false; --ignore cert for wine users
+    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/live/mod.json", options);
+    if res.status ~= 200 then
+        return null;
+    end
+    json = json.decode(res.body);
+    return json.Version;
+end
+function checkVersion()
+    if getCurrentVersion() ~= localModVersion then
+        print("Version: "..localModVersion)
+        print("This mod seems to be out of date! Please visit https://github.com/IllustrisJack/Darkness-Unleashed/");
+      else
+        print("Version: "..localModVersion)
+        print("You're running the lastest version!")
+    end
+end
+
+checkVersion();
+
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
 
         print(levelName)
@@ -188,7 +210,7 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         if string.find(levelName, "MP_018") then
               if Map['Kharg.Night'] then
                   ServerUtils:SetCustomMapName("Kharg Night")
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   RCON:SendCommand('vu.SunFlareEnabled', {'true'})
                   print('Blue-Filter enabled')
               elseif Map['Kharg.Morning'] then
@@ -226,7 +248,7 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   print('Blue-Filter enabled')
               elseif Map['Metro.Evening'] then
                   ServerUtils:SetCustomMapName("Metro Evening")
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter disabled')
               else
                   print('Wrong Configuration')

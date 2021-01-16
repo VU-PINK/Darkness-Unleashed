@@ -115,7 +115,7 @@ Operation925_brightnessMultiplier             = {1.2}
 Operation925_fogMultiplier                    = {1}
 
 Scrapmetal_brightnessMultiplier               = {2}
-Scrapmetal_fogMultiplier                      = {1}
+Scrapmetal_fogMultiplier                      = {1.3}
 
 Ziba_brightnessMultiplier                     = {1.2}
 Ziba_fogMultiplier                            = {1}
@@ -147,8 +147,8 @@ Talah_brightnessMultiplier                    = {1.2}
 Talah_fogMultiplier                           = {1}
 
 ----------------------- DLC - End Game -------------------------------
-Riverside_brightnessMultiplier                = {1.2}
-Riverside_fogMultiplier                       = {1}
+Riverside_brightnessMultiplier                = {1.4}
+Riverside_fogMultiplier                       = {0.9}
 
 Nebandan_brightnessMultiplier                 = {1.2}
 Nebandan_fogMultiplier                        = {1}
