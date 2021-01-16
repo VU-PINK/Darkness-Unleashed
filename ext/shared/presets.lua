@@ -456,15 +456,15 @@ function Night(Map)
         	local spotLight = SpotLightEntityData(instance)
         	instance:MakeWritable()
 
-        	spotLight.radius = 220
-        	spotLight.intensity = 1.4 --brightness
-        	spotLight.coneOuterAngle = 35
-        	spotLight.orthoWidth = 7
-        	spotLight.orthoHeight = 7
-        	spotLight.frustumFov = 40 --size
+					spotLight.radius = 125
+        	spotLight.intensity = 1.35 --brightness
+        	--spotLight.coneOuterAngle = 1
+        	--spotLight.orthoWidth = 1
+        	--spotLight.orthoHeight = 1
+        	spotLight.frustumFov = 39 --size
         	spotLight.castShadowsEnable = true
         	spotLight.castShadowsMinLevel = QualityLevel.QualityLevel_Ultra
-        	spotLight.shape = 1
+        	--spotLight.shape = 2
 
         	--print('Patching flashlight')
         end
