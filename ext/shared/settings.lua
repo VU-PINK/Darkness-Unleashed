@@ -12,6 +12,10 @@
         Map = {
 
 -- To Change Preset on a Map do "Mapname.PresetName" (Preset Names: Night, Bright_Night, Morning, Evening)
+   -- e.g Bazaar.Night
+   -- e.g Bazaar.Bright_Night
+   -- e.g Bazaar.Morning
+   -- e.g Bazaar.Evening
 
 
         --Standard
