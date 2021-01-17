@@ -2,7 +2,7 @@
 - Update Notifier ✔
 - Add Map Vote Function (morning, noon, evening, night)
 - Rotate Skybox on certain Maps (Gulf of Oman✔ ,...)
-- Create & Test More Presets (Bright_Night ✔ , Evening ✔, Afternoon )
+- Create & Test More Presets (Bright_Night ✔ , Evening ✔, Noon )
 - Real-Time-Configuration
 - Automatic ColorCorrection Enabling Server-Side  ✔
 - Add Fail Safe ✔
