@@ -1,5 +1,6 @@
 ## TODO Core
 - Update Notifier ✔
+- Add Standard Preset Support
 - Add Map Vote Function (morning, noon, evening, night)
 - Rotate Skybox on certain Maps (Gulf of Oman✔ ,...)
 - Create & Test More Presets (Bright_Night ✔ , Evening ✔, Afternoon )
