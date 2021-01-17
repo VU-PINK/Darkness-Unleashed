@@ -36,7 +36,7 @@ Some Maps work better than others . We intend to customize each preset to each m
 Download and/or contribute:
 https://github.com/IllustrisJack/Darkness-Unleashed
 
-Join our Team: https://discord.gg/jy2x8gUany
+To join our Team add us on Discord: Lesley#0242 & IllustrisJack#5355
 
 
 
