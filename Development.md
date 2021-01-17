@@ -10,6 +10,7 @@
 - Force all to specific Brightness ✔
 - Easier Config (Fog✔, Light✔, Saturation, Ambient Light, +++)
 - FixMapLighting
+- add Vehicle Settings
 - Clean up Code
 
 
