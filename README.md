@@ -1,4 +1,4 @@
-https://github.com/IllustrisJack/Darkness-Unleashed/releases/tag/v1.0
+[![Github All Releases](https://img.shields.io/github/downloads/IllustrisJack/Darkness-Unleashed.svg)]()
 # Darkness Unleashed
 
 ## Tutorial
