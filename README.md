@@ -1,4 +1,3 @@
-[![Github All Releases](https://img.shields.io/github/downloads/IllustrisJack/Darkness-Unleashed.svg)]()
 # Darkness Unleashed
 
 ## Tutorial
