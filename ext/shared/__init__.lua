@@ -1,16 +1,6 @@
 require '__shared/presets'
 local Settings = require '__shared/settings'
 
-
---CustomBrightness = generalbrightnessMultiplier[1] * Bazaar_brightnessMultiplier[1]
---CustomFog = generalfogMultiplier[1] * Bazaar_fogMultiplier[1]
---print(CustomBrightness)
---print(CustomFog)
-
-
-
-
---Concept:
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
 
         print(levelName)

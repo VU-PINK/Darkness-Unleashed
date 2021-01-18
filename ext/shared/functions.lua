@@ -1,10 +1,15 @@
-require '__shared/settings'
+require '__shared/settings' --settings
+require '__shared/functions' -- functions
+
+--------------------------------------------------------------------------------
 
 BrightnessMultiplicator = nil
 FogMultiplicator = nil
 
+--------------------------------------------------------------------------------
+
 --Custom Map Settings Brightness/Fog
---Fcklua
+
 function Multipliers(Map)
 	if Map == 1 then
 			BrightnessMultiplicator = generalbrightness[1] * Bazaar_brightnessMultiplier[1]
@@ -132,3 +137,28 @@ function Multipliers(Map)
 end
 
 --------------------------------------------------------------------------
+
+
+function EnforceBrightness()
+PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+						if PostProcessing ~= nil and UserSettingsSaved ~= true then
+								PostProcessing = GlobalPostProcessSettings(PostProcessing)
+								UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+								UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+								UserSettings_brightness = PostProcessing.brightness
+								print('Saving User Settings:')
+								print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+								print('Brightness_Max: '..UserSettings_userBrightnessMax)
+								UserSettingsSaved = true
+						end
+
+						if UserSettingsSaved == true then
+								PostProcessing = GlobalPostProcessSettings(PostProcessing)
+								PostProcessing.userBrightnessMin = 1
+								PostProcessing.userBrightnessMax = 1
+								PostProcessing.brightness = Vec3(1.5, 1.5, 1.5)
+								print('Changed PostProcessing')
+						end
+
+end

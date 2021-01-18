@@ -4,6 +4,9 @@
 -- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
 standardusebluefilter = false
 
+-- Use as such: ['Mapname.Presetname'] | Presets: Night, Bright_Night, Morning, Evening
+    -- e.g ['Bazaar.Night'] or ['Bazaar.Morning']
+    -- Setting Presetname to "Standard" will use Vanilla Map; Alternative: set true, to --> false,
 
     -- Select Maps and Time:
         Map = {
@@ -51,19 +54,17 @@ standardusebluefilter = false
 
         }
 
---end
 
--- Fog and Brightness Settings - DarkNight Preset
+-- Fog and Brightness Settings - Night Preset
+-- Brightness: recommended max: {1.5} | higher values will raise brightness
+-- Fog: recommended: {not tested} | lower values increase fog, higher values decrease fog
 
---function BrightnessMultiplier()
 generalbrightness                             = {0.65}
 generalfog                                    = {0.9}
---return brightness, fog
---end
 
-
---CustomMapSettings
+--Map Settings - Night Preset
 --Standard
+
 Bazaar_brightnessMultiplier                   = {1.5}
 Bazaar_fogMultiplier                          = {1}
 
