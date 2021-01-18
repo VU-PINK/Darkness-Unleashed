@@ -50,6 +50,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Bazaar Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[1] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: ' .. tostring(standardusebluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -75,6 +78,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Teheran Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter enabled')
+              elseif Map[2] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -100,6 +106,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Caspian Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[3] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -125,6 +134,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Seine Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[4] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -150,6 +162,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Firestorm Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[5] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -175,6 +190,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Davamand Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[6] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -200,6 +218,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Noshahr Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[7] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -225,6 +246,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Kharg Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[8] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -250,6 +274,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Metro Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter disabled')
+              elseif Map[9] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -278,6 +305,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Karkand Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[10] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -303,6 +333,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Gulf Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[11] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -328,6 +361,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Sharqi Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[12] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -353,6 +389,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Wake Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[13] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -381,6 +420,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Donya Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[14] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -406,6 +448,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Operation 925 Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[15] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -431,6 +476,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Scrapmetal Bright Night")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
+              elseif Map[16] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -456,6 +504,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Ziba Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[17] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -484,6 +535,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Alborz Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[18] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -509,6 +563,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Shield Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[19] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -534,6 +591,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Bandar Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[20] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -559,12 +619,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Death Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-              --elseif Settings.Map[1] == (true, 'evening') then
-                  --Presets.Preset.Evening()
-                  --print('Using Preset Evening on Grand Bazaar')
-              --elseif Settings.Map[1] == (false, 'none') then
-                  --print('Not Changing Map Time')
-                  --return
+              elseif Map[21] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -593,6 +650,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Azadi Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[22] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -618,6 +678,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Epicenter Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[23] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -644,6 +707,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Markaz Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[24] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -669,6 +735,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                 ServerUtils:SetCustomMapName("Talah Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[25] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -697,6 +766,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Riverside Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[26] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -722,6 +794,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Nebandan Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[27] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -747,6 +822,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Kiasar Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
+              elseif Map[28] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return
@@ -772,13 +850,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   ServerUtils:SetCustomMapName("Pipeline Evening")
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
-
-              --elseif Settings.Map[1] == (true, 'evening') then
-                  --Presets.Preset.Evening()
-                  --print('Using Preset Evening on Grand Bazaar')
-              --elseif Settings.Map[1] == (false, 'none') then
-                  --print('Not Changing Map Time')
-                  --return
+              elseif Map[29] == nil then
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
+                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
               else
                   print('Wrong Configuration')
                   return

@@ -32,6 +32,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Bazaar.Evening'] then
                   print('Calling Preset Evening on Grand Bazaar')
                   Evening(1)
+              elseif Map[1] == nil then
+                  print('Using Standard')
+                  Standard(1)
               else
                   print('Wrong Configuration')
                   return
@@ -52,6 +55,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Teheran.Evening'] then
                   print('Calling Preset Evening on Teheran Highway')
                   Evening(2)
+              elseif Map[2] == nil then
+                  print('Using Standard')
+                  Standard(2)
               else
                   print('Wrong Configuration')
                   return
@@ -72,6 +78,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                 elseif Map['Caspian.Evening'] then
                     print('Calling Preset Evening on Caspian Border')
                     Evening(3)
+                elseif Map[3] == nil then
+                    print('Using Standard')
+                    Standard(3)
               else
                   print('Wrong Configuration')
                   return
@@ -92,6 +101,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Seine.Evening'] then
                   print('Calling Preset Evening on Seine Crossing')
                   Evening(4)
+              elseif Map[4] == nil then
+                  print('Using Standard')
+                  Standard(4)
               else
                   print('Wrong Configuration')
                   return
@@ -112,6 +124,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Firestorm.Evening'] then
                   print('Calling Preset Evening on Operation Firestorm')
                   Evening(5)
+              elseif Map[5] == nil then
+                  print('Using Standard')
+                  Standard(5)
               else
                   print('Wrong Configuration')
                   return
@@ -132,6 +147,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Davamand.Evening'] then
                   print('Calling Preset Evening on Davamand Peak')
                   Evening(6)
+              elseif Map[6] == nil then
+                  print('Using Standard')
+                  Standard(6)
               else
                   print('Wrong Configuration')
                   return
@@ -152,6 +170,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Noshahr.Evening'] then
                   print('Calling Preset Evening on Noshar Canals')
                   Evening(7)
+              elseif Map[7] == nil then
+                  print('Using Standard')
+                  Standard(7)
               else
                   print('Wrong Configuration')
                   return
@@ -172,6 +193,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Kharg.Evening'] then
                   print('Calling Preset Evening on Kharg Island')
                   Evening(8)
+              elseif Map[8] == nil then
+                  print('Using Standard')
+                  Standard(8)
               else
                   print('Wrong Configuration')
                   return
@@ -192,6 +216,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Metro.Evening'] then
                   print('Calling Preset Evening on Operation Metro')
                   Evening(9)
+              elseif Map[9] == nil then
+                  print('Using Standard')
+                  Standard(9)
               else
                   print('Wrong Configuration')
                   return
@@ -215,6 +242,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Karkand.Evening'] then
                   print('Calling Preset Evening on Strike at Karkand')
                   Evening(10)
+              elseif Map[1] == nil then
+                  print('Using Standard')
+                  Standard(10)
               else
                   print('Wrong Configuration')
                   return
@@ -235,6 +265,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Gulf.Evening'] then
                   print('Calling Preset Evening on Gulf of Oman')
                   Evening(11)
+              elseif Map[11] == nil then
+                  print('Using Standard')
+                  Standard(11)
               else
                   print('Wrong Configuration')
                   return
@@ -255,6 +288,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Sharqi.Evening'] then
                   print('Calling Preset Evening on Teheran Highway')
                   Evening(12)
+              elseif Map[12] == nil then
+                  print('Using Standard')
+                  Standard(12)
               else
                   print('Wrong Configuration')
                   return
@@ -275,6 +311,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Wake.Evening'] then
                   print('Calling Preset Evening on Wake Island')
                   Evening(13)
+              elseif Map[13] == nil then
+                  print('Using Standard')
+                  Standard(13)
               else
                   print('Wrong Configuration')
                   return
@@ -298,6 +337,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Donya.Evening'] then
                   print('Calling Preset Evening on Donya Fortress')
                   Evening(14)
+              elseif Map[14] == nil then
+                  print('Using Standard')
+                  Standard(14)
               else
                   print('Wrong Configuration')
                   return
@@ -318,6 +360,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Operation925.Evening'] then
                   print('Calling Preset Evening on Operation 925')
                   Evening(15)
+              elseif Map[1] == nil then
+                  print('Using Standard')
+                  Standard(15)
               else
                   print('Wrong Configuration')
                   return
@@ -338,6 +383,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Scrapmetal.Evening'] then
                   print('Calling Preset Evening on Scrapmetal')
                   Evening(16)
+              elseif Map[1] == nil then
+                  print('Using Standard')
+                  Standard(16)
               else
                   print('Wrong Configuration')
                   return
@@ -358,6 +406,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Ziba.Evening'] then
                   print('Calling Preset Evening on Ziba Tower')
                   Evening(17)
+              elseif Map[1] == nil then
+                  print('Using Standard')
+                  Standard(17)
               else
                   print('Wrong Configuration')
                   return
@@ -381,6 +432,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Alborz.Evening'] then
                   print('Calling Preset Evening on Alborz Mountains')
                   Evening(18)
+              elseif Map[18] == nil then
+                  print('Using Standard')
+                  Standard(18)
               else
                   print('Wrong Configuration')
                   return
@@ -401,6 +455,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Shield.Evening'] then
                   print('Calling Preset Evening on Armored Shield')
                   Evening(19)
+              elseif Map[19] == nil then
+                  print('Using Standard')
+                  Standard(19)
               else
                   print('Wrong Configuration')
                   return
@@ -421,6 +478,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Bandar.Evening'] then
                   print('Calling Preset Evening on Bandar Desert')
                   Evening(20)
+              elseif Map[20] == nil then
+                  print('Using Standard')
+                  Standard(20)
               else
                   print('Wrong Configuration')
                   return
@@ -441,6 +501,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Death.Evening'] then
                   print('Calling Preset Evening on Death Valley')
                   Evening(21)
+              elseif Map[21] == nil then
+                  print('Using Standard')
+                  Standard(21)
               else
                   print('Wrong Configuration')
                   return
@@ -464,6 +527,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Azadi.Bright_Night'] then
                   print('Calling Preset Evening on Azadi Palace')
                   Evening(22)
+              elseif Map[22] == nil then
+                  print('Using Standard')
+                  Standard(22)
               else
                   print('Wrong Configuration')
                   return
@@ -484,6 +550,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Epicenter.Evening'] then
                   print('Calling Preset Evening on Epicenter')
                   Evening(23)
+              elseif Map[23] == nil then
+                  print('Using Standard')
+                  Standard(23)
               else
                   print('Wrong Configuration')
                   return
@@ -504,6 +573,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Markaz.Evening'] then
                   print('Calling Preset Evening on Markaz Monolith')
                   Evening(24)
+              elseif Map[24] == nil then
+                  print('Using Standard')
+                  Standard(24)
               else
                   print('Wrong Configuration')
                   return
@@ -524,6 +596,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Talah.Evening'] then
                     print('Calling Preset Evening on Talah Market')
                     Evening(25)
+              elseif Map[25] == nil then
+                    print('Using Standard')
+                    Standard(25)
               else
                   print('Wrong Configuration')
                   return
@@ -547,6 +622,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Riverside.Evening'] then
                     print('Calling Preset Evening on Operation Riverside')
                     Evening(26)
+              elseif Map[26] == nil then
+                    print('Using Standard')
+                    Standard(26)
               else
                   print('Wrong Configuration')
                   return
@@ -567,6 +645,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Nebandan.Evening'] then
                     print('Calling Preset Evening on Nebandan Flats')
                     Evening(27)
+              elseif Map[27] == nil then
+                    print('Using Standard')
+                    Standard(27)
               else
                   print('Wrong Configuration')
                   return
@@ -587,6 +668,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Kiasar.Evening'] then
                     print('Calling Preset Evening on Kiasar Railroad')
                     Evening(28)
+              elseif Map[28] == nil then
+                    print('Using Standard')
+                    Standard(28)
               else
                   print('Wrong Configuration')
                   return
@@ -607,6 +691,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
               elseif Map['Pipeline.Evening'] then
                     print('Calling Preset Evening on Sabalan Pipeline')
                     Evening(29)
+              elseif Map[29] == nil then
+                    print('Using Standard')
+                    Standard(29)
               else
                   print('Wrong Configuration')
                   return

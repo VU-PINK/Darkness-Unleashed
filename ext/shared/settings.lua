@@ -1,13 +1,10 @@
 --Settings
 
----Change Settings here
---Use Time Vote (true/false)
---Activates Voting for Used Time (morning/noon/evening/night/none)
---TimeVote = false
 
----Custom Settings
---MapList
----if TimeVote == false then
+-- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
+standardusebluefilter = false
+
+
     -- Select Maps and Time:
         Map = {
 

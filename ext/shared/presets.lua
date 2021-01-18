@@ -1586,3 +1586,70 @@ function Evening(Map)
 
 return true
 end
+
+-------
+function Standard()
+
+	Events:Subscribe('Partition:Loaded', function(partition)
+			for _, instance in pairs(partition.instances) do
+					if instance:Is('LensFlareEntityData') then
+							PatchLensFlareEntityData(instance)
+					end
+			end
+
+	end)
+
+function PatchSunFlareComponentData(instance)
+				local flare = SunFlareComponentData(instance)
+				flare:MakeWritable()
+				local flaremultiplier = 0.2
+
+				flare.element1Size = flare.element1Size*flaremultiplier
+				flare.element2Size = flare.element2Size*flaremultiplier
+				flare.element3Size = flare.element3Size*flaremultiplier
+				flare.element4Size = flare.element4Size*flaremultiplier
+				flare.element5Size = flare.element5Size*flaremultiplier
+end
+
+	-- Reset Water
+	local visual = ResourceManager:GetSettings("VisualTerrainSettings")
+	if visual ~= nil then
+			visual = VisualTerrainSettings(visual)
+			visual.drawWaterEnable = true
+			print('Water reset')
+	end
+
+	-- Reset edgeModels
+	local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+	if badstuff ~= nil then
+			badstuff = GameRenderSettings(badstuff)
+			badstuff.edgeModelsEnable = true
+			print('Edge Models reset')
+	end
+
+	-- CustomUserSettings
+
+	local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+							if PostProcessing ~= nil and UserSettingsSaved ~= true then
+									PostProcessing = GlobalPostProcessSettings(PostProcessing)
+									UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+									UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+									UserSettings_brightness = PostProcessing.brightness
+									print('Saving User Settings:')
+									print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+									print('Brightness_Max: '..UserSettings_userBrightnessMax)
+									UserSettingsSaved = true
+							end
+
+							if UserSettingsSaved == true then
+									local PostProcessingX = ResourceManager:GetSettings("GlobalPostProcessSettings")
+									PostProcessingX = GlobalPostProcessSettings(PostProcessing)
+									PostProcessingX.userBrightnessMin = UserSettings_userBrightnessMin
+									PostProcessingX.userBrightnessMax = UserSettings_userBrightnessMax
+									PostProcessingX.brightness = Vec3(1.0, 1.0, 1.0)
+									print('Changed PostProcessing')
+							end
+end
+
+---
