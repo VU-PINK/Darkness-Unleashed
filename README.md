@@ -1,3 +1,4 @@
+https://github.com/IllustrisJack/Darkness-Unleashed/releases/tag/v1.0
 # Darkness Unleashed
 
 ## Tutorial
