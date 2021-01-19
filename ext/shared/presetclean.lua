@@ -7,7 +7,7 @@ local Preset = class('Preset')
 
 -- Night --
 function Preset:Night()
-
+print('Loading Night Preset')
         -- OutdoorLightComponentData --
 
         local SunColor = Vec3(0.02, 0.02, 0.02)
