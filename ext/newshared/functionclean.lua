@@ -1,6 +1,5 @@
 require '__shared/settings' --settings
 require '__shared/presetclean' --presets
-require '__shared/skyboxrotation' --skyboxrotation
 
 --------------------------------------------------------------------------------
 function DarknessUnleashed(Map, Preset)
@@ -8,24 +7,13 @@ function DarknessUnleashed(Map, Preset)
 	    SkyboxRotation:Rotate(Map)
 
       Events:Subscribe('Partition:Loaded', function(partition)
-          for _, instance in pairs(partition.instances) do
-
-            if Preset == 1 then
-                print('Calling Night Preset')
-
-                    --if Preset:Save() == true then
-                        --Preset:Standard()
-                    --end
-
-                    if Preset:Night() == true then
-                        ApplyPatches()
+          if Preset == 1 then
+                    for _, instance in pairs(partition.instances) do
+                    print('Test')
                     end
-            else
-                print('Failed Calling Night Preset')
-
-            end
           end
-      return 'Applying Preset'
+      end)
+return 'Applying Preset'
 end
 ----------------------------------------
 function PatchOutdoorLightComponentData(instance)

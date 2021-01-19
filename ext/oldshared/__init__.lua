@@ -24,7 +24,7 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Evening(1)
               elseif Map[1] == nil then
                   print('Using Standard')
-                  Standard(1)
+                  DarknessUnleashed(1)
               else
                   print('Wrong Configuration')
                   return
