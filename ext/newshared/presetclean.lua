@@ -5,11 +5,6 @@ require '__shared/functionclean' -- functions
 
 local Preset = class('Preset')
 
--- Night --
-function Preset:Night()
-print('Loading Night Preset')
-        -- OutdoorLightComponentData --
-
         local SunColor = Vec3(0.02, 0.02, 0.02)
         local SkyColor = Vec3(0.01, 0.01, 0.01)
         local groundColor = Vec3(0, 0, 0)
@@ -39,8 +34,8 @@ print('Loading Night Preset')
 
         -- FogComponentData --
 
-        local fogEnable = true
-        local fogColorEnable = true
+        local fogEnable = "true"
+        local fogColorEnable = "true"
 
 
         local fogStart = 2
@@ -68,11 +63,11 @@ print('Loading Night Preset')
 
         -- EnlightenComponentData --
 
-        local enlightenEnable = false
+        local enlightenEnable = "false"
 
         -- SunFlareComponentData --
 
-        local SunFlareExcluded = true
+        local SunFlareExcluded = "true"
 
         -- Mesh Assets --
 
@@ -80,17 +75,17 @@ print('Loading Night Preset')
 
         -- EmitterTemplateData --
 
-        local templateemissive = false
+        local templateemissive = "false"
 
         -- LocalLightEntityData (Dynamic Lights) --
 
-        local dynamicEnable = true
-        local enlightenEnable = true
-        local specularEnable = true
+        local dynamicEnable = "true"
+        local enlightenEnable = "true"
+        local specularEnable = "true"
 
         -- LensFlareEntityData --
 
-        local flaresVisible = false
+        local flaresVisible = "false"
 
         -- SpotLightEntityData (Flashlights) --
 
@@ -100,9 +95,6 @@ print('Loading Night Preset')
         local flashlightorthoWidth = 7
         local flashlightorthoHeight = 7
         local flashlightfrustumFov = 40
-        local flashlightcastShadowsEnable = true
+        local flashlightcastShadowsEnable = "true"
         local flashlightcastShadowsMinLevel = 3
         local flashlightShape = 1
-
-return true
-end
