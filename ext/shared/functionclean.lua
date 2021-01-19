@@ -1,5 +1,4 @@
 require '__shared/settings' --settings
-require '__shared/functions' -- functions
 require '__shared/presetclean' --presets
 require '__shared/skyboxrotation' --skyboxrotation
 
@@ -11,64 +10,20 @@ function DarknessUnleashed(Map, Preset)
       Events:Subscribe('Partition:Loaded', function(partition)
           for _, instance in pairs(partition.instances) do
 
-            if Preset == 0 then
-                Preset:Save(instance)
-                print('Saving Standard Map Preset')
+            if Preset == 1 then
+                print('Calling Night Preset')
 
-                    if Preset:Save() == true then
-                        Preset:Standard()
-                    end
-
-                    if Preset:Standard() == true then
-                        ApplyPatches(instance)
-                    end
-
-            elseif Preset == 1 then
-                Preset:Save(instance)
-                print('Saving Standard Map Preset')
-
-                    if Preset:Save() == true then
-                    Preset:Night()
+                    --if Preset:Save() == true then
+                        --Preset:Standard()
+                    --end
 
                     if Preset:Night() == true then
-                    ApplyPatches(instance)
+                        ApplyPatches()
                     end
-
-            elseif Preset == 2 then
-                Preset:Save(instance)
-                print('Saving Standard Map Preset')
-
-                    if Preset:Save() == true then
-                    Preset:Bright_Night()
-
-                    if Preset:Bright_Night() == true then
-                    ApplyPatches(instance)
-                    end
-
-            elseif Preset == 3 then
-                Preset:Save(instance)
-                print('Saving Standard Map Preset')
-
-                    if Preset:Save() == true then
-                    Preset:Morning()
-
-                    if Preset:Morning() == true then
-                    ApplyPatches(instance)
-                    end
-
-            elseif Preset == 4 then
-                Preset:Save(instance)
-                print('Saving Standard Map Preset')
-
-                    if Preset:Save() == true then
-                    Preset:Evening()
-
-                    if Preset:Evening() == true
-                    ApplyPatches(instance)
-                    end
+            else
+                print('Failed Calling Night Preset')
 
             end
-
           end
       return 'Applying Preset'
 end
@@ -106,22 +61,6 @@ function PatchSkyComponentData(instance)
           sky.customEnvmapAmbient = customEnvmapAmbient
 
           sky.panoramicRotation = panoramicRotation
-
-          if
-              sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_city_01' or
-              sky.partition.name == 'levels/mp_011/lighting/ve_mp_011_day01'
-          then
-              sky.staticEnvmapScale = 0.1
-          end
-
-          if sky.partition.name == 'levels/mp_subway/lighting/ve_mp_subway_subway_01' then
-              local partitionGuid = Guid('36536A99-7BE3-11E0-8611-A913E18AE9A4') -- levels/sp_paris/lighting/sp_paris_static_envmap
-              local instanceGuid = Guid('64EE680C-405E-2E81-E327-6DF58605AB0B') -- TextureAsset
-
-              ResourceManager:RegisterInstanceLoadHandlerOnce(partitionGuid, instanceGuid, function(loadedInstance)
-                  sky.staticEnvmapTexture = TextureAsset(loadedInstance)
-              end)
-          end
 end
 
 function PatchFogComponentData(instance)
@@ -197,7 +136,7 @@ function PatchEmitterTemplateData(instance)
           end
 end
 
-function DynamicLights(instance)
+function PatchDynamicLights(instance)
           local Dynamic = LocalLightEntityData(instance)
               Dynamic:MakeWritable()
 
@@ -251,16 +190,163 @@ function PatchFlashLights(instance)
             end
 end
 
-function ApplyPatches(instance)
-          PatchOutdoorLightComponentData(instance)
-          PatchSkyComponentData(instance)
-          PatchFogComponentData(instance)
-          PatchTonemapComponentData(instance)
-          PatchColorCorrectionComponentData(instance)
-          PatchEnlightenComponentData(instance)
-          PatchSunFlareComponentData(instance)
-          --PatchMeshAsset(instance)
-          --PatchEmitterTemplateData(instance)
-          DynamicLights(instance)
-          PatchLensFlareEntityData(instance)
+function ApplyPatches()
+          if instance:Is == 'OutdoorLightComponentData' then
+              PatchOutdoorLightComponentData(instance)
+          elseif instance:Is == 'SkyComponentData' then
+              PatchSkyComponentData(instance)
+          elseif instance:Is == 'FogComponentData' then
+              PatchFogComponentData(instance)
+          elseif instance:Is == 'TonemapComponentData' then
+              PatchTonemapComponentData(instance)
+          elseif instance:Is == 'ColorCorrectionComponentData' then
+              PatchColorCorrectionComponentData(instance)
+          elseif instance:Is == 'EnlightenComponentData' then
+              PatchEnlightenComponentData(instance)
+          elseif instance:Is == 'SunFlareComponentData' then
+              PatchSunFlareComponentData(instance)
+          --elseif instance:Is == 'MeshAsset' then
+          --    PatchMeshAsset(instance)
+          --elseif instance:Is == 'EmitterTemplateData' then
+          --    PatchEmitterTemplateData(instance)
+          elseif instance:Is == 'SpotLightEntityData' then
+              PatchDynamicLights(instance)
+          elseif instance:Is == 'LensFlareEntityData' then
+              PatchLensFlareEntityData(instance)
+          end
+end
+
+--------------------------------------------------------------------------------
+
+BrightnessMultiplicator = nil
+FogMultiplicator = nil
+
+--------------------------------------------------------------------------------
+
+--Custom Map Settings Brightness/Fog
+
+function Multipliers(Map)
+	if Map == 1 then
+			BrightnessMultiplicator = generalbrightness[1] * Bazaar_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Bazaar_fogMultiplier[1]
+	end
+	if Map == 2 then
+			BrightnessMultiplicator = generalbrightness[1] * Teheran_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Teheran_fogMultiplier[1]
+	end
+	if Map == 3 then
+			BrightnessMultiplicator = generalbrightness[1] * Caspian_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Caspian_fogMultiplier[1]
+	end
+	if Map == 4 then
+			BrightnessMultiplicator = generalbrightness[1] * Seine_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Seine_fogMultiplier[1]
+	end
+	if Map == 5 then
+			BrightnessMultiplicator = generalbrightness[1] * Firestorm_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Firestorm_fogMultiplier[1]
+	end
+	if Map == 6 then
+			BrightnessMultiplicator = generalbrightness[1] * Davamand_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Davamand_fogMultiplier[1]
+	end
+	if Map == 7 then
+			BrightnessMultiplicator = generalbrightness[1] * Noshahr_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Noshahr_fogMultiplier[1]
+	end
+	if Map == 8 then
+			BrightnessMultiplicator = generalbrightness[1] * Kharg_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Kharg_fogMultiplier[1]
+	end
+	if Map == 9 then
+			BrightnessMultiplicator = generalbrightness[1] * Metro_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Metro_fogMultiplier[1]
+	end
+		------------------------- DLC - Back to Karkand ----------------------
+	if Map == 10 then
+			BrightnessMultiplicator = generalbrightness[1] * Karkand_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Karkand_fogMultiplier[1]
+	end
+	if Map == 11 then
+			BrightnessMultiplicator = generalbrightness[1] * Gulf_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Gulf_fogMultiplier[1]
+	end
+	if Map == 12 then
+			BrightnessMultiplicator = generalbrightness[1] * Sharqi_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Sharqi_fogMultiplier[1]
+	end
+	if Map == 13 then
+			BrightnessMultiplicator = generalbrightness[1] * Wake_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Wake_fogMultiplier[1]
+	end
+		----------------------- DLC - Close Quarters -------------------------
+	if Map == 14 then
+			BrightnessMultiplicator = generalbrightness[1] * Donya_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Donya_fogMultiplier[1]
+	end
+	if Map == 15 then
+			BrightnessMultiplicator = generalbrightness[1] * Operation925_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Operation925_fogMultiplier[1]
+	end
+	if Map == 16 then
+			BrightnessMultiplicator = generalbrightness[1] * Scrapmetal_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Scrapmetal_fogMultiplier[1]
+	end
+	if Map == 17 then
+			BrightnessMultiplicator = generalbrightness[1] * Ziba_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Ziba_fogMultiplier[1]
+	end
+		---------------------- DLC - Armored Kill ----------------------------
+	if Map == 18 then
+			BrightnessMultiplicator = generalbrightness[1] * Alborz_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Alborz_fogMultiplier[1]
+	end
+	if Map == 19 then
+			BrightnessMultiplicator = generalbrightness[1] * Shield_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Shield_fogMultiplier[1]
+	end
+	if Map == 20 then
+			BrightnessMultiplicator = generalbrightness[1] * Bandar_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Bandar_fogMultiplier[1]
+	end
+	if Map == 21 then
+			BrightnessMultiplicator = generalbrightness[1] * Death_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Death_fogMultiplier[1]
+	end
+		----------------------- DLC - Aftermath ------------------------------
+	if Map == 22 then
+			BrightnessMultiplicator = generalbrightness[1] * Azadi_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Azadi_fogMultiplier[1]
+	end
+	if Map == 23 then
+			BrightnessMultiplicator = generalbrightness[1] * Epicenter_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Epicenter_fogMultiplier[1]
+	end
+	if Map == 24 then
+			BrightnessMultiplicator = generalbrightness[1] * Markaz_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Markaz_fogMultiplier[1]
+	end
+	if Map == 25 then
+			BrightnessMultiplicator = generalbrightness[1] * Talah_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Talah_fogMultiplier[1]
+	end
+		----------------------- DLC - End Game -------------------------------
+	if Map == 26 then
+			BrightnessMultiplicator = generalbrightness[1] * Riverside_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Riverside_fogMultiplier[1]
+	end
+	if Map == 27 then
+			BrightnessMultiplicator = generalbrightness[1] * Nebandan_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Nebandan_fogMultiplier[1]
+	end
+	if Map == 28 then
+			BrightnessMultiplicator = generalbrightness[1] * Kiasar_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Kiasar_fogMultiplier[1]
+	end
+	if Map == 29 then
+			BrightnessMultiplicator = generalbrightness[1] * Pipeline_brightnessMultiplier[1]
+			FogMultiplicator = generalfog[1] * Pipeline_fogMultiplier[1]
+	end
+	print("BrightnessMultiplicator: " ..BrightnessMultiplicator)
+	print("FogMultiplicator: " ..FogMultiplicator)
 end

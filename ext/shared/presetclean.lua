@@ -5,499 +5,104 @@ require '__shared/functionclean' -- functions
 
 local Preset = class('Preset')
 
---- Standard ---
-function Preset:Standard()
-
-        -- OutdoorLightComponentData --
-
-        local SunColor =
-        local SkyColor =
-        local groundColor =
-
-        local skyEnvmapShadowScale =
-
-        -- SkyComponentData --
-
-        local brightnessScale =
-
-        local sunSize =
-        local sunScale =
-
-        local cloudLayer1SunLightIntensity =
-        local cloudLayer1SunLightPower =
-        local cloudLayer1AmbientLightIntensity =
-
-        local cloudLayer2SunLightIntensity =
-        local cloudLayer2SunLightPower =
-        local cloudLayer2AmbientLightIntensity =
-
-        local staticEnvmapScale =
-        local skyEnvmap8BitTexScale =
-        local customEnvmapAmbient =
-
-        local panoramicRotation =
-
-        -- FogComponentData --
-
-        local fogEnable =
-        local fogColorEnable =
-
-        local fogStart =
-        local fogEndValue =
-
-        local fogColor =
-        local fogColorCurve =
-
-        local fogTransparencyFadeEnd =
-
-        -- TonemapComponentData --
-
-        local minExposure =
-        local exposureAdjustTime =
-        local bloomScale =
-
-        local tonemapMethod =
-
-        -- ColorCorrectionComponentData --
-
-        local Contrast =
-        local Saturation =
-
-        -- EnlightenComponentData --
-
-        local enlightenEnable =
-
-        -- SunFlareComponentData --
-
-        local SunFlareExcluded =
-
-        -- Mesh Assets --
-
-        local shadervalue =
-
-        -- EmitterTemplateData --
-
-        local templateemissive =
-
-        -- LocalLightEntityData (Dynamic Lights) --
-
-        local dynamicEnable =
-        local enlightenEnable =
-        local specularEnable =
-
-        -- LensFlareEntityData --
-
-        local flaresVisible =
-
-        -- SpotLightEntityData (Flashlights) --
-
-        local flashlightRadius =
-        local flashlightIntensity =
-        local flashlightConeOuterAngle =
-        local flashlightorthoWidth =
-        local flashlightorthoHeight =
-        local flashlightfrustumFov =
-        local flashlightcastShadowsEnable =
-        local flashlightcastShadowsMinLevel =
-        local flashlightShape =
-
-return true
-end
-
 -- Night --
 function Preset:Night()
 
         -- OutdoorLightComponentData --
 
-        local SunColor =
-        local SkyColor =
-        local groundColor =
+        local SunColor = Vec3(0.02, 0.02, 0.02)
+        local SkyColor = Vec3(0.01, 0.01, 0.01)
+        local groundColor = Vec3(0, 0, 0)
 
-        local skyEnvmapShadowScale =
-
-        -- SkyComponentData --
-
-        local brightnessScale =
-
-        local sunSize =
-        local sunScale =
-
-        local cloudLayer1SunLightIntensity =
-        local cloudLayer1SunLightPower =
-        local cloudLayer1AmbientLightIntensity =
-
-        local cloudLayer2SunLightIntensity =
-        local cloudLayer2SunLightPower =
-        local cloudLayer2AmbientLightIntensity =
-
-        local staticEnvmapScale =
-        local skyEnvmap8BitTexScale =
-        local customEnvmapAmbient =
-
-        local panoramicRotation =
-
-        -- FogComponentData --
-
-        local fogEnable =
-        local fogColorEnable =
-
-        local fogStart =
-        local fogEndValue =
-
-        local fogColor =
-        local fogColorCurve =
-
-        local fogTransparencyFadeEnd =
-
-        -- TonemapComponentData --
-
-        local minExposure =
-        local exposureAdjustTime =
-        local bloomScale =
-
-        local tonemapMethod =
-
-        -- ColorCorrectionComponentData --
-
-        local Contrast =
-        local Saturation =
-
-        -- EnlightenComponentData --
-
-        local enlightenEnable =
-
-        -- SunFlareComponentData --
-
-        local SunFlareExcluded =
-
-        -- Mesh Assets --
-
-        local shadervalue =
-
-        -- EmitterTemplateData --
-
-        local templateemissive =
-
-        -- LocalLightEntityData (Dynamic Lights) --
-
-        local dynamicEnable =
-        local enlightenEnable =
-        local specularEnable =
-
-        -- LensFlareEntityData --
-
-        local flaresVisible =
-
-        -- SpotLightEntityData (Flashlights) --
-
-        local flashlightRadius =
-        local flashlightIntensity =
-        local flashlightConeOuterAngle =
-        local flashlightorthoWidth =
-        local flashlightorthoHeight =
-        local flashlightfrustumFov =
-        local flashlightcastShadowsEnable =
-        local flashlightcastShadowsMinLevel =
-        local flashlightShape =
-
-return true
-end
-
--- Bright Night --
-function Preset:Bright_Night()
-
-        -- OutdoorLightComponentData --
-
-        local SunColor =
-        local SkyColor =
-        local groundColor =
-
-        local skyEnvmapShadowScale =
+        local skyEnvmapShadowScale = 0.25
 
         -- SkyComponentData --
 
-        local brightnessScale =
+        local brightnessScale = (0.0005*BrightnessMultiplicator)
 
-        local sunSize =
-        local sunScale =
+        local sunSize = 15
+        local sunScale = 15
 
-        local cloudLayer1SunLightIntensity =
-        local cloudLayer1SunLightPower =
-        local cloudLayer1AmbientLightIntensity =
+        local cloudLayer1SunLightIntensity = 0.0001
+        local cloudLayer1SunLightPower = 0.0001
+        local cloudLayer1AmbientLightIntensity = 0.0005
 
-        local cloudLayer2SunLightIntensity =
-        local cloudLayer2SunLightPower =
-        local cloudLayer2AmbientLightIntensity =
+        local cloudLayer2SunLightIntensity = 0.0001
+        local cloudLayer2SunLightPower = 0.0001
+        local cloudLayer2AmbientLightIntensity = 0.0005
 
-        local staticEnvmapScale =
-        local skyEnvmap8BitTexScale =
-        local customEnvmapAmbient =
+        local staticEnvmapScale = 0.1
+        local skyEnvmap8BitTexScale = 1
+        local customEnvmapAmbient = 0.05
 
-        local panoramicRotation =
-
-        -- FogComponentData --
-
-        local fogEnable =
-        local fogColorEnable =
-
-        local fogStart =
-        local fogEndValue =
-
-        local fogColor =
-        local fogColorCurve =
-
-        local fogTransparencyFadeEnd =
-
-        -- TonemapComponentData --
-
-        local minExposure =
-        local exposureAdjustTime =
-        local bloomScale =
-
-        local tonemapMethod =
-
-        -- ColorCorrectionComponentData --
-
-        local Contrast =
-        local Saturation =
-
-        -- EnlightenComponentData --
-
-        local enlightenEnable =
-
-        -- SunFlareComponentData --
-
-        local SunFlareExcluded =
-
-        -- Mesh Assets --
-
-        local shadervalue =
-
-        -- EmitterTemplateData --
-
-        local templateemissive =
-
-        -- LocalLightEntityData (Dynamic Lights) --
-
-        local dynamicEnable =
-        local enlightenEnable =
-        local specularEnable =
-
-        -- LensFlareEntityData --
-
-        local flaresVisible =
-
-        -- SpotLightEntityData (Flashlights) --
-
-        local flashlightRadius =
-        local flashlightIntensity =
-        local flashlightConeOuterAngle =
-        local flashlightorthoWidth =
-        local flashlightorthoHeight =
-        local flashlightfrustumFov =
-        local flashlightcastShadowsEnable =
-        local flashlightcastShadowsMinLevel =
-        local flashlightShape =
-
-return true
-end
-
--- Morning --
-
-function Preset:Morning()
-
-        -- OutdoorLightComponentData --
-
-        local SunColor =
-        local SkyColor =
-        local groundColor =
-
-        local skyEnvmapShadowScale =
-
-        -- SkyComponentData --
-
-        local brightnessScale =
-
-        local sunSize =
-        local sunScale =
-
-        local cloudLayer1SunLightIntensity =
-        local cloudLayer1SunLightPower =
-        local cloudLayer1AmbientLightIntensity =
-
-        local cloudLayer2SunLightIntensity =
-        local cloudLayer2SunLightPower =
-        local cloudLayer2AmbientLightIntensity =
-
-        local staticEnvmapScale =
-        local skyEnvmap8BitTexScale =
-        local customEnvmapAmbient =
-
-        local panoramicRotation =
+        local panoramicRotation = rotation
 
         -- FogComponentData --
 
-        local fogEnable =
-        local fogColorEnable =
+        local fogEnable = true
+        local fogColorEnable = true
 
-        local fogStart =
-        local fogEndValue =
 
-        local fogColor =
-        local fogColorCurve =
+        local fogStart = 2
+        local fogEndValue = 65
+        local fogColorStart = 2
+        local fogColorEnd = 40
 
-        local fogTransparencyFadeEnd =
+        local fogColor = Vec3(0.0005, 0.0005, 0.0000000015)
+        local fogColorCurve = Vec4((0.30*FogMultiplicator), (0.20*FogMultiplicator), (0.15*FogMultiplicator), 0)
 
-        -- TonemapComponentData --
-
-        local minExposure =
-        local exposureAdjustTime =
-        local bloomScale =
-
-        local tonemapMethod =
-
-        -- ColorCorrectionComponentData --
-
-        local Contrast =
-        local Saturation =
-
-        -- EnlightenComponentData --
-
-        local enlightenEnable =
-
-        -- SunFlareComponentData --
-
-        local SunFlareExcluded =
-
-        -- Mesh Assets --
-
-        local shadervalue =
-
-        -- EmitterTemplateData --
-
-        local templateemissive =
-
-        -- LocalLightEntityData (Dynamic Lights) --
-
-        local dynamicEnable =
-        local enlightenEnable =
-        local specularEnable =
-
-        -- LensFlareEntityData --
-
-        local flaresVisible =
-
-        -- SpotLightEntityData (Flashlights) --
-
-        local flashlightRadius =
-        local flashlightIntensity =
-        local flashlightConeOuterAngle =
-        local flashlightorthoWidth =
-        local flashlightorthoHeight =
-        local flashlightfrustumFov =
-        local flashlightcastShadowsEnable =
-        local flashlightcastShadowsMinLevel =
-        local flashlightShape =
-
-return true
-end
-
--- Evening
-
-function Preset:Evening()
-
-        -- OutdoorLightComponentData --
-
-        local SunColor =
-        local SkyColor =
-        local groundColor =
-
-        local skyEnvmapShadowScale =
-
-        -- SkyComponentData --
-
-        local brightnessScale =
-
-        local sunSize =
-        local sunScale =
-
-        local cloudLayer1SunLightIntensity =
-        local cloudLayer1SunLightPower =
-        local cloudLayer1AmbientLightIntensity =
-
-        local cloudLayer2SunLightIntensity =
-        local cloudLayer2SunLightPower =
-        local cloudLayer2AmbientLightIntensity =
-
-        local staticEnvmapScale =
-        local skyEnvmap8BitTexScale =
-        local customEnvmapAmbient =
-
-        local panoramicRotation =
-
-        -- FogComponentData --
-
-        local fogEnable =
-        local fogColorEnable =
-
-        local fogStart =
-        local fogEndValue =
-
-        local fogColor =
-        local fogColorCurve =
-
-        local fogTransparencyFadeEnd =
+        local fogTransparencyFadeEnd = 50
 
         -- TonemapComponentData --
 
-        local minExposure =
-        local exposureAdjustTime =
-        local bloomScale =
+        local minExposure = 0.2
+        local exposureAdjustTime = 1.5
+        local bloomScale = tonemap.bloomScale * 0.25
 
-        local tonemapMethod =
+        local tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
 
         -- ColorCorrectionComponentData --
 
-        local Contrast =
-        local Saturation =
+        local Contrast = Vec3(1.05, 1.05, 1.05)
+        local Saturation = Vec3(1.22, 1.25, 1.5)
 
         -- EnlightenComponentData --
 
-        local enlightenEnable =
+        local enlightenEnable = false
 
         -- SunFlareComponentData --
 
-        local SunFlareExcluded =
+        local SunFlareExcluded = true
 
         -- Mesh Assets --
 
-        local shadervalue =
+        local shadervalue = nil
 
         -- EmitterTemplateData --
 
-        local templateemissive =
+        local templateemissive = false
 
         -- LocalLightEntityData (Dynamic Lights) --
 
-        local dynamicEnable =
-        local enlightenEnable =
-        local specularEnable =
+        local dynamicEnable = true
+        local enlightenEnable = true
+        local specularEnable = true
 
         -- LensFlareEntityData --
 
-        local flaresVisible =
+        local flaresVisible = false
 
         -- SpotLightEntityData (Flashlights) --
 
-        local flashlightRadius =
-        local flashlightIntensity =
-        local flashlightConeOuterAngle =
-        local flashlightorthoWidth =
-        local flashlightorthoHeight =
-        local flashlightfrustumFov =
-        local flashlightcastShadowsEnable =
-        local flashlightcastShadowsMinLevel =
-        local flashlightShape =
+        local flashlightRadius = 220
+        local flashlightIntensity = 1.4
+        local flashlightConeOuterAngle = 35
+        local flashlightorthoWidth = 7
+        local flashlightorthoHeight = 7
+        local flashlightfrustumFov = 40
+        local flashlightcastShadowsEnable = true
+        local flashlightcastShadowsMinLevel = 3
+        local flashlightShape = 1
 
 return true
 end
