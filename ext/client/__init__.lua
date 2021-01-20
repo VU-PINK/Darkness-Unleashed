@@ -25,7 +25,7 @@ Events:Subscribe('Level:Finalized', function(levelName, gameMode)
         elseif Map['Bazaar.Evening'] then
             print('Calling Preset Evening on Grand Bazaar')
             --Evening(1)
-        elseif Map[1] == nil then
+        elseif Map['Bazaar.Standard'] or Map[1] == nil then
             print('Using Standard')
             --Standard(1)
         else

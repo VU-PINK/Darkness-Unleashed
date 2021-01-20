@@ -2,7 +2,6 @@ require '__shared/settings'
 require 'functions'
 require '__shared/skyboxrotation'
 
-
 -- Using Day/Night by GramThanos & GreatApo as a Template for cleaner code + easier integration of their day/night cycle system. :) Credit: https://community.veniceunleashed.net/t/day-night-live-change-levels-lighting-during-the-game/1776
 local presets = {}
 
@@ -32,40 +31,27 @@ presets.standard.cloudLayer2AmbientLightIntensity = nil
 presets.standard.staticEnvmapScale = nil
 presets.standard.skyEnvmap8BitTexScale = nil
 
-presets.standard.customEnvmapAmbient = nil
-
-presets.standard.panoramicRotation = nil
-
 -- FogComponentData --
-presets.standard.fogEnable = nil
 presets.standard.fogColorEnable = nil
-
-presets.standard.fogstart = nil
-presets.standard.endValue = nil
-presets.standard.fogColorStart = nil
-presets.standard.fogColorEnd = nil
-
-presets.standard.fogColor = nil
-presets.standard.fogColorCurve = nil
-
-presets.standard.transparencyFadeEnd = nil
 
 -- TonemapComponentData --
 presets.standard.minExposure = nil
+presets.standard.maxExposure = nil
 presets.standard.exposureAdjustTime = nil
+presets.standard.middleGray = nil
 presets.standard.bloomScale = nil
 
-presets.standard.tonemapMethod = nil
-
--- ColorCorrectionComponentData --
-presets.standard.contrast = nil
-presets.standard.saturation = nil
-
 -- EnlightenComponentData --
-presets.standard.enlightenEnable = nil
-
--- SunFlareComponentData --
-presets.standard.flareExcluded = nil
+presets.standard.skyBoxSkyColor = nil
+presets.standard.skyBoxBackLightColor = nil
+presets.standard.skyBoxGroundColor = nil
+presets.standard.terrainColor = nil
+presets.standard.skyBoxSunLightColor = nil
+presets.standard.bounceScale = nil
+presets.standard.cullDistance = nil
+presets.standard.esunScale = nil
+presets.standard.skyBoxSunLightColorSize = nil
+presets.standard.skyBoxBackLightColorSize = nil
 
 --------------------------------------------------------------------------------
 -- Preset Night --
@@ -421,6 +407,7 @@ function Bright_Night(Map)
 
 
 end
+
 -- Initialize default values
 Events:Subscribe('Partition:Loaded', function(partition)
     for _, instance in pairs(partition.instances) do
@@ -483,6 +470,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.maxExposure = tonemap.maxExposure
             presets.standard.exposureAdjustTime = tonemap.exposureAdjustTime
             presets.standard.middleGray = tonemap.middleGray
+            presets.standard.bloomScale = tonemap.bloomScale
             --tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
         ---- Init ColorCorrection values
@@ -521,13 +509,13 @@ Events:Subscribe('Partition:Loaded', function(partition)
         if instance:Is('SunFlareComponentData') then
             local flare = SunFlareComponentData(instance)
             flare:MakeWritable()
-            flare.excluded = sunflareEnabled
+            flare.excluded = false
         end
 
         if instance:Is('LensFlareEntityData') then
           local flares = LensFlareEntityData(instance)
           flares:MakeWritable()
-          flares.visible = lensflareEnabled
+          flares.visible = true
         end
         -- Init Mesh values
         --if instance:Is('MeshAsset') then
