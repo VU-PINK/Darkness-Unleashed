@@ -1,6 +1,5 @@
-require '__client/presets'
 require '__shared/settings'
-require('__server/version')
+require 'version'
 
 function getCurrentVersion()
     options = HttpOptions({}, 10);

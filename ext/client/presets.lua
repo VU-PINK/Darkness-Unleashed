@@ -136,26 +136,26 @@ presets.bright_night = {}
 
 -- OutdoorLightComponentData --
 presets.bright_night.sunColor = Vec3(0.02, 0.02, 0.02)
-presets.bright_night.skyColor = Vec3(0.01, 0.01, 0.01)
+presets.bright_night.skyColor = Vec3(0.02, 0.02, 0.022)
 presets.bright_night.groundColor = Vec3(0, 0, 0)
 
-presets.bright_night.skyEnvmapShadowScale = 0.25
+presets.bright_night.skyEnvmapShadowScale = 0.5
 
 -- SkyComponentData --
 presets.bright_night.brightnessScale = 0.0005--*BrightnessMultiplicator
-presets.bright_night.sunSize = 15
-presets.bright_night.sunScale = 15
+presets.bright_night.sunSize = 0
+presets.bright_night.sunScale = 0
 
-presets.bright_night.cloudLayer1SunLightIntensity = 0.0001
-presets.bright_night.cloudLayer1SunLightPower = 0.0001
-presets.bright_night.cloudLayer1AmbientLightIntensity = 0.0005
+presets.bright_night.cloudLayer1SunLightIntensity = 0.01
+presets.bright_night.cloudLayer1SunLightPower = 0.01
+presets.bright_night.cloudLayer1AmbientLightIntensity = 0.04
 
-presets.bright_night.cloudLayer2SunLightIntensity = 0.0001
-presets.bright_night.cloudLayer2SunLightPower = 0.0001
-presets.bright_night.cloudLayer2AmbientLightIntensity = 0.0005
+presets.bright_night.cloudLayer2SunLightIntensity = 0.01
+presets.bright_night.cloudLayer2SunLightPower = 0.01
+presets.bright_night.cloudLayer2AmbientLightIntensity = 0.04
 
 presets.bright_night.staticEnvmapScale = 0.1
-presets.bright_night.skyEnvmap8BitTexScale = 1
+presets.bright_night.skyEnvmap8BitTexScale = 0.8
 
 presets.bright_night.customEnvmapAmbient = 0.05
 
