@@ -132,66 +132,66 @@ presets.night.flareExcluded = true
 
 --------------------------------------------------------------------------------
 -- Preset Bright_Night --
-presets.night = {}
+presets.bright_night = {}
 
 -- OutdoorLightComponentData --
-presets.night.sunColor = Vec3(0.02, 0.02, 0.02)
-presets.night.skyColor = Vec3(0.01, 0.01, 0.01)
-presets.night.groundColor = Vec3(0, 0, 0)
+presets.bright_night.sunColor = Vec3(0.02, 0.02, 0.02)
+presets.bright_night.skyColor = Vec3(0.01, 0.01, 0.01)
+presets.bright_night.groundColor = Vec3(0, 0, 0)
 
-presets.night.skyEnvmapShadowScale = 0.25
+presets.bright_night.skyEnvmapShadowScale = 0.25
 
 -- SkyComponentData --
-presets.night.brightnessScale = 0.0005--*BrightnessMultiplicator
-presets.night.sunSize = 15
-presets.night.sunScale = 15
+presets.bright_night.brightnessScale = 0.0005--*BrightnessMultiplicator
+presets.bright_night.sunSize = 15
+presets.bright_night.sunScale = 15
 
-presets.night.cloudLayer1SunLightIntensity = 0.0001
-presets.night.cloudLayer1SunLightPower = 0.0001
-presets.night.cloudLayer1AmbientLightIntensity = 0.0005
+presets.bright_night.cloudLayer1SunLightIntensity = 0.0001
+presets.bright_night.cloudLayer1SunLightPower = 0.0001
+presets.bright_night.cloudLayer1AmbientLightIntensity = 0.0005
 
-presets.night.cloudLayer2SunLightIntensity = 0.0001
-presets.night.cloudLayer2SunLightPower = 0.0001
-presets.night.cloudLayer2AmbientLightIntensity = 0.0005
+presets.bright_night.cloudLayer2SunLightIntensity = 0.0001
+presets.bright_night.cloudLayer2SunLightPower = 0.0001
+presets.bright_night.cloudLayer2AmbientLightIntensity = 0.0005
 
-presets.night.staticEnvmapScale = 0.1
-presets.night.skyEnvmap8BitTexScale = 1
+presets.bright_night.staticEnvmapScale = 0.1
+presets.bright_night.skyEnvmap8BitTexScale = 1
 
-presets.night.customEnvmapAmbient = 0.05
+presets.bright_night.customEnvmapAmbient = 0.05
 
-presets.night.panoramicRotation = rotation
+presets.bright_night.panoramicRotation = rotation
 
 -- FogComponentData --
-presets.night.fogEnable = true
-presets.night.fogColorEnable = true
+presets.bright_night.fogEnable = true
+presets.bright_night.fogColorEnable = true
 
-presets.night.fogstart = 2
-presets.night.endValue = 65
-presets.night.fogColorStart = 2
-presets.night.fogColorEnd = 40
+presets.bright_night.fogstart = 2
+presets.bright_night.endValue = 65
+presets.bright_night.fogColorStart = 2
+presets.bright_night.fogColorEnd = 40
 
-presets.night.fogColor = Vec3(0.0005, 0.0005, 0.0000000015)
-presets.night.fogColorCurve = Vec4(0.30, 0.20, 0.15, 0)--Vec4((0.30*FogMultiplicator), (0.20*FogMultiplicator), (0.15*FogMultiplicator), 0)
+presets.bright_night.fogColor = Vec3(0.0005, 0.0005, 0.0000000015)
+presets.bright_night.fogColorCurve = Vec4(0.30, 0.20, 0.15, 0)--Vec4((0.30*FogMultiplicator), (0.20*FogMultiplicator), (0.15*FogMultiplicator), 0)
 
-presets.night.transparencyFadeEnd = 50
+presets.bright_night.transparencyFadeEnd = 50
 
 -- TonemapComponentData --
-presets.night.minExposure = 0.2
-presets.night.maxExposure = 4
-presets.night.exposureAdjustTime = 1.5
-presets.night.bloomScale = 0.25
+presets.bright_night.minExposure = 0.2
+presets.bright_night.maxExposure = 4
+presets.bright_night.exposureAdjustTime = 1.5
+presets.bright_night.bloomScale = 0.25
 
-presets.night.tonemapMethod = 3
+presets.bright_night.tonemapMethod = 3
 
 -- ColorCorrectionComponentData --
-presets.night.contrast = Vec3(1.05, 1.05, 1.05)
-presets.night.saturation = Vec3(1.22, 1.25, 1.5)
+presets.bright_night.contrast = Vec3(1.05, 1.05, 1.05)
+presets.bright_night.saturation = Vec3(1.22, 1.25, 1.5)
 
 -- EnlightenComponentData --
-presets.night.enlightenEnable = nil
+presets.bright_night.enlightenEnable = nil
 
 -- SunFlareComponentData --
-presets.night.flareExcluded = true
+presets.bright_night.flareExcluded = true
 --------------------------------------------------------------------------------
 
 
