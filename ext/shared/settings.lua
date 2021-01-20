@@ -3,6 +3,7 @@
 
 -- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
 lensflareEnabled = false
+sunflareEnabled = true
 standardusebluefilter = false
 
 -- Use as such: ['Mapname.Presetname'] | Presets: Night, Bright_Night, Morning, Evening
@@ -14,7 +15,7 @@ standardusebluefilter = false
 
         --Standard
         ['Bazaar.Night']                      = true,             --MP_001      | Grand Bazaar
-        ['Teheran.Morning']                   = true,             --MP_003      | Teheran Highway
+        ['Teheran.Morning']                   = false,             --MP_003      | Teheran Highway
         ['Caspian.Morning']                   = true,             --MP_007      | Caspian Border
         ['Seine.Night']                       = true,             --MP_011      | Seine Crossing
         ['Firestorm.Morning']                 = true,             --MP_012      | Operation Firestorm
