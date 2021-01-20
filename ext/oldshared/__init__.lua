@@ -1,5 +1,6 @@
 require '__shared/presets'
-local Settings = require '__shared/settings'
+require '__shared/settings'
+require '__client/__init__'
 
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
 
@@ -24,7 +25,7 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   Evening(1)
               elseif Map[1] == nil then
                   print('Using Standard')
-                  DarknessUnleashed(1)
+                  Standard(1)
               else
                   print('Wrong Configuration')
                   return

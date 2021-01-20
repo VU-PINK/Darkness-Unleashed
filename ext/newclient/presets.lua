@@ -1,5 +1,5 @@
 require '__shared/settings'
-require '__shared/functions'
+require '__client/functions'
 require '__shared/skyboxrotation'
 
 
@@ -131,10 +131,13 @@ presets.night.flareExcluded = true
 
 --------------------------------------------------------------------------------
 
--- Night Preset
-local function Night()
-    local factor = math.abs(hours % 24 - 12)/12
+-- Apply Night Preset
+function Night(Map)
+    --local factor = math.abs(hours % 24 - 12)/12
+    Multipliers(Map)
+  	SkyboxRotation:Rotate(Map)
 
+    --cache current values and apply new values
     local states = VisualEnvironmentManager:GetStates()
     for _, state in pairs(states) do
         if not cache_states[_] then
