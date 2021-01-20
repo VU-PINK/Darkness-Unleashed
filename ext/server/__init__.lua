@@ -1,6 +1,6 @@
-local Presets = require '__shared/presets'
-local Settings = require '__shared/settings'
-local Version = require('__shared/version')
+require '__client/presets'
+require '__shared/settings'
+require('__server/version')
 
 function getCurrentVersion()
     options = HttpOptions({}, 10);
