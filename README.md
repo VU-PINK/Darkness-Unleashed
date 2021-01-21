@@ -1,8 +1,9 @@
 # Darkness Unleashed
 
 ## Tutorial
-Download the files and add them to your Mods folder --> go to: Darkness Unleashed/ext/shared/settings --> choose desired Presets 
---> add Darkness-Unleashed-live to your ModList.txt --> Enjoy! <3
+ 1. Download the files and add them to your Mods folder 
+ 2. Go to: Darkness-Unleashed-live/ext/shared/settings --> choose desired Presets 
+ 3. add Darkness-Unleashed-live to your ModList.txt --> Enjoy! <3
 
 ## Info
 The true dark night mod and more!
