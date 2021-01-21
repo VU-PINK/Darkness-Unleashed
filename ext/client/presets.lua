@@ -63,9 +63,9 @@ presets.night.sunColor = Vec3(0.02, 0.02, 0.02)
 presets.night.skyColor = Vec3(0.01, 0.01, 0.01)
 presets.night.groundColor = Vec3(0, 0, 0)
 
-presets.morning.sunRotationY = 0
-presets.morning.sunRotationX = 0
-presets.morning.skyEnvmapShadowScale = 0.25
+presets.night.sunRotationY = 0
+presets.night.sunRotationX = 0
+presets.night.skyEnvmapShadowScale = 0.25
 
 -- SkyComponentData --
 presets.night.brightnessScale = 0.0005--*BrightnessMultiplicator
@@ -195,25 +195,25 @@ presets.morning.groundColor = presets.morning.skyColor/2
 
 presets.morning.sunRotationY = 11
 presets.morning.sunRotationX = 255
-presets.morning.skyEnvmapShadowScale = presets.standard.skyEnvmapShadowScale
+--presets.morning.skyEnvmapShadowScale = presets.standard.skyEnvmapShadowScale
 
 -- SkyComponentData --
 presets.morning.brightnessScale = 0.55--*BrightnessMultiplicator
 presets.morning.sunSize = presets.standard.sunSize
 presets.morning.sunScale = presets.standard.sunScale
 
-presets.morning.cloudLayer1SunLightIntensity = presets.standard.cloudLayer1SunLightIntensity
-presets.morning.cloudLayer1SunLightPower = presets.standard.cloudLayer1SunLightPower
-presets.morning.cloudLayer1AmbientLightIntensity = presets.standard.cloudLayer1AmbientLightIntensity
+--presets.morning.cloudLayer1SunLightIntensity = presets.standard.cloudLayer1SunLightIntensity
+--presets.morning.cloudLayer1SunLightPower = presets.standard.cloudLayer1SunLightPower
+--presets.morning.cloudLayer1AmbientLightIntensity = presets.standard.cloudLayer1AmbientLightIntensity
 
-presets.morning.cloudLayer2SunLightIntensity = presets.standard.cloudLayer2SunLightIntensity
-presets.morning.cloudLayer2SunLightPower = presets.standard.cloudLayer2SunLightPower
-presets.morning.cloudLayer2AmbientLightIntensity = presets.standard.cloudLayer2AmbientLightIntensity
+--presets.morning.cloudLayer2SunLightIntensity = presets.standard.cloudLayer2SunLightIntensity
+--presets.morning.cloudLayer2SunLightPower = presets.standard.cloudLayer2SunLightPower
+--presets.morning.cloudLayer2AmbientLightIntensity = presets.standard.cloudLayer2AmbientLightIntensity
 
-presets.morning.staticEnvmapScale = presets.standard.staticEnvmapScale
-presets.morning.skyEnvmap8BitTexScale = presets.standard.skyEnvmap8BitTexScale
+--presets.morning.staticEnvmapScale = presets.standard.staticEnvmapScale
+--presets.morning.skyEnvmap8BitTexScale = presets.standard.skyEnvmap8BitTexScale
 
-presets.morning.customEnvmapAmbient = presets.standard.customEnvmapAmbient
+--presets.morning.customEnvmapAmbient = presets.standard.customEnvmapAmbient
 
 presets.morning.panoramicRotation = rotation
 
@@ -221,20 +221,20 @@ presets.morning.panoramicRotation = rotation
 presets.morning.fogEnable = true
 presets.morning.fogColorEnable = true
 
-presets.morning.fogstart = presets.standard.fogstart
-presets.morning.endValue = presets.standard.endValue
+--presets.morning.fogstart = presets.standard.fogstart
+--presets.morning.endValue = presets.standard.endValue
 presets.morning.fogColorStart = 5
 presets.morning.fogColorEnd = 100
 
 presets.morning.fogColor = Vec3(0.02, 0.02, 0.02)
 presets.morning.fogColorCurve = Vec4(0.04, 0.035, 0.03, 0.000)
 
-presets.morning.transparencyFadeEnd = presets.standard.transparencyFadeEnd
+--presets.morning.transparencyFadeEnd = presets.standard.transparencyFadeEnd
 
 -- TonemapComponentData --
-presets.morning.minExposure = presets.standard.minExposure
-presets.morning.maxExposure = presets.standard.maxExposure
-presets.morning.exposureAdjustTime = presets.standard.exposureAdjustTime
+--presets.morning.minExposure = presets.standard.minExposure
+--presets.morning.maxExposure = presets.standard.maxExposure
+--presets.morning.exposureAdjustTime = presets.standard.exposureAdjustTime
 presets.morning.bloomScale = 0.25
 
 presets.morning.tonemapMethod = 3
@@ -260,25 +260,25 @@ presets.evening.groundColor = Vec3(0, 0, 0)
 
 presets.morning.sunRotationY = 15
 presets.morning.sunRotationX = 50
-presets.morning.skyEnvmapShadowScale = presets.standard.skyEnvmapShadowScale
+--presets.morning.skyEnvmapShadowScale = presets.standard.skyEnvmapShadowScale
 
 -- SkyComponentData --
 presets.evening.brightnessScale = 0.40
 presets.evening.sunSize = presets.standard.sunSize
 presets.evening.sunScale = presets.standard.sunScale
 
-presets.evening.cloudLayer1SunLightIntensity = presets.standard.cloudLayer1SunLightIntensity
-presets.evening.cloudLayer1SunLightPower = presets.standard.cloudLayer1SunLightPower
-presets.evening.cloudLayer1AmbientLightIntensity = presets.standard.cloudLayer1AmbientLightIntensity
+--presets.evening.cloudLayer1SunLightIntensity = presets.standard.cloudLayer1SunLightIntensity
+--presets.evening.cloudLayer1SunLightPower = presets.standard.cloudLayer1SunLightPower
+--presets.evening.cloudLayer1AmbientLightIntensity = presets.standard.cloudLayer1AmbientLightIntensity
 
-presets.evening.cloudLayer2SunLightIntensity = presets.standard.cloudLayer2SunLightIntensity
-presets.evening.cloudLayer2SunLightPower = presets.standard.cloudLayer2SunLightPower
-presets.evening.cloudLayer2AmbientLightIntensity = presets.standard.cloudLayer2AmbientLightIntensity
+--presets.evening.cloudLayer2SunLightIntensity = presets.standard.cloudLayer2SunLightIntensity
+--presets.evening.cloudLayer2SunLightPower = presets.standard.cloudLayer2SunLightPower
+--presets.evening.cloudLayer2AmbientLightIntensity = presets.standard.cloudLayer2AmbientLightIntensity
 
-presets.evening.staticEnvmapScale = presets.standard.staticEnvmapScale
-presets.evening.skyEnvmap8BitTexScale = presets.standard.skyEnvmap8BitTexScale
+--presets.evening.staticEnvmapScale = presets.standard.staticEnvmapScale
+--presets.evening.skyEnvmap8BitTexScale = presets.standard.skyEnvmap8BitTexScale
 
-presets.evening.customEnvmapAmbient = presets.standard.customEnvmapAmbient
+--presets.evening.customEnvmapAmbient = presets.standard.customEnvmapAmbient
 
 presets.evening.panoramicRotation = rotation
 
@@ -286,20 +286,20 @@ presets.evening.panoramicRotation = rotation
 presets.evening.fogEnable = true
 presets.evening.fogColorEnable = true
 
-presets.evening.fogstart = presets.standard.fogstart
-presets.evening.endValue = presets.standard.endValue
-presets.evening.fogColorStart = presets.standard.fogColorStart
-presets.evening.fogColorEnd = presets.standard.fogColorEnd
+--presets.evening.fogstart = presets.standard.fogstart
+--presets.evening.endValue = presets.standard.endValue
+--presets.evening.fogColorStart = presets.standard.fogColorStart
+--presets.evening.fogColorEnd = presets.standard.fogColorEnd
 
-presets.evening.fogColor = presets.standard.fogColor
-presets.evening.fogColorCurve = presets.standard.fogColorCurve
+--presets.evening.fogColor = presets.standard.fogColor
+--presets.evening.fogColorCurve = presets.standard.fogColorCurve
 
-presets.evening.transparencyFadeEnd = presets.standard.transparencyFadeEnd
+--presets.evening.transparencyFadeEnd = presets.standard.transparencyFadeEnd
 
 -- TonemapComponentData --
-presets.evening.minExposure = presets.standard.minExposure
-presets.evening.maxExposure = presets.standard.maxExposure
-presets.evening.exposureAdjustTime = presets.standard.exposureAdjustTime
+--presets.evening.minExposure = presets.standard.minExposure
+--presets.evening.maxExposure = presets.standard.maxExposure
+--presets.evening.exposureAdjustTime = presets.standard.exposureAdjustTime
 presets.evening.bloomScale = 0.25
 
 presets.evening.tonemapMethod = 3
