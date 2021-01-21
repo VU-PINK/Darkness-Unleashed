@@ -1,6 +1,6 @@
 require '__shared/settings'
---require 'functions'
---require '__shared/skyboxrotation'
+require 'functions'
+require '__shared/skyboxrotation'
 
 -- Using Day/Night by GramThanos & GreatApo as a Template for cleaner code + easier integration of their day/night cycle system. :) Credit: https://community.veniceunleashed.net/t/day-night-live-change-levels-lighting-during-the-game/1776
 local presets = {}
@@ -128,9 +128,9 @@ presets.bright_night.sunColor = Vec3(0.02, 0.02, 0.02)
 presets.bright_night.skyColor = Vec3(0.02, 0.02, 0.022)
 presets.bright_night.groundColor = Vec3(0, 0, 0)
 
-presets.morning.sunRotationY = 45
-presets.morning.sunRotationX = 120
-presets.morning.skyEnvmapShadowScale = 0.5
+presets.bright_night.sunRotationY = 45
+presets.bright_night.sunRotationX = 120
+presets.bright_night.skyEnvmapShadowScale = 0.5
 
 -- SkyComponentData --
 presets.bright_night.brightnessScale = 0.0005--*BrightnessMultiplicator
@@ -258,8 +258,8 @@ presets.evening.sunColor = Vec3(1.0, 0.5, 0.2)
 presets.evening.skyColor = Vec3((1.0/2), (0.5/2), (0.2/2))
 presets.evening.groundColor = Vec3(0, 0, 0)
 
-presets.morning.sunRotationY = 15
-presets.morning.sunRotationX = 50
+presets.evening.sunRotationY = 15
+presets.evening.sunRotationX = 50
 --presets.morning.skyEnvmapShadowScale = presets.standard.skyEnvmapShadowScale
 
 -- SkyComponentData --
@@ -327,6 +327,7 @@ function Night(Map)
     EnforceBrightness()
     --cache current values and apply new values
     local states = VisualEnvironmentManager:GetStates()
+    print (states[1])
     for _, state in pairs(states) do
         if not cache_states[_] then
             cache_states[_] = {}
