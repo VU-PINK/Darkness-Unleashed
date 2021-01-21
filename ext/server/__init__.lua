@@ -1,6 +1,8 @@
 require '__shared/settings'
 require 'version'
 
+local bluefilter = standardusebluefilter
+
 function getCurrentVersion()
     options = HttpOptions({}, 10);
     options.verifyCertificate = false; --ignore cert for wine users
@@ -50,8 +52,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[1] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: ' .. tostring(standardusebluefilter))
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: ' .. tostring(tostring(bluefilter)))
               else
                   print('Wrong Configuration')
                   return
@@ -78,8 +80,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter enabled')
               elseif Map[2] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -106,8 +108,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[3] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -134,8 +136,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[4] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -162,8 +164,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[5] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -190,8 +192,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[6] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -218,8 +220,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[7] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -246,8 +248,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[8] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -274,8 +276,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter disabled')
               elseif Map[9] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -305,8 +307,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[10] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -333,8 +335,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[11] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -361,8 +363,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[12] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -389,8 +391,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[13] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -420,8 +422,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[14] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -448,8 +450,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[15] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -476,8 +478,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'true'})
                   print('Blue-Filter enabled')
               elseif Map[16] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -504,8 +506,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[17] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -535,8 +537,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[18] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -563,8 +565,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[19] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -591,8 +593,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[20] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -619,8 +621,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[21] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -650,8 +652,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[22] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -678,8 +680,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[23] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -707,8 +709,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[24] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -735,8 +737,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[25] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -766,8 +768,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[26] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -794,8 +796,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[27] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -822,8 +824,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[28] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return
@@ -850,8 +852,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
                   RCON:SendCommand('vu.ColorCorrectionEnabled', {'false'})
                   print('Blue-Filter disabled')
               elseif Map[29] == nil then
-                  RCON:SendCommand('vu.ColorCorrectionEnabled', {standardusebluefilter})
-                  print('Using Standard Blue-Filter Setting: '..standardusebluefilter)
+                  RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(bluefilter)})
+                  print('Using Standard Blue-Filter Setting: '..tostring(bluefilter))
               else
                   print('Wrong Configuration')
                   return

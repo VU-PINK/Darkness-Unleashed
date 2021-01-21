@@ -139,7 +139,7 @@ end
 
 
 function EnforceBrightness()
-PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 
 						if PostProcessing ~= nil and UserSettingsSaved ~= true then
 								PostProcessing = GlobalPostProcessSettings(PostProcessing)
@@ -160,4 +160,28 @@ PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 								print('Changed PostProcessing')
 						end
 
+end
+
+function ReleaseBrightness()
+local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
+
+							if PostProcessing ~= nil and UserSettingsSaved ~= true then
+									PostProcessing = GlobalPostProcessSettings(PostProcessing)
+									UserSettings_userBrightnessMin = PostProcessing.userBrightnessMin
+									UserSettings_userBrightnessMax = PostProcessing.userBrightnessMax
+									UserSettings_brightness = PostProcessing.brightness
+									print('Saving User Settings:')
+									print('Brightness_Min: ' .. UserSettings_userBrightnessMin)
+									print('Brightness_Max: '..UserSettings_userBrightnessMax)
+									UserSettingsSaved = true
+							end
+
+							if UserSettingsSaved == true then
+									local PostProcessingX = ResourceManager:GetSettings("GlobalPostProcessSettings")
+									PostProcessingX = GlobalPostProcessSettings(PostProcessing)
+									PostProcessingX.userBrightnessMin = UserSettings_userBrightnessMin
+									PostProcessingX.userBrightnessMax = UserSettings_userBrightnessMax
+									PostProcessingX.brightness = Vec3(1.0, 1.0, 1.0)
+									print('Changed PostProcessing')
+							end
 end
