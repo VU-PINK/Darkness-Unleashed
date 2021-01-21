@@ -105,7 +105,7 @@ presets.night.transparencyFadeEnd = 50
 presets.night.minExposure = 0.2
 presets.night.maxExposure = 4
 presets.night.exposureAdjustTime = 1.5
-presets.night.bloomScale = 0.25
+presets.night.bloomScale = Vec3(0.2, 0.2, 0.2)
 
 presets.night.tonemapMethod = 3
 
@@ -170,7 +170,7 @@ presets.bright_night.transparencyFadeEnd = nil
 presets.bright_night.minExposure = 2
 presets.bright_night.maxExposure = 4
 presets.bright_night.exposureAdjustTime = 0.5
-presets.bright_night.bloomScale = 0.25
+presets.bright_night.bloomScale = Vec3(0.2, 0.2, 0.2)
 
 presets.bright_night.tonemapMethod = 3
 
@@ -235,7 +235,7 @@ presets.morning.fogColorCurve = Vec4(0.04, 0.035, 0.03, 0.000)
 --presets.morning.minExposure = presets.standard.minExposure
 --presets.morning.maxExposure = presets.standard.maxExposure
 --presets.morning.exposureAdjustTime = presets.standard.exposureAdjustTime
-presets.morning.bloomScale = 0.25
+presets.morning.bloomScale = Vec3(0.2, 0.2, 0.2)
 
 presets.morning.tonemapMethod = 3
 
@@ -300,7 +300,7 @@ presets.evening.fogColorEnable = true
 --presets.evening.minExposure = presets.standard.minExposure
 --presets.evening.maxExposure = presets.standard.maxExposure
 --presets.evening.exposureAdjustTime = presets.standard.exposureAdjustTime
-presets.evening.bloomScale = 0.25
+presets.evening.bloomScale = Vec3(0.2, 0.2, 0.2)
 
 presets.evening.tonemapMethod = 3
 
@@ -317,7 +317,11 @@ presets.evening.flareExcluded = true
 
 
 local cache_states = {}
-
+local outdoorlightsaved = false
+local skysaved = false
+local fogsaved = false
+local tonemapsaved = false
+local enlightensaved = false
 
 -- Apply Night Preset
 function Night(Map)
@@ -327,12 +331,11 @@ function Night(Map)
     EnforceBrightness()
     --cache current values and apply new values
     local states = VisualEnvironmentManager:GetStates()
-    print (states[1])
     for _, state in pairs(states) do
         if not cache_states[_] then
             cache_states[_] = {}
         end
-        if state.outdoorLight ~= nil then
+        if state.outdoorLight ~= nil and outdoorlightsaved == false then
             if not cache_states[_].outdoorLight then
                 cache_states[_].outdoorLight = {}
                 cache_states[_].outdoorLight.sunColor = state.outdoorLight.sunColor
@@ -344,8 +347,9 @@ function Night(Map)
             state.outdoorLight.skyColor = presets.night.skyColor
             state.outdoorLight.groundColor = presets.night.groundColor
             state.outdoorLight.skyEnvmapShadowScale = presets.night.skyEnvmapShadowScale
+            outdoorlightsaved = true
         end
-        if state.sky ~= nil then
+        if state.sky ~= nil and skysaved == false then
             if not cache_states[_].sky then
                 cache_states[_].sky = {}
                 cache_states[_].sky.brightnessScale = state.sky.brightnessScale
@@ -371,8 +375,9 @@ function Night(Map)
             state.sky.cloudLayer2AmbientLightIntensity = presets.night.cloudLayer2AmbientLightIntensity
             state.sky.staticEnvmapScale = presets.night.staticEnvmapScale
             state.sky.skyEnvmap8BitTexScale = presets.night.skyEnvmap8BitTexScale
+            skysaved = true
         end
-        if state.fog ~= nil then
+        if state.fog ~= nil and fogsaved == false then
             if not cache_states[_].fog then
                 cache_states[_].fog = {}
                 cache_states[_].fog.start = state.fog.start
@@ -388,8 +393,9 @@ function Night(Map)
             state.fog.fogColor = presets.night.fogColor
             state.fog.fogColorCurve = presets.night.fogColorCurve
             state.fog.transparencyFadeEnd = presets.night.transparencyFadeEnd
+            fogsaved = true
         end
-        if state.tonemap ~= nil then
+        if state.tonemap ~= nil and tonemapsaved == false then
             if not cache_states[_].tonemap then
                 cache_states[_].tonemap = {}
                 cache_states[_].tonemap.minExposure = state.tonemap.minExposure
@@ -401,8 +407,10 @@ function Night(Map)
             state.tonemap.minExposure = presets.night.minExposure
             state.tonemap.maxExposure = presets.night.maxExposure
             state.tonemap.exposureAdjustTime = presets.night.exposureAdjustTime
+            state.tonemap.bloomScale = presets.night.bloomScale
+            tonemapsaved = true
         end
-        if state.enlighten ~= nil then
+        if state.enlighten ~= nil and enlightensaved == false then
             if not cache_states[_].enlighten then
                 cache_states[_].enlighten = {}
                 cache_states[_].enlighten.skyBoxSkyColor = state.enlighten.skyBoxSkyColor
@@ -415,6 +423,7 @@ function Night(Map)
                 --cache_states[_].enlighten.skyBoxBackLightColorSize = state.enlighten.skyBoxBackLightColorSize
             end
             state.enlighten.enable = presets.night.enlightenEnable
+            enlightensaved = true
             --state.enlighten.bounceScale = fVal(presets.standard.bounceScale, presets.night.bounceScale, factor)
             --state.enlighten.cullDistance = fVal(presets.standard.cullDistance, presets.night.cullDistance, factor)
             --state.enlighten.sunScale = fVal(presets.standard.esunScale, presets.night.esunScale, factor)
@@ -446,20 +455,25 @@ function Bright_Night(Map)
         if not cache_states[_] then
             cache_states[_] = {}
         end
-        if state.outdoorLight ~= nil then
+        if state.outdoorLight ~= nil and outdoorlightsaved == false then
             if not cache_states[_].outdoorLight then
                 cache_states[_].outdoorLight = {}
                 cache_states[_].outdoorLight.sunColor = state.outdoorLight.sunColor
                 cache_states[_].outdoorLight.skyColor = state.outdoorLight.skyColor
                 cache_states[_].outdoorLight.groundColor = state.outdoorLight.groundColor
+                cache_states[_].outdoorLight.sunRotationX = state.outdoorLight.sunRotationX
+                cache_states[_].outdoorLight.sunRotationY = state.outdoorLight.sunRotationY
                 cache_states[_].outdoorLight.skyEnvmapShadowScale = state.outdoorLight.skyEnvmapShadowScale
             end
             state.outdoorLight.sunColor = presets.bright_night.sunColor
             state.outdoorLight.skyColor = presets.bright_night.skyColor
             state.outdoorLight.groundColor = presets.bright_night.groundColor
+            state.outdoorLight.sunRotationX = presets.bright_night.sunRotationX
+            state.outdoorLight.sunRotationY = presets.bright_night.sunRotationY
             state.outdoorLight.skyEnvmapShadowScale = presets.bright_night.skyEnvmapShadowScale
+            outdoorlightsaved = true
         end
-        if state.sky ~= nil then
+        if state.sky ~= nil and skysaved == false then
             if not cache_states[_].sky then
                 cache_states[_].sky = {}
                 cache_states[_].sky.brightnessScale = state.sky.brightnessScale
@@ -473,6 +487,7 @@ function Bright_Night(Map)
                 cache_states[_].sky.cloudLayer2AmbientLightIntensity = state.sky.cloudLayer2AmbientLightIntensity
                 cache_states[_].sky.staticEnvmapScale = state.sky.staticEnvmapScale
                 cache_states[_].sky.skyEnvmap8BitTexScale = state.sky.skyEnvmap8BitTexScale
+                cache_states[_].sky.customEnvmapAmbient = state.sky.customEnvmapAmbient
             end
             state.sky.brightnessScale = presets.bright_night.brightnessScale
             state.sky.sunSize = presets.bright_night.sunSize
@@ -485,8 +500,10 @@ function Bright_Night(Map)
             state.sky.cloudLayer2AmbientLightIntensity = presets.bright_night.cloudLayer2AmbientLightIntensity
             state.sky.staticEnvmapScale = presets.bright_night.staticEnvmapScale
             state.sky.skyEnvmap8BitTexScale = presets.bright_night.skyEnvmap8BitTexScale
+            state.sky.customEnvmapAmbient = presets.bright_night.customEnvmapAmbient
+            skysaved = true
         end
-        if state.fog ~= nil then
+        if state.fog ~= nil and fogsaved == false then
             if not cache_states[_].fog then
                 cache_states[_].fog = {}
                 cache_states[_].fog.start = state.fog.start
@@ -496,8 +513,9 @@ function Bright_Night(Map)
                 cache_states[_].fog.transparencyFadeEnd = state.fog.transparencyFadeEnd
             end
             state.fog.fogColor = presets.bright_night.fogColor
+            fogsaved = true
         end
-        if state.tonemap ~= nil then
+        if state.tonemap ~= nil and tonemapsaved == false then
             if not cache_states[_].tonemap then
                 cache_states[_].tonemap = {}
                 cache_states[_].tonemap.minExposure = state.tonemap.minExposure
@@ -509,8 +527,10 @@ function Bright_Night(Map)
             state.tonemap.minExposure = presets.bright_night.minExposure
             state.tonemap.maxExposure = presets.bright_night.maxExposure
             state.tonemap.exposureAdjustTime = presets.bright_night.exposureAdjustTime
+            state.tonemap.bloomScale = presets.bright_night.bloomScale
+            tonemapsaved = true
         end
-        if state.enlighten ~= nil then
+        if state.enlighten ~= nil and enlightensaved == false then
             if not cache_states[_].enlighten then
                 cache_states[_].enlighten = {}
                 cache_states[_].enlighten.skyBoxSkyColor = state.enlighten.skyBoxSkyColor
@@ -523,6 +543,7 @@ function Bright_Night(Map)
                 --cache_states[_].enlighten.skyBoxBackLightColorSize = state.enlighten.skyBoxBackLightColorSize
             end
             state.enlighten.enable = presets.bright_night.enlightenEnable
+            enlightensaved = true
             --state.enlighten.bounceScale = fVal(presets.standard.bounceScale, presets.bright_night.bounceScale, factor)
             --state.enlighten.cullDistance = fVal(presets.standard.cullDistance, presets.bright_night.cullDistance, factor)
             --state.enlighten.sunScale = fVal(presets.standard.esunScale, presets.bright_night.esunScale, factor)
@@ -548,14 +569,13 @@ function Morning(Map)
     --local factor = math.abs(hours % 24 - 12)/12
     Multipliers(Map)
   	SkyboxRotation:Rotate(Map)
-    EnforceBrightness()
     --cache current values and apply new values
     local states = VisualEnvironmentManager:GetStates()
     for _, state in pairs(states) do
         if not cache_states[_] then
             cache_states[_] = {}
         end
-        if state.outdoorLight ~= nil then
+        if state.outdoorLight ~= nil and outdoorlightsaved == false then
             if not cache_states[_].outdoorLight then
                 cache_states[_].outdoorLight = {}
                 cache_states[_].outdoorLight.sunColor = state.outdoorLight.sunColor
@@ -567,8 +587,9 @@ function Morning(Map)
             state.outdoorLight.skyColor = presets.morning.skyColor
             state.outdoorLight.groundColor = presets.morning.groundColor
             state.outdoorLight.skyEnvmapShadowScale = presets.morning.skyEnvmapShadowScale
+            outdoorlightsaved = true
         end
-        if state.sky ~= nil then
+        if state.sky ~= nil and skysaved == false then
             if not cache_states[_].sky then
                 cache_states[_].sky = {}
                 cache_states[_].sky.brightnessScale = state.sky.brightnessScale
@@ -594,8 +615,9 @@ function Morning(Map)
             state.sky.cloudLayer2AmbientLightIntensity = presets.morning.cloudLayer2AmbientLightIntensity
             state.sky.staticEnvmapScale = presets.morning.staticEnvmapScale
             state.sky.skyEnvmap8BitTexScale = presets.morning.skyEnvmap8BitTexScale
+            skysaved = true
         end
-        if state.fog ~= nil then
+        if state.fog ~= nil and fogsaved == false then
             if not cache_states[_].fog then
                 cache_states[_].fog = {}
                 cache_states[_].fog.start = state.fog.start
@@ -611,8 +633,9 @@ function Morning(Map)
             state.fog.fogColor = presets.morning.fogColor
             state.fog.fogColorCurve = presets.morning.fogColorCurve
             state.fog.transparencyFadeEnd = presets.morning.transparencyFadeEnd
+            fogsaved = true
         end
-        if state.tonemap ~= nil then
+        if state.tonemap ~= nil and tonemapsaved == false then
             if not cache_states[_].tonemap then
                 cache_states[_].tonemap = {}
                 cache_states[_].tonemap.minExposure = state.tonemap.minExposure
@@ -624,8 +647,10 @@ function Morning(Map)
             state.tonemap.minExposure = presets.morning.minExposure
             state.tonemap.maxExposure = presets.morning.maxExposure
             state.tonemap.exposureAdjustTime = presets.morning.exposureAdjustTime
+            state.tonemap.bloomScale = presets.morning.bloomScale
+            tonemapsaved = true
         end
-        if state.enlighten ~= nil then
+        if state.enlighten ~= nil and enlightensaved == false then
             if not cache_states[_].enlighten then
                 cache_states[_].enlighten = {}
                 cache_states[_].enlighten.skyBoxSkyColor = state.enlighten.skyBoxSkyColor
@@ -638,6 +663,7 @@ function Morning(Map)
                 --cache_states[_].enlighten.skyBoxBackLightColorSize = state.enlighten.skyBoxBackLightColorSize
             end
             state.enlighten.enable = presets.morning.enlightenEnable
+            enlightensaved = true
             --state.enlighten.bounceScale = fVal(presets.standard.bounceScale, presets.morning.bounceScale, factor)
             --state.enlighten.cullDistance = fVal(presets.standard.cullDistance, presets.morning.cullDistance, factor)
             --state.enlighten.sunScale = fVal(presets.standard.esunScale, presets.morning.esunScale, factor)
@@ -663,14 +689,13 @@ function Evening(Map)
     --local factor = math.abs(hours % 24 - 12)/12
     Multipliers(Map)
   	SkyboxRotation:Rotate(Map)
-    EnforceBrightness()
     --cache current values and apply new values
     local states = VisualEnvironmentManager:GetStates()
     for _, state in pairs(states) do
         if not cache_states[_] then
             cache_states[_] = {}
         end
-        if state.outdoorLight ~= nil then
+        if state.outdoorLight ~= nil and outdoorlightsaved == false then
             if not cache_states[_].outdoorLight then
                 cache_states[_].outdoorLight = {}
                 cache_states[_].outdoorLight.sunColor = state.outdoorLight.sunColor
@@ -682,8 +707,9 @@ function Evening(Map)
             state.outdoorLight.skyColor = presets.evening.skyColor
             state.outdoorLight.groundColor = presets.evening.groundColor
             state.outdoorLight.skyEnvmapShadowScale = presets.evening.skyEnvmapShadowScale
+            outdoorlightsaved = true
         end
-        if state.sky ~= nil then
+        if state.sky ~= nil and skysaved == false then
             if not cache_states[_].sky then
                 cache_states[_].sky = {}
                 cache_states[_].sky.brightnessScale = state.sky.brightnessScale
@@ -709,8 +735,9 @@ function Evening(Map)
             state.sky.cloudLayer2AmbientLightIntensity = presets.evening.cloudLayer2AmbientLightIntensity
             state.sky.staticEnvmapScale = presets.evening.staticEnvmapScale
             state.sky.skyEnvmap8BitTexScale = presets.evening.skyEnvmap8BitTexScale
+            skysaved = true
         end
-        if state.fog ~= nil then
+        if state.fog ~= nil and fogsaved == false then
             if not cache_states[_].fog then
                 cache_states[_].fog = {}
                 cache_states[_].fog.start = state.fog.start
@@ -726,8 +753,9 @@ function Evening(Map)
             state.fog.fogColor = presets.evening.fogColor
             state.fog.fogColorCurve = presets.evening.fogColorCurve
             state.fog.transparencyFadeEnd = presets.evening.transparencyFadeEnd
+            fogsaved = true
         end
-        if state.tonemap ~= nil then
+        if state.tonemap ~= nil and tonemapsaved == false then
             if not cache_states[_].tonemap then
                 cache_states[_].tonemap = {}
                 cache_states[_].tonemap.minExposure = state.tonemap.minExposure
@@ -739,8 +767,10 @@ function Evening(Map)
             state.tonemap.minExposure = presets.evening.minExposure
             state.tonemap.maxExposure = presets.evening.maxExposure
             state.tonemap.exposureAdjustTime = presets.evening.exposureAdjustTime
+            state.tonemap.bloomScale = presets.evening.bloomScale
+            tonemapsaved = true
         end
-        if state.enlighten ~= nil then
+        if state.enlighten ~= nil and enlightensaved == false then
             if not cache_states[_].enlighten then
                 cache_states[_].enlighten = {}
                 cache_states[_].enlighten.skyBoxSkyColor = state.enlighten.skyBoxSkyColor
@@ -753,6 +783,7 @@ function Evening(Map)
                 --cache_states[_].enlighten.skyBoxBackLightColorSize = state.enlighten.skyBoxBackLightColorSize
             end
             state.enlighten.enable = presets.evening.enlightenEnable
+            enlightensaved = true
             --state.enlighten.bounceScale = fVal(presets.standard.bounceScale, presets.evening.bounceScale, factor)
             --state.enlighten.cullDistance = fVal(presets.standard.cullDistance, presets.evening.cullDistance, factor)
             --state.enlighten.sunScale = fVal(presets.standard.esunScale, presets.evening.esunScale, factor)
@@ -772,16 +803,6 @@ function Evening(Map)
 
 
 end
-
-
-
-
-
-
-
-
-
-
 -- Initialize default values
 Events:Subscribe('Partition:Loaded', function(partition)
     for _, instance in pairs(partition.instances) do
@@ -794,6 +815,8 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.sunColor = outdoor.sunColor:Clone()
             presets.standard.skyColor = outdoor.skyColor:Clone()
             presets.standard.groundColor = outdoor.groundColor:Clone()
+            presets.standard.sunRotationY = outdoor.sunRotationY
+            presets.standard.sunRotationX = outdoor.sunRotationX
             presets.standard.skyEnvmapShadowScale = outdoor.skyEnvmapShadowScale
         end
         -- Init Sky values
@@ -844,7 +867,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.maxExposure = tonemap.maxExposure
             presets.standard.exposureAdjustTime = tonemap.exposureAdjustTime
             presets.standard.middleGray = tonemap.middleGray
-            presets.standard.bloomScale = tonemap.bloomScale
+            presets.standard.bloomScale = tonemap.bloomScale:Clone()
             --tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
         ---- Init ColorCorrection values
