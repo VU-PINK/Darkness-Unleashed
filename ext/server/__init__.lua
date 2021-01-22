@@ -863,6 +863,30 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         ------------------------------------------------------------------------
 end)
 
+-- Decrease Sun
+function SunFlareDay()
+    Events:Subscribe('Partition:Loaded', function(partition)
+          for _, instance in pairs(partition.instances) do
+              if instance:Is('SunFlareComponentData') then
+                  local flare = SunFlareComponentData(instance)
+                  flare:MakeWritable()
+                  local flaremultiplier = 0.2
+                  print('Reducing Sun Flare')
+
+                  flare.element1Size = flare.element1Size*flaremultiplier
+                  flare.element2Size = flare.element2Size*flaremultiplier
+                  flare.element3Size = flare.element2Size*flaremultiplier
+                  flare.element4Size = flare.element2Size*flaremultiplier
+                  flare.element5Enable = false
+              end
+          end
+    end)
+end
+
+
+
+
+
 --Check
 Events:Subscribe('Player:Created', function(player)
 

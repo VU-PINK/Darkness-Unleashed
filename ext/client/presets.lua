@@ -69,8 +69,8 @@ presets.night.skyEnvmapShadowScale = 0.25
 
 -- SkyComponentData --
 presets.night.brightnessScale = 0.0005--*BrightnessMultiplicator
-presets.night.sunSize = 15
-presets.night.sunScale = 15
+presets.night.sunSize = 0
+presets.night.sunScale = 0
 
 presets.night.cloudLayer1SunLightIntensity = 0.0001
 presets.night.cloudLayer1SunLightPower = 0.0001
@@ -105,7 +105,7 @@ presets.night.transparencyFadeEnd = 50
 presets.night.minExposure = 0.2
 presets.night.maxExposure = 4
 presets.night.exposureAdjustTime = 1.5
-presets.night.bloomScale = Vec3(0.2, 0.2, 0.2)
+presets.night.bloomScale = Vec3(0.05, 0.05, 0.05)
 
 presets.night.tonemapMethod = 3
 
@@ -170,7 +170,7 @@ presets.bright_night.transparencyFadeEnd = nil
 presets.bright_night.minExposure = 2
 presets.bright_night.maxExposure = 4
 presets.bright_night.exposureAdjustTime = 0.5
-presets.bright_night.bloomScale = Vec3(0.2, 0.2, 0.2)
+presets.bright_night.bloomScale = Vec3(0.05, 0.05, 0.05)
 
 presets.bright_night.tonemapMethod = 3
 
@@ -199,8 +199,6 @@ presets.morning.sunRotationX = 255
 
 -- SkyComponentData --
 presets.morning.brightnessScale = 0.55--*BrightnessMultiplicator
-presets.morning.sunSize = presets.standard.sunSize
-presets.morning.sunScale = presets.standard.sunScale
 
 --presets.morning.cloudLayer1SunLightIntensity = presets.standard.cloudLayer1SunLightIntensity
 --presets.morning.cloudLayer1SunLightPower = presets.standard.cloudLayer1SunLightPower
@@ -235,7 +233,7 @@ presets.morning.fogColorCurve = Vec4(0.04, 0.035, 0.03, 0.000)
 --presets.morning.minExposure = presets.standard.minExposure
 --presets.morning.maxExposure = presets.standard.maxExposure
 --presets.morning.exposureAdjustTime = presets.standard.exposureAdjustTime
-presets.morning.bloomScale = Vec3(0.2, 0.2, 0.2)
+presets.morning.bloomScale = Vec3(0.05, 0.05, 0.05)
 
 presets.morning.tonemapMethod = 3
 
@@ -300,7 +298,7 @@ presets.evening.fogColorEnable = true
 --presets.evening.minExposure = presets.standard.minExposure
 --presets.evening.maxExposure = presets.standard.maxExposure
 --presets.evening.exposureAdjustTime = presets.standard.exposureAdjustTime
-presets.evening.bloomScale = Vec3(0.2, 0.2, 0.2)
+presets.evening.bloomScale = Vec3(0.05, 0.05, 0.05)
 
 presets.evening.tonemapMethod = 3
 
@@ -317,15 +315,17 @@ presets.evening.flareExcluded = true
 
 
 local cache_states = {}
-local outdoorlightsaved = false
-local skysaved = false
-local fogsaved = false
-local tonemapsaved = false
-local enlightensaved = false
+local UserSettingsSaved
 
 -- Apply Night Preset
 function Night(Map)
     --local factor = math.abs(hours % 24 - 12)/12
+    local outdoorlightsaved = false
+    local skysaved = false
+    local fogsaved = false
+    local tonemapsaved = false
+    local enlightensaved = false
+    print('Applying Night Preset')
     Multipliers(Map)
   	SkyboxRotation:Rotate(Map)
     EnforceBrightness()
@@ -431,22 +431,26 @@ function Night(Map)
             --state.enlighten.skyBoxBackLightColorSize = fVal(presets.standard.skyBoxBackLightColorSize, presets.night.skyBoxBackLightColorSize, factor)
         end
 
-        -- Sun flare should be enabled on standard only
-        --if state.sunFlare ~= nil then
-        --    if factor < 0.5 then
-        --        state.sunFlare.enable = true
-        --    else
-        --        state.sunFlare.enable = false
-        --    end
-        --end
+
+        if state.sunFlare ~= nil then
+              state.sunFlare.enable = false
+              print('Disabling Sun Flare')
+        end
+
+
     end
 
-
+return 'Applied Night Preset'
 end
 
 -- Apply Bright_Night Preset
 function Bright_Night(Map)
     --local factor = math.abs(hours % 24 - 12)/12
+    local outdoorlightsaved = false
+    local skysaved = false
+    local fogsaved = false
+    local tonemapsaved = false
+    local enlightensaved = false
     Multipliers(Map)
   	SkyboxRotation:Rotate(Map)
     --cache current values and apply new values
@@ -551,14 +555,12 @@ function Bright_Night(Map)
             --state.enlighten.skyBoxBackLightColorSize = fVal(presets.standard.skyBoxBackLightColorSize, presets.bright_night.skyBoxBackLightColorSize, factor)
         end
 
-        -- Sun flare should be enabled on standard only
-        --if state.sunFlare ~= nil then
-        --    if factor < 0.5 then
-        --        state.sunFlare.enable = true
-        --    else
-        --        state.sunFlare.enable = false
-        --    end
-        --end
+
+        if state.sunFlare ~= nil then
+              state.sunFlare.enable = false
+              print('Disabling Sun Flare')
+        end
+
     end
 
 
@@ -567,6 +569,11 @@ end
 -- Apply Morning Preset
 function Morning(Map)
     --local factor = math.abs(hours % 24 - 12)/12
+    local outdoorlightsaved = false
+    local skysaved = false
+    local fogsaved = false
+    local tonemapsaved = false
+    local enlightensaved = false
     Multipliers(Map)
   	SkyboxRotation:Rotate(Map)
     --cache current values and apply new values
@@ -586,7 +593,6 @@ function Morning(Map)
             state.outdoorLight.sunColor = presets.morning.sunColor
             state.outdoorLight.skyColor = presets.morning.skyColor
             state.outdoorLight.groundColor = presets.morning.groundColor
-            state.outdoorLight.skyEnvmapShadowScale = presets.morning.skyEnvmapShadowScale
             outdoorlightsaved = true
         end
         if state.sky ~= nil and skysaved == false then
@@ -671,14 +677,10 @@ function Morning(Map)
             --state.enlighten.skyBoxBackLightColorSize = fVal(presets.standard.skyBoxBackLightColorSize, presets.morning.skyBoxBackLightColorSize, factor)
         end
 
-        -- Sun flare should be enabled on standard only
-        --if state.sunFlare ~= nil then
-        --    if factor < 0.5 then
-        --        state.sunFlare.enable = true
-        --    else
-        --        state.sunFlare.enable = false
-        --    end
-        --end
+        if state.sunFlare ~= nil then
+              state.sunFlare.enable = true
+        end
+
     end
 
 
@@ -687,6 +689,11 @@ end
 -- Apply Evening Preset
 function Evening(Map)
     --local factor = math.abs(hours % 24 - 12)/12
+    local outdoorlightsaved = false
+    local skysaved = false
+    local fogsaved = false
+    local tonemapsaved = false
+    local enlightensaved = false
     Multipliers(Map)
   	SkyboxRotation:Rotate(Map)
     --cache current values and apply new values
@@ -706,7 +713,6 @@ function Evening(Map)
             state.outdoorLight.sunColor = presets.evening.sunColor
             state.outdoorLight.skyColor = presets.evening.skyColor
             state.outdoorLight.groundColor = presets.evening.groundColor
-            state.outdoorLight.skyEnvmapShadowScale = presets.evening.skyEnvmapShadowScale
             outdoorlightsaved = true
         end
         if state.sky ~= nil and skysaved == false then
@@ -725,8 +731,6 @@ function Evening(Map)
                 cache_states[_].sky.skyEnvmap8BitTexScale = state.sky.skyEnvmap8BitTexScale
             end
             state.sky.brightnessScale = presets.evening.brightnessScale
-            state.sky.sunSize = presets.evening.sunSize
-            state.sky.sunScale = presets.evening.sunScale
             state.sky.cloudLayer1SunLightIntensity = presets.evening.cloudLayer1SunLightIntensity
             state.sky.cloudLayer1SunLightPower = presets.evening.cloudLayer1SunLightPower
             state.sky.cloudLayer1AmbientLightIntensity = presets.evening.cloudLayer1AmbientLightIntensity
@@ -791,23 +795,27 @@ function Evening(Map)
             --state.enlighten.skyBoxBackLightColorSize = fVal(presets.standard.skyBoxBackLightColorSize, presets.evening.skyBoxBackLightColorSize, factor)
         end
 
-        -- Sun flare should be enabled on standard only
-        --if state.sunFlare ~= nil then
-        --    if factor < 0.5 then
-        --        state.sunFlare.enable = true
-        --    else
-        --        state.sunFlare.enable = false
-        --    end
-        --end
+        if state.sunFlare ~= nil then
+              state.sunFlare.enable = true
+        end
     end
 
 
 end
+
+
+local outdoorlightstandardsaved = false
+local skycomponentstandardsaved = false
+local fogcomponentstandardsaved = false
+local toncomponentstandardsaved = false
+local colcomponentstandardsaved = false
+local enlcomponentstandardsaved = false
+
 -- Initialize default values
 Events:Subscribe('Partition:Loaded', function(partition)
     for _, instance in pairs(partition.instances) do
         -- Init OutdoorLight values
-        if instance:Is('OutdoorLightComponentData') then
+        if instance:Is('OutdoorLightComponentData') and outdoorlightstandardsaved == false then
             --print('OutdoorLightComponentData')
             local outdoor = OutdoorLightComponentData(instance)
             outdoor:MakeWritable()
@@ -818,16 +826,15 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.sunRotationY = outdoor.sunRotationY
             presets.standard.sunRotationX = outdoor.sunRotationX
             presets.standard.skyEnvmapShadowScale = outdoor.skyEnvmapShadowScale
+            outdoorlightstandardsaved = true
         end
         -- Init Sky values
-        if instance:Is('SkyComponentData') then
+        if instance:Is('SkyComponentData') and skycomponentstandardsaved == false then
             --print('SkyComponentData')
             sky = SkyComponentData(instance)
             sky:MakeWritable()
 
             presets.standard.brightnessScale = sky.brightnessScale
-            presets.standard.sunSize = sky.sunSize
-            presets.standard.sunScale = sky.sunScale
             presets.standard.cloudLayer1SunLightIntensity = sky.cloudLayer1SunLightIntensity
             presets.standard.cloudLayer1SunLightPower = sky.cloudLayer1SunLightPower
             presets.standard.cloudLayer1AmbientLightIntensity = sky.cloudLayer1AmbientLightIntensity
@@ -836,6 +843,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.cloudLayer2AmbientLightIntensity = sky.cloudLayer2AmbientLightIntensity
             presets.standard.staticEnvmapScale = sky.staticEnvmapScale
             presets.standard.skyEnvmap8BitTexScale = sky.skyEnvmap8BitTexScale
+            skycomponentstandardsaved = true
 
             if sky.partition.name:match('mp_subway') or sky.partition.name:match('mp_011') then
                 presets.standard.staticEnvmapScale = 0.01
@@ -850,15 +858,16 @@ Events:Subscribe('Partition:Loaded', function(partition)
             end
         end
         -- Init Fog values
-        if instance:Is('FogComponentData') then
+        if instance:Is('FogComponentData') and fogcomponentstandardsaved == false then
             --print('FogComponentData')
             local fog = FogComponentData(instance)
             fog:MakeWritable()
 
             presets.standard.fogColor = fog.fogColor:Clone()
+            fogcomponentstandardsaved = true
         end
         -- Init Tonemap values
-        if instance:Is('TonemapComponentData') then
+        if instance:Is('TonemapComponentData') and toncomponentstandardsaved == false then
             --print('TonemapComponentData')
             local tonemap = TonemapComponentData(instance)
             tonemap:MakeWritable()
@@ -868,13 +877,15 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.exposureAdjustTime = tonemap.exposureAdjustTime
             presets.standard.middleGray = tonemap.middleGray
             presets.standard.bloomScale = tonemap.bloomScale:Clone()
+            toncomponentstandardsaved = true
             --tonemap.tonemapMethod = TonemapMethod.TonemapMethod_FilmicNeutral
         end
         ---- Init ColorCorrection values
-        if instance:Is('ColorCorrectionComponentData') then
+        if instance:Is('ColorCorrectionComponentData') and colcomponentstandardsaved == false then
             local color = ColorCorrectionComponentData(instance)
             color:MakeWritable()
-
+            color.saturation = Vec3(1.15, 1.15, 1.15)
+            colcomponentstandardsaved = true
             if instance.partition.name:match('menuvisualenvironment') then
                 color.enable = false
             end
@@ -884,7 +895,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
             end
         end
         -- Init Enlighten values
-        if instance:Is('EnlightenComponentData') then
+        if instance:Is('EnlightenComponentData') and enlcomponentstandardsaved == false then
             --print('EnlightenComponentData')
             local enlighten = EnlightenComponentData(instance)
             enlighten:MakeWritable()
@@ -899,7 +910,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
             presets.standard.esunScale = enlighten.sunScale
             presets.standard.skyBoxSunLightColorSize = enlighten.skyBoxSunLightColorSize
             presets.standard.skyBoxBackLightColorSize = enlighten.skyBoxBackLightColorSize
-
+            enlcomponentstandardsaved = true
             --enlighten.enable = false
         end
 
