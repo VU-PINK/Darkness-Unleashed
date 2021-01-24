@@ -15,7 +15,7 @@ standardusebluefilter = false
 
         --Standard
         ['Bazaar.Night']                      = true,             --MP_001      | Grand Bazaar
-        ['Teheran.Morning']                   = false,             --MP_003      | Teheran Highway
+        ['Teheran.Morning']                   = false,            --MP_003      | Teheran Highway
         ['Caspian.Morning']                   = true,             --MP_007      | Caspian Border
         ['Seine.Night']                       = true,             --MP_011      | Seine Crossing
         ['Firestorm.Morning']                 = true,             --MP_012      | Operation Firestorm

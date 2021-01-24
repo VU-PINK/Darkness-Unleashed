@@ -9,16 +9,16 @@ local enlighten = nil
 local sunFlare = nil
 
 
-function Night()
+function Night(Map)
 	--Code Idea/Concept credit to https://github.com/OrfeasZ
 
 	night = VisualEnvironmentState()
 	night.visibility = 1.0
 	night.priority = 100
 
-	shaderParams = ShaderParamsData()
-	shaderParams.value = Vec4(1.0, 1.0, 1.0, 1.0)
-	shaderParams.parameterName = 'FLIRData'
+	--shaderParams = ShaderParamsData()
+	--shaderParams.value = Vec4(1.0, 1.0, 1.0, 1.0)
+	--shaderParams.parameterName = 'FLIRData'
 
 	outdoorLight = OutdoorLightData()
 	outdoorLight.enable = true
@@ -39,7 +39,7 @@ function Night()
 	sky.staticEnvmapScale = 0.1
 	sky.skyEnvmap8BitTexScale = 1
 	sky.customEnvmapAmbient = 0.05
-	sky.panoramicRotation = rotation
+	sky.panoramicRotation = 100
 
 	fog = FogData()
 	fog.enable = true
@@ -61,7 +61,7 @@ function Night()
 	tonemap.minExposure = 0.2
 	tonemap.maxExposure = 4
 	tonemap.exposureAdjustTime = 1.5
-	tonemap.bloomScale = Vec(0.05, 0.05, 0.05)
+	tonemap.bloomScale = Vec3(0.05, 0.05, 0.05)
 	tonemap.tonemapMethod = 3
 
 	cc = ColorCorrectionData()
@@ -70,10 +70,10 @@ function Night()
 	cc.saturation = Vec3(1.22, 1.25, 1.5)
 
 	enlighten = EnlightenData()
-	enlighten.enlightenEnable = false
+	enlighten.enable = false
 
 	sunFlare = SunFlareData()
-	sunFlare.flareExcluded = true
+	sunFlare.enable = false
 
 	-- Add components to VE state.
 	night.outdoorLight = outdoorLight
@@ -84,7 +84,7 @@ function Night()
 	night.sunFlare = sunFlare
 	night.tonemap = tonemap
 
-	night:AddShaderParams(shaderParams)
+	--night:AddShaderParams(shaderParams)
 	-- Add state to VE manager.
 	VisualEnvironmentManager:AddState(night)
 
