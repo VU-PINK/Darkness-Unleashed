@@ -178,10 +178,10 @@ local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 
 							if UserSettingsSaved == true then
 									local PostProcessingX = ResourceManager:GetSettings("GlobalPostProcessSettings")
-									PostProcessingX = GlobalPostProcessSettings(PostProcessing)
-									PostProcessingX.userBrightnessMin = UserSettings_userBrightnessMin
-									PostProcessingX.userBrightnessMax = UserSettings_userBrightnessMax
-									PostProcessingX.brightness = Vec3(1.0, 1.0, 1.0)
+									PostProcessing = GlobalPostProcessSettings(PostProcessing)
+									PostProcessing.userBrightnessMin = UserSettings_userBrightnessMin
+									PostProcessing.userBrightnessMax = UserSettings_userBrightnessMax
+									PostProcessing.brightness = Vec3(1.0, 1.0, 1.0)
 									print('Changed PostProcessing')
 							end
 end

@@ -316,6 +316,9 @@ presets.evening.flareExcluded = true
 
 local cache_states = {}
 local UserSettingsSaved
+local UserSettings_userBrightnessMin
+local UserSettings_userBrightnessMax
+local UserSettings_brightness
 
 -- Apply Night Preset
 function Night(Map)
