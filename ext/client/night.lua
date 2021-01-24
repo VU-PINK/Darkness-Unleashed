@@ -1,4 +1,4 @@
-local night = nil
+local nightPreset = nil
 local shaderParams = nil
 local outdoorLight = nil
 local sky = nil
@@ -10,7 +10,8 @@ local sunFlare = nil
 
 
 function Night(Map)
-	if night ~= nil then
+
+	if nightPreset ~= nil then
 		return
 	end
 
@@ -116,9 +117,10 @@ function removeNight()
 	if nightPreset ~= nil then
 		nightPreset:Destroy()
 		nightPreset = nil
+		return true
 	end
 
-	print('removed VES')
+	print('removed VES Night')
 end
 
 -- Remove the VE state when the mod is unloading.

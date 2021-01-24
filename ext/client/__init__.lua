@@ -1,7 +1,8 @@
 require 'night'
+require 'morning'
 require '__shared/settings'
 
-Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+Events:Subscribe('Level:Finalized', function(levelName, gameMode)
 
     -- Bazaar
     if string.find(levelName, "MP_001") then

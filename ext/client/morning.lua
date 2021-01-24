@@ -1,4 +1,4 @@
-local morning = nil
+local morningPreset = nil
 local shaderParams = nil
 local outdoorLight = nil
 local sky = nil
@@ -10,7 +10,8 @@ local sunFlare = nil
 
 
 function Morning(Map)
-	if morning ~= nil then
+
+	if morningPreset ~= nil then
 		return
 	end
 
@@ -19,26 +20,20 @@ function Morning(Map)
 	morningData.visibility = 1.0
 	morningData.priority = 999999
 
-	local shaderParams = ShaderParamsComponentData()
-	shaderParams.value = Vec4(1.0, 1.0, 1.0, 1.0)
-	shaderParams.parameterName = 'FLIRData'
-
 	local outdoorLight = OutdoorLightComponentData()
 	outdoorLight.enable = true
-	outdoorLight.sunColor = Vec3(0.5, 0.4, 0.4)
-	outdoorLight.skyColor = Vec3(0.5, 0.3, 0.3)
+	outdoorLight.sunColor = Vec3(0.6, 0.45, 0.45)
+	outdoorLight.skyColor = Vec3(0.6, 0.45, 0.45)
 	outdoorLight.groundColor = outdoorLight.skyColor/2
+	outdoorLight.sunRotationX = 240
+	outdoorLight.sunRotationY = 25
 	--outdoorLight.skyEnvmapShadowScale = 0.25
-
-	local sky = SkyComponentData()
-	sky.brightnessScale = 0.55--*BrightnessMultiplicator
-
 
 	local colorCorrection = ColorCorrectionComponentData()
 	colorCorrection.enable = true
-	colorCorrection.brightness = Vec3(1, 1, 1)
-	colorCorrection.contrast = Vec3(1.1, 1.1, 1.1)
-	colorCorrection.saturation = Vec3(1.2, 1.15, 1.15)
+	colorCorrection.brightness = Vec3(0.9, 0.9, 0.9)
+	colorCorrection.contrast = Vec3(1, 1, 1)
+	colorCorrection.saturation = Vec3(1.1, 1.1, 1.1)
 
 	local tonemap = TonemapComponentData()
 	--tonemap.minExposure = 0.2
@@ -67,14 +62,8 @@ function Morning(Map)
 
 	local sunFlare = SunFlareComponentData()
 	sunFlare.enable = true
-	sunFlare.element1Size = sunFlare.element1Size*0.25
-	sunFlare.element2Size = sunFlare.element2Size*0.25
-	sunFlare.element3Size = sunFlare.element3Size*0.25
-	sunFlare.element4Size = sunFlare.element4Size*0.25
-	sunFlare.element5Size = sunFlare.element5Size*0.25
+	sunFlare.element1Size =
 
-	--morningData.components:add(shaderParams)
-	--morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
 
 	morningData.components:add(outdoorLight)
 	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
@@ -88,14 +77,11 @@ function Morning(Map)
 	morningData.components:add(fog)
 	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
 
-	morningData.components:add(sky)
-	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
-
 	morningData.components:add(enlighten)
 	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
 
-	morningData.components:add(sunFlare)
-	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
+	--morningData.components:add(sunFlare)
+	--morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
 
 
 	morningPreset = EntityManager:CreateEntity(morningData, LinearTransform())
@@ -111,9 +97,10 @@ function removeMorning()
 	if morningPreset ~= nil then
 		morningPreset:Destroy()
 		morningPreset = nil
+		return true
 	end
 
-	print('removed VES')
+	print('removed VES Morning')
 end
 
 -- Remove the VE state when the mod is unloading.
