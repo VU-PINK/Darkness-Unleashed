@@ -9,7 +9,7 @@ local enlighten = nil
 local sunFlare = nil
 
 
-function Morning(Map)
+function Morning(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnvmapTexture)
 
 	if morningPreset ~= nil then
 		return
@@ -19,6 +19,33 @@ function Morning(Map)
 	morningData.enabled = true
 	morningData.visibility = 1.0
 	morningData.priority = 999999
+
+	sky = SkyComponentData()
+	sky.brightnessScale = 1.80200004578
+	sky.enable = true
+	sky.sunSize = 0.0170000009239
+	sky.sunScale = 0.699999988079
+	print(panoramicTexture)
+	sky.panoramicTexture = TextureAsset(panoramicTexture)
+	print(panoramicAlphaTexture)
+	sky.panoramicAlphaTexture = TextureAsset(panoramicAlphaTexture)
+	print(cEnvmapTexture)
+	sky.staticEnvmapTexture = TextureAsset(cEnvmapTexture)
+	print(SkyGradient)
+	sky.skyGradientTexture = TextureAsset(SkyGradient)
+	sky.brightnessScale = 1
+	sky.realm = 0
+	sky.panoramicUVMinX = 0.280999988317
+	sky.panoramicUVMaxX = 0.298999994993
+	sky.panoramicUVMinY = 0.0630000010133
+	sky.panoramicUVMaxY = 0.307000011206
+	sky.panoramicTileFactor = 1.0
+	sky.panoramicRotation = 0.0
+	sky.staticEnvmapScale = 1
+	sky.skyVisibilityExponent = 1
+	sky.skyEnvmap8BitTexScale = 1
+	sky.customEnvmapScale = 1.0
+	sky.customEnvmapAmbient = 1.0
 
 	local outdoorLight = OutdoorLightComponentData()
 	outdoorLight.enable = true
@@ -60,10 +87,6 @@ function Morning(Map)
 	local enlighten = EnlightenComponentData()
 	enlighten.enable = true
 
-	local sunFlare = SunFlareComponentData()
-	sunFlare.enable = true
-	sunFlare.element1Size =
-
 
 	morningData.components:add(outdoorLight)
 	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
@@ -80,8 +103,8 @@ function Morning(Map)
 	morningData.components:add(enlighten)
 	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
 
-	--morningData.components:add(sunFlare)
-	--morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
+	morningData.components:add(sky)
+	morningData.runtimeComponentCount = morningData.runtimeComponentCount + 1
 
 
 	morningPreset = EntityManager:CreateEntity(morningData, LinearTransform())

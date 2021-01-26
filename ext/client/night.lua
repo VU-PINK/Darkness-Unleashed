@@ -9,8 +9,7 @@ local enlighten = nil
 local sunFlare = nil
 
 
-function Night(Map)
-
+function Night(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnvmapTexture)
 	if nightPreset ~= nil then
 		return
 	end
@@ -26,30 +25,42 @@ function Night(Map)
 
 	local outdoorLight = OutdoorLightComponentData()
 	outdoorLight.enable = true
-	outdoorLight.sunColor = Vec3(0.02, 0.02, 0.02)
-	outdoorLight.skyColor = Vec3(0.01, 0.01, 0.025)
+	outdoorLight.sunColor = Vec3(0.001, 0.001, 0.001)
+	outdoorLight.skyColor = Vec3(0.005, 0.005, 0.005)
 	outdoorLight.groundColor = Vec3(0.01, 0.01, 0.01)
 	outdoorLight.skyEnvmapShadowScale = 0.25
 
-	local sky = SkyComponentData()
-	sky.brightnessScale = 0.00005--*BrightnessMultiplicator
+	sky = SkyComponentData()
+	sky.brightnessScale = 0.60
+	sky.enable = true
 	sky.sunSize = 0
 	sky.sunScale = 0
-	sky.cloudLayer1SunLightIntensity = 0.0001
-	sky.cloudLayer1SunLightPower = 0.0001
-	sky.cloudLayer1AmbientLightIntensity = 0.0005
-	sky.cloudLayer2SunLightIntensity = 0.0001
-	sky.cloudLayer2SunLightPower = 0.0001
-	sky.cloudLayer2AmbientLightIntensity = 0.0005
+	print(panoramicTexture)
+	sky.panoramicTexture = TextureAsset(panoramicTexture)
+	print(panoramicAlphaTexture)
+	sky.panoramicAlphaTexture = TextureAsset(panoramicAlphaTexture)
+	print(cEnvmapTexture)
+	sky.staticEnvmapTexture = TextureAsset(cEnvmapTexture)
+	print(SkyGradient)
+	sky.skyGradientTexture = TextureAsset(SkyGradient)
+	sky.realm = 0
+	sky.panoramicUVMinX = 0.280999988317
+	sky.panoramicUVMaxX = 0.298999994993
+	sky.panoramicUVMinY = 0.0630000010133
+	sky.panoramicUVMaxY = 0.307000011206
+	sky.panoramicTileFactor = 1.0
+	sky.panoramicRotation = 0.0
 	sky.staticEnvmapScale = 0.1
+	sky.skyVisibilityExponent = 1
 	sky.skyEnvmap8BitTexScale = 1
+	sky.customEnvmapScale = 1.0
 	sky.customEnvmapAmbient = 0.05
 
 	local colorCorrection = ColorCorrectionComponentData()
 	colorCorrection.enable = true
 	colorCorrection.brightness = Vec3(1, 1, 1)
-	colorCorrection.contrast = Vec3(1.05, 1.05, 1.05)
-	colorCorrection.saturation = Vec3(1.0, 1.025, 1.15)
+	colorCorrection.contrast = Vec3(1.15, 1.15, 1.15)
+	colorCorrection.saturation = Vec3(1.0, 1.025, 0.8)
 
 	local tonemap = TonemapComponentData()
 	tonemap.minExposure = 0.2
