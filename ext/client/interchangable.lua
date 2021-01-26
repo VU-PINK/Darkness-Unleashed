@@ -1,15 +1,17 @@
 --- Skyboxes
---- Variables
+--- Globals to call
 -- Death Valley Skybox
-MoonNightSkybox = nil
-MoonNightAlpha = nil
-MoonNightGradient = nil
-MoonNightEnvmap = nil
+  MoonNightSkybox = nil
+  MoonNightAlpha = nil
+  MoonNightGradient = nil
+  MoonNightEnvmap = nil
 -- Bandar Desert Skybox
-EveningSkybox = nil
-EveningAlpha = nil
-EveningGradient = nil
-EveningEnvmap = nil
+  EveningSkybox = nil
+  EveningAlpha = nil
+  EveningGradient = nil
+  EveningEnvmap = nil
+
+--- Skybox Functions
 
 function MoonNightSky()
     --- Load Bundles | Death Valley Skybox
