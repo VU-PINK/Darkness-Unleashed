@@ -81,19 +81,19 @@ Events:Subscribe('Level:LoadResources', function()
       local SkyGradientID3 = Guid('1D3B8920-15B3-4DEF-995A-A9E694FCC23C')
       local sEnvMapID4 = Guid('87B8E087-92C5-4243-BC3C-E26B74BACA7D')
 
-      ResourceManager:RegisterInstanceLoadHandlerOnce(partitionID1, PanoramicinstanceID1, function(panoramicTextureInstance)
+      ResourceManager:RegisterInstanceLoadHandler(partitionID1, PanoramicinstanceID1, function(panoramicTextureInstance)
       panoramicTexture = panoramicTextureInstance
       end)
 
-      ResourceManager:RegisterInstanceLoadHandlerOnce(partitionID2, AlphainstanceID2, function(panoramicAlphaTextureInstance)
+      ResourceManager:RegisterInstanceLoadHandler(partitionID2, AlphainstanceID2, function(panoramicAlphaTextureInstance)
       panoramicAlphaTexture = panoramicAlphaTextureInstance
       end)
 
-      ResourceManager:RegisterInstanceLoadHandlerOnce(partitionID3, SkyGradientID3, function(SkyGradientInstance)
+      ResourceManager:RegisterInstanceLoadHandler(partitionID3, SkyGradientID3, function(SkyGradientInstance)
       SkyGradient = SkyGradientInstance
       end)
 
-      ResourceManager:RegisterInstanceLoadHandlerOnce(partitionID4, sEnvMapID4, function(sEnvmapTextureInstance)
+      ResourceManager:RegisterInstanceLoadHandler(partitionID4, sEnvMapID4, function(sEnvmapTextureInstance)
       sEnvmapTexture = sEnvmapTextureInstance
       end)
 
