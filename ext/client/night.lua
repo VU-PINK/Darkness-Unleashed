@@ -10,7 +10,7 @@ local sunFlare = nil
 
 
 function Night(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnvmapTexture)
-	
+
 	if nightPreset ~= nil then
 		return
 	end
