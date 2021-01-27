@@ -9,7 +9,13 @@ local enlighten = nil
 local sunFlare = nil
 
 
-function Night(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnvmapTexture)
+function Night(Map)
+
+	local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+	if badstuff ~= nil then
+					badstuff = GameRenderSettings(badstuff)
+					badstuff.edgeModelsEnable = false
+	end
 
 	if nightPreset ~= nil then
 		return
@@ -31,19 +37,19 @@ function Night(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnvma
 	outdoorLight.groundColor = Vec3(0.01, 0.01, 0.01)
 	outdoorLight.skyEnvmapShadowScale = 0.25
 
-	sky = SkyComponentData()
+	local sky = SkyComponentData()
 	sky.brightnessScale = 0.60
 	sky.enable = true
 	sky.sunSize = 0
 	sky.sunScale = 0
-	print(panoramicTexture)
-	sky.panoramicTexture = TextureAsset(panoramicTexture)
-	print(panoramicAlphaTexture)
-	sky.panoramicAlphaTexture = TextureAsset(panoramicAlphaTexture)
-	print(cEnvmapTexture)
-	sky.staticEnvmapTexture = TextureAsset(cEnvmapTexture)
-	print(SkyGradient)
-	sky.skyGradientTexture = TextureAsset(SkyGradient)
+	print(MoonNightSky)
+	sky.panoramicTexture = TextureAsset(MoonNightSky)
+	print(MoonNightAlpha)
+	sky.panoramicAlphaTexture = TextureAsset(MoonNightAlpha)
+	print(MoonNightEnvmap)
+	sky.staticEnvmapTexture = TextureAsset(MoonNightEnvmap)
+	print(MoonNightGradient)
+	sky.skyGradientTexture = TextureAsset(MoonNightGradient)
 	sky.realm = 0
 	sky.panoramicUVMinX = 0.280999988317
 	sky.panoramicUVMaxX = 0.298999994993
@@ -130,6 +136,13 @@ function removeNight()
 		nightPreset:Destroy()
 		nightPreset = nil
 		return true
+	end
+
+	local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+	if badstuff ~= nil then
+			badstuff = GameRenderSettings(badstuff)
+			badstuff.edgeModelsEnable = true
+			print('Edge Models reset')
 	end
 
 	print('removed VES Night')

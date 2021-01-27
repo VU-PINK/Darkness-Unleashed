@@ -8,8 +8,17 @@ local cc = nil
 local enlighten = nil
 local sunFlare = nil
 
+require 'interchangable'
 
-function Morning(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnvmapTexture)
+
+function Morning(Map)
+
+	local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+	if badstuff ~= nil then
+					badstuff = GameRenderSettings(badstuff)
+					badstuff.edgeModelsEnable = false
+					print('Removed Edge Models')
+	end
 
 	if morningPreset ~= nil then
 		return
@@ -20,30 +29,30 @@ function Morning(Map, panoramicTexture, panoramicAlphaTexture, SkyGradient, cEnv
 	morningData.visibility = 1.0
 	morningData.priority = 999999
 
-	sky = SkyComponentData()
-	sky.brightnessScale = 1.80200004578
+	local sky = SkyComponentData()
+	sky.brightnessScale = 1.10399997234
 	sky.enable = true
-	sky.sunSize = 0.0170000009239
-	sky.sunScale = 0.699999988079
-	print(panoramicTexture)
-	sky.panoramicTexture = TextureAsset(panoramicTexture)
-	print(panoramicAlphaTexture)
-	sky.panoramicAlphaTexture = TextureAsset(panoramicAlphaTexture)
-	print(cEnvmapTexture)
-	sky.staticEnvmapTexture = TextureAsset(cEnvmapTexture)
-	print(SkyGradient)
-	sky.skyGradientTexture = TextureAsset(SkyGradient)
+	sky.sunSize = 0.0
+	sky.sunScale = 50.0
+	print(EveningSkybox)
+	sky.panoramicTexture = TextureAsset(EveningSkybox)
+	print(EveningAlpha)
+	sky.panoramicAlphaTexture = TextureAsset(EveningAlpha)
+	print(EveningEnvmap)
+	sky.staticEnvmapTexture = TextureAsset(EveningEnvmap)
+	print(EveningGradient)
+	sky.skyGradientTexture = TextureAsset(EveningGradient)
 	sky.brightnessScale = 1
 	sky.realm = 0
-	sky.panoramicUVMinX = 0.280999988317
-	sky.panoramicUVMaxX = 0.298999994993
-	sky.panoramicUVMinY = 0.0630000010133
-	sky.panoramicUVMaxY = 0.307000011206
+	sky.panoramicUVMinX = 0.0
+	sky.panoramicUVMaxX = 1.0
+	sky.panoramicUVMinY = 0.0
+	sky.panoramicUVMaxY = 1.0
 	sky.panoramicTileFactor = 1.0
 	sky.panoramicRotation = 0.0
 	sky.staticEnvmapScale = 1
 	sky.skyVisibilityExponent = 1
-	sky.skyEnvmap8BitTexScale = 1
+	sky.skyEnvmap8BitTexScale = 0.25
 	sky.customEnvmapScale = 1.0
 	sky.customEnvmapAmbient = 1.0
 
@@ -121,6 +130,13 @@ function removeMorning()
 		morningPreset:Destroy()
 		morningPreset = nil
 		return true
+	end
+
+	local badstuff = ResourceManager:GetSettings("GameRenderSettings")
+	if badstuff ~= nil then
+			badstuff = GameRenderSettings(badstuff)
+			badstuff.edgeModelsEnable = true
+			print('Edge Models reset')
 	end
 
 	print('removed VES Morning')
