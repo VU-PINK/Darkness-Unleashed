@@ -1,6 +1,6 @@
 require 'preset_night'
 require 'preset_bright_night'
-require 'settings'
+require '__shared/settings'
 require 'interchangable'
 require 'emitters'
 local level = nil

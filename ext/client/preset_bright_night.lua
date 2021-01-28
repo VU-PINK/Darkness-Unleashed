@@ -9,7 +9,7 @@ local enlighten = nil
 local sunFlare = nil
 
 --require 'interchangable'
-require 'settings'
+require '__shared/settings'
 require 'functions'
 
 function Bright_Night(Map)

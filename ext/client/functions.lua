@@ -1,4 +1,4 @@
-require 'settings' --settings
+require '__shared/settings' --settings
 
 --------------------------------------------------------------------------------
 
