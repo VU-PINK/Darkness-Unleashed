@@ -1,4 +1,4 @@
-# Darkness Unleashed Live-WIP-Testing-Build
+# Darkness Unleashed WIP-Testing-Build
 With this build you can test new features! (for now less features tho duh)
 - Faster Code (due to complete almost full rewrite)
 - Fixes Bugs from 1.0.0
