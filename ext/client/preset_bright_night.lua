@@ -8,7 +8,9 @@ local cc = nil
 local enlighten = nil
 local sunFlare = nil
 
---require 'interchangable'
+-- Based on Code by Orfeas Zafeiris
+-- expanded by IllustrisJack
+
 require '__shared/settings'
 require 'functions'
 

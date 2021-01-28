@@ -3,6 +3,8 @@ require 'preset_bright_night'
 require '__shared/settings'
 require 'interchangable'
 require 'emitters'
+require 'patchmapcomponents'
+
 local level = nil
 
 function StandardVE()
