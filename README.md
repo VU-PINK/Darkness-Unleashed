@@ -15,12 +15,13 @@ Tested maps that SHOULD work:
 - Sharqi
 - Bazaar
 - Seine
-- Gulf
+- Gulf (Ugly Water tho)
 - Alborz
 - Metro
 - Shield
 - Nebandan
 - Ziba
+- Karkand (Ugly Water tho)
 
 
 Needs PREMIUM or Armored Kill DLC to work.
