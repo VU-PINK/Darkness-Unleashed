@@ -6,7 +6,7 @@ local bluefilter = standardusebluefilter
 function getCurrentVersion()
     options = HttpOptions({}, 10);
     options.verifyCertificate = false;
-    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/live/mod.json", options);
+    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/live-wip/mod.json", options);
     if res.status ~= 200 then
         return null;
     end
