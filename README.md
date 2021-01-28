@@ -23,9 +23,10 @@ Tested maps that SHOULD work:
 - Ziba
 
 
+Needs PREMIUM or Armored Kill DLC to work.
+
 
 Download and/or contribute:
 https://github.com/IllustrisJack/Darkness-Unleashed
 
-Join our Team: https://discord.gg/jy2x8gUany
-
+Join our Team: https://discord.link/vupink
