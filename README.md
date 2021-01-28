@@ -20,6 +20,7 @@ Tested maps that SHOULD work:
 - Metro
 - Shield
 - Nebandan
+- Ziba
 
 
 
