@@ -17,14 +17,14 @@
 
     --- Load Bundles | Death Valley Skybox
     -- Mount
-    Events:Subscribe('Level:LoadResources', function()
+Events:Subscribe('Level:LoadResources', function()
 
-    	    ResourceManager:MountSuperBundle('levels/xp3_valley/xp3_valley') -- Death Valley Bright Night Skybox & Star Clouds
+    ResourceManager:MountSuperBundle('levels/xp3_valley/xp3_valley') -- Death Valley Bright Night Skybox & Star Clouds
 
-    	end)
+end)
 
     -- Inject
-    Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compartment)
+Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compartment)
     	    if #bundles == 1 and bundles[1] == SharedUtils:GetLevelName() then
     	        print('Injecting bundles.')
 
@@ -69,5 +69,4 @@
               end)
 
     	    end
-    end)
-end
+end)
