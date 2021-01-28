@@ -31,4 +31,4 @@ Needs PREMIUM or Armored Kill DLC to work.
 Download and/or contribute:
 https://github.com/IllustrisJack/Darkness-Unleashed
 
-Join our Team: https://discord.link/vupink
+To join our Team and join development add us on Discord: Lesley#0242 & IllustrisJack#5355
