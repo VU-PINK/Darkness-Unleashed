@@ -1,5 +1,5 @@
 # Darkness Unleashed Live-WIP-Testing-Build
-With this build you can test new features!
+With this build you can test new features! (for now less features tho duh)
 - Faster Code (due to complete almost full rewrite)
 - Skyboxes!
 - No Morning/Evening Preset
