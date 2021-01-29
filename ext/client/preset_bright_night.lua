@@ -40,13 +40,13 @@ Multipliers(Map)
 	sky.sunSize = 0
 	sky.sunScale = 0
 	print(MoonNightSkybox)
-	sky.panoramicTexture = TextureAsset(MoonNightSkybox)
+	sky.panoramicTexture = TextureAsset(_G.MoonNightSkybox)
 	print(MoonNightAlpha)
-	sky.panoramicAlphaTexture = TextureAsset(MoonNightAlpha)
+	sky.panoramicAlphaTexture = TextureAsset(_G.MoonNightAlpha)
 	print(MoonNightEnvmap)
-	sky.staticEnvmapTexture = TextureAsset(MoonNightEnvmap)
+	sky.staticEnvmapTexture = TextureAsset(_G.MoonNightEnvmap)
 	print(MoonNightGradient)
-	sky.skyGradientTexture = TextureAsset(MoonNightGradient)
+	sky.skyGradientTexture = TextureAsset(_G.MoonNightGradient)
 	sky.realm = 0
 	sky.panoramicUVMinX = 0.280999988317
 	sky.panoramicUVMaxX = 0.298999994993
@@ -60,7 +60,7 @@ Multipliers(Map)
 	sky.customEnvmapScale = 1.0
 	sky.customEnvmapAmbient = 0.05
 	print(MoonNightStars)
-	sky.cloudLayer1Texture = TextureAsset(MoonNightStars)
+	sky.cloudLayer1Texture = TextureAsset(_G.MoonNightStars)
 	sky.cloudLayer1Altitude = 2000000.0
 	sky.cloudLayer1TileFactor = 0.600000023842
 	sky.cloudLayer1Rotation = 237.072998047
