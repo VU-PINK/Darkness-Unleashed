@@ -1,5 +1,3 @@
-
-
 --Configure Smoke, Muzzle & Emmiters
 Events:Subscribe('Partition:Loaded', function(partition)
 	for _, instance in pairs(partition.instances) do
