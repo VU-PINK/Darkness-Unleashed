@@ -39,13 +39,13 @@ Multipliers(Map)
 	sky.enable = true
 	sky.sunSize = 0
 	sky.sunScale = 0
-	print(MoonNightSkybox)
+	print(_G.MoonNightSkybox)
 	sky.panoramicTexture = TextureAsset(_G.MoonNightSkybox)
-	print(MoonNightAlpha)
+	print(_G.MoonNightAlpha)
 	sky.panoramicAlphaTexture = TextureAsset(_G.MoonNightAlpha)
-	print(MoonNightEnvmap)
+	print(_G.MoonNightEnvmap)
 	sky.staticEnvmapTexture = TextureAsset(_G.MoonNightEnvmap)
-	print(MoonNightGradient)
+	print(_G.MoonNightGradient)
 	sky.skyGradientTexture = TextureAsset(_G.MoonNightGradient)
 	sky.realm = 0
 	sky.panoramicUVMinX = 0.280999988317
