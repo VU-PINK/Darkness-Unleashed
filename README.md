@@ -25,7 +25,7 @@ Tested maps that SHOULD work:
 - Karkand (Ugly Water tho)
 
 
-Needs PREMIUM or Armored Kill DLC to work.
+**Needs PREMIUM or Armored Kill DLC to work.**
 
 
 Download and/or contribute:
