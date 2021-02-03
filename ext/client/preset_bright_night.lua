@@ -146,5 +146,5 @@ end
 
 -- Remove the VE state when the mod is unloading.
 Events:Subscribe('Extension:Unloading', function()
-	removeNight()
+	removebNight()
 end)
