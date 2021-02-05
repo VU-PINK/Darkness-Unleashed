@@ -222,7 +222,7 @@ Events:Subscribe('Player:Respawn', function(player)
             print('Calling Preset Night on Sharqi Peninsula')
             Night(12)
         elseif Map['Sharqi.Bright_Night'] then
-            print('Calling Preset Bright Night on Teheran Highway')
+            print('Calling Preset Bright Night on Sharqi Peninsula')
             Bright_Night(12)
         elseif Map[12] == nil then
             print('Using Standard')
