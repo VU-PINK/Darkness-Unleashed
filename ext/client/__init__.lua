@@ -25,7 +25,7 @@ end)
   -- Apply VE
   -- Vanilla Maps
   ------------------------------------------------------------------------
-Events:Subscribe('Player:Respawn', function(player)
+Events:Subscribe('Level:Loaded', function(levelName, gameMode)
   -- Bazaar
   if string.find(level, "MP_001") then
         if Map['Bazaar.Night'] then
