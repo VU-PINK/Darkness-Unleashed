@@ -10,11 +10,11 @@ local level = nil
 function StandardVE()
   removeNight()
   removebNight()
+  removeNVGadget()
 end
 
-Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+Events:Subscribe('Level:Loaded', function(levelName, gameMode, isDedicatedServer)
     StandardVE()
-    level = levelName
 end)
 
 Events:Subscribe('Level:Destroy', function()
@@ -25,7 +25,8 @@ end)
   -- Apply VE
   -- Vanilla Maps
   ------------------------------------------------------------------------
-Events:Subscribe('Level:Loaded', function(levelName, gameMode)
+Events:Subscribe('Level:Loaded', function()
+  level = SharedUtils:GetLevelName()
   -- Bazaar
   if string.find(level, "MP_001") then
         if Map['Bazaar.Night'] then
@@ -222,7 +223,7 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
             print('Calling Preset Night on Sharqi Peninsula')
             Night(12)
         elseif Map['Sharqi.Bright_Night'] then
-            print('Calling Preset Bright Night on Sharqi Peninsula')
+            print('Calling Preset Bright Night on Teheran Highway')
             Bright_Night(12)
         elseif Map[12] == nil then
             print('Using Standard')
