@@ -1,160 +1,198 @@
---Settings
+local bnightPreset = nil
+local shaderParams = nil
+local outdoorLight = nil
+local sky = nil
+local fog = nil
+local tonemap = nil
+local cc = nil
+local enlighten = nil
+local sunFlare = nil
+NVGadgetActivated = nil
+
+-- Based on Code by Orfeas Zafeiris
+-- expanded by IllustrisJack
+
+require '__shared/settings'
+require 'functions'
+require 'preset_bright_night_nightvisiongadget'
+
+function Bright_Night(Map)
+
+Multipliers(Map)
+
+	if bnightPreset ~= nil then
+		return
+	end
+
+	local bnightData = VisualEnvironmentEntityData()
+	bnightData.enabled = true
+	bnightData.visibility = 1.0
+	bnightData.priority = 999999
+
+	local outdoorLight = OutdoorLightComponentData()
+  outdoorLight.enable = true
+  outdoorLight.realm = 0
+
+  outdoorLight.skyColor = Vec3(0.04, 0.04, 0.04)
+  outdoorLight.groundColor = Vec3(0.015, 0.015, 0.015)
+  outdoorLight.sunColor = Vec3(0.2, 0.2, 0.2)
+
+  outdoorLight.cloudShadowEnable = true
+  outdoorLight.cloudShadowSize = 2000.0
+  outdoorLight.cloudShadowExponent = 3
+  outdoorLight.cloudShadowCoverage = 0.44
+  outdoorLight.cloudShadowSpeed = Vec2(-15.000000, -15.000000)
+
+  outdoorLight.skyLightAngleFactor = 0.0089999996125698
+  outdoorLight.sunSpecularScale = 0.25
+  outdoorLight.skyEnvmapShadowScale = 0.3
+  outdoorLight.sunShadowHeightScale = 0.3
+
+  outdoorLight.translucencyDistortion = 0.10000000149012
+  outdoorLight.translucencyAmbient = 0
+  outdoorLight.translucencyScale = 1
+  outdoorLight.translucencyPower = 80.0
+
+	outdoorLight.sunRotationX = 255.48399353027
+	outdoorLight.sunRotationY = 25
+
+	local sky = SkyComponentData()
+	sky.brightnessScale = 0.3
+	sky.enable = true
+	sky.sunSize = 0.013
+	sky.sunScale = 0.6
+	sky.panoramicTexture = TextureAsset(_G.MoonNightSkybox)
+	sky.panoramicAlphaTexture = TextureAsset(_G.MoonNightAlpha)
+	sky.staticEnvmapTexture = TextureAsset(_G.MoonNightEnvmap)
+	sky.skyGradientTexture = TextureAsset(_G.MoonNightGradient)
+	sky.realm = 2
+	sky.panoramicUVMinX = 0.280999988317
+	sky.panoramicUVMaxX = 0.298999994993
+	sky.panoramicUVMinY = 0.0630000010133
+	sky.panoramicUVMaxY = 0.307000011206
+	sky.panoramicTileFactor = 1.0
+	sky.panoramicRotation = 260
+	sky.staticEnvmapScale = 1
+	sky.skyVisibilityExponent = 0.2
+	sky.skyEnvmap8BitTexScale = 1
+	sky.customEnvmapScale = 1
+	sky.customEnvmapAmbient = 1
+	sky.cloudLayer1Texture = TextureAsset(_G.MoonNightStars)
+	sky.cloudLayer1Altitude = 2000000.0
+	sky.cloudLayer1TileFactor = 0.600000023842
+	sky.cloudLayer1Rotation = 237.072998047
+	sky.cloudLayer1Speed = -0.0010000000475
+	sky.cloudLayer1SunLightIntensity = 0.3
+	sky.cloudLayer1SunLightPower = 0.3
+	sky.cloudLayer1AmbientLightIntensity = 0.5
+	sky.cloudLayer1AlphaMul = 0.25
+
+	local colorCorrection = ColorCorrectionComponentData()
+	colorCorrection.enable = true
+	colorCorrection.brightness = Vec3(1, 1, 1)
+	colorCorrection.contrast = Vec3(1.1, 1.1, 1.1)
+	colorCorrection.saturation = Vec3(1, 1, 1.05)
+
+	local tonemap = TonemapComponentData()
+	tonemap.tonemapMethod = 2
+	tonemap.minExposure = 0.25
+	tonemap.maxExposure = 1.75
+	tonemap.exposureAdjustTime = 1.75
+	tonemap.bloomScale = Vec3(0.2, 0.2, 0.2)
+
+	local fog = FogComponentData()
+	fog.enable = true
+  fog.realm = 0
+
+  fog.start = 25
+  fog.endValue = 800
+  fog.curve = Vec4(0.4, -0.77, 1.3, -0.01)
+  fog.fogDistanceMultiplier = 1.0
+  fog.fogGradientEnable = true
+
+  fog.fogColorEnable = true
+  fog.fogColor = Vec3(0.08, 0.0615, 0.0157)
+  fog.fogColorCurve = Vec4(6.1, -11.7, 5.62, -0.18)
+  fog.fogColorStart = 0
+  fog.fogColorEnd = 5000
+
+  fog.transparencyFadeStart = 0
+  fog.transparencyFadeClamp = 1
+  fog.transparencyFadeEnd = 150
+
+  fog.heightFogEnable = false
+
+	local enlighten = EnlightenComponentData()
+	enlighten.enable = false
+	enlighten.bounceScale = 1
+	enlighten.sunScale = 0.00002
+	enlighten.skyBoxEnable = false
+
+	local sunFlare = SunFlareComponentData()
+	sunFlare.enable = true
+
+	local character = CharacterLightingComponentData()
+	character.characterLightEnable = true
+	character.topLight = Vec3(0.1, 0.1, 0.1)
+	character.bottomLight = Vec3(0.1, 0.1, 0.1)
 
 
--- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
-lensflareEnabled = false
-sunflareEnabled = true
-standardusebluefilter = false
+	bnightData.components:add(outdoorLight)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
--- Use as such: ['Mapname.Presetname'] | Presets: Night, Bright_Night, Morning, Evening
-    -- e.g ['Bazaar.Night'] or ['Bazaar.Morning']
-    -- Setting Presetname to "Standard" will use Vanilla Map; Alternative: set true, to --> false,
+	bnightData.components:add(colorCorrection)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-    -- Select Maps and Time:
-        Map = {
+	bnightData.components:add(tonemap)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-        --Standard
-        ['Bazaar.Bright_Night']                     = true,             --MP_001      | Grand Bazaar
-        ['Teheran.Bright_Night']                    = true,             --MP_003      | Teheran Highway
-        ['Caspian.Bright_Night']                    = true,             --MP_007      | Caspian Border
-        ['Seine.Bright_Night']                      = true,             --MP_011      | Seine Crossing
-        ['Firestorm.Bright_Night']                  = true,             --MP_012      | Operation Firestorm
-        ['Davamand.Bright_Night']                   = true,             --MP_013      | Davamand Peak
-        ['Noshahr.Bright_Night']                    = true,             --MP_017      | Noshahr Canals
-        ['Kharg.Bright_Night']                      = true,             --MP_018      | Kharg Island
-        ['Metro.Bright_Night']                      = true,             --MP_Subway   | Operation Metro
+	bnightData.components:add(fog)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-        --DLC Back to Karkand
-        ['Karkand.Bright_Night']                    = true,             --XP1_001     | Strike at Karkand
-        ['Gulf.Bright_Night']                       = true,             --XP1_002     | Gulf of Oman
-        ['Sharqi.Bright_Night']                     = true,             --XP1_003     | Sharqi Peninsula
-        ['Wake.Bright_Night']                       = true,             --XP1_004     | Wake Island
+	bnightData.components:add(sky)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-        --DLC Close Quarters
-        ['Donya.Bright_Night']                      = true,             --XP2_Palace  | Donya Fortress
-        ['Operation925.Bright_Night']               = true,             --XP2_Office  | Operation 925
-        ['Scrapmetal.Bright_Night']                 = true,             --XP2_Factory | Scrapmetal
-        ['Ziba.Bright_Night']                       = true,             --XP2_Skybar  | Ziba Tower
+	bnightData.components:add(enlighten)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-        --DLC Armored Kill
-        ['Alborz.Bright_Night']                     = true,             --XP3_Alborz  | Alborz Mountains
-        ['Shield.Bright_Night']                     = true,             --XP3_Shield  | Armored Shield
-        ['Bandar.Bright_Night']                     = true,             --XP3_Desert  | Bandar Desert
-        ['Death.Bright_Night']                      = true,             --XP3_Valley  | Death Valley
+	bnightData.components:add(sunFlare)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-        --DLC Aftermath
-        ['Azadi.Bright_Night']                      = true,             --XP4_Parl    | Azadi Palace
-        ['Epicenter.Bright_Night']                  = true,             --XP4_Quake   | Epicenter
-        ['Markaz.Bright_Night']                     = true,             --XP4_FD      | Markaz Monolith
-        ['Talah.Bright_Night']                      = true,             --XP4_Rubble  | Talah Market
+	bnightData.components:add(character)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-        --DLC End Game
-        ['Riverside.Bright_Night']                  = true,             --XP5_001     | Operation Riverside
-        ['Nebandan.Bright_Night']                   = true,             --XP5_002     | Nebandan Flats
-        ['Kiasar.Bright_Night']                     = true,             --XP5_003     | Kiasar Railroad
-        ['Pipeline.Bright_Night']                   = true,             --XP5_004     | Sabalan Pipeline
+	bnightPreset = EntityManager:CreateEntity(bnightData, LinearTransform())
 
-        }
+	if bnightPreset ~= nil then
+		bnightPreset:Init(Realm.Realm_Client, true)
+	end
+NVGadgetActivated = nil
+end
 
+function removebNight()
 
--- Fog and Brightness Settings - Night Preset
--- Brightness: recommended max: {1.5} | higher values will raise brightness
--- Fog: recommended: {not tested} | lower values increase fog, higher values decrease fog
+	if bnightPreset ~= nil then
+		bnightPreset:Destroy()
+		bnightPreset = nil
+		print('removed VES Bright_Night')
+		return true
+	end
+end
 
-generalbrightness                             = {1.0}
-generalfog                                    = {1.0}
+-- Remove the VE state when the mod is unloading.
+Events:Subscribe('Extension:Unloading', function()
+	removebNight()
+end)
 
---Map Settings - Night Preset
---Standard
+-- Night Vision "Gadget"
+Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
+    if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
 
-Bazaar_brightnessMultiplier                   = {1.0}
-Bazaar_fogMultiplier                          = {1.0}
+			if NVGadgetActivated == nil then
+				NightVisionGadget()
+			elseif NVGadgetActivated == true then
+				removeNVGadget()
+			end
 
-Teheran_brightnessMultiplier                  = {1.0}
-Teheran_fogMultiplier                         = {1.0}
-
-Caspian_brightnessMultiplier                  = {1.0}
-Caspian_fogMultiplier                         = {1.0}
-
-Seine_brightnessMultiplier                    = {1.0}
-Seine_fogMultiplier                           = {1.0}
-
-Firestorm_brightnessMultiplier                = {1.0}
-Firestorm_fogMultiplier                       = {1.0}
-
-Davamand_brightnessMultiplier                 = {1.0}
-Davamand_fogMultiplier                        = {1.0}
-
-Noshahr_brightnessMultiplier                  = {1.0}
-Noshahr_fogMultiplier                         = {1.0}
-
-Kharg_brightnessMultiplier                    = {1.0}
-Kharg_fogMultiplier                           = {1.0}
-
-Metro_brightnessMultiplier                    = {1.0}
-Metro_fogMultiplier                           = {1.0}
-
-------------------------- DLC - Back to Karkand ----------------------
-Karkand_brightnessMultiplier                  = {1.0}
-Karkand_fogMultiplier                         = {1.0}
-
-Gulf_brightnessMultiplier                     = {1.0}
-Gulf_fogMultiplier                            = {1.0}
-
-Sharqi_brightnessMultiplier                   = {1.0}
-Sharqi_fogMultiplier                          = {1.0}
-
-Wake_brightnessMultiplier                     = {1.0}
-Wake_fogMultiplier                            = {1.0}
-
------------------------ DLC - Close Quarters -------------------------
-Donya_brightnessMultiplier                    = {1.0}
-Donya_fogMultiplier                           = {1.0}
-
-Operation925_brightnessMultiplier             = {1.0}
-Operation925_fogMultiplier                    = {1.0}
-
-Scrapmetal_brightnessMultiplier               = {1.0}
-Scrapmetal_fogMultiplier                      = {1.0}
-
-Ziba_brightnessMultiplier                     = {1.0}
-Ziba_fogMultiplier                            = {1.0}
-
----------------------- DLC - Armored Kill ----------------------------
-Alborz_brightnessMultiplier                   = {1.0}
-Alborz_fogMultiplier                          = {1.0}
-
-Shield_brightnessMultiplier                   = {1.0}
-Shield_fogMultiplier                          = {1.0}
-
-Bandar_brightnessMultiplier                   = {1.0}
-Bandar_fogMultiplier                          = {1.0}
-
-Death_brightnessMultiplier                    = {1.0}
-Death_fogMultiplier                           = {1.0}
-
------------------------ DLC - Aftermath ------------------------------
-Azadi_brightnessMultiplier                    = {1.0}
-Azadi_fogMultiplier                           = {1.0}
-
-Epicenter_brightnessMultiplier                = {1.0}
-Epicenter_fogMultiplier                       = {1.0}
-
-Markaz_brightnessMultiplier                   = {1.0}
-Markaz_fogMultiplier                          = {1.0}
-
-Talah_brightnessMultiplier                    = {1.0}
-Talah_fogMultiplier                           = {1.0}
-
------------------------ DLC - End Game -------------------------------
-Riverside_brightnessMultiplier                = {1.0}
-Riverside_fogMultiplier                       = {1.0}
-
-Nebandan_brightnessMultiplier                 = {1.0}
-Nebandan_fogMultiplier                        = {1.0}
-
-Kiasar_brightnessMultiplier                   = {1.0}
-Kiasar_fogMultiplier                          = {1.0}
-
-Pipeline_brightnessMultiplier                 = {1.0}
-Pipeline_fogMultiplier                        = {1.0}
+		end
+end)
