@@ -2,8 +2,8 @@
 
 
 -- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
---lensflareEnabled = false
---sunflareEnabled = true
+lensflareEnabled = false
+sunflareEnabled = true
 standardusebluefilter = false
 
 -- Use as such: ['Mapname.Presetname'] | Presets: Night, Bright_Night, Morning, Evening
