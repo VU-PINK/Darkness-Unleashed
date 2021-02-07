@@ -7,35 +7,31 @@ local tonemap = nil
 local cc = nil
 local enlighten = nil
 local sunFlare = nil
-NVGadgetActivated = nil
 
 -- Based on Code by Orfeas Zafeiris
 -- expanded by IllustrisJack
 
 require '__shared/settings'
 require 'functions'
-require 'preset_bright_night_nightvisiongadget'
 
-function Bright_Night(Map)
+function NightVisionGadget()
 
-Multipliers(Map)
-
-	if bnightPreset ~= nil then
+	if bnightNVGadget ~= nil then
 		return
 	end
 
 	local bnightData = VisualEnvironmentEntityData()
 	bnightData.enabled = true
 	bnightData.visibility = 1.0
-	bnightData.priority = 999999
+	bnightData.priority = 1000000
 
 	local outdoorLight = OutdoorLightComponentData()
   outdoorLight.enable = true
   outdoorLight.realm = 0
 
-  outdoorLight.skyColor = Vec3(0.04, 0.04, 0.04)
-  outdoorLight.groundColor = Vec3(0.015, 0.015, 0.015)
-  outdoorLight.sunColor = Vec3(0.2, 0.2, 0.2)
+  outdoorLight.skyColor = Vec3(0.0399999991059, 0.0399999991059, 0.0399999991059)
+  outdoorLight.groundColor = Vec3(0.0299999993294, 0.0299999993294, 0.0299999993294)
+  outdoorLight.sunColor = Vec3(0.10000000149, 0.10000000149, 0.10000000149)
 
   outdoorLight.cloudShadowEnable = true
   outdoorLight.cloudShadowSize = 2000.0
@@ -44,20 +40,20 @@ Multipliers(Map)
   outdoorLight.cloudShadowSpeed = Vec2(-15.000000, -15.000000)
 
   outdoorLight.skyLightAngleFactor = 0.0089999996125698
-  outdoorLight.sunSpecularScale = 0.25
-  outdoorLight.skyEnvmapShadowScale = 0.3
+  outdoorLight.sunSpecularScale = 0
+  outdoorLight.skyEnvmapShadowScale = 0
   outdoorLight.sunShadowHeightScale = 0.3
 
-  outdoorLight.translucencyDistortion = 0.10000000149012
+  outdoorLight.translucencyDistortion = 0
   outdoorLight.translucencyAmbient = 0
-  outdoorLight.translucencyScale = 1
-  outdoorLight.translucencyPower = 80.0
+  outdoorLight.translucencyScale = 0
+  outdoorLight.translucencyPower = 0
 
 	outdoorLight.sunRotationX = 255.48399353027
 	outdoorLight.sunRotationY = 25
 
 	local sky = SkyComponentData()
-	sky.brightnessScale = 0.3
+	sky.brightnessScale = 0.5
 	sky.enable = true
 	sky.sunSize = 0.013
 	sky.sunScale = 0.6
@@ -88,53 +84,85 @@ Multipliers(Map)
 	sky.cloudLayer1AlphaMul = 0.25
 
 	local colorCorrection = ColorCorrectionComponentData()
-	colorCorrection.enable = true
+	--[[colorCorrection.enable = true
 	colorCorrection.brightness = Vec3(1, 1, 1)
 	colorCorrection.contrast = Vec3(1.1, 1.1, 1.1)
-	colorCorrection.saturation = Vec3(1, 1, 1.05)
+	colorCorrection.saturation = Vec3(1, 1, 1)]]
+
+	colorCorrection.enable = true
+	colorCorrection.brightness = Vec3(1.5, 1.5, 1.5)
+	colorCorrection.contrast = Vec3(1.39999997616, 1.39999997616, 1.39999997616)
+	colorCorrection.saturation = Vec3(0.800000011921, 0.800000011921, 0.800000011921)
+	colorCorrection.hue = 0.0
+	colorCorrection.colorGradingTexture = TextureAsset(ResourceManager:SearchForInstanceByGuid(Guid('E79F27A1-7B97-4A63-8ED8-372FE5012A31')))
+	colorCorrection.colorGradingEnable = true
+
+	-- FilmGrainComponentData
+	local grain = FilmGrainComponentData()
+	grain.enable = true
+	grain.realm = 0
+	grain.textureScale = Vec2(0.40000000596, 0.40000000596)
+	grain.texture = TextureAsset(ResourceManager:SearchForInstanceByGuid(Guid('FA9F620D-DEC7-4B88-88AC-84B3E0A07BDC')))
+
+	grain.randomEnable = true
+	grain.linearFilteringEnable = false
+	grain.colorScale = Vec3(0.10, 0.10, 0.10)
 
 	local tonemap = TonemapComponentData()
-	tonemap.tonemapMethod = 2
-	tonemap.minExposure = 0.25
-	tonemap.maxExposure = 1.75
-	tonemap.exposureAdjustTime = 1.75
-	tonemap.bloomScale = Vec3(0.2, 0.2, 0.2)
+	tonemap.tonemapMethod = 1
+	tonemap.minExposure = 0.4
+	tonemap.maxExposure = 2.0
+	tonemap.bloomScale = Vec3(1.2, 1.2, 1.2)
+	tonemap.exposureAdjustTime = 10
 
 	local fog = FogComponentData()
 	fog.enable = true
   fog.realm = 0
 
-  fog.start = 25
-  fog.endValue = 800
-  fog.curve = Vec4(0.4, -0.77, 1.3, -0.01)
+  fog.start = 0.0
+  fog.endValue = 250.0
+  fog.curve = Vec4(1.11925065517, -1.70694792271, 1.49723529816, -0.148290395737)
   fog.fogDistanceMultiplier = 1.0
   fog.fogGradientEnable = true
 
   fog.fogColorEnable = true
-  fog.fogColor = Vec3(0.08, 0.0615, 0.0157)
-  fog.fogColorCurve = Vec4(6.1, -11.7, 5.62, -0.18)
+  fog.fogColor = Vec3(0.0740000009537, 0.0740000009537, 0.0740000009537)
+  fog.fogColorCurve = Vec4(2.60263705254, -4.24849796295, 2.82176566124, -0.359705537558)
   fog.fogColorStart = 0
-  fog.fogColorEnd = 5000
+  fog.fogColorEnd = 10000
 
   fog.transparencyFadeStart = 0
-  fog.transparencyFadeClamp = 1
-  fog.transparencyFadeEnd = 150
+  fog.transparencyFadeClamp = 0.600000023842
+  fog.transparencyFadeEnd = 1.0
 
   fog.heightFogEnable = false
 
 	local enlighten = EnlightenComponentData()
-	enlighten.enable = false
-	enlighten.bounceScale = 1
-	enlighten.sunScale = 0.00002
-	enlighten.skyBoxEnable = false
+	enlighten.enable = true
 
 	local sunFlare = SunFlareComponentData()
-	sunFlare.enable = true
+	sunFlare.enable = false
 
-	local character = CharacterLightingComponentData()
-	character.characterLightEnable = true
-	character.topLight = Vec3(0.1, 0.1, 0.1)
-	character.bottomLight = Vec3(0.1, 0.1, 0.1)
+	local shaderParams = ShaderParamsComponentData()
+	shaderParams.value = Vec4(0.55, 0.55, 0.55, 0.55)
+	shaderParams.parameterName = 'FLIRData'
+
+	-- VignetteComponentData
+	local vignette = VignetteComponentData()
+	vignette.enable = true
+	vignette.realm = 0
+
+	vignette.scale = Vec2(2.8, 2.4)
+	vignette.color = Vec3(0.1, 0.1, 0.1)
+	vignette.exponent = 2.0
+	vignette.opacity = 0.6
+
+	local motion = MotionBlurComponentData()
+	motion.motionBlurEnable = true
+
+	motion.cutoffGradientScale = 1
+	motion.motionBlurCutoffRadius = 1
+
 
 
 	bnightData.components:add(outdoorLight)
@@ -158,41 +186,49 @@ Multipliers(Map)
 	bnightData.components:add(sunFlare)
 	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-	bnightData.components:add(character)
+	--bnightData.components:add(shaderParams)
+	--bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
+
+	bnightData.components:add(vignette)
 	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-	bnightPreset = EntityManager:CreateEntity(bnightData, LinearTransform())
+	bnightData.components:add(grain)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
 
-	if bnightPreset ~= nil then
-		bnightPreset:Init(Realm.Realm_Client, true)
+	bnightData.components:add(motion)
+	bnightData.runtimeComponentCount = bnightData.runtimeComponentCount + 1
+
+	bnightNVGadget = EntityManager:CreateEntity(bnightData, LinearTransform())
+
+	if bnightNVGadget ~= nil then
+		bnightNVGadget:Init(Realm.Realm_Client, true)
+		NVGadgetActivated = true
+		print('Activated NV')
 	end
-NVGadgetActivated = nil
+
+
 end
 
-function removebNight()
+function removeNVGadget()
 
-	if bnightPreset ~= nil then
-		bnightPreset:Destroy()
-		bnightPreset = nil
-		print('removed VES Bright_Night')
+	if bnightNVGadget ~= nil then
+		bnightNVGadget:Destroy()
+		bnightNVGadget = nil
+		NVGadgetActivated = nil
+		print('Deactivated NV')
 		return true
 	end
 end
 
 -- Remove the VE state when the mod is unloading.
 Events:Subscribe('Extension:Unloading', function()
-	removebNight()
+	removeNVGadget()
 end)
 
--- Night Vision "Gadget"
-Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
-    if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
-
-			if NVGadgetActivated == nil then
-				NightVisionGadget()
-			elseif NVGadgetActivated == true then
-				removeNVGadget()
-			end
-
-		end
+-- Remove when Killed
+Events:Subscribe('Player:Killed', function(player)
+	local localplayer = PlayerManager:GetLocalPlayer()
+	if player == localplayer then
+  removeNVGadget()
+	end
 end)

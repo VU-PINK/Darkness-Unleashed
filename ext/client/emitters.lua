@@ -57,3 +57,46 @@ Events:Subscribe('Partition:Loaded', function(partition)
 		end
 	end
 end)
+
+
+
+--Configure Flashlights
+--this mod is based on NoFate's infection Mod: https://github.com/OrfeasZ/infection/tree/38e60ebc1709a8b7586c3f44970c234d8572f45d
+local flashLight1PGuid = Guid('995E49EE-8914-4AFD-8EF5-59125CA8F9CD', 'D')
+local flashLight3PGuid = Guid('5FBA51D6-059F-4284-B5BB-6E20F145C064', 'D')
+
+function patchFlashLight(instance)
+	if instance == nil then
+		return
+	end
+
+	local spotLight = SpotLightEntityData(instance)
+	instance:MakeWritable()
+
+	spotLight.radius = 220
+	spotLight.intensity = 4.75 --brightness
+	spotLight.coneOuterAngle = 50
+	spotLight.orthoWidth = 8
+	spotLight.orthoHeight = 8
+	spotLight.frustumFov = 52 --size
+	spotLight.castShadowsEnable = true
+	spotLight.castShadowsMinLevel = 2
+	spotLight.shape = 1
+
+	--print('Patching flashlight')
+end
+
+Events:Subscribe('Partition:Loaded', function(partition)
+	for _, instance in pairs(partition.instances) do
+		if instance.instanceGuid == flashLight1PGuid then
+			patchFlashLight(instance)
+		elseif instance.instanceGuid == flashLight3PGuid then
+			patchFlashLight(instance)
+		end
+	end
+end)
+
+Events:Subscribe('Extension:Loaded', function()
+	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight1PGuid))
+	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight3PGuid))
+end)

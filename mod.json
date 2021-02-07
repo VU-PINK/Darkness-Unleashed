@@ -1,9 +1,9 @@
 {
     "Name": "Darkness Unleashed Test-Build",
     "Description": "Custom Night Mode Experience",
-    "Authors": ["Based on night-time by Reirei; Authors: Lesley, IllustrisJack, GreatApo & Darkthanos"],
+    "Authors": ["Community Project (Reirei, GreatApo, Lesley, IllustrisJack)"],
     "Tags": ["darkness-unleashed"],
-    "Version": "1.0.5",
+    "Version": "1.0.7",
     "HasVeniceEXT": true,
     "Dependencies": {
         "veniceext": "^1.0.0"
