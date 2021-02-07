@@ -43,100 +43,69 @@ mapPresets = {
 -- Brightness: recommended max: {1.5} | higher values will raise brightness
 -- Fog: recommended: {not tested} | lower values increase fog, higher values decrease fog
 
-generalbrightness                             = {1.0}
-generalfog                                    = {1.0}
+generalbrightness                             = 1.0
+generalfog                                    = 1.0
 
---Map Settings - Night Preset
---Standard
+mapBrightnessMultipliers = {
+    MP_001 = 1.0, -- Grand Bazaar
+    MP_003 = 1.0, -- Teheran Highway
+    MP_007 = 1.0, -- Caspian Border
+    MP_011 = 1.0, -- Seine Crossing
+    MP_012 = 1.0, -- Operation Firestorm
+    MP_013 = 1.0, -- Damavand Peak
+    MP_017 = 1.0, -- Noshahr Canals
+    MP_018 = 1.0, -- Kharg Island
+    MP_Subway = 1.0, -- Operation Metro
+    XP1_001 = 1.0, -- Strike at Karkand
+    XP1_002 = 1.0, -- Gulf of Oman
+    XP1_003 = 1.0, -- Sharqi Peninsula
+    XP1_004 = 1.0, -- Wake Island
+    XP2_Palace = 1.0, -- Donya Fortress
+    XP2_Office = 1.0, -- Operation 925
+    XP2_Factory = 1.0, -- Scrapmetal
+    XP2_Skybar = 1.0, -- Ziba Tower
+    XP3_Alborz = 1.0, -- Alborz Mountains
+    XP3_Shield = 1.0, -- Armored Shield
+    XP3_Desert = 1.0, -- Bandar Desert
+    XP3_Valley = 1.0, -- Death Valley
+    XP4_Parl = 1.0, -- Azadi Palace
+    XP4_Quake = 1.0, -- Epicenter
+    XP4_FD = 1.0, -- Markaz Monolith
+    XP4_Rubble = 1.0, -- Talah Market
+    XP5_001 = 1.0, -- Operation Riverside
+    XP5_002 = 1.0, -- Nebandan Flats
+    XP5_003 = 1.0, -- Kiasar Railroad
+    XP5_004 = 1.0 -- Sabalan Pipeline
+}
 
-Bazaar_brightnessMultiplier                   = {1.0}
-Bazaar_fogMultiplier                          = {1.0}
-
-Teheran_brightnessMultiplier                  = {1.0}
-Teheran_fogMultiplier                         = {1.0}
-
-Caspian_brightnessMultiplier                  = {1.0}
-Caspian_fogMultiplier                         = {1.0}
-
-Seine_brightnessMultiplier                    = {1.0}
-Seine_fogMultiplier                           = {1.0}
-
-Firestorm_brightnessMultiplier                = {1.0}
-Firestorm_fogMultiplier                       = {1.0}
-
-Davamand_brightnessMultiplier                 = {1.0}
-Davamand_fogMultiplier                        = {1.0}
-
-Noshahr_brightnessMultiplier                  = {1.0}
-Noshahr_fogMultiplier                         = {1.0}
-
-Kharg_brightnessMultiplier                    = {1.0}
-Kharg_fogMultiplier                           = {1.0}
-
-Metro_brightnessMultiplier                    = {1.0}
-Metro_fogMultiplier                           = {1.0}
-
-------------------------- DLC - Back to Karkand ----------------------
-Karkand_brightnessMultiplier                  = {1.0}
-Karkand_fogMultiplier                         = {1.0}
-
-Gulf_brightnessMultiplier                     = {1.0}
-Gulf_fogMultiplier                            = {1.0}
-
-Sharqi_brightnessMultiplier                   = {1.0}
-Sharqi_fogMultiplier                          = {1.0}
-
-Wake_brightnessMultiplier                     = {1.0}
-Wake_fogMultiplier                            = {1.0}
-
------------------------ DLC - Close Quarters -------------------------
-Donya_brightnessMultiplier                    = {1.0}
-Donya_fogMultiplier                           = {1.0}
-
-Operation925_brightnessMultiplier             = {1.0}
-Operation925_fogMultiplier                    = {1.0}
-
-Scrapmetal_brightnessMultiplier               = {1.0}
-Scrapmetal_fogMultiplier                      = {1.0}
-
-Ziba_brightnessMultiplier                     = {1.0}
-Ziba_fogMultiplier                            = {1.0}
-
----------------------- DLC - Armored Kill ----------------------------
-Alborz_brightnessMultiplier                   = {1.0}
-Alborz_fogMultiplier                          = {1.0}
-
-Shield_brightnessMultiplier                   = {1.0}
-Shield_fogMultiplier                          = {1.0}
-
-Bandar_brightnessMultiplier                   = {1.0}
-Bandar_fogMultiplier                          = {1.0}
-
-Death_brightnessMultiplier                    = {1.0}
-Death_fogMultiplier                           = {1.0}
-
------------------------ DLC - Aftermath ------------------------------
-Azadi_brightnessMultiplier                    = {1.0}
-Azadi_fogMultiplier                           = {1.0}
-
-Epicenter_brightnessMultiplier                = {1.0}
-Epicenter_fogMultiplier                       = {1.0}
-
-Markaz_brightnessMultiplier                   = {1.0}
-Markaz_fogMultiplier                          = {1.0}
-
-Talah_brightnessMultiplier                    = {1.0}
-Talah_fogMultiplier                           = {1.0}
-
------------------------ DLC - End Game -------------------------------
-Riverside_brightnessMultiplier                = {1.0}
-Riverside_fogMultiplier                       = {1.0}
-
-Nebandan_brightnessMultiplier                 = {1.0}
-Nebandan_fogMultiplier                        = {1.0}
-
-Kiasar_brightnessMultiplier                   = {1.0}
-Kiasar_fogMultiplier                          = {1.0}
-
-Pipeline_brightnessMultiplier                 = {1.0}
-Pipeline_fogMultiplier                        = {1.0}
+mapFogMultipliers = {
+    MP_001 = 1.0, -- Grand Bazaar
+    MP_003 = 1.0, -- Teheran Highway
+    MP_007 = 1.0, -- Caspian Border
+    MP_011 = 1.0, -- Seine Crossing
+    MP_012 = 1.0, -- Operation Firestorm
+    MP_013 = 1.0, -- Damavand Peak
+    MP_017 = 1.0, -- Noshahr Canals
+    MP_018 = 1.0, -- Kharg Island
+    MP_Subway = 1.0, -- Operation Metro
+    XP1_001 = 1.0, -- Strike at Karkand
+    XP1_002 = 1.0, -- Gulf of Oman
+    XP1_003 = 1.0, -- Sharqi Peninsula
+    XP1_004 = 1.0, -- Wake Island
+    XP2_Palace = 1.0, -- Donya Fortress
+    XP2_Office = 1.0, -- Operation 925
+    XP2_Factory = 1.0, -- Scrapmetal
+    XP2_Skybar = 1.0, -- Ziba Tower
+    XP3_Alborz = 1.0, -- Alborz Mountains
+    XP3_Shield = 1.0, -- Armored Shield
+    XP3_Desert = 1.0, -- Bandar Desert
+    XP3_Valley = 1.0, -- Death Valley
+    XP4_Parl = 1.0, -- Azadi Palace
+    XP4_Quake = 1.0, -- Epicenter
+    XP4_FD = 1.0, -- Markaz Monolith
+    XP4_Rubble = 1.0, -- Talah Market
+    XP5_001 = 1.0, -- Operation Riverside
+    XP5_002 = 1.0, -- Nebandan Flats
+    XP5_003 = 1.0, -- Kiasar Railroad
+    XP5_004 = 1.0 -- Sabalan Pipeline
+}

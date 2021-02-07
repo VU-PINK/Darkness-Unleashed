@@ -2,9 +2,19 @@ require '__shared/settings'
 require 'interchangable'
 require 'emitters'
 require 'patchmapcomponents'
+require 'functions'
 
 local presetValues = require '__shared/presets'
 local currentVisualEnvironment = nil
+
+local multipliedValues = {
+    SkyComponentData = {
+        brightnessScale = 'BrightnessMultiplicator'
+    },
+    FogComponentData = {
+        fogColorCurve = 'FogMultiplicator'
+    },
+}
 
 Events:Subscribe('Level:Destroy', function()
     ResetVisualEnvironment()
@@ -16,12 +26,12 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
 
     if mapPreset ~= nil then
         print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
+        Multipliers(mapName)
         ApplyVisualEnvironment(mapPreset)
     else
         print('Using Standard')
         ResetVisualEnvironment()
     end
-
 end)
 
 function ApplyVisualEnvironment(presetName)
@@ -52,6 +62,12 @@ function ApplyVisualEnvironment(presetName)
                 -- patching texture property
                 newInstance[key] = TextureAsset(_G[value])
             else
+                -- applying multiplier
+                if multipliedValues[instanceType] ~= nil and multipliedValues[instanceType][key] ~= nil then
+                    local multiplier = _G[multipliedValues[instanceType][key]]
+                    value = value * multiplier
+                end
+
                 -- patching static property
                 newInstance[key] = value
             end
