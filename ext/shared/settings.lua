@@ -6,6 +6,38 @@ lensflareEnabled = false
 sunflareEnabled = true
 standardusebluefilter = false
 
+mapPresets = {
+    MP_001 = 'Bright_Night', -- Grand Bazaar
+    MP_003 = 'Bright_Night', -- Teheran Highway
+    MP_007 = 'Bright_Night', -- Caspian Border
+    MP_011 = 'Bright_Night', -- Seine Crossing
+    MP_012 = 'Bright_Night', -- Operation Firestorm
+    MP_013 = 'Bright_Night', -- Damavand Peak
+    MP_017 = 'Bright_Night', -- Noshahr Canals
+    MP_018 = 'Bright_Night', -- Kharg Island
+    MP_Subway = 'Bright_Night', -- Operation Metro
+    XP1_001 = 'Bright_Night', -- Strike at Karkand
+    XP1_002 = 'Bright_Night', -- Gulf of Oman
+    XP1_003 = 'Bright_Night', -- Sharqi Peninsula
+    XP1_004 = 'Bright_Night', -- Wake Island
+    XP2_Palace = 'Bright_Night', -- Donya Fortress
+    XP2_Office = 'Bright_Night', -- Operation 925
+    XP2_Factory = 'Bright_Night', -- Scrapmetal
+    XP2_Skybar = 'Bright_Night', -- Ziba Tower
+    XP3_Alborz = 'Bright_Night', -- Alborz Mountains
+    XP3_Shield = 'Bright_Night', -- Armored Shield
+    XP3_Desert = 'Bright_Night', -- Bandar Desert
+    XP3_Valley = 'Bright_Night', -- Death Valley
+    XP4_Parl = 'Bright_Night', -- Azadi Palace
+    XP4_Quake = 'Bright_Night', -- Epicenter
+    XP4_FD = 'Bright_Night', -- Markaz Monolith
+    XP4_Rubble = 'Bright_Night', -- Talah Market
+    XP5_001 = 'Bright_Night', -- Operation Riverside
+    XP5_002 = 'Bright_Night', -- Nebandan Flats
+    XP5_003 = 'Bright_Night', -- Kiasar Railroad
+    XP5_004 = 'Bright_Night' -- Sabalan Pipeline
+}
+
 -- Use as such: ['Mapname.Presetname'] | Presets: Night, Bright_Night, Morning, Evening
     -- e.g ['Bazaar.Night'] or ['Bazaar.Morning']
     -- Setting Presetname to "Standard" will use Vanilla Map; Alternative: set true, to --> false,
