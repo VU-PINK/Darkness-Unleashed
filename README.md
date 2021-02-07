@@ -7,8 +7,7 @@ With this build you can test new features! (for now less features tho duh)
 
 
 The true dark night mod and more!
-*Inspired by Reirei*
-*by Lesley & IllustrisJack*
+*Community Project*
 
 
 Some maps still crash because of the skybox load.
