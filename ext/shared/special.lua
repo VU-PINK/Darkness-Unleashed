@@ -127,6 +127,6 @@ local NVG = { -- Night Vision Goggles
 }
 
 
-return = {
+return {
     NVG = NVG
 }
