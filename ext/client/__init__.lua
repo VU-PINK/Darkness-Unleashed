@@ -5,7 +5,10 @@ require 'patchmapcomponents'
 require 'functions'
 
 local presetValues = require '__shared/presets'
+local specialValues = require '__shared/special'
 local currentVisualEnvironment = nil
+local currentSpecialVisualEnvironment = nil
+local nvgActivated = nil
 
 local multipliedValues = {
     SkyComponentData = {
@@ -34,6 +37,7 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     end
 end)
 
+-- Apply Map Presets
 function ApplyVisualEnvironment(presetName)
     if currentVisualEnvironment ~= nil then
         return
@@ -93,3 +97,77 @@ function ResetVisualEnvironment()
 		print('Removed Current Preset')
 	end
 end
+
+-- Apply Special Environments (Gadgets)
+function ApplySpecialVisualEnvironment(presetName)
+    if currentSpecialVisualEnvironment ~= nil then
+        return
+    end
+
+    local selectedPreset = specialValues[presetName]
+
+    if selectedPreset == nil then
+        print('Wrong Configuration')
+        return
+    end
+
+    local visualEnvironmentData = VisualEnvironmentEntityData()
+    visualEnvironmentData.enabled = true
+    visualEnvironmentData.visibility = 1.0
+    visualEnvironmentData.priority = 1000000
+
+
+    -- looping through instance types
+    for instanceType, values in pairs(selectedPreset) do
+        -- creating new instance
+        local newInstance = _G[instanceType]()
+
+        -- patching instance properties
+        for key, value in pairs(values) do
+            if type(value) == 'string' then
+                -- patching texture property
+                newInstance[key] = TextureAsset(_G[value])
+            else
+                -- applying multiplier
+                if multipliedValues[instanceType] ~= nil and multipliedValues[instanceType][key] ~= nil then
+                    local multiplier = _G[multipliedValues[instanceType][key]]
+                    value = value * multiplier
+                end
+
+                -- patching static property
+                newInstance[key] = value
+            end
+        end
+
+        -- adding visual environment components
+        visualEnvironmentData.components:add(newInstance)
+        visualEnvironmentData.runtimeComponentCount = visualEnvironmentData.runtimeComponentCount + 1
+    end
+
+    currentSpecialVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+
+    if currentSpecialVisualEnvironment ~= nil then
+        currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
+    end
+end
+
+function ResetSpecialVisualEnvironment(presetName)
+	if currentSpecialVisualEnvironment ~= nil then
+		currentSpecialVisualEnvironment:Destroy()
+        currentSpecialVisualEnvironment = nil
+
+		print('Removed Special Environment: ' .. presetName)
+	end
+end
+
+-- Night Vision Gadget Activate (For Now)
+Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
+    if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
+			if nvgActivated == nil then
+				ApplySpecialVisualEnvironment('NVG')
+        nvgActivated = true
+			elseif nvgActivated == true then
+				ResetSpecialVisualEnvironment('NVG')
+			end
+		end
+end)
