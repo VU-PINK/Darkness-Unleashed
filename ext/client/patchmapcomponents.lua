@@ -167,9 +167,9 @@ Events:Subscribe('Partition:Loaded', function(partition)
             PatchEmitterTemplateData(instance)
         elseif instance:Is('EffectEntityData') then
             PatchEffectEntityData(instance)
-			  elseif instance:Is('ShaderParamsData') then
-						print(instance)
-				end
+	elseif instance:Is('LocalLightEntityData') then
+	    DynamicLights(instance)
+	end
     end
 end)
 
@@ -303,4 +303,12 @@ function PatchEffectEntityData(instance)
 
         effect.components:clear()
     end
+end
+
+function DynamicLights(instance)
+    local Dynamic = LocalLightEntityData(instance)
+    Dynamic:MakeWritable()
+    Dynamic.visible = true
+    Dynamic.enlightenEnable = true
+    Dynamic.specularEnable = true
 end
