@@ -70,3 +70,9 @@ Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compar
 
     	    end
 end)
+
+
+
+-- Other Global Assets
+NV_FilmGrain = ResourceManager:SearchForInstanceByGuid(Guid('FA9F620D-DEC7-4B88-88AC-84B3E0A07BDC'))
+NV_colorGradingTexture = ResourceManager:SearchForInstanceByGuid(Guid('E79F27A1-7B97-4A63-8ED8-372FE5012A31'))
