@@ -128,12 +128,6 @@ function ApplySpecialVisualEnvironment(presetName)
                 -- patching texture property
                 newInstance[key] = TextureAsset(_G[value])
             else
-                -- applying multiplier
-                if multipliedValues[instanceType] ~= nil and multipliedValues[instanceType][key] ~= nil then
-                    local multiplier = _G[multipliedValues[instanceType][key]]
-                    value = value * multiplier
-                end
-
                 -- patching static property
                 newInstance[key] = value
             end
@@ -149,6 +143,7 @@ function ApplySpecialVisualEnvironment(presetName)
     if currentSpecialVisualEnvironment ~= nil then
         currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
     end
+    nvgActivated = true
 end
 
 function ResetSpecialVisualEnvironment(presetName)
@@ -156,18 +151,19 @@ function ResetSpecialVisualEnvironment(presetName)
 		currentSpecialVisualEnvironment:Destroy()
         currentSpecialVisualEnvironment = nil
 
-		print('Removed Special Environment: ' .. presetName)
+    nvgActivated = false
+		--print('Removed Special Environment: ' .. presetName)
 	end
 end
 
 -- Night Vision Gadget Activate (For Now)
 Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
     if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
-			if nvgActivated == nil then
-				ApplySpecialVisualEnvironment('NVG')
-        nvgActivated = true
+			if nvgActivated ~= true then
+        --print(specialValues["NVG"])
+				ApplySpecialVisualEnvironment("NightVision")
 			elseif nvgActivated == true then
-				ResetSpecialVisualEnvironment('NVG')
+				ResetSpecialVisualEnvironment("NightVision")
 			end
 		end
 end)

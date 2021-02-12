@@ -309,6 +309,5 @@ function DynamicLights(instance)
     local Dynamic = LocalLightEntityData(instance)
     Dynamic:MakeWritable()
     Dynamic.visible = true
-    Dynamic.enlightenEnable = true
     Dynamic.specularEnable = true
 end

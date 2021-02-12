@@ -12,18 +12,22 @@
   EveningGradient = nil
   EveningEnvmap = nil
 
---- Skybox Functions
-
-
-    --- Load Bundles | Death Valley Skybox
-    -- Mount
+-- Load Resources
 Events:Subscribe('Level:LoadResources', function()
 
+    -- Mount Superbundles
     ResourceManager:MountSuperBundle('levels/xp3_valley/xp3_valley') -- Death Valley Bright Night Skybox & Star Clouds
+
+    -- Night Vision
+    FLIRData = 'FLIRData'
+
+    ResourceManager:RegisterInstanceLoadHandler(Guid("0FF47F8B-423F-4EC3-A8D5-B56E55A01225"), Guid('E79F27A1-7B97-4A63-8ED8-372FE5012A31'), function(loadedInstance)
+      nv_colorgrade = loadedInstance
+    end)
 
 end)
 
-    -- Inject
+--- Inject Bundles
 Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compartment)
     	    if #bundles == 1 and bundles[1] == SharedUtils:GetLevelName() then
     	        print('Injecting bundles.')
@@ -49,30 +53,24 @@ Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compar
           local Stars = Guid('5472209E-0DA1-60A7-ACA2-D42ECACD4975')                                -- Star Instance
 
               ResourceManager:RegisterInstanceLoadHandler(partitionID1, PanoramicinstanceID1, function(panoramicTextureInstance)        -- Register Instance
-              MoonNightSkybox = panoramicTextureInstance                                                                                -- Make Global For Easy Access
+                MoonNightSkybox = panoramicTextureInstance                                                                                -- Make Global For Easy Access
               end)
 
               ResourceManager:RegisterInstanceLoadHandler(partitionID2, AlphainstanceID2, function(panoramicAlphaTextureInstance)       -- Register Instance
-              MoonNightAlpha = panoramicAlphaTextureInstance                                                                            -- Make Global For Easy Access
+                MoonNightAlpha = panoramicAlphaTextureInstance                                                                            -- Make Global For Easy Access
               end)
 
               ResourceManager:RegisterInstanceLoadHandler(partitionID3, SkyGradientID3, function(SkyGradientInstance)                   -- Register Instance
-              MoonNightGradient = SkyGradientInstance                                                                                   -- Make Global For Easy Access
+                MoonNightGradient = SkyGradientInstance                                                                                   -- Make Global For Easy Access
               end)
 
               ResourceManager:RegisterInstanceLoadHandler(partitionID4, sEnvMapID4, function(sEnvmapTextureInstance)                    -- Register Instance
-              MoonNightEnvmap = sEnvmapTextureInstance                                                                                  -- Make Global For Easy Access
+                MoonNightEnvmap = sEnvmapTextureInstance                                                                                  -- Make Global For Easy Access
               end)
 
               ResourceManager:RegisterInstanceLoadHandler(partitionIDStars, Stars, function(StarsInstance)                              -- Register Instance
-              MoonNightStars = StarsInstance                                                                                            -- Make Global For Easy Access
+                MoonNightStars = StarsInstance                                                                                            -- Make Global For Easy Access
               end)
 
     	    end
 end)
-
-
-
--- Other Global Assets
-NV_FilmGrain = ResourceManager:SearchForInstanceByGuid(Guid('FA9F620D-DEC7-4B88-88AC-84B3E0A07BDC'))
-NV_colorGradingTexture = ResourceManager:SearchForInstanceByGuid(Guid('E79F27A1-7B97-4A63-8ED8-372FE5012A31'))

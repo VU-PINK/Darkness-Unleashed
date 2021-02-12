@@ -3,7 +3,7 @@ local Night = {
         enable = true,
         sunColor = Vec3(0, 0, 0),
         skyColor = Vec3(0.04, 0.04, 0.04),
-        groundColor = Vec3(0.015, 0.015, 0.015),
+        groundColor = Vec3(0.005, 0.005, 0.005),
         skyEnvmapShadowScale = 0.25,
         cloudShadowEnable = true,
         cloudShadowSize = 2000.0,
@@ -42,10 +42,10 @@ local Night = {
         cloudLayer1TileFactor = 0.600000023842,
         cloudLayer1Rotation = 237.072998047,
         cloudLayer1Speed = -0.0010000000475,
-        cloudLayer1SunLightIntensity = 0.5,
-        cloudLayer1SunLightPower = 0.5,
-        cloudLayer1AmbientLightIntensity = 0.5,
-        cloudLayer1AlphaMul = 0.55,
+        cloudLayer1SunLightIntensity = 0.40,
+        cloudLayer1SunLightPower = 0.40,
+        cloudLayer1AmbientLightIntensity = 0.40,
+        cloudLayer1AlphaMul = 0.40,
         cloudLayer1Texture = 'MoonNightStars',
         panoramicTexture = nil,
         panoramicAlphaTexture = nil,
@@ -102,7 +102,7 @@ local Night = {
         chromaticAberrationStrengths = Vec2(0.20000000298, 0.20000000298),
         chromaticAberrationDisplacement1 = Vec2(-0.00200000009499, 0.00400000018999),
         chromaticAberrationDisplacement2 = Vec2(0.00600000005215, 0.0),
-        radialBlendDistanceCoefficients = Vec2(4.0, -0.5)
+        radialBlendDistanceCoefficients = Vec2(1.2, -0.5)
     }
 }
 
@@ -205,9 +205,11 @@ local Bright_Night = {
         chromaticAberrationStrengths = Vec2(0.20000000298, 0.20000000298),
         chromaticAberrationDisplacement1 = Vec2(-0.00200000009499, 0.00400000018999),
         chromaticAberrationDisplacement2 = Vec2(0.00600000005215, 0.0),
-        radialBlendDistanceCoefficients = Vec2(4.0, -0.5)
+        radialBlendDistanceCoefficients = Vec2(1.2, -0.5)
     }
 }
+
+
 
 return {
     Night = Night,
