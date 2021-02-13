@@ -79,7 +79,12 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         RCON:SendCommand('vu.SunFlareEnabled', {tostring(mapParameters.sunFlareEnabled)})
         print('Using Preset Blue-Filter Setting: ' .. tostring(tostring(mapParameters.colorCorrectionEnabled)))
 
-        local customMapName = customMapNames[mapName] .. ' ' .. mapPreset
+        local customMapName = nil
+        if mapPreset == 'Bright_Night' then
+          customMapName = customMapNames[mapName] .. ' Bright Night'
+        else
+          customMapName = customMapNames[mapName] .. ' ' .. mapPreset
+        end
         ServerUtils:SetCustomMapName(customMapName)
     else
         RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(standardusebluefilter)})
