@@ -172,8 +172,8 @@ end
 
 -- Night Vision Gadget Activate (For Now)
 Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
-    if useNightVisionGadget then
-        if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
+    if useNightVisionGadget == true and isHud == true then
+        if InputManager:WentKeyDown(8) then
             if nvgActivated ~= true then
                 NVGBattery:Activate()
             elseif nvgActivated == true then
@@ -181,6 +181,9 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
                 goggleIcon(false)
             end
         end
+
+    elseif nvgActivated == true then
+        ResetSpecialVisualEnvironment("NightVision")
     end
 end)
 
@@ -228,10 +231,6 @@ function NVGBattery:Depleting()
         self.batteryEmptyTime = elapsedTime
         
     end
-end
-
-function NVGBattery:Cooldown()
-
 end
 
 function NVGBattery:Recharging()
