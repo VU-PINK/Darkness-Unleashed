@@ -8,9 +8,15 @@ Events:Subscribe('Extension:Loaded', function()
 end)
 
 -- On player spawn, show night vision goggles hint
-showHintSeconds = 5 -- show the hint for X seconds
+local showHintSeconds = 5 -- show the hint for X seconds
+local localPlayer = nil
+
 Events:Subscribe('Player:Respawn', function(player)
-    WebUI:ExecuteJS('window.showHintUI(' .. tostring(showHintSeconds) .. ');')
+	localPlayer = PlayerManager:GetLocalPlayer()
+
+	if(player == localPlayer) then
+		WebUI:ExecuteJS('window.showHintUI(' .. tostring(showHintSeconds) .. ');')
+	end
 end)
 
 -- Goggles battery update

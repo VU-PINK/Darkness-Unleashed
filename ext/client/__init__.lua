@@ -5,6 +5,12 @@ require 'patchmapcomponents'
 require 'functions'
 require 'ui'
 
+local NVGClass = require '__shared/classes/nvg'
+local NVG = NVGClass()
+
+local AnimationClass = require '__shared/classes/animation'
+local Animation = AnimationClass()
+
 local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
 local currentVisualEnvironment = nil
@@ -13,8 +19,8 @@ local currentSpecialVisualEnvironment = nil
 local nvgActivated = nil
 local useNightVisionGadget = true
 
-local elapsedTime = 0
-local lastSecond = 0
+
+
 
 local multipliedValues = {
     SkyComponentData = {
@@ -25,9 +31,6 @@ local multipliedValues = {
     },
 }
 
-
-
-
 Events:Subscribe('Level:Destroy', function()
     ResetVisualEnvironment()
 end)
@@ -35,10 +38,6 @@ end)
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = mapPresets[mapName]
-
-    if useNightVisionGadget == true then
-        NVGBattery:__init()
-    end
     
 
     if mapPreset ~= nil then
@@ -51,6 +50,13 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     end
 end)
 
+Events:Subscribe('Player:Respawn', function(player)
+	local localPlayer = PlayerManager:GetLocalPlayer()
+
+    if player == localPlayer and useNightVisionGadget then
+        NVG:__init()
+	end
+end)
 -- Apply Map Presets
 function ApplyVisualEnvironment(presetName)
     if currentVisualEnvironment ~= nil then
@@ -175,7 +181,7 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
     if useNightVisionGadget == true and isHud == true then
         if InputManager:WentKeyDown(8) then
             if nvgActivated ~= true then
-                NVGBattery:Activate()
+                NVG:Activate(deltaTime)
             elseif nvgActivated == true then
                 ResetSpecialVisualEnvironment("NightVision")
                 goggleIcon(false)
@@ -189,6 +195,8 @@ end)
 
 Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
     -- Do stuff here.
+    Events:Dispatch('DeltaTime', deltaTime)
+    Animation:GetTime(deltaTime)
 
     elapsedTime = elapsedTime + deltaTime
 
@@ -199,61 +207,12 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
  
 end)
 
-local NVGBattery = class("NVGBattery")
-
-function NVGBattery:__init()
-    self.batteryLifeMax = 60
-    self.batteryLifeMin = 10
-
-    self.batteryEmptyTime = 0
-    self.batteryLifeCooldown = 5
-
-    self.batteryLifeCurrent = 60
-end
-
-function NVGBattery:Activate()
-    if(self.batteryLifeCurrent >= self.batteryLifeMin) then
-        ApplySpecialVisualEnvironment("NightVision")
-        goggleIcon(true)
-    end
-end
-
-function NVGBattery:Depleting()
-    self.batteryLifeCurrent = self.batteryLifeCurrent - 1
-    WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(self.batteryLifeCurrent / self.batteryLifeMax * 100) .. ');')
-
-    print("Battery Life: " .. self.batteryLifeCurrent)
-
-    if(self.batteryLifeCurrent == 0) then
-        print("Battery has depleted!")
-        ResetSpecialVisualEnvironment("NightVision")
-        disableGoggleIcon(true)
-        self.batteryEmptyTime = elapsedTime
-        
-    end
-end
-
-function NVGBattery:Recharging()
-
-    if(self.batteryEmptyTime + self.batteryLifeCooldown > elapsedTime) then
-        return;
-	else
-		disableGoggleIcon(false)
-    end
-
-    if(self.batteryLifeCurrent < self.batteryLifeMax) then
-        self.batteryLifeCurrent = self.batteryLifeCurrent + 1
-        WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(self.batteryLifeCurrent / self.batteryLifeMax * 100) .. ');')
-        print("Battery Charged To: " .. self.batteryLifeCurrent)
-    end
-end
-
 Events:Subscribe('SecondElapsed', function(lastSecond)
     if(nvgActivated) then
-        NVGBattery:Depleting()
+        NVG:Depleting()
     end
 
-    if (NVGBattery.batteryLifeCurrent ~= NVGBattery.batteryLifeMax) and not (nvgActivated) then
-        NVGBattery:Recharging()
+    if (NVG.batteryLifeCurrent ~= NVG.batteryLifeMax) and not (nvgActivated) then
+        NVG:Recharging()
     end
 end)
