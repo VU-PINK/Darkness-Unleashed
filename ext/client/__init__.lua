@@ -201,6 +201,10 @@ local NVGBattery = class("NVGBattery")
 function NVGBattery:__init()
     self.batteryLifeMax = 60
     self.batteryLifeMin = 10
+
+    self.batteryEmptyTime = 0
+    self.batteryLifeCooldown = 5
+
     self.batteryLifeCurrent = 60
 end
 
@@ -217,16 +221,25 @@ function NVGBattery:Depleting()
 
     print("Battery Life: " .. self.batteryLifeCurrent)
 
-    if(self.batteryLifeCurrent <= 1) then
+    if(self.batteryLifeCurrent == 0) then
         print("Battery has depleted!")
         ResetSpecialVisualEnvironment("NightVision")
         goggleIcon(false)
-        
+        self.batteryEmptyTime = elapsedTime
         
     end
 end
 
+function NVGBattery:Cooldown()
+
+end
+
 function NVGBattery:Recharging()
+
+    if(self.batteryEmptyTime + self.batteryLifeCooldown > elapsedTime) then
+        return;
+    end
+
     if(self.batteryLifeCurrent < self.batteryLifeMax) then
         self.batteryLifeCurrent = self.batteryLifeCurrent + 1
         WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(self.batteryLifeCurrent / self.batteryLifeMax * 100) .. ');')
