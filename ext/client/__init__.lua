@@ -227,7 +227,7 @@ function NVGBattery:Depleting()
     if(self.batteryLifeCurrent == 0) then
         print("Battery has depleted!")
         ResetSpecialVisualEnvironment("NightVision")
-        goggleIcon(false)
+        disableGoggleIcon(true)
         self.batteryEmptyTime = elapsedTime
         
     end
@@ -237,6 +237,8 @@ function NVGBattery:Recharging()
 
     if(self.batteryEmptyTime + self.batteryLifeCooldown > elapsedTime) then
         return;
+	else
+		disableGoggleIcon(false)
     end
 
     if(self.batteryLifeCurrent < self.batteryLifeMax) then

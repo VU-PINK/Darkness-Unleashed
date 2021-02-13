@@ -89,7 +89,7 @@
 		<div class="hint">
 			<div class="goggles-hint-icon" style="position: absolute;"></div>
 			<div class="title">NIGHT VISION GOGGLES</div>
-			<b class="key">[CAPS LOCK]</b> TO ENABLE / DISABLE
+			<b class="key">[7]</b> TO ENABLE / DISABLE
 		</div>
 	</div>
 	<div id="goggles" style="display: none;">
@@ -121,20 +121,25 @@
 
 		// Set settings
 		window.iconsLocation = (bottom, right) => {
-			goggle.style.bottom = bottom;
-			goggle.style.right = right;
-		}
+			document.getElementById('goggles').style.bottom = bottom;
+			document.getElementById('goggles').style.right = right;
+		};
 		
 		// Update goggles image
-		window.gogglesUpdate = (on) => {
-			console.log(on);
-			if (on)
+		window.gogglesUpdate = (state) => {
+			//console.log("Goggles state: "+state);
+			if (state == 1)
 				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-icon.png')";
-			else
+			else if (state == 2)
 				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-off-icon.png')";
+			else
+				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-disabled-icon.png')";
 		};
 		
 		// Update battery image
+		var flashing_ms = 500; // time between icon show/hide
+		var flash_below = 10; // flashing battery icon below 10% battery
+		var flashing = false; // flashing battery icon state
 		window.batteryUpdate = (battery) => {
 			// battery= 0 - 100
 			// Images:
@@ -143,10 +148,36 @@
 			//		2 = 2/4 battery
 			// 		3 = 3/4 battery
 			//		4 = full battery
-			console.log(battery);
-			console.log(Math.ceil(battery/100*4));
-			document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ Math.ceil(battery/100*4) +".png')";
 			
+			// Flash icon for low battery
+			if (battery < 10 && battery > 0) {
+				//console.log("Battery below 10%");
+				if (!flashing) {
+					flashing = true;
+					//console.log("Run flash code");
+					window.flashBattery();
+				}
+			} else {
+				flashing = false;
+				document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ Math.ceil(battery/100*4) +".png')";
+			}
+		};
+		
+		window.flashBattery = () => {
+			// Check current icon
+			var state_0 = ( document.getElementById('goggles-battery-icon').style.backgroundImage == 'url("img/battery-0.png")' );
+			
+			//console.log("Flash state: "+state_0);
+			
+			// Change between Empty-Almost Empty battery icon
+			if (state_0)
+				document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-1.png')"
+			else
+				document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-0.png')"
+			
+			// Run the code again
+			if (flashing)
+				setTimeout(window.flashBattery, flashing_ms);
 		};
 	</script>
 </body>

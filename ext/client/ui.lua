@@ -24,8 +24,30 @@ end)
 
 -- Update goggle icon
 function goggleIcon(on)
-	print('window.gogglesUpdate(' .. tostring(on) .. ');')
-    WebUI:ExecuteJS('window.gogglesUpdate(' .. tostring(on) .. ');')
+	if on then
+		changeGoggleIcon(1) -- On
+	else
+		changeGoggleIcon(2) -- Off
+	end
+end
+
+-- Disable goggles use
+disabled = false
+function disableGoggleIcon(disable)
+	if disable then
+		changeGoggleIcon(3) -- Disabled
+		disabled = true
+	elseif (disabled) then
+		changeGoggleIcon(2) -- Off
+		disabled = false
+	end
+end
+
+-- Update UI icon
+function changeGoggleIcon(state)
+	-- State: 1 = On, 2 = Off, 3 = Disabled
+	-- print('window.gogglesUpdate(' .. tostring(state) .. ');')
+    WebUI:ExecuteJS('window.gogglesUpdate(' .. tostring(state) .. ');')
 end
 
 -- Enable/disable UI
