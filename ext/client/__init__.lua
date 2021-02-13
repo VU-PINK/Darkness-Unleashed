@@ -3,12 +3,18 @@ require 'interchangable'
 require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
+require 'ui'
 
 local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
 local currentVisualEnvironment = nil
 local currentSpecialVisualEnvironment = nil
+
 local nvgActivated = nil
+local useNightVisionGadget = true
+
+local elapsedTime = 0
+local lastSecond = 0
 
 local multipliedValues = {
     SkyComponentData = {
@@ -19,6 +25,9 @@ local multipliedValues = {
     },
 }
 
+
+
+
 Events:Subscribe('Level:Destroy', function()
     ResetVisualEnvironment()
 end)
@@ -26,6 +35,11 @@ end)
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = mapPresets[mapName]
+
+    if useNightVisionGadget == true then
+        NVGBattery:__init()
+    end
+    
 
     if mapPreset ~= nil then
         print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
@@ -158,12 +172,74 @@ end
 
 -- Night Vision Gadget Activate (For Now)
 Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
-    if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
-			if nvgActivated ~= true then
-        --print(specialValues["NVG"])
-				ApplySpecialVisualEnvironment("NightVision")
-			elseif nvgActivated == true then
-				ResetSpecialVisualEnvironment("NightVision")
-			end
-		end
+    if useNightVisionGadget then
+        if InputManager:WentKeyDown(58) or InputManager:WentKeyDown(8) then
+            if nvgActivated ~= true then
+                NVGBattery:Activate()
+            elseif nvgActivated == true then
+                ResetSpecialVisualEnvironment("NightVision")
+                goggleIcon(false)
+            end
+        end
+    end
+end)
+
+Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
+    -- Do stuff here.
+
+    elapsedTime = elapsedTime + deltaTime
+
+    if(elapsedTime >= lastSecond + 1) then
+        lastSecond = lastSecond + 1
+        Events:Dispatch('SecondElapsed', lastSecond)
+    end
+ 
+end)
+
+local NVGBattery = class("NVGBattery")
+
+function NVGBattery:__init()
+    self.batteryLifeMax = 60
+    self.batteryLifeMin = 10
+    self.batteryLifeCurrent = 60
+end
+
+function NVGBattery:Activate()
+    if(self.batteryLifeCurrent >= self.batteryLifeMin) then
+        ApplySpecialVisualEnvironment("NightVision")
+        goggleIcon(true)
+    end
+end
+
+function NVGBattery:Depleting()
+    self.batteryLifeCurrent = self.batteryLifeCurrent - 1
+    WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(self.batteryLifeCurrent / self.batteryLifeMax * 100) .. ');')
+
+    print("Battery Life: " .. self.batteryLifeCurrent)
+
+    if(self.batteryLifeCurrent <= 1) then
+        print("Battery has depleted!")
+        ResetSpecialVisualEnvironment("NightVision")
+        goggleIcon(false)
+        
+        
+    end
+end
+
+function NVGBattery:Recharging()
+    if(self.batteryLifeCurrent < self.batteryLifeMax) then
+        self.batteryLifeCurrent = self.batteryLifeCurrent + 1
+        WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(self.batteryLifeCurrent / self.batteryLifeMax * 100) .. ');')
+        print("Battery Charged To: " .. self.batteryLifeCurrent)
+    end
+end
+
+Events:Subscribe('SecondElapsed', function(lastSecond)
+    if(nvgActivated) then
+        NVGBattery:Depleting()
+    end
+
+    if (NVGBattery.batteryLifeCurrent ~= NVGBattery.batteryLifeMax) and not (nvgActivated) then
+        NVGBattery:Recharging()
+    end
 end)

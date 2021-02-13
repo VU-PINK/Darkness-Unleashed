@@ -5,6 +5,7 @@
     "Tags": ["darkness-unleashed"],
     "Version": "1.0.7",
     "HasVeniceEXT": true,
+    "HasWebUI": true,
     "Dependencies": {
         "veniceext": "^1.0.0"
     }

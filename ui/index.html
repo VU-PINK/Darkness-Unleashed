@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body, html {
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			overflow: hidden;
+		}
+
+		.bf3-blue-block {
+			background-color: #52b0ff66;
+			border-radius: 3px;
+			opacity: 0.8;
+			box-shadow: 0 0 4px 1px #52b0ff66;
+		}
+		
+		#goggles-key-hint {
+			position: absolute;
+			bottom: 40%;
+			right: 3%;
+			padding: 8px 8px;
+		}
+
+		#goggles-key-hint .hint {
+			/*font-family: Arial, Helvetica, sans-serif;*/
+			font-family: Consolas;
+			/*font-style: italic;*/
+			font-size: 0.8em;
+			color: #fff;
+			text-align: left;
+			line-height: 22px;
+			display: inline-block;
+			vertical-align: top;
+		}
+		
+		#goggles-key-hint .title {
+			text-align: center;
+			padding: 4px;
+		}
+		
+		.goggles-hint-icon {
+			width: 22px;
+			height: 16px;
+			background-image: url('img/goggles-icon.png');
+			background-size: 100% 100%;
+			display: inline-block;
+			vertical-align: top;
+			margin-top: 6px;
+		}
+		
+		#goggles {
+			position: absolute;
+			bottom: 6%;
+			right: 5%;
+			padding: 2px 4px;
+			opacity: 0.70;
+			filter: drop-shadow(1px 1px 2px #52b0ff);
+		}
+		
+		#goggles-icon {
+			width: 28px;
+			height: 20px;
+			background-image: url('img/goggles-off-icon.png');
+			background-size: 100% 100%;
+			display: inline-block;
+			vertical-align: top;
+		}
+		#goggles-battery-icon {
+			width: 9px;
+			height: 14px;
+			background-image: url('img/battery-4.png');
+			background-size: 100% 100%;
+			display: inline-block;
+			vertical-align: top;
+			margin-top: 4px;
+		}
+		
+		.key {
+			text-shadow: 1px 1px 4px white;
+		}
+	</style>
+</head>
+<body>
+	<div id="goggles-key-hint" class="bf3-blue-block" style="display: none;">
+		<div class="hint">
+			<div class="goggles-hint-icon" style="position: absolute;"></div>
+			<div class="title">NIGHT VISION GOGGLES</div>
+			<b class="key">[CAPS LOCK]</b> TO ENABLE / DISABLE
+		</div>
+	</div>
+	<div id="goggles" style="display: none;">
+		<div id="goggles-icon"></div>
+		<div id="goggles-battery-icon" class="battery-4"></div>
+	</div>
+
+	<script type="application/javascript">
+		// Get Elements
+		const hint = document.getElementById('goggles-key-hint');
+		const goggle = document.getElementById('goggles');
+		const goggleIcon = document.getElementById('goggles-icon');
+		const battery = document.getElementById('goggles-battery-icon');
+
+		// Show/Hide UI functions
+		window.showUI = () => {
+			goggle.style.display = 'block';
+		};
+		window.hideUI = () => {
+			goggle.style.display = 'none';
+			hint.style.display = 'none';
+		};
+		window.showHintUI = (seconds) => {
+			hint.style.display = 'block';
+			setTimeout(function() {
+				hint.style.display = 'none';
+			}, seconds*1000);
+		};
+
+		// Set settings
+		window.iconsLocation = (bottom, right) => {
+			goggle.style.bottom = bottom;
+			goggle.style.right = right;
+		}
+		
+		// Update goggles image
+		window.gogglesUpdate = (on) => {
+			console.log(on);
+			if (on)
+				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-icon.png')";
+			else
+				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-off-icon.png')";
+		};
+		
+		// Update battery image
+		window.batteryUpdate = (battery) => {
+			// battery= 0 - 100
+			// Images:
+			// 		0 = empty battery
+			// 		1 = 1/4 battery
+			//		2 = 2/4 battery
+			// 		3 = 3/4 battery
+			//		4 = full battery
+			console.log(battery);
+			console.log(Math.ceil(battery/100*4));
+			document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ Math.ceil(battery/100*4) +".png')";
+			
+		};
+	</script>
+</body>
+</html>
