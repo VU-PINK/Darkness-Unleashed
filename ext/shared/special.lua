@@ -71,9 +71,10 @@ local NightVision = { -- Night Vision Goggles
     },
     TonemapComponentData = {
         minExposure = 2,
-        maxExposure = 4,
-        exposureAdjustTime = 1.25,
-        bloomScale = Vec3(0.15, 0.15, 0.15),
+        maxExposure = 6,
+        middleGray = 0.75,
+        exposureAdjustTime = 10,
+        bloomScale = Vec3(0.3, 0.3, 0.3),
         tonemapMethod = 2
     },
     FogComponentData = {
@@ -107,18 +108,6 @@ local NightVision = { -- Night Vision Goggles
         exponent = 0.0,
         opacity = 1
     },
-    LensScopeComponentData = {
-        enable = true,
-        realm = 0,
-        blurCenter = Vec2(0.5, 0.5),
-        blurScale = 0.999000012875,
-        chromaticAberrationColor1 = Vec3(0.0, 0.707000017166, 0.707000017166),
-        chromaticAberrationColor2 = Vec3(0.707000017166, 0.0, 0.707000017166),
-        chromaticAberrationStrengths = Vec2(0.20000000298, 0.20000000298),
-        chromaticAberrationDisplacement1 = Vec2(-0.00200000009499, 0.00400000018999),
-        chromaticAberrationDisplacement2 = Vec2(0.00600000005215, 0.0),
-        radialBlendDistanceCoefficients = Vec2(1.45, -0.5)
-    }
 }
 
 return {
