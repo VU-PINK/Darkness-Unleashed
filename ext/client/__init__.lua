@@ -181,7 +181,7 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
     if useNightVisionGadget == true and isHud == true then
         if InputManager:WentKeyDown(8) then
             if nvgActivated ~= true then
-                NVG:Activate(deltaTime)
+                NVG:Activate()
             elseif nvgActivated == true then
 				NVG:Deactivate()
             end
@@ -194,14 +194,13 @@ end)
 
 Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
     -- Do stuff here.
-    Events:Dispatch('DeltaTime', deltaTime)
-    Animation:GetTime(deltaTime)
+    Events:DispatchLocal('DeltaTime', deltaTime)
 
     elapsedTime = elapsedTime + deltaTime
 
     if(elapsedTime >= lastSecond + 1) then
         lastSecond = lastSecond + 1
-        Events:Dispatch('SecondElapsed', lastSecond)
+        Events:DispatchLocal('SecondElapsed', lastSecond)
     end
  
 end)

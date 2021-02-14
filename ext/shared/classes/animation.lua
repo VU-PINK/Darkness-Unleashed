@@ -1,38 +1,90 @@
 local Animation = class("Animation")
 
-
+local last200ms = 0.0
+local t = 1.0
 
 function Animation:__init()
-
+--
 end
 
-function Animation:GetTime(time)
-    self.currentTime = time
-end
+function Animation:NVGAnimationON()
+  print("NVG Animation called!")
+  local states = VisualEnvironmentManager:GetStates()
 
-function Animation:Lerp()
+  for _, state in pairs(states) do
+    --print("Searching through states")
+    if state.priority == 1000000 then
 
-end
+        Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
 
-Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
-    Animation:NVGAnimation()
-end)
+          elapsedTime = elapsedTime + deltaTime
+          print(elapsedTime)
+          if(elapsedTime >= last200ms + 0.2) then
+            last200ms = last200ms + 0.2
 
-function Animation:NVGAnimation()
+            if Animation:NVGAnimationRunON(state) == "Done" then
+              Events:Unsubscribe('Engine:Update')
+            end
 
-    print("NVG Animation called!")
-
-    local states = VisualEnvironmentManager:GetStates()
-    for _, state in pairs(states) do
-        print("Searching through states")
-        if state.priority == 1000000 then
-            print("Found NVG state!")
-                if(state.vignette.scale ~= Vec2(2.4, 2.2)) then
-                    state.vignette.scale = Vec2(MathUtils:Lerp(0.0, 2.4, 3.0), MathUtils:Lerp(0.0, 2.2, 3.0))
-                    VisualEnvironmentManager:SetDirty(true)
-                end
-        end
+          end
+        end)
     end
+  end
 end
+
+function Animation:NVGAnimationRunON(state)
+        --print("Found NVG state!")
+        if t <= 1.0 then
+        t = t + 0.01
+        local lerp1 = MathUtils:Lerp(0.2, 1.0, t)--lerp(0, 1, t)
+        local lerp2 = MathUtils:Lerp(0.0, 1.0, t)--lerp(0, 2, t)
+        state.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
+        state.vignette.exponent = lerp2
+        VisualEnvironmentManager:SetDirty(true)
+        elseif t >= 1.0 then
+          t = 0.0
+          return "Done"
+        end
+end
+
+function Animation:NVGAnimationOFF()
+  print("NVG Animation called!")
+  ResetSpecialVisualEnvironment('NightVision')
+  local states = VisualEnvironmentManager:GetStates()
+
+  for _, state in pairs(states) do
+    --print("Searching through states")
+    if state.priority == 1000000 then
+
+        Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
+
+          elapsedTime = elapsedTime + deltaTime
+        
+          if(elapsedTime >= last200ms + 0.2) then
+            last200ms = last200ms + 0.2
+
+            if Animation:NVGAnimationRunOFF(state) == "Done" then
+              Events:Unsubscribe('Engine:Update')
+            end
+            
+          end
+        end)
+    end
+  end
+end
+
+function Animation:NVGAnimationRunOFF(state)
+  --print("Found NVG state!")
+  if t <= 1.0 then
+  t = t + 0.01
+  local lerp1 = MathUtils:Lerp(0.0, 1.0, t)--lerp(0, 1, t)
+  state.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
+  VisualEnvironmentManager:SetDirty(true)
+  elseif t >= 1.0 then
+    t = 0.0
+    return "Done"
+  end
+end
+
 
 return Animation

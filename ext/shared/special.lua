@@ -102,9 +102,9 @@ local NightVision = { -- Night Vision Goggles
     VignetteComponentData = {
         enable = true,
         realm = 0,
-        scale = Vec2(0.0, 0.0), --Aspect ratio = 1,0909090909090909090909090909091
+        scale = Vec2(2.4, 2.2), --Aspect ratio = 1,0909090909090909090909090909091
         color = Vec3(0.1, 0.1, 0.1),
-        exponent = 2.0,
+        exponent = 0.0,
         opacity = 1
     },
     LensScopeComponentData = {

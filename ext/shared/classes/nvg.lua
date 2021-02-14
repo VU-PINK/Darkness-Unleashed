@@ -1,7 +1,7 @@
 local NVG = class("NVG")
 
---local AnimationClass = require '__shared/classes/animation'
---local Animation = AnimationClass()
+local AnimationClass = require '__shared/classes/animation'
+local Animation = AnimationClass()
 
 elapsedTime = 0
 lastSecond = 0
@@ -19,16 +19,16 @@ function NVG:__init()
 	uiBatteries( self.batteryLifeMin, self.batteryLifeMax );
 end
 
-function NVG:Activate(activationTime)
+function NVG:Activate()
     if(self.batteryLifeCurrent >= self.batteryLifeMin) then
         ApplySpecialVisualEnvironment("NightVision")
-        --Animation:NVGAnimation(activationTime)
+        Animation:NVGAnimationON()
         uiGoggleIcon(true) -- Update UI battery icon
     end
 end
 
 function NVG:Deactivate()
-	ResetSpecialVisualEnvironment("NightVision")
+    Animation:NVGAnimationOFF()
 	if(self.batteryLifeCurrent < self.batteryLifeMin) then
 		uiDisableGoggleIcon(true) -- Update UI battery icon
 	else
