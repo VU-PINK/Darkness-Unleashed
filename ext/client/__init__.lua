@@ -38,7 +38,7 @@ end)
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = mapPresets[mapName]
-    
+
 
     if mapPreset ~= nil then
         print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
@@ -171,7 +171,7 @@ function ResetSpecialVisualEnvironment(presetName)
 		currentSpecialVisualEnvironment:Destroy()
         currentSpecialVisualEnvironment = nil
 
-    nvgActivated = false
+        nvgActivated = false
 		--print('Removed Special Environment: ' .. presetName)
 	end
 end
@@ -183,7 +183,7 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
             if nvgActivated ~= true then
                 NVG:Activate()
             elseif nvgActivated == true then
-				NVG:Deactivate()
+				        NVG:Deactivate()
             end
         end
 
@@ -202,7 +202,7 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
         lastSecond = lastSecond + 1
         Events:DispatchLocal('SecondElapsed', lastSecond)
     end
- 
+
 end)
 
 Events:Subscribe('SecondElapsed', function(lastSecond)
@@ -210,7 +210,7 @@ Events:Subscribe('SecondElapsed', function(lastSecond)
         NVG:Depleting()
     end
 
-    if (NVG.batteryLifeCurrent ~= NVG.batteryLifeMax) and not (nvgActivated) then
+    if (NVG.batteryLifeCurrent ~= NVG.batteryLifeMax) and (nvgActivated == false) then
         NVG:Recharging()
     end
 end)

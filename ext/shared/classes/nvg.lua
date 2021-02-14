@@ -2,7 +2,7 @@ local NVG = class("NVG")
 
 local AnimationClass = require '__shared/classes/animation'
 local Animation = AnimationClass()
-local running = false
+nvgRunner = false
 
 elapsedTime = 0
 lastSecond = 0
@@ -15,18 +15,22 @@ function NVG:__init()
     self.batteryLifeCooldown = 10
 
     self.batteryLifeCurrent = 60
-	
+
 	-- Set value on the UI
 	uiBatteries( self.batteryLifeMin, self.batteryLifeMax );
 end
 
 function NVG:Activate()
     if(self.batteryLifeCurrent >= self.batteryLifeMin) then
-        ApplySpecialVisualEnvironment("NightVision")
-        if Animation:NVGAnimationON() then
+        if nvgRunner ~= true then
+
+            done = false
+            nvgRunner = true
+            nvgEnable = true
+            print("activate")
             uiGoggleIcon(true) -- Update UI battery icon
-        elseif running == true then
-            print("NVG On animation is still running...")
+        else
+            print("Animation Running")
             return
         end
     end
@@ -34,10 +38,15 @@ end
 
 function NVG:Deactivate()
 	--if(self.batteryLifeCurrent < self.batteryLifeMin) then
-        if Animation:NVGAnimationOFF() then
+        if nvgRunner ~= true then
+
+            done = false
+            nvgRunner = true
+            nvgDisable = true
+            print("deactivate")
 		    uiDisableGoggleIcon(true) -- Update UI battery icon
-        elseif running == true then
-            print("NVG Off animation is still running...")
+        else
+            print("Animation Running")
             return
         end
 	--else
@@ -49,13 +58,20 @@ function NVG:Depleting()
 	self.batteryLifeCurrent = self.batteryLifeCurrent - 1
 	uiBattery(self.batteryLifeCurrent) -- Update UI battery
 
-    print("Battery Life: " .. self.batteryLifeCurrent)
+    --print("Battery Life: " .. self.batteryLifeCurrent)
 
     if(self.batteryLifeCurrent == 0) then
         print("Battery has depleted!")
-        ResetSpecialVisualEnvironment("NightVision")
-        uiDisableGoggleIcon(true) -- Update UI battery icon
-        self.batteryEmptyTime = elapsedTime
+        if nvgRunner ~= true then
+
+            done = false
+            nvgRunner = true
+            nvgEnable = false
+            nvgDisable = true
+            uiDisableGoggleIcon(true) -- Update UI battery icon
+            self.batteryEmptyTime = elapsedTime
+            print("Battery Depletion Animation Started")
+        end
     end
 end
 
