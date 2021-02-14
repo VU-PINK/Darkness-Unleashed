@@ -10,7 +10,6 @@ end)
 -- On player spawn, show night vision goggles hint
 local showHintSeconds = 5 -- show the hint for X seconds
 local localPlayer = nil
-
 Events:Subscribe('Player:Respawn', function(player)
 	localPlayer = PlayerManager:GetLocalPlayer()
 
@@ -19,41 +18,47 @@ Events:Subscribe('Player:Respawn', function(player)
 	end
 end)
 
--- Goggles battery update
--- battery = 100 -- battery 0 to 100
--- WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(battery) .. ');')
-
 -- Change Icons location
 -- bottom = "5%"
 -- right = "4%"
 -- WebUI:ExecuteJS('window.iconsLocation("' .. bottom .. '","' .. right .. '");')
 
 -- Update goggle icon
-function goggleIcon(on)
+function uiGoggleIcon(on)
 	if on then
-		changeGoggleIcon(1) -- On
+		uiChangeGoggleIcon(1) -- On
 	else
-		changeGoggleIcon(2) -- Off
+		uiChangeGoggleIcon(2) -- Off
 	end
 end
 
 -- Disable goggles use
-disabled = false
-function disableGoggleIcon(disable)
+isDisabled = false
+function uiDisableGoggleIcon(disable)
 	if disable then
-		changeGoggleIcon(3) -- Disabled
-		disabled = true
-	elseif (disabled) then
-		changeGoggleIcon(2) -- Off
-		disabled = false
+		uiChangeGoggleIcon(3) -- Disabled
+		isDisabled = true
+	elseif (isDisabled) then
+		uiChangeGoggleIcon(2) -- Off
+		isDisabled = false
 	end
 end
 
 -- Update UI icon
-function changeGoggleIcon(state)
+function uiChangeGoggleIcon(state)
 	-- State: 1 = On, 2 = Off, 3 = Disabled
 	-- print('window.gogglesUpdate(' .. tostring(state) .. ');')
     WebUI:ExecuteJS('window.gogglesUpdate(' .. tostring(state) .. ');')
+end
+
+-- Set min/max battery
+function uiBatteries(min, max)
+	WebUI:ExecuteJS('window.setBatteries(' .. tostring(min) .. ', ' .. tostring(max) .. ');')
+end
+
+-- Goggles battery update
+function uiBattery(battery)
+	WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(battery) .. ');')
 end
 
 -- Enable/disable UI

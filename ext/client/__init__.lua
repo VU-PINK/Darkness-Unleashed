@@ -183,8 +183,7 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
             if nvgActivated ~= true then
                 NVG:Activate(deltaTime)
             elseif nvgActivated == true then
-                ResetSpecialVisualEnvironment("NightVision")
-                goggleIcon(false)
+				NVG:Deactivate()
             end
         end
 
