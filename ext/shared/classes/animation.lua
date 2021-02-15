@@ -13,6 +13,8 @@ local currentstate = nil
 local t = 0.0
 local dTime = 0
 local animationSmoothness = 1
+local animationSmoothnessMultiplierON = 0.5
+local animationSmoothnessMultiplierOFF = 0.25
 
 Events:Subscribe('DeltaTime', function(deltaTime)
 
@@ -62,7 +64,7 @@ function Animation:nvgEnableLoop()
     elseif firstloop == false then
             if t <= 1.0 then
               print(dTime)
-              t = t + (animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
+              t = t + (animationSmoothnessMultiplierON * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
               print("Lerping... " .. t)
               local lerp1 = MathUtils:Lerp(0.2, 1.0, t)--lerp(0, 1, t)
               local lerp2 = MathUtils:Lerp(0.0, 2.0, t)--lerp(0, 2, t)
@@ -102,7 +104,7 @@ function Animation:nvgDisableLoop()
       --print("Found NVG state!")
           if t <= 1.0 then
             print("Lerping... " .. t)
-            t = t + (1/2 * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
+            t = t + (animationSmoothnessMultiplierOFF * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
             local lerp1 = MathUtils:Lerp(0.2, 1.0, t)--lerp(0, 1, t)
             currentstate.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
             VisualEnvironmentManager:SetDirty(true)

@@ -181,9 +181,11 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
     if useNightVisionGadget == true and isHud == true then
         if InputManager:WentKeyDown(8) then
             if nvgActivated ~= true then
+                
                 NVG:Activate()
             elseif nvgActivated == true then
-				        NVG:Deactivate()
+                
+				NVG:Deactivate()
             end
         end
 

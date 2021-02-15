@@ -23,7 +23,7 @@ end
 function NVG:Activate()
     if(self.batteryLifeCurrent >= self.batteryLifeMin) then
         if nvgRunner ~= true then
-
+            WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             done = false
             nvgRunner = true
             nvgEnable = true
@@ -39,7 +39,7 @@ end
 function NVG:Deactivate()
 	--if(self.batteryLifeCurrent < self.batteryLifeMin) then
         if nvgRunner ~= true then
-
+            WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
             done = false
             nvgRunner = true
             nvgDisable = true

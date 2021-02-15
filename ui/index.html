@@ -97,6 +97,9 @@
 		</style>
 	</head>
 	<body>
+
+		<script type="text/javascript" src="AudioManager.js"> </script>
+
 		<div id="goggles-key-hint" class="bf3-blue-block" style="display: none;">
 			<div class="hint">
 				<div class="goggles-hint-icon"></div>
@@ -165,6 +168,7 @@
 			// Update battery image
 			var flashing_ms = 500; // time between icon show/hide
 			var flashing = false; // flashing battery icon state
+			var lastBattery;
 			window.batteryUpdate = (currentBattery) => {
 				// battery= 0 - 100
 				// Images:
@@ -184,7 +188,31 @@
 					}
 				} else {
 					flashing = false;
-					document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ Math.ceil(currentBattery/battery.max*4) +".png')";
+					var newBattery = Math.ceil(currentBattery/battery.max*4);
+					
+					if(lastBattery != newBattery)
+					{
+						if(newBattery == 4 && lastBattery != newBattery)
+					{
+						playSound("/sounds/NVG_Charged.ogg", 0.3, false);
+					}
+					else if(newBattery == 0 && lastBattery != newBattery)
+					{
+						playSound("/sounds/NVG_Depleted.ogg", 0.3, false);
+					}
+					else if(lastBattery >= newBattery && lastBattery != newBattery)
+					{
+						playSound("/sounds/NVG_Depleting.ogg", 0.3, false);
+					} else{
+						playSound("/sounds/NVG_Charging.ogg"), 0.3, false;
+					}
+				}
+
+					
+						
+
+					lastBattery = newBattery
+					document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ newBattery +".png')";
 				}
 			};
 			
