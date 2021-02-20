@@ -1,4 +1,4 @@
-require '__shared/settings'
+local Settings = require '__shared/settings'
 require 'interchangable'
 require 'emitters'
 require 'patchmapcomponents'
@@ -37,7 +37,7 @@ end)
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
-    local mapPreset = mapPresets[mapName]
+    local mapPreset = Settings.MapPresets[mapName]
 
 
     if mapPreset ~= nil then
@@ -181,10 +181,10 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
     if useNightVisionGadget == true and isHud == true then
         if InputManager:WentKeyDown(8) then
             if nvgActivated ~= true then
-                
+
                 NVG:Activate()
             elseif nvgActivated == true then
-                
+
 				NVG:Deactivate()
             end
         end
