@@ -2,11 +2,11 @@
 
 
 -- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
-lensflareEnabled = false
-sunflareEnabled = true
-standardusebluefilter = false
+local lensflareEnabled = false
+local sunflareEnabled = true
+local standardusebluefilter = false
 
-mapPresets = {
+local mapPresets = {
     MP_001 = 'Bright_Night', -- Grand Bazaar
     MP_003 = 'Bright_Night', -- Teheran Highway
     MP_007 = 'Bright_Night', -- Caspian Border
@@ -43,10 +43,10 @@ mapPresets = {
 -- Brightness: recommended max: {1.5} | higher values will raise brightness
 -- Fog: recommended: {not tested} | lower values increase fog, higher values decrease fog
 
-generalbrightness                             = 1.0
-generalfog                                    = 1.0
+local generalbrightness                             = 1.0
+local generalfog                                    = 1.0
 
-mapBrightnessMultipliers = {
+local mapBrightnessMultipliers = {
     MP_001 = 1.0, -- Grand Bazaar
     MP_003 = 1.0, -- Teheran Highway
     MP_007 = 1.0, -- Caspian Border
@@ -78,7 +78,7 @@ mapBrightnessMultipliers = {
     XP5_004 = 1.0 -- Sabalan Pipeline
 }
 
-mapFogMultipliers = {
+local mapFogMultipliers = {
     MP_001 = 1.0, -- Grand Bazaar
     MP_003 = 1.0, -- Teheran Highway
     MP_007 = 1.0, -- Caspian Border
@@ -108,4 +108,15 @@ mapFogMultipliers = {
     XP5_002 = 1.0, -- Nebandan Flats
     XP5_003 = 1.0, -- Kiasar Railroad
     XP5_004 = 1.0 -- Sabalan Pipeline
+}
+
+return {
+    LensflareEnabled = lensflareEnabled,
+    SunflareEnabled = sunflareEnabled,
+    Standardusebluefilter = standardusebluefilter,
+    MapPresets = mapPresets,
+    Generalbrightness = generalbrightness,
+    Generalfog = generalfog,
+    MapBrightnessMultipliers = mapBrightnessMultipliers,
+    MapFogMultipliers = mapFogMultipliers
 }

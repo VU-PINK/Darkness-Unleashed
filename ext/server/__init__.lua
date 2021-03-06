@@ -1,4 +1,4 @@
-require '__shared/settings'
+local Settings = require '__shared/settings'
 require 'version'
 
 local presetValues = require '__shared/presets'
@@ -70,7 +70,7 @@ local presetParameters = {
 
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
-    local mapPreset = mapPresets[mapName]
+    local mapPreset = Settings.MapPresets[mapName]
     local selectedPreset = presetValues[mapPreset]
 
     if selectedPreset ~= nil then
@@ -87,8 +87,8 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
         end
         ServerUtils:SetCustomMapName(customMapName)
     else
-        RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(standardusebluefilter)})
-        print('Using Standard Blue-Filter Setting: ' .. tostring(tostring(standardusebluefilter)))
+        RCON:SendCommand('vu.ColorCorrectionEnabled', {tostring(Settings.Standardusebluefilter)})
+        print('Using Standard Blue-Filter Setting: ' .. tostring(tostring(Settings.Standardusebluefilter)))
     end
 end)
 

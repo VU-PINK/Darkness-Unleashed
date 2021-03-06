@@ -1,4 +1,4 @@
-require '__shared/settings' --settings
+local Settings = require '__shared/settings' --settings
 
 --------------------------------------------------------------------------------
 
@@ -10,8 +10,8 @@ FogMultiplicator = nil
 --Custom Map Settings Brightness/Fog
 
 function Multipliers(mapName)
-	BrightnessMultiplicator = generalbrightness * mapBrightnessMultipliers[mapName]
-	FogMultiplicator = generalfog * mapFogMultipliers[mapName]
+	BrightnessMultiplicator = Settings.Generalbrightness * Settings.MapBrightnessMultipliers[mapName]
+	FogMultiplicator = Settings.Generalfog * Settings.MapFogMultipliers[mapName]
 
 	print("BrightnessMultiplicator: " ..BrightnessMultiplicator)
 	print("FogMultiplicator: " ..FogMultiplicator)
