@@ -22,6 +22,7 @@ local useNightVisionGadget = true
 
 
 
+
 local multipliedValues = {
     SkyComponentData = {
         brightnessScale = 'BrightnessMultiplicator'
@@ -37,16 +38,20 @@ end)
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
-    local mapPreset = mapPresets[mapName]
-
-
-    if mapPreset ~= nil then
-        print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
+    if useVote == true and votedPreset ~= nil then
+        print("Calling Voted Preset " .. votedPreset .. " on " .. mapName)
         Multipliers(mapName)
-        ApplyVisualEnvironment(mapPreset)
+        ApplyVisualEnvironment(votedPreset)
     else
-        print('Using Standard')
-        ResetVisualEnvironment()
+    local mapPreset = mapPresets[mapName]
+        if mapPreset ~= nil then
+            print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
+            Multipliers(mapName)
+            ApplyVisualEnvironment(mapPreset)
+        else
+            print('Using Standard')
+            ResetVisualEnvironment()
+        end
     end
 end)
 
@@ -55,7 +60,8 @@ Events:Subscribe('Player:Respawn', function(player)
 
     if player == localPlayer and useNightVisionGadget then
         NVG:__init()
-	end
+	  end
+
 end)
 -- Apply Map Presets
 function ApplyVisualEnvironment(presetName)
@@ -181,10 +187,10 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
     if useNightVisionGadget == true and isHud == true then
         if InputManager:WentKeyDown(8) then
             if nvgActivated ~= true then
-                
+
                 NVG:Activate()
             elseif nvgActivated == true then
-                
+
 				NVG:Deactivate()
             end
         end

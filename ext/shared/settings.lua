@@ -5,6 +5,7 @@
 lensflareEnabled = false
 sunflareEnabled = true
 standardusebluefilter = false
+useVote = true
 
 mapPresets = {
     MP_001 = 'Bright_Night', -- Grand Bazaar
