@@ -1,14 +1,17 @@
 Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 
-	-- STANDARD 
-	--local humveeVehicleEntityData = VehicleEntityData(ResourceManager:FindInstanceByGuid(Guid("611F48A3-0919-11E0-985D-C512734E48AF"), Guid("34ADD228-7E03-C4A4-665F-E0F0955098EE")))
-	-- ASRAD
-	local humveeVehicleEntityData = VehicleEntityData(ResourceManager:FindInstanceByGuid(Guid("F7C250D2-ECEB-481F-A130-D91FE8B693E0"), Guid("1DE37416-42D8-461E-B727-2159DB141204")))	
+	-- HMMVWV 
+	local hmveeChassisComponentData = nil
+	if ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("611F48A3-0919-11E0-985D-C512734E48AF"), Guid("DA89EB6C-A824-A813-A6C5-E2DEF9D4F4FF"))) then 
+		hmmwvChassisComponentData = ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("611F48A3-0919-11E0-985D-C512734E48AF"), Guid("DA89EB6C-A824-A813-A6C5-E2DEF9D4F4FF")))
+	elseif ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("F7C250D2-ECEB-481F-A130-D91FE8B693E0"), Guid("5D10A701-196F-4DA9-8D83-610ABF56124B"))) then
+		hmmwvChassisComponentData = ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("F7C250D2-ECEB-481F-A130-D91FE8B693E0"), Guid("5D10A701-196F-4DA9-8D83-610ABF56124B")))
+	else 
+		print("No HMMVWV found")
+		return
+	end
 
-	if humveeVehicleEntityData ~= nil then
-	
-		humveeVehicleEntityData:MakeWritable()
-
+	if hmmwvChassisComponentData ~= nil then
 		-- Spotlights
 		local vehicleSpotLight = SpotLightEntityData()
 		vehicleSpotLight.shape = 1
@@ -101,26 +104,168 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 			Vec3(0, 0, 0) --pos (sideways,height,frontback)
 		)
 
-		-- Standard
-		--local humveeChassisComponentData = ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("611F48A3-0919-11E0-985D-C512734E48AF"), Guid("DA89EB6C-A824-A813-A6C5-E2DEF9D4F4FF")))
-		-- ASRAD
-		local humveeChassisComponentData = ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("F7C250D2-ECEB-481F-A130-D91FE8B693E0"), Guid("5D10A701-196F-4DA9-8D83-610ABF56124B")))
-		--local humveeChassisComponentData = ChassisComponentData(humveeChassisComponentDataGuid)
-		humveeChassisComponentData:MakeWritable()
+		-- Add new components to Vehicle Chassis
 
-		humveeChassisComponentData.components:add(vehicleLightComponentData)
-		humveeChassisComponentData.components:add(vehicleLightComponentData2)
-		humveeChassisComponentData.components:add(vehicleLightComponentDataFar)
-		humveeChassisComponentData.components:add(vehicleLightComponentDataFar2)
-		--humveeChassisComponentData.components:add(LensFlare1)
-		--humveeChassisComponentData.components:add(LensFlare2)
+		hmmwvChassisComponentData:MakeWritable()
+
+		hmmwvChassisComponentData.components:add(vehicleLightComponentData)
+		hmmwvChassisComponentData.components:add(vehicleLightComponentData2)
+		hmmwvChassisComponentData.components:add(vehicleLightComponentDataFar)
+		hmmwvChassisComponentData.components:add(vehicleLightComponentDataFar2)
+		--hmmwvChassisComponentData.components:add(LensFlare1)
+		--hmmwvChassisComponentData.components:add(LensFlare2)
 
 		
 		print("Humweed goes poof")
-		done = true
-
 	else
 		print("A")
 	end
-	
+
+	-- Venom 
+	local venomWeaponComponentData = nil
+	if ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid("97945D87-011D-11E0-B97C-FC495C335A52"), Guid("39663C49-6C7F-429B-A00F-4885D0BBEDB8"))) then 
+		venomWeaponComponentData = WeaponComponentData(ResourceManager:FindInstanceByGuid(Guid("97945D87-011D-11E0-B97C-FC495C335A52"), Guid("39663C49-6C7F-429B-A00F-4885D0BBEDB8")))
+	else 
+		print("No Venom found")
+		return
+	end
+
+	if venomWeaponComponentData ~= nil then
+		-- Spotlights
+		local weaponSpotlight = SpotLightEntityData()
+		weaponSpotlight.shape = 1
+		weaponSpotlight.coneInnerAngle = 10
+		weaponSpotlight.coneOuterAngle = 5
+		weaponSpotlight.frustumFov = 100
+		weaponSpotlight.frustumAspect = 1.25
+		weaponSpotlight.texture = TextureAsset(ResourceManager:FindInstanceByGuid(Guid("04C62561-2236-11DF-A528-EA655525F02D"), Guid("2EE018E8-1451-908C-0974-DB7676407D61")))
+		weaponSpotlight.castShadowsMinLevel = 0
+		weaponSpotlight.castShadowsEnable = true
+		weaponSpotlight.intensity = 0.20
+		weaponSpotlight.radius = 150
+
+		local weaponSpotlightComponentData = LightComponentData()
+		weaponSpotlightComponentData.light = weaponSpotlight
+
+		weaponSpotlightComponentData.transform = LinearTransform(
+			Vec3(-1, 0, 0), --rotation
+			Vec3(0, 1, 0),
+			Vec3(0, 0, 1),
+			Vec3(0, 0, 0) --pos (sideways,height,frontback)
+		)
+
+		venomWeaponComponentData:MakeWritable()
+		venomWeaponComponentData.components:add(weaponSpotlightComponentData)
+
+	end
+
+
 end)
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	-- Trying to create a usable class
+	local VehicleModifications = class 'VehicleModifications'
+
+	local Spotlights = {}
+	local Spotlights.componentdata = {}
+	local Vehicles = {}
+
+
+	function VehicleModifications:Scan(vehicle, partitionGUID, instanceGUID, chassisGUID)
+		if VehicleEntityData(ResourceManager:FindInstanceByGuid(partitionGUID, instanceGUID) then 
+			Vehicles.vehicle = ChassisComponentData(ResourceManager:FindInstanceByGuid(ResourceManager:FindInstanceByGuid(partitionGUID, chassisGUID))
+		else 
+			print("No HMMVWV found")
+			return
+		end
+	end
+
+	function VehicleModifications:ScanWeapons(partitionGUID, instanceGUID, weaponGUID)
+		if VehicleEntityData(ResourceManager:FindInstanceByGuid(partitionGUID, instanceGUID) then 
+			Vehicles.vehicle = ChassisComponentData(ResourceManager:FindInstanceByGuid(ResourceManager:FindInstanceByGuid(partitionGUID, chassisGUID))
+		else 
+			print("No HMMVWV found")
+			return
+		end
+	end
+
+	function VehicleModifications:CreateSpotlight(name, shape, coneInnerAngle, coneOuterAngle, frustumFov, frustumAspect, texture, castShadowsMinLevel, castShadowsEnable, intensity, radius)
+		Spotlights.name = SpotLightEntityData()
+		Spotlights.name.shape = shape
+		Spotlights.name.coneInnerAngle = coneInnerAngle
+		Spotlights.name.coneOuterAngle = coneOuterAngle
+		Spotlights.name.frustumFov = frustumFov
+		Spotlights.name.frustumAspect = frustumAspect
+		Spotlights.name.texture = texture
+		Spotlights.name.castShadowsMinLevel = castShadowsMinLevel
+		Spotlights.name.castShadowsEnable = castShadowsEnable
+		Spotlights.name.intensity = intensity
+		Spotlights.name.radius = radius
+	end
+
+	function VehicleModifications:CreateLightComponentData(name, lightname, trans1, trans2, trans3, trans4)
+		Spotlights.componentdata.name = LightComponentData()
+		Spotlights.componentdata.name.light = lightname
+
+		Spotlights.componentdata.name.transform = LinearTransform(
+			trans1, --rotation
+			trans2,
+			trans3,
+			trans4 	--pos (sideways,height,frontback)
+		)
+	end
+
+	function VehicleModifications:AddComponentsToVehicleChassis()
+    	-- looping through instance types
+    	for instanceType, values in pairs(Vehicles) do
+        	-- creating new instance
+        	local newInstance = _G[instanceType]()
+			newInstance:MakeWritable()
+
+			for key, value in pairs(Spotlights.componentdata) do 
+				key.components:add(value)
+			end
+			
+		end
+	end
+
+	function VehicleModifications:AddComponentsToVehicleWeapon()
+		hmmwvChassisComponentData:MakeWritable()
+		for key, value in pairs(Spotlights.componentdata) do 
+			hmmwvChassisComponentData.components:add(key)
+		end
+	end
+
