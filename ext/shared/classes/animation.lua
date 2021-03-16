@@ -48,14 +48,14 @@ end
 function Animation:nvgEnableLoop()
     if firstloop ~= false then
         firstloop = false
-        print("NVG Animation called!")
+        --print("NVG Animation called!")
         ApplySpecialVisualEnvironment("NightVision")
         states = VisualEnvironmentManager:GetStates()
 
         for _, state in pairs(states) do
-          print("Searching through states")
+          --print("Searching through states")
           if state.priority == 1000000 then
-            print("Found NVG State")
+            --print("Found NVG State")
             currentstate = state
           end
 
@@ -63,9 +63,9 @@ function Animation:nvgEnableLoop()
 
     elseif firstloop == false then
             if t <= 1.0 then
-              print(dTime)
+              --print(dTime)
               t = t + (animationSmoothnessMultiplierON * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
-              print("Lerping... " .. t)
+              --print("Lerping... " .. t)
               local lerp1 = MathUtils:Lerp(0.2, 1.0, t)--lerp(0, 1, t)
               local lerp2 = MathUtils:Lerp(0.0, 2.0, t)--lerp(0, 2, t)
               currentstate.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
@@ -77,24 +77,24 @@ function Animation:nvgEnableLoop()
               firstloop = true
               nvgEnable = false
               t = 0.0
-              print("Reached End")
+              --print("Reached End")
               return
             end
     end
 end
 
 function Animation:nvgDisableLoop()
-  print("Disable Animation")
+  --print("Disable Animation")
   if firstloop ~= false then
       firstloop = false
-      print("NVG Disable Animation called!")
+      --print("NVG Disable Animation called!")
       ResetSpecialVisualEnvironment("NightVision")
       states = VisualEnvironmentManager:GetStates()
 
       for _, state in pairs(states) do
-        print("Searching through states")
+        --rint("Searching through states")
         if state.priority == 999999 then
-          print("Found NVG State")
+          --print("Found NVG State")
           currentstate = state
         end
 
@@ -103,7 +103,7 @@ function Animation:nvgDisableLoop()
   elseif firstloop == false then
       --print("Found NVG state!")
           if t <= 1.0 then
-            print("Lerping... " .. t)
+            --print("Lerping... " .. t)
             t = t + (animationSmoothnessMultiplierOFF * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
             local lerp1 = MathUtils:Lerp(0.2, 1.0, t)--lerp(0, 1, t)
             currentstate.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
@@ -114,7 +114,7 @@ function Animation:nvgDisableLoop()
             firstloop = true
             nvgDisable = false
             t = 0.0
-            print("Reached End")
+            --print("Reached End")
             return
           end
   end

@@ -27,10 +27,10 @@ function NVG:Activate()
             done = false
             nvgRunner = true
             nvgEnable = true
-            print("activate")
+            --print("activate")
             uiGoggleIcon(true) -- Update UI battery icon
         else
-            print("Animation Running")
+            --print("Animation Running")
             return
         end
     end
@@ -43,10 +43,10 @@ function NVG:Deactivate()
             done = false
             nvgRunner = true
             nvgDisable = true
-            print("deactivate")
+            --print("deactivate")
 		    uiDisableGoggleIcon(true) -- Update UI battery icon
         else
-            print("Animation Running")
+            --print("Animation Running")
             return
         end
 	--else
@@ -70,7 +70,7 @@ function NVG:Depleting()
             nvgDisable = true
             uiDisableGoggleIcon(true) -- Update UI battery icon
             self.batteryEmptyTime = elapsedTime
-            print("Battery Depletion Animation Started")
+            --print("Battery Depletion Animation Started")
         end
     end
 end
@@ -88,7 +88,7 @@ function NVG:Recharging()
     if(self.batteryLifeCurrent < self.batteryLifeMax) then
         self.batteryLifeCurrent = self.batteryLifeCurrent + 1
 		uiBattery(self.batteryLifeCurrent) -- Update UI battery
-        print("Battery Charged To: " .. self.batteryLifeCurrent)
+        --print("Battery Charged To: " .. self.batteryLifeCurrent)
     end
 end
 

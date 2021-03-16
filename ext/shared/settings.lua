@@ -6,6 +6,10 @@ local lensflareEnabled = false
 local sunflareEnabled = true
 local standardusebluefilter = false
 
+-- Vehicle Lights
+local useVehicleLights_Airborne = true
+local useVehicleLights_Ground = true
+
 local mapPresets = {
     MP_001 = 'Night', -- Grand Bazaar
     MP_003 = 'Night', -- Teheran Highway
@@ -110,6 +114,10 @@ local mapFogMultipliers = {
     XP5_004 = 1.0 -- Sabalan Pipeline
 }
 
+
+
+
+
 return {
     LensflareEnabled = lensflareEnabled,
     SunflareEnabled = sunflareEnabled,
@@ -118,5 +126,7 @@ return {
     Generalbrightness = generalbrightness,
     Generalfog = generalfog,
     MapBrightnessMultipliers = mapBrightnessMultipliers,
-    MapFogMultipliers = mapFogMultipliers
+    MapFogMultipliers = mapFogMultipliers,
+    useVehicleLights_Airborne = useVehicleLights_Airborne,
+    useVehicleLights_Ground = useVehicleLights_Airborne
 }

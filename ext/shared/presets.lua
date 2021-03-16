@@ -23,7 +23,7 @@ local Night = {
     },
     SkyComponentData = {
         enable = true,
-        brightnessScale = 0.01,
+        brightnessScale = 0.02,
         sunSize = 0,
         sunScale = 0,
         realm = 0,

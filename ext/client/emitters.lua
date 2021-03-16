@@ -80,7 +80,7 @@ function patchFlashLight(instance)
 	spotLight.orthoHeight = 8
 	spotLight.frustumFov = 52 --size
 	spotLight.castShadowsEnable = true
-	spotLight.castShadowsMinLevel = 2
+	spotLight.castShadowsMinLevel = 0
 	spotLight.shape = 1
 
 	--print('Patching flashlight')

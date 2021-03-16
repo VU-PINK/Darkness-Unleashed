@@ -149,7 +149,7 @@ local effects = {
 }
 
 local envmaps = {
-    ['levels/mp_subway/lighting/ve_mp_subway_city_01'] = true,
+     ['levels/mp_subway/lighting/ve_mp_subway_city_01'] = true,
     ['levels/mp_011/lighting/ve_mp_011_day01'] = true,
     ['levels/xp5_001/lighting/ve_xp5_001_01'] = true,
     ['levels/xp5_002/lighting/ve_xp5_002_01'] = true,
@@ -163,8 +163,8 @@ Events:Subscribe('Partition:Loaded', function(partition)
             PatchMeshAsset(instance)
         elseif instance:Is('MeshMaterialVariation') then
             PatchMeshMaterialVariation(instance)
-        elseif instance:Is('EmitterTemplateData') then
-            PatchEmitterTemplateData(instance)
+        --elseif instance:Is('EmitterTemplateData') then
+            --PatchEmitterTemplateData(instance)
         elseif instance:Is('EffectEntityData') then
             PatchEffectEntityData(instance)
 	elseif instance:Is('LocalLightEntityData') then
