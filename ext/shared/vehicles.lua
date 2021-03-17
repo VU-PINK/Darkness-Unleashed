@@ -199,7 +199,11 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_4.transform.trans = Vec3(0, 
 
 VehicleSettings.Ground = {}
 
+<<<<<<< HEAD
 VehicleSettings.Ground.HMMVWV = {}
+=======
+--[[VehicleSettings.Ground.HMMVWV = {}
+>>>>>>> 4bb3558f758479cb7603c81c8c1979131c830a6e
 VehicleSettings.Ground.HMMVWV.name = 'HMMVWV Standard'
 VehicleSettings.Ground.HMMVWV.partitionGUID = '611F48A3-0919-11E0-985D-C512734E48AF'
 VehicleSettings.Ground.HMMVWV.chassisGUID = 'DA89EB6C-A824-A813-A6C5-E2DEF9D4F4FF'
@@ -297,7 +301,11 @@ VehicleSettings.Ground.HMMVWV.Components.Pointlight_1.transform = {}
 VehicleSettings.Ground.HMMVWV.Components.Pointlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.HMMVWV.Components.Pointlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.HMMVWV.Components.Pointlight_1.transform.forward = Vec3(0, 0, 1)
+<<<<<<< HEAD
 VehicleSettings.Ground.HMMVWV.Components.Pointlight_1.transform.trans = Vec3(0, 1, 5)
+=======
+VehicleSettings.Ground.HMMVWV.Components.Pointlight_1.transform.trans = Vec3(0, 1, 5)]]
+>>>>>>> 4bb3558f758479cb7603c81c8c1979131c830a6e
 
 VehicleSettings.Ground.HMMVWV_A = {}
 VehicleSettings.Ground.HMMVWV_A.name = 'HMMVWV ASRAD'

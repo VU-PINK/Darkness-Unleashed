@@ -99,10 +99,16 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
  		for vehicleIndex, vehicle in pairs(vehicleType) do
 
 			print(vehicle.name .." | ".. vehicle.partitionGUID .." |  ".. vehicle.chassisGUID)
+<<<<<<< HEAD
 			chassisData = ResourceManager:FindInstanceByGuid(Guid(vehicle.partitionGUID), Guid(vehicle.chassisGUID))
 
 				if chassisData ~= nil then
 				chassisData = ChassisComponentData(chassisData)
+=======
+ 			chassisData = ChassisComponentData(ResourceManager:FindInstanceByGuid(Guid(vehicle.partitionGUID), Guid(vehicle.chassisGUID)))
+
+ 				if chassisData ~= nil then
+>>>>>>> 4bb3558f758479cb7603c81c8c1979131c830a6e
 
  					for componentIndex, component in pairs(vehicle.Components) do
 
