@@ -17,6 +17,7 @@ function checkVersion()
     if getCurrentVersion() ~= localModVersion then
         print("Version: "..localModVersion)
         print("This mod seems to be out of date! Please visit https://github.com/IllustrisJack/Darkness-Unleashed/");
+        print(json.Version .. ' is the latest version!')
       else
         print("Version: "..localModVersion)
         print("You're running the lastest version!")

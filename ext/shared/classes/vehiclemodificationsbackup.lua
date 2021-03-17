@@ -379,7 +379,7 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 	if viperWeaponComponentData ~= nil then
 
 		viperWeaponComponentData:MakeWritable()
-		viper	:MakeWritable()
+		viperChassisComponentData:MakeWritable()
 
 		-- Spotlights
 		local weaponSpotlight = SpotLightEntityData()
