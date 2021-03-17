@@ -78,7 +78,7 @@ function patchFlashLight(instance)
 	spotLight.coneOuterAngle = 50
 	spotLight.orthoWidth = 8
 	spotLight.orthoHeight = 8
-	spotLight.frustumFov = 52 --size
+	spotLight.frustumFov = 38 --size
 	spotLight.castShadowsEnable = true
 	spotLight.castShadowsMinLevel = 0
 	spotLight.shape = 1
