@@ -61,7 +61,7 @@ function NVG:Depleting()
     --print("Battery Life: " .. self.batteryLifeCurrent)
 
     if(self.batteryLifeCurrent == 0) then
-        print("Battery has depleted!")
+        --print("Battery has depleted!")
         if nvgRunner ~= true then
 
             done = false

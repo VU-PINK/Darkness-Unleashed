@@ -15,8 +15,6 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 		-- Spotlights
 		local vehicleSpotLight = SpotLightEntityData()
 		vehicleSpotLight.shape = 1
-		vehicleSpotLight.coneInnerAngle = 10
-		vehicleSpotLight.coneOuterAngle = 5
 		vehicleSpotLight.frustumFov = 100
 		vehicleSpotLight.frustumAspect = 1.25
 		vehicleSpotLight.texture = TextureAsset(ResourceManager:FindInstanceByGuid(Guid("04C62561-2236-11DF-A528-EA655525F02D"), Guid("2EE018E8-1451-908C-0974-DB7676407D61")))
@@ -27,8 +25,6 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 
 		local vehicleSpotLightFar = SpotLightEntityData()
 		vehicleSpotLightFar.shape = 1
-		vehicleSpotLightFar.coneInnerAngle = 10
-		vehicleSpotLightFar.coneOuterAngle = 5
 		--vehicleSpotLightFar.orthoWidth = 50
 		--vehicleSpotLightFar.orthoHeight = 20
 		vehicleSpotLightFar.frustumFov = 55
@@ -379,7 +375,7 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 	if viperWeaponComponentData ~= nil then
 
 		viperWeaponComponentData:MakeWritable()
-		viper	:MakeWritable()
+		viperChassisComponentData:MakeWritable()
 
 		-- Spotlights
 		local weaponSpotlight = SpotLightEntityData()

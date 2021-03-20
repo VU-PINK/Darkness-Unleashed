@@ -6,7 +6,7 @@ local presetValues = require '__shared/presets'
 function getCurrentVersion()
     options = HttpOptions({}, 10);
     options.verifyCertificate = false;
-    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/live-wip/mod.json", options);
+    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/development/mod.json", options);
     if res.status ~= 200 then
         return null;
     end
@@ -17,6 +17,7 @@ function checkVersion()
     if getCurrentVersion() ~= localModVersion then
         print("Version: "..localModVersion)
         print("This mod seems to be out of date! Please visit https://github.com/IllustrisJack/Darkness-Unleashed/");
+        print(json.Version .. ' is the latest version!')
       else
         print("Version: "..localModVersion)
         print("You're running the lastest version!")
