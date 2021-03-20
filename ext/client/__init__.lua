@@ -19,6 +19,9 @@ local currentSpecialVisualEnvironment = nil
 local nvgActivated = nil
 local useNightVisionGadget = true
 
+UserSettingsSaved = nil
+UserSettings = {}
+changedSpotlightSettings = nil 
 
 
 
@@ -27,7 +30,7 @@ local multipliedValues = {
         brightnessScale = 'BrightnessMultiplicator'
     },
     FogComponentData = {
-        fogColorCurve = 'FogMultiplicator'
+        fogDistanceMultiplier = 'FogMultiplicator'
     },
 }
 
@@ -39,15 +42,31 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = Settings.MapPresets[mapName]
 
-
     if mapPreset ~= nil then
         print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
         Multipliers(mapName)
         ApplyVisualEnvironment(mapPreset)
+        if mapPreset == 'Night' then
+            EnforceBrightness()
+        else 
+            ReleaseBrightness()
+        end
     else
         print('Using Standard')
         ResetVisualEnvironment()
     end
+
+end)
+
+-- Unload Forced Settings
+Events:Subscribe('Extension:Unloading', function()
+    ReleaseBrightness()
+    resetMoreSpotlights()
+end)
+
+-- Change Settings to allow more Spotlight Shadows
+Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+    allowMoreSpotlights()
 end)
 
 Events:Subscribe('Player:Respawn', function(player)
@@ -57,6 +76,7 @@ Events:Subscribe('Player:Respawn', function(player)
         NVG:__init()
 	end
 end)
+
 -- Apply Map Presets
 function ApplyVisualEnvironment(presetName)
     if currentVisualEnvironment ~= nil then
@@ -216,3 +236,110 @@ Events:Subscribe('SecondElapsed', function(lastSecond)
         NVG:Recharging()
     end
 end)
+
+
+
+-- Vehicle Flash Light
+Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
+    
+    if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
+        if p_Player.inVehicle == false then
+            print("Not in a vehicle")
+            return
+        end
+        
+        if p_Player.controlledControllable == nil then
+            print("Not a driver")
+            return
+        end
+
+        print('Pressed Key T')
+        
+        local s_VehicleEntityData = p_Player.controlledControllable.data
+
+        local s_VehicleComponents = GameEntityData(p_Player.controlledControllable.data).components
+        
+        for _, l_component in pairs(s_VehicleComponents) do
+            
+            if l_component.typeInfo.name == "ChassisComponentData" then
+                local s_ChassisComponents = ChassisComponentData(l_component).components
+                for _, l_ChassisComponent in pairs(s_ChassisComponents) do
+                    
+                    --print(l_component.typeInfo.name)
+                    if l_ChassisComponent.typeInfo.name == "LightComponentData" then
+                        local s_LightComponentData = LightComponentData(l_ChassisComponent)
+
+                        -- Invert boolean
+                        LocalLightEntityData(s_LightComponentData.light).visible = not LocalLightEntityData(s_LightComponentData.light).visible
+
+                        local lightClone = s_LightComponentData:clone()
+                        s_LightComponentData:Destroy()
+                        s_ChassisComponents.add(lightClone)
+
+                        print("Light visible changed: " .. tostring(LocalLightEntityData(s_LightComponentData.light).visible))
+                    end
+                    
+                end
+            end
+            --print(l_component.typeInfo.name)
+            
+        end
+    end
+
+    -- Debug: Apply settings on lights
+	if InputManager:WentKeyDown(InputDeviceKeys.IDK_R) then
+		if p_Player.inVehicle == false then
+			print("Not in a vehicle")
+			return
+		end
+		
+		if p_Player.controlledControllable == nil then
+			print("Not a driver")
+			return
+		end
+		
+        print('Pressed Key R')
+
+		local s_VehicleEntityData = p_Player.controlledControllable.data
+		local s_VehicleComponents = GameEntityData(p_Player.controlledControllable.data).components
+		
+		for _, l_component in pairs(s_VehicleComponents) do
+			
+			if l_component.typeInfo.name == "ChassisComponentData" then
+				local s_ChassisComponents = ChassisComponentData(l_component).components
+				for _, l_ChassisComponent in pairs(s_ChassisComponents) do
+					
+
+					--print(l_component.typeInfo.name)
+					if l_ChassisComponent.typeInfo.name == "LightComponentData" then
+						local s_LightComponentData = LightComponentData(l_ChassisComponent)
+
+						s_LightComponentData.transform = LinearTransform(
+							Vec3(-1, 0, 0), --rotation
+							Vec3(0, 1, 0),
+							Vec3(0, 0, 1),
+							Vec3(0, 0, 0) -- CHANGE POSITION VALUE AND RELOAD THE MOD
+						)
+						
+						-- Invert boolean
+						local s_LocalLightEntityData = LocalLightEntityData(s_LightComponentData.light)
+						s_LocalLightEntityData.radius = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
+						s_LocalLightEntityData.intensity = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
+
+                        local lightClone = s_LightComponentData:clone()
+                        s_LightComponentData:Destroy()
+                        s_ChassisComponents.add(lightClone)
+
+						print("Light settings changed")
+					end
+					
+				end
+			end
+			--print(l_component.typeInfo.name)
+			
+		end
+        
+	end
+end)
+
+

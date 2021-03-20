@@ -121,7 +121,7 @@ function AddSpotLight(spotLightSettingsArray, chassisData, vehicle)
 
 		print('Added '..spotLightSettingsArray.description..' to ' .. vehicle.name)
 
-		if spotLightSettingsArray.transform.mirrored == true then
+		if spotLightSettingsArray.mirrored == true then
 		AddMirrorSpotlight(spotLightSettingsArray.name, chassisData, spotLightSettingsArray)
 		end 
 
@@ -180,20 +180,20 @@ function FindInArray(array, value)
 end
 
 
---[[function AddLensFlare(name, data, trans)
+function AddLensFlare(name, data, trans)
 	local LensFlare = LensFlareEntityData(ResourceManager:FindInstanceByGuid(Guid("65A5BFD9-028A-4D4F-8B89-3A60B2E06F83"), Guid("D8DB98E1-AEBA-485E-9AA4-D5F55C5CDECE")))
 	LensFlare:MakeWritable()
 
 	for key, value in pairs(LensFlare.elements) do
 		value.sizeCamDistMax = 90
-		value.sizeAngleCurve = value.sizeAngleCurve * 0.5
+		value.sizeAngleCurve = value.sizeAngleCurve * 1
 		value.size = value.size * 1
-		value.sizeOccluderCurve = value.sizeOccluderCurve * 0.5
-		value.sizeScreenPosCurve = value.sizeScreenPosCurve * 0.5
-		value.alphaCamDistCurve = value.alphaCamDistCurve * 0.5
-		value.alphaOccluderCurve = value.alphaOccluderCurve * 0.5
-		value.alphaAngleCurve = value.alphaScreenPosCurve * 0.5
-		value.alphaScreenPosCurve = value.alphaScreenPosCurve * 0.5
+		value.sizeOccluderCurve = value.sizeOccluderCurve * 1
+		value.sizeScreenPosCurve = value.sizeScreenPosCurve * 1
+		value.alphaCamDistCurve = value.alphaCamDistCurve * 1
+		value.alphaOccluderCurve = value.alphaOccluderCurve * 1
+		value.alphaAngleCurve = value.alphaScreenPosCurve * 1
+		value.alphaScreenPosCurve = value.alphaScreenPosCurve * 1
 		value.alphaCamDistMax = 75
 	end
 
@@ -204,49 +204,14 @@ end
 		Vec3(-1.0, 0.0, 8.74227765735e-08), --rotation
 		Vec3(0, 1, 0),
 		Vec3(-8.74227765735e-08, 0, -1),
-		trans
+		trans*1
 		)
 
 	data.components:add(name)
 	vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
 
-	--print('Added Lensflare: ' .. tostring(name))
-	--print('Component Data: ' .. tostring(data))
-
-end]]
-
-function AddLensFlare(name, data, trans)
-	local LensFlare = LensFlareEntityData(ResourceManager:FindInstanceByGuid(Guid("65A5BFD9-028A-4D4F-8B89-3A60B2E06F83"), Guid("D8DB98E1-AEBA-485E-9AA4-D5F55C5CDECE")))
-	LensFlare:MakeWritable()
-
-	for key, value in pairs(LensFlare.elements) do
-		value.sizeCamDistMax = 80
-		value.sizeAngleCurve = Vec4(0.13, 1, 0, 0)
-		value.alphaAngleCurve = Vec4(0.04, 1, 0, 0)
-		value.sizeScreenPosCurve = value.sizeScreenPosCurve
-		value.alphaScreenPosCurve = value.alphaScreenPosCurve
-		value.size = value.size * 0.92
-		value.sizeOccluderCurve = value.sizeOccluderCurve * 1
-		value.alphaCamDistCurve = value.alphaCamDistCurve * 1
-		value.alphaOccluderCurve = value.alphaOccluderCurve * 1
-		value.alphaCamDistMax = 60
-	end
-
-	local name = LensFlareComponentData()
-	name.lensFlare = LensFlare
-
-	name.transform = LinearTransform(
-		Vec3(-1.0, 0.0, 8.74227765735e-08), --rotation
-		Vec3(0, 1, 0),
-		Vec3(-8.74227765735e-08, 0, -1),
-		trans
-		)
-
-	data.components:add(name)
-	vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
-
-	--print('Added Lensflare: ' .. tostring(name))
-	--print('Component Data: ' .. tostring(data))
+	print('Added Lensflare: ' .. tostring(name))
+	print('Component Data: ' .. tostring(data))
 
 end
 
@@ -260,7 +225,7 @@ function AddMirrorSpotlight(name, data, settings)
  	newSpotLight.frustumAspect = settings.frustumAspect
  	newSpotLight.texture = TextureAsset(ResourceManager:FindInstanceByGuid(Guid('04C62561-2236-11DF-A528-EA655525F02D'), Guid('2EE018E8-1451-908C-0974-DB7676407D61')))
  	newSpotLight.castShadowsMinLevel = 0
- 	newSpotLight.castShadowsEnable = false
+ 	newSpotLight.castShadowsEnable = true
  	newSpotLight.radius = settings.radius
 
  	local name = LightComponentData()
@@ -274,9 +239,6 @@ function AddMirrorSpotlight(name, data, settings)
 
 	data.components:add(name)
 	vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
-
-	-- add lensflare
-	AddLensFlare(name, data, settings.transform.trans * Vec3((-1), 1, 1))
 
 	print('Added ' .. settings.description .. ' Mirror Spotlight')
 

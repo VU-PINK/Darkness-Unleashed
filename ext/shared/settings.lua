@@ -45,7 +45,7 @@ local mapPresets = {
 
 -- Fog and Brightness Settings - Night Preset
 -- Brightness: recommended max: {1.5} | higher values will raise brightness
--- Fog: recommended: {not tested} | lower values increase fog, higher values decrease fog
+-- Fog: recommended: {1} | lower values increase fog, higher values decrease fog
 
 local generalbrightness                             = 1.0
 local generalfog                                    = 1.0
@@ -77,7 +77,7 @@ local mapBrightnessMultipliers = {
     XP4_FD = 1.0, -- Markaz Monolith
     XP4_Rubble = 1.0, -- Talah Market
     XP5_001 = 1.0, -- Operation Riverside
-    XP5_002 = 1.0, -- Nebandan Flats
+    XP5_002 = 0.35, -- Nebandan Flats
     XP5_003 = 1.0, -- Kiasar Railroad
     XP5_004 = 1.0 -- Sabalan Pipeline
 }
@@ -93,8 +93,8 @@ local mapFogMultipliers = {
     MP_018 = 1.0, -- Kharg Island
     MP_Subway = 1.0, -- Operation Metro
     XP1_001 = 1.0, -- Strike at Karkand
-    XP1_002 = 1.0, -- Gulf of Oman
-    XP1_003 = 1.0, -- Sharqi Peninsula
+    XP1_002 = 0.1, -- Gulf of Oman
+    XP1_003 = 0.5, -- Sharqi Peninsula
     XP1_004 = 1.0, -- Wake Island
     XP2_Palace = 1.0, -- Donya Fortress
     XP2_Office = 1.0, -- Operation 925
@@ -109,7 +109,7 @@ local mapFogMultipliers = {
     XP4_FD = 1.0, -- Markaz Monolith
     XP4_Rubble = 1.0, -- Talah Market
     XP5_001 = 1.0, -- Operation Riverside
-    XP5_002 = 1.0, -- Nebandan Flats
+    XP5_002 = 0.9, -- Nebandan Flats
     XP5_003 = 1.0, -- Kiasar Railroad
     XP5_004 = 1.0 -- Sabalan Pipeline
 }

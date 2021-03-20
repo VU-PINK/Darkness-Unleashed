@@ -121,7 +121,7 @@ end
 Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 	for componentIndex, components in pairs(newEntities) do
 		print('Added Light!')
-		
+
 		local newSpotLight = SpotLightEntityData()
 		spotLightSettingsArray = components[3]
 		newSpotLight.shape = spotLightSettingsArray.shape
@@ -131,7 +131,7 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 		newSpotLight.castShadowsEnable = spotLightSettingsArray.castShadowsEnable
 		newSpotLight.intensity = spotLightSettingsArray.intensity
 		newSpotLight.radius = spotLightSettingsArray.radius
-		newSpotLight.texture = TextureAsset(ResourceManager:FindInstanceByGuid(Guid("04C62561-2236-11DF-A528-EA655525F02D"), Guid("2EE018E8-1451-908C-0974-DB7676407D61")))
+		newSpotLight.texture = TextureAsset(ResourceManager:FindInstanceByGuid(Guid('04C62561-2236-11DF-A528-EA655525F02D'), Guid('2EE018E8-1451-908C-0974-DB7676407D61')))
 
 		local newSpotlightComponentData = LightComponentData()
 		newSpotlightComponentData.light = newSpotLight
