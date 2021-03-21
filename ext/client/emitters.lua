@@ -74,7 +74,7 @@ function patchFlashLight(instance)
 	instance:MakeWritable()
 
 	spotLight.radius = 120
-	spotLight.intensity = 10 --brightness
+	spotLight.intensity = 6 --brightness
 	spotLight.coneOuterAngle = 50
 	spotLight.orthoWidth = 8
 	spotLight.orthoHeight = 8
