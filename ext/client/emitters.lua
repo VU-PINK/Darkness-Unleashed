@@ -38,7 +38,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
 
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
-					emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 1.25
+					emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 1.4
 					emitterTemplate.maxSpawnDistance = 2000
 				end
 
@@ -73,12 +73,12 @@ function patchFlashLight(instance)
 	local spotLight = SpotLightEntityData(instance)
 	instance:MakeWritable()
 
-	spotLight.radius = 220
-	spotLight.intensity = 4.75 --brightness
+	spotLight.radius = 120
+	spotLight.intensity = 10 --brightness
 	spotLight.coneOuterAngle = 50
 	spotLight.orthoWidth = 8
 	spotLight.orthoHeight = 8
-	spotLight.frustumFov = 52 --size
+	spotLight.frustumFov = 38 --size
 	spotLight.castShadowsEnable = true
 	spotLight.castShadowsMinLevel = 0
 	spotLight.shape = 1
