@@ -69,7 +69,7 @@ function NVG:Depleting()
 
 	uiBattery(self.batteryLifeCurrent) -- Update UI battery
 
-    --print("Battery Life: " .. self.batteryLifeCurrent)
+    print("Battery Life: " .. self.batteryLifeCurrent)
 
     if(self.batteryLifeCurrent == 0) then
         --print("Battery has depleted!")
@@ -99,7 +99,7 @@ function NVG:Recharging()
     if(self.batteryLifeCurrent < self.batteryLifeMax) then
         self.batteryLifeCurrent = self.batteryLifeCurrent + 1
 		uiBattery(self.batteryLifeCurrent) -- Update UI battery
-        --print("Battery Charged To: " .. self.batteryLifeCurrent)
+        print("Battery Charged To: " .. self.batteryLifeCurrent)
     end
 end
 

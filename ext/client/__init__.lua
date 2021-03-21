@@ -165,12 +165,8 @@ function ApplySpecialVisualEnvironment(presetName)
         -- patching instance properties
         for key, value in pairs(values) do
             if type(value) == 'string' then
-                if value == 'FlirData' then 
-                newInstance[key] = 'FlirData'
-                else 
                 -- patching texture property
                 newInstance[key] = TextureAsset(_G[value])
-                end
             else
                 -- patching static property
                 newInstance[key] = value
@@ -242,80 +238,8 @@ Events:Subscribe('SecondElapsed', function(lastSecond)
 end)
 
 
+
 -- Vehicle Flash Light
-Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
-    
-    if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
-        if p_Player.inVehicle == false then
-            Tool:DebugPrint("Not in a vehicle")
-            return
-        end
-        
-        if p_Player.controlledControllable == nil then
-            Tool:DebugPrint("Not a driver")
-            return
-        end
-        
-        local s_VehicleEntityData = p_Player.controlledControllable.data
-        local s_VehicleComponents = GameEntityData(p_Player.controlledControllable.data).components
-        
-        for _, l_component in pairs(s_VehicleComponents) do
-            
-            if l_component.typeInfo.name == "ChassisComponentData" then
-                local s_ChassisComponents = ChassisComponentData(l_component).components
-
-                for _, l_ChassisComponent in pairs(s_ChassisComponents) do
-                    
-                    --Tool:DebugPrint(l_component.typeInfo.name)
-                    --Tool:DebugPrint('1')
-
-                    if l_ChassisComponent.typeInfo.name == "LightComponentData" then
-                        local s_LightComponentData = LightComponentData(l_ChassisComponent)
-                        --Tool:DebugPrint(tostring(s_LightComponentData.light))
-                        --Tool:DebugPrint('2')
-
-                        --Tool:DebugPrint('[FROM] Is Visible: ' .. tostring(s_LightComponentData.excluded))
-
-                        local it = EntityManager:GetIterator('SpotLightEntity')
-                        local entity = it:Next()
-
-                        while entity ~= nil do
-                            entity:Destroy()
-                            Tool:DebugPrint(entity.data)
-                            entity = it:Next()
-                        end
-
-                        --Tool:DebugPrint('[TO] Is Visible: ' .. tostring(s_LightComponentData.excluded))
-
-                        Tool:DebugPrint("Light Visibility changed")
-                    end
-
-                end
-
-            end
-
-        end
-
-    end
-
-end)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---[[ Vehicle Flash Light
 Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
     
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
@@ -346,13 +270,9 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
                         local s_LightComponentData = LightComponentData(l_ChassisComponent)
 
                         -- Invert boolean
-                        local s_light = LocalLightEntityData(s_LightComponentData.light)
-                        s_light.visible = not s_light.visible
+                        LocalLightEntityData(s_LightComponentData.light).visible = not LocalLightEntityData(s_LightComponentData.light).visible
 
-                        --s_light:PropertyChanged('visible', (not s_light.visible))
-                        s_light.excluded = not s_light.visible
-
-                        local lightClone = s_LightComponentData:Clone()
+                        local lightClone = s_LightComponentData:clone()
                         s_LightComponentData:Destroy()
                         s_ChassisComponents.add(lightClone)
 
@@ -406,7 +326,7 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
 						s_LocalLightEntityData.radius = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
 						s_LocalLightEntityData.intensity = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
 
-                        local lightClone = s_LightComponentData:Clone()
+                        local lightClone = s_LightComponentData:clone()
                         s_LightComponentData:Destroy()
                         s_ChassisComponents.add(lightClone)
 
@@ -420,6 +340,6 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
 		end
         
 	end
-end)]]
+end)
 
 
