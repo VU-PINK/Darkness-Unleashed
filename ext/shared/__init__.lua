@@ -1,0 +1,1 @@
+local vehiclemodifications = require '__shared/classes/vehiclemodifications'
