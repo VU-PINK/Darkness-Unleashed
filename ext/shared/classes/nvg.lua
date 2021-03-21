@@ -7,6 +7,8 @@ nvgRunner = false
 elapsedTime = 0
 lastSecond = 0
 
+local localPlayer = nil
+
 function NVG:__init()
     self.batteryLifeMax = 60
     self.batteryLifeMin = 10
@@ -55,13 +57,22 @@ function NVG:Deactivate()
 end
 
 function NVG:Depleting()
-	self.batteryLifeCurrent = self.batteryLifeCurrent - 1
+    localPlayer = PlayerManager:GetLocalPlayer()
+
+    if localPlayer.inVehicle == true then 
+        if (self.batteryLifeCurrent + 0.5) < self.batteryLifeMax then 
+            self.batteryLifeCurrent = self.batteryLifeCurrent + 0.5
+        end
+    else
+	    self.batteryLifeCurrent = self.batteryLifeCurrent - 1
+    end
+
 	uiBattery(self.batteryLifeCurrent) -- Update UI battery
 
     --print("Battery Life: " .. self.batteryLifeCurrent)
 
     if(self.batteryLifeCurrent == 0) then
-        print("Battery has depleted!")
+        --print("Battery has depleted!")
         if nvgRunner ~= true then
 
             done = false
@@ -91,5 +102,6 @@ function NVG:Recharging()
         --print("Battery Charged To: " .. self.batteryLifeCurrent)
     end
 end
+
 
 return NVG
