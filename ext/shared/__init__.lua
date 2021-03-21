@@ -1,1 +1,1 @@
-local vehiclemodifications = require '__shared/classes/test'
+local vehiclemodifications = require '__shared/classes/vehiclemodifications'

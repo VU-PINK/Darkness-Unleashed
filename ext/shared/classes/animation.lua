@@ -15,6 +15,7 @@ local dTime = 0
 local animationSmoothness = 1
 local animationSmoothnessMultiplierON = 0.5
 local animationSmoothnessMultiplierOFF = 0.25
+local localPlayer = nil
 
 Events:Subscribe('DeltaTime', function(deltaTime)
 
@@ -49,7 +50,14 @@ function Animation:nvgEnableLoop()
     if firstloop ~= false then
         firstloop = false
         --print("NVG Animation called!")
-        ApplySpecialVisualEnvironment("NightVision")
+
+        localPlayer = PlayerManager:GetLocalPlayer()
+        if localPlayer.inVehicle == true then 
+          ApplySpecialVisualEnvironment("NightVisionVehicle")
+        else
+          ApplySpecialVisualEnvironment("NightVision")
+        end
+
         states = VisualEnvironmentManager:GetStates()
 
         for _, state in pairs(states) do
