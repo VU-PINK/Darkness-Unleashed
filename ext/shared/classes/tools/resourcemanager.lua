@@ -26,6 +26,11 @@ function RM:Flashlight()
     end
 end
 
+-- LensFlareEntityData
+function RM:LFED(partition, instance)
+    return LensFlareEntityData(RM:Find(partition, instance))
+end
+
 --- Vehicles
 -- VehicleComponentData
 function RM:VCD(partition, instance)

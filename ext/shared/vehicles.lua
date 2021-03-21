@@ -37,15 +37,9 @@ VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.enabled = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.description = 'Gunner Searchlight Pointlight'
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.weaponmounted = true
-<<<<<<< HEAD
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.radius = 2
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.width = 1
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.intensity = 10
-=======
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.radius = 2.55
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.width = 1
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.intensity = 10.75
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.color = Vec3(1, 0.9, 0.9)
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.visible = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.enlightenEnable = false
@@ -60,19 +54,11 @@ VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.enabled = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.description = 'Top Red Blinker' 
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.radius = 2
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.width = 2
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.intensity = 1
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.color = Vec3(1, 0, 0)
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.intensity = 5
-=======
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.radius = 2.35
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.width = 2
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.intensity = 1
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.intensity = 5.25
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.visible = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.enlightenEnable = false
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.transform = {}
@@ -89,11 +75,7 @@ VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.weaponmounted = false
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.radius = 3
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.width = 2
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.color = Vec3(0, 1, 0)
-<<<<<<< HEAD
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.intensity = 5
-=======
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.intensity = 5.5
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.visible = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.enlightenEnable = false
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_3.transform = {}
@@ -107,17 +89,10 @@ VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.enabled = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.description = 'Bottom Red Blinker'
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.radius = 100
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.width = 1
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.color = Vec3(1, 0, 0)
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.intensity = 0.01
-=======
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.radius = 120
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.width = 1
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.intensity = 0.0125
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.visible = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.enlightenEnable = true
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_4.transform = {}
@@ -162,15 +137,9 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_1.enabled = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.description = 'Gunner Searchlight Pointlight'
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.weaponmounted = true
-<<<<<<< HEAD
-VehicleSettings.Airborne.Mi28.Components.Pointlight_1.radius = 2
-VehicleSettings.Airborne.Mi28.Components.Pointlight_1.width = 1
-VehicleSettings.Airborne.Mi28.Components.Pointlight_1.intensity = 10
-=======
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.radius = 2.85
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.width = 1
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.intensity = 10.75
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.color = Vec3(1, 0.9, 0.9)
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.visible = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_1.enlightenEnable = false
@@ -185,11 +154,7 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_2.enabled = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.description = 'Top Red Blinker' 
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.Mi28.Components.Pointlight_2.radius = 6
-=======
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.radius = 6.25
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.width = 6
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.intensity = 1
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.color = Vec3(1, 0, 0)
@@ -210,11 +175,7 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_3.weaponmounted = false
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.radius = 4
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.width = 3
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.color = Vec3(0, 1, 0)
-<<<<<<< HEAD
-VehicleSettings.Airborne.Mi28.Components.Pointlight_3.intensity = 1
-=======
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.intensity = 1.1
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.visible = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.enlightenEnable = false
 VehicleSettings.Airborne.Mi28.Components.Pointlight_3.transform = {}
@@ -231,11 +192,7 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_4.weaponmounted = false
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.radius = 4
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.width = 3
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.color = Vec3(0, 1, 0)
-<<<<<<< HEAD
-VehicleSettings.Airborne.Mi28.Components.Pointlight_4.intensity = 1
-=======
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.intensity = 1.1
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.visible = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.enlightenEnable = false
 VehicleSettings.Airborne.Mi28.Components.Pointlight_4.transform = {}
@@ -249,17 +206,10 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_5.enabled = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.description = 'Bottom Red Blinker'
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.Mi28.Components.Pointlight_5.radius = 100
-VehicleSettings.Airborne.Mi28.Components.Pointlight_5.width = 1
-VehicleSettings.Airborne.Mi28.Components.Pointlight_5.color = Vec3(1, 0, 0)
-VehicleSettings.Airborne.Mi28.Components.Pointlight_5.intensity = 0.01
-=======
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.radius = 115
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.width = 1
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.intensity = 0.0115
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.visible = true
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.enlightenEnable = false
 VehicleSettings.Airborne.Mi28.Components.Pointlight_5.transform = {}
@@ -298,11 +248,7 @@ VehicleSettings.Airborne.Venom.Components.Spotlight_1.transform = {}
 VehicleSettings.Airborne.Venom.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Airborne.Venom.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Airborne.Venom.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Airborne.Venom.Components.Spotlight_1.transform.trans = Vec3(0, -0.025, 0.0)
-=======
 VehicleSettings.Airborne.Venom.Components.Spotlight_1.transform.trans = Vec3(0, -0.035, 0.075)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 VehicleSettings.Airborne.Venom.Components.Spotlight_2 = {}
 VehicleSettings.Airborne.Venom.Components.Spotlight_2.enabled = true
@@ -322,11 +268,7 @@ VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform = {}
 VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform.trans = Vec3(0, -0.025, 0.0)
-=======
 VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform.trans = Vec3(0, -0.025, 0.075)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 VehicleSettings.Airborne.Venom.Components.Pointlight_1 = {}
 VehicleSettings.Airborne.Venom.Components.Pointlight_1.enabled = true
@@ -347,11 +289,7 @@ VehicleSettings.Airborne.Venom.Components.Pointlight_1.transform.trans = Vec3(0,
 
 VehicleSettings.Airborne.Venom.Components.Pointlight_2 = {}
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.enabled = true
-<<<<<<< HEAD
-VehicleSettings.Airborne.Venom.Components.Pointlight_2.description = 'Cockpit Green Light'
-=======
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.description = 'Passenger Green Light'
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.weaponmounted = false
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.radius = 5.5
@@ -366,8 +304,6 @@ VehicleSettings.Airborne.Venom.Components.Pointlight_2.transform.up = Vec3(0, 1,
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.transform.forward = Vec3(0, 0, 1)
 VehicleSettings.Airborne.Venom.Components.Pointlight_2.transform.trans = Vec3(0, -0.6, 1.07)
 
-<<<<<<< HEAD
-=======
 VehicleSettings.Airborne.Venom.Components.Pointlight_4 = {}
 VehicleSettings.Airborne.Venom.Components.Pointlight_4.enabled = true
 VehicleSettings.Airborne.Venom.Components.Pointlight_4.description = 'Cockpit Green Light'
@@ -385,7 +321,6 @@ VehicleSettings.Airborne.Venom.Components.Pointlight_4.transform.up = Vec3(0, 1,
 VehicleSettings.Airborne.Venom.Components.Pointlight_4.transform.forward = Vec3(0, 0, 1)
 VehicleSettings.Airborne.Venom.Components.Pointlight_4.transform.trans = Vec3(0, -0.6, 2.75)
 
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.Venom.Components.Pointlight_3 = {}
 VehicleSettings.Airborne.Venom.Components.Pointlight_3.enabled = true
 VehicleSettings.Airborne.Venom.Components.Pointlight_3.description = 'Bottom Red Blinker'
@@ -438,15 +373,9 @@ VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.enabled = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.description = 'Top Red Blinker' 
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.radius = 100
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.width = 1
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.intensity = 1.25
-=======
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.radius = 130
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.width = 1
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.intensity = 1.325
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.intensity = 0.01
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.visible = true
@@ -462,17 +391,10 @@ VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.enabled = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.description = 'Cockpit Green Light'
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.radius = 5.5
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.width = 1
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.color = Vec3(0, 1, 0)
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.intensity = 4
-=======
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.radius = 5.575
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.width = 1
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.color = Vec3(0, 1, 0)
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.intensity = 4.15
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.visible = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.enlightenEnable = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_2.transform = {}
@@ -486,17 +408,10 @@ VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.enabled = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.description = 'Bottom Red Blinker'
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.radius = 100
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.width = 1
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.color = Vec3(1, 0, 0)
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.intensity = 0.01
-=======
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.radius = 115
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.width = 1
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.intensity = 0.0115
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.visible = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.enlightenEnable = true
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_3.transform = {}
@@ -526,37 +441,23 @@ VehicleSettings.Airborne.F35.Components.Spotlight_1.frustumFov = 40
 VehicleSettings.Airborne.F35.Components.Spotlight_1.frustumAspect = 1.0
 VehicleSettings.Airborne.F35.Components.Spotlight_1.castShadowsMinLevel = 0
 VehicleSettings.Airborne.F35.Components.Spotlight_1.castShadowsEnable = true
-<<<<<<< HEAD
-VehicleSettings.Airborne.F35.Components.Spotlight_1.intensity = 35*SpotlightMultiplicator
-=======
 VehicleSettings.Airborne.F35.Components.Spotlight_1.intensity = 32.5*SpotlightMultiplicator
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.F35.Components.Spotlight_1.radius = 120
 VehicleSettings.Airborne.F35.Components.Spotlight_1.color = Vec3(1, 0.9, 0.8)
 VehicleSettings.Airborne.F35.Components.Spotlight_1.transform = {}
 VehicleSettings.Airborne.F35.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Airborne.F35.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Airborne.F35.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Airborne.F35.Components.Spotlight_1.transform.trans = Vec3(0, 0.1, 9.425)
-=======
 VehicleSettings.Airborne.F35.Components.Spotlight_1.transform.trans = Vec3(0, -0.225, 9.25)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 VehicleSettings.Airborne.F35.Components.Pointlight_1 = {}
 VehicleSettings.Airborne.F35.Components.Pointlight_1.enabled = true
 VehicleSettings.Airborne.F35.Components.Pointlight_1.description = 'Top Red Blinker' 
 VehicleSettings.Airborne.F35.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.F35.Components.Pointlight_1.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.F35.Components.Pointlight_1.radius = 6.25
-VehicleSettings.Airborne.F35.Components.Pointlight_1.width = 1
-VehicleSettings.Airborne.F35.Components.Pointlight_1.intensity = 5
-=======
 VehicleSettings.Airborne.F35.Components.Pointlight_1.radius = 6.35
 VehicleSettings.Airborne.F35.Components.Pointlight_1.width = 1
 VehicleSettings.Airborne.F35.Components.Pointlight_1.intensity = 5.15
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.F35.Components.Pointlight_1.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.F35.Components.Pointlight_1.visible = true
 VehicleSettings.Airborne.F35.Components.Pointlight_1.enlightenEnable = false
@@ -571,39 +472,24 @@ VehicleSettings.Airborne.F35.Components.Pointlight_2.enabled = true
 VehicleSettings.Airborne.F35.Components.Pointlight_2.description = 'Cockpit Green Light'
 VehicleSettings.Airborne.F35.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.F35.Components.Pointlight_2.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.F35.Components.Pointlight_2.radius = 4.5
-VehicleSettings.Airborne.F35.Components.Pointlight_2.width = 1
-VehicleSettings.Airborne.F35.Components.Pointlight_2.color = Vec3(0, 1, 0)
-VehicleSettings.Airborne.F35.Components.Pointlight_2.intensity = 4.25
-=======
 VehicleSettings.Airborne.F35.Components.Pointlight_2.radius = 4.75
 VehicleSettings.Airborne.F35.Components.Pointlight_2.width = 1
 VehicleSettings.Airborne.F35.Components.Pointlight_2.color = Vec3(0, 1, 0)
 VehicleSettings.Airborne.F35.Components.Pointlight_2.intensity = 4.4
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.F35.Components.Pointlight_2.visible = true
 VehicleSettings.Airborne.F35.Components.Pointlight_2.enlightenEnable = true
 VehicleSettings.Airborne.F35.Components.Pointlight_2.transform = {}
 VehicleSettings.Airborne.F35.Components.Pointlight_2.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Airborne.F35.Components.Pointlight_2.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Airborne.F35.Components.Pointlight_2.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Airborne.F35.Components.Pointlight_2.transform.trans = Vec3(0, 1.8, 6.5)
-=======
 VehicleSettings.Airborne.F35.Components.Pointlight_2.transform.trans = Vec3(0, 1.175, 6.35)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 VehicleSettings.Airborne.F35.Components.Pointlight_3 = {}
 VehicleSettings.Airborne.F35.Components.Pointlight_3.enabled = true
 VehicleSettings.Airborne.F35.Components.Pointlight_3.description = 'Bottom Red Blinker'
 VehicleSettings.Airborne.F35.Components.Pointlight_3.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.F35.Components.Pointlight_3.weaponmounted = false
-<<<<<<< HEAD
-VehicleSettings.Airborne.F35.Components.Pointlight_3.radius = 6.75
-=======
 VehicleSettings.Airborne.F35.Components.Pointlight_3.radius = 7.25
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Airborne.F35.Components.Pointlight_3.width = 1
 VehicleSettings.Airborne.F35.Components.Pointlight_3.color = Vec3(1, 0, 0)
 VehicleSettings.Airborne.F35.Components.Pointlight_3.intensity = 5
@@ -782,11 +668,7 @@ VehicleSettings.Ground.M1.Components.Spotlight_1.transform = {}
 VehicleSettings.Ground.M1.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.M1.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.M1.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.M1.Components.Spotlight_1.transform.trans = Vec3(-0.845, 1.265, 3.675)
-=======
 VehicleSettings.Ground.M1.Components.Spotlight_1.transform.trans = Vec3(-0.85, 1.265, 3.65)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.M1.Components.Spotlight_1.transform.mirrored = true
 
 VehicleSettings.Ground.M1.Components.Pointlight_1 = {}
@@ -824,30 +706,18 @@ VehicleSettings.Ground.T90.Components.Spotlight_1.description = 'Main Light'
 VehicleSettings.Ground.T90.Components.Spotlight_1.type = 2 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Ground.T90.Components.Spotlight_1.weaponmounted = false
 VehicleSettings.Ground.T90.Components.Spotlight_1.shape = 1
-<<<<<<< HEAD
-VehicleSettings.Ground.T90.Components.Spotlight_1.frustumFov = 80
-VehicleSettings.Ground.T90.Components.Spotlight_1.frustumAspect = 1.25
-VehicleSettings.Ground.T90.Components.Spotlight_1.castShadowsMinLevel = 0
-VehicleSettings.Ground.T90.Components.Spotlight_1.castShadowsEnable = true
-VehicleSettings.Ground.T90.Components.Spotlight_1.intensity = 5*SpotlightMultiplicator
-=======
 VehicleSettings.Ground.T90.Components.Spotlight_1.frustumFov = 65
 VehicleSettings.Ground.T90.Components.Spotlight_1.frustumAspect = 1.25
 VehicleSettings.Ground.T90.Components.Spotlight_1.castShadowsMinLevel = 0
 VehicleSettings.Ground.T90.Components.Spotlight_1.castShadowsEnable = true
 VehicleSettings.Ground.T90.Components.Spotlight_1.intensity = 6.25*SpotlightMultiplicator
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.T90.Components.Spotlight_1.radius = 50
 VehicleSettings.Ground.T90.Components.Spotlight_1.color = Vec3(1, 0.9, 0.8)
 VehicleSettings.Ground.T90.Components.Spotlight_1.transform = {}
 VehicleSettings.Ground.T90.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.T90.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.T90.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.T90.Components.Spotlight_1.transform.trans = Vec3(-0.75, 1.2, 3.15)
-=======
 VehicleSettings.Ground.T90.Components.Spotlight_1.transform.trans = Vec3(-0.825, 1.14, 2.9)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.T90.Components.Spotlight_1.transform.mirrored = true
 
 VehicleSettings.Ground.T90.Components.Pointlight_1 = {}
@@ -894,11 +764,6 @@ VehicleSettings.Ground.Growler.Components.Spotlight_1.transform = {}
 VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.trans = Vec3(-0.6375, 1.10, 2.265)
-VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.mirrored = true
-
-=======
 VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.trans = Vec3(-0.6476, 1.13, 2.245)
 VehicleSettings.Ground.Growler.Components.Spotlight_1.transform.mirrored = true
 
@@ -922,7 +787,6 @@ VehicleSettings.Ground.Growler.Components.Spotlight_2.transform.forward = Vec3(0
 VehicleSettings.Ground.Growler.Components.Spotlight_2.transform.trans = Vec3(-0.4376, 1.13, 2.245)
 VehicleSettings.Ground.Growler.Components.Spotlight_2.transform.mirrored = true
 
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.Growler.Components.Pointlight_1 = {}
 VehicleSettings.Ground.Growler.Components.Pointlight_1.enabled = true
 VehicleSettings.Ground.Growler.Components.Pointlight_1.description = 'Main Light Pointlight'
@@ -956,31 +820,18 @@ VehicleSettings.Ground.VDV.Components.Spotlight_1.description = 'Left Main Light
 VehicleSettings.Ground.VDV.Components.Spotlight_1.type = 2 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Ground.VDV.Components.Spotlight_1.weaponmounted = false
 VehicleSettings.Ground.VDV.Components.Spotlight_1.shape = 1
-<<<<<<< HEAD
-VehicleSettings.Ground.VDV.Components.Spotlight_1.frustumFov = 80
-VehicleSettings.Ground.VDV.Components.Spotlight_1.frustumAspect = 1.25
-VehicleSettings.Ground.VDV.Components.Spotlight_1.castShadowsMinLevel = 0
-VehicleSettings.Ground.VDV.Components.Spotlight_1.castShadowsEnable = true
-VehicleSettings.Ground.VDV.Components.Spotlight_1.intensity = 5*SpotlightMultiplicator
-VehicleSettings.Ground.VDV.Components.Spotlight_1.radius = 50
-=======
 VehicleSettings.Ground.VDV.Components.Spotlight_1.frustumFov = 75
 VehicleSettings.Ground.VDV.Components.Spotlight_1.frustumAspect = 1.25
 VehicleSettings.Ground.VDV.Components.Spotlight_1.castShadowsMinLevel = 0
 VehicleSettings.Ground.VDV.Components.Spotlight_1.castShadowsEnable = true
 VehicleSettings.Ground.VDV.Components.Spotlight_1.intensity = 5.25*SpotlightMultiplicator
 VehicleSettings.Ground.VDV.Components.Spotlight_1.radius = 60
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.VDV.Components.Spotlight_1.color = Vec3(1, 0.9, 0.8)
 VehicleSettings.Ground.VDV.Components.Spotlight_1.transform = {}
 VehicleSettings.Ground.VDV.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.VDV.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.VDV.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.VDV.Components.Spotlight_1.transform.trans = Vec3(-0.44, 0.85, 1.58)
-=======
 VehicleSettings.Ground.VDV.Components.Spotlight_1.transform.trans = Vec3(-0.44, 0.85, 1.572)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.VDV.Components.Spotlight_1.transform.mirrored = true
 
 VehicleSettings.Ground.VDV.Components.Pointlight_1 = {}
@@ -1000,55 +851,6 @@ VehicleSettings.Ground.VDV.Components.Pointlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.VDV.Components.Pointlight_1.transform.forward = Vec3(0, 0, 1)
 VehicleSettings.Ground.VDV.Components.Pointlight_1.transform.trans = Vec3(0, 1, 6)
 
-<<<<<<< HEAD
--- PDV Jeep RUS
--- https://github.com/EmulatorNexus/Venice-EBX/tree/master/Vehicles/XPack01/DPV
-
-VehicleSettings.Ground.PDV = {}
-VehicleSettings.Ground.PDV.name = 'PDV'
-VehicleSettings.Ground.PDV.partitionGUID = '6F91A4CF-344D-11E0-930F-E8BE623140CB'
-VehicleSettings.Ground.PDV.chassisGUID = 'B0563CD8-5A05-A9AF-CB92-5BB127EBF60C'
-VehicleSettings.Ground.PDV.vehicleDataGUID = 'E5D5D798-E452-0E56-1132-D7C85AB29402'
-
-VehicleSettings.Ground.PDV.Components = {}
-
-VehicleSettings.Ground.PDV.Components.Spotlight_1 = {}
-VehicleSettings.Ground.PDV.Components.Spotlight_1.enabled = true
-VehicleSettings.Ground.PDV.Components.Spotlight_1.description = 'Left Main Light'
-VehicleSettings.Ground.PDV.Components.Spotlight_1.type = 2 -- Pointlight [1] ; Spotlight [2]
-VehicleSettings.Ground.PDV.Components.Spotlight_1.weaponmounted = false
-VehicleSettings.Ground.PDV.Components.Spotlight_1.shape = 1
-VehicleSettings.Ground.PDV.Components.Spotlight_1.frustumFov = 80
-VehicleSettings.Ground.PDV.Components.Spotlight_1.frustumAspect = 1.25
-VehicleSettings.Ground.PDV.Components.Spotlight_1.castShadowsMinLevel = 0
-VehicleSettings.Ground.PDV.Components.Spotlight_1.castShadowsEnable = true
-VehicleSettings.Ground.PDV.Components.Spotlight_1.intensity = 5*SpotlightMultiplicator
-VehicleSettings.Ground.PDV.Components.Spotlight_1.radius = 50
-VehicleSettings.Ground.PDV.Components.Spotlight_1.color = Vec3(1, 0.9, 0.8)
-VehicleSettings.Ground.PDV.Components.Spotlight_1.transform = {}
-VehicleSettings.Ground.PDV.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
-VehicleSettings.Ground.PDV.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
-VehicleSettings.Ground.PDV.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-VehicleSettings.Ground.PDV.Components.Spotlight_1.transform.trans = Vec3(-0.3225, 0.765, 2.075)
-VehicleSettings.Ground.PDV.Components.Spotlight_1.transform.mirrored = true
-
-VehicleSettings.Ground.PDV.Components.Pointlight_1 = {}
-VehicleSettings.Ground.PDV.Components.Pointlight_1.enabled = true
-VehicleSettings.Ground.PDV.Components.Pointlight_1.description = 'Left Main Light Pointlight'
-VehicleSettings.Ground.PDV.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
-VehicleSettings.Ground.PDV.Components.Pointlight_1.weaponmounted = false
-VehicleSettings.Ground.PDV.Components.Pointlight_1.radius = 4
-VehicleSettings.Ground.PDV.Components.Pointlight_1.width = 2
-VehicleSettings.Ground.PDV.Components.Pointlight_1.intensity = 10
-VehicleSettings.Ground.PDV.Components.Pointlight_1.color = Vec3(1, 0.9, 0.9)
-VehicleSettings.Ground.PDV.Components.Pointlight_1.visible = true
-VehicleSettings.Ground.PDV.Components.Pointlight_1.enlightenEnable = false
-VehicleSettings.Ground.PDV.Components.Pointlight_1.transform = {}
-VehicleSettings.Ground.PDV.Components.Pointlight_1.transform.left = Vec3(-1, 0, 0)
-VehicleSettings.Ground.PDV.Components.Pointlight_1.transform.up = Vec3(0, 1, 0)
-VehicleSettings.Ground.PDV.Components.Pointlight_1.transform.forward = Vec3(0, 0, 1)
-VehicleSettings.Ground.PDV.Components.Pointlight_1.transform.trans = Vec3(0, 1, 6)
-=======
 -- DPV Jeep RUS
 -- https://github.com/EmulatorNexus/Venice-EBX/tree/master/Vehicles/XPack01/DPV
 
@@ -1116,7 +918,6 @@ VehicleSettings.Ground.DPV.Components.Spotlight_2.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.DPV.Components.Spotlight_2.transform.forward = Vec3(0, 0, 1)
 VehicleSettings.Ground.DPV.Components.Spotlight_2.transform.trans = Vec3(-0.1025, 0.765, 2.045)
 VehicleSettings.Ground.DPV.Components.Spotlight_2.transform.mirrored = true
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 -- ATV BTR
 -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XPack01/BTR-90/BTR90.txt
@@ -1140,23 +941,14 @@ VehicleSettings.Ground.BTR.Components.Spotlight_1.frustumFov = 80
 VehicleSettings.Ground.BTR.Components.Spotlight_1.frustumAspect = 1.25
 VehicleSettings.Ground.BTR.Components.Spotlight_1.castShadowsMinLevel = 0
 VehicleSettings.Ground.BTR.Components.Spotlight_1.castShadowsEnable = true
-<<<<<<< HEAD
-VehicleSettings.Ground.BTR.Components.Spotlight_1.intensity = 17.5*SpotlightMultiplicator
-VehicleSettings.Ground.BTR.Components.Spotlight_1.radius = 50
-=======
 VehicleSettings.Ground.BTR.Components.Spotlight_1.intensity = 18.75*SpotlightMultiplicator
 VehicleSettings.Ground.BTR.Components.Spotlight_1.radius = 40
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.BTR.Components.Spotlight_1.color = Vec3(1, 0.9, 0.7)
 VehicleSettings.Ground.BTR.Components.Spotlight_1.transform = {}
 VehicleSettings.Ground.BTR.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.BTR.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.BTR.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.BTR.Components.Spotlight_1.transform.trans = Vec3(-0.8, 1.75, 3.54)
-=======
 VehicleSettings.Ground.BTR.Components.Spotlight_1.transform.trans = Vec3(-0.8, 1.75, 3.5)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.BTR.Components.Spotlight_1.transform.mirrored = true
 
 VehicleSettings.Ground.BTR.Components.Spotlight_2 = {}
@@ -1170,11 +962,7 @@ VehicleSettings.Ground.BTR.Components.Spotlight_2.frustumAspect = 1.25
 VehicleSettings.Ground.BTR.Components.Spotlight_2.castShadowsMinLevel = 0
 VehicleSettings.Ground.BTR.Components.Spotlight_2.castShadowsEnable = true
 VehicleSettings.Ground.BTR.Components.Spotlight_2.intensity = 20*SpotlightMultiplicator
-<<<<<<< HEAD
-VehicleSettings.Ground.BTR.Components.Spotlight_2.radius = 25
-=======
 VehicleSettings.Ground.BTR.Components.Spotlight_2.radius = 30
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.BTR.Components.Spotlight_2.color = Vec3(1, 0.9, 0.7)
 VehicleSettings.Ground.BTR.Components.Spotlight_2.transform = {}
 VehicleSettings.Ground.BTR.Components.Spotlight_2.transform.left = Vec3(-1, 0, 0)
@@ -1228,11 +1016,7 @@ VehicleSettings.Ground.LAV.Components.Spotlight_1.transform = {}
 VehicleSettings.Ground.LAV.Components.Spotlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.LAV.Components.Spotlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.LAV.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.LAV.Components.Spotlight_1.transform.trans = Vec3(-0.875, 1.75, 3.50)
-=======
 VehicleSettings.Ground.LAV.Components.Spotlight_1.transform.trans = Vec3(-0.845, 1.765, 3.43)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.LAV.Components.Spotlight_1.transform.mirrored = true
 
 VehicleSettings.Ground.LAV.Components.Spotlight_3 = {}
@@ -1245,23 +1029,14 @@ VehicleSettings.Ground.LAV.Components.Spotlight_3.frustumFov = 60
 VehicleSettings.Ground.LAV.Components.Spotlight_3.frustumAspect = 1.25
 VehicleSettings.Ground.LAV.Components.Spotlight_3.castShadowsMinLevel = 0
 VehicleSettings.Ground.LAV.Components.Spotlight_3.castShadowsEnable = true
-<<<<<<< HEAD
-VehicleSettings.Ground.LAV.Components.Spotlight_3.intensity = 0.25*SpotlightMultiplicator
-VehicleSettings.Ground.LAV.Components.Spotlight_3.radius = 50
-=======
 VehicleSettings.Ground.LAV.Components.Spotlight_3.intensity = 20*SpotlightMultiplicator
 VehicleSettings.Ground.LAV.Components.Spotlight_3.radius = 30
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 VehicleSettings.Ground.LAV.Components.Spotlight_3.color = Vec3(1, 0.9, 0.7)
 VehicleSettings.Ground.LAV.Components.Spotlight_3.transform = {}
 VehicleSettings.Ground.LAV.Components.Spotlight_3.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.LAV.Components.Spotlight_3.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.LAV.Components.Spotlight_3.transform.forward = Vec3(0, 0, 1)
-<<<<<<< HEAD
-VehicleSettings.Ground.LAV.Components.Spotlight_3.transform.trans = Vec3(-0.4, 0.50, -1.5)
-=======
 VehicleSettings.Ground.LAV.Components.Spotlight_3.transform.trans = Vec3(-0.3525, 0.585, -1.49)
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 VehicleSettings.Ground.LAV.Components.Pointlight_1 = {}
 VehicleSettings.Ground.LAV.Components.Pointlight_1.enabled = true
@@ -1358,8 +1133,6 @@ VehicleSettings.Ground.KLR650.Components.Spotlight_1.transform.up = Vec3(0, 1, 0
 VehicleSettings.Ground.KLR650.Components.Spotlight_1.transform.forward = Vec3(0, 0, 1)
 VehicleSettings.Ground.KLR650.Components.Spotlight_1.transform.trans = Vec3(0, 0.85, 1)
 
-<<<<<<< HEAD
-=======
 -- Tank 9K22 Tunguska RUS
 -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/T90/T90.txt
 
@@ -1615,6 +1388,5 @@ VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.left = Vec3(-1, 0
 VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.forward = Vec3(0, 0, 1)
 VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.trans = Vec3(0, 2.4, 9.5) 
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 return VehicleSettings

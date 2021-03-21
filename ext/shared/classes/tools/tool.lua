@@ -15,7 +15,7 @@ function Tool:DebugPrint(text)
     if debugPrintsEnabled == true then
         print(tostring(text))
     else
-        print('Debug messages are disabled!')
+        --print('Debug messages are disabled!')
     end
 end
 
