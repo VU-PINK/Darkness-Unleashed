@@ -15,23 +15,23 @@ function Tool:DebugPrint(text, category)
 
         print(tostring(text), 'Category: '.. category)
 
-    elseif debugPrintCategory.enable == true and debugPrintCategory.adding == true and debugPrintCategory.all =~ true and debugPrintCategory.adding == category then 
+    elseif debugPrintCategory.enable == true and debugPrintCategory.adding == true and debugPrintCategory.all ~= true and debugPrintCategory.adding == category then 
 
 		print(tostring(text), 'Category: '.. category)
 
-    elseif debugPrintCategory.enable == true and debugPrintCategory.removing == true and debugPrintCategory.removing == category and debugPrintCategory.all =~ true then 
+    elseif debugPrintCategory.enable == true and debugPrintCategory.removing == true and debugPrintCategory.all ~= true  and debugPrintCategory.removing == category then 
 
 		print(tostring(text), 'Category: '.. category)
 
-    elseif debugPrintCategory.enable == true and debugPrintCategory.altering == true and debugPrintCategory.altering == category and debugPrintCategory.all =~ true then 
+    elseif debugPrintCategory.enable == true and debugPrintCategory.altering == true and debugPrintCategory.all ~= true  and debugPrintCategory.altering == category then 
 
 		print(tostring(text), 'Category: '.. category)
 
-	elseif debugPrintCategory.enable == true and debugPrintCategory.player == true and debugPrintCategory.player == category and debugPrintCategory.all =~ true then 
+	elseif debugPrintCategory.enable == true and debugPrintCategory.player == true and debugPrintCategory.all ~= true  and debugPrintCategory.player == category then 
 
 		print(tostring(text), 'Category: '.. category)
 
-	elseif debugPrintCategory.enable == false 
+	elseif debugPrintCategory.enable == false then
         
 		return
 
