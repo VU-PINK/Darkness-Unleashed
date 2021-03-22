@@ -199,7 +199,7 @@ function ResetSpecialVisualEnvironment(presetName)
         nvgActivated = false
 		--print('Removed Special Environment: ' .. presetName)
 	end
-    
+
 end
 
 --- Night Vision Gadget  (For Now)
@@ -255,13 +255,15 @@ end)
 
 Events:Subscribe('Player:Killed', function(player)
 
-    NVG:Deactivate()
+    if nvgActivated == true then
+        NVG:Deactivate()
+    end
 
 end)
 
 Events:Subscribe('Soldier:HealthAction', function(soldier, action)
 
-    if action == 1 then 
+    if action == 1 and nvgActivated == true then 
         NVG:Deactivate()
     end
 
@@ -269,7 +271,7 @@ end)
 
 Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
 
-    if InputManager:WentDown(23) then
+    if InputManager:WentDown(23) and nvgActivated == true then
         NVG:Deactivate()
     end
 

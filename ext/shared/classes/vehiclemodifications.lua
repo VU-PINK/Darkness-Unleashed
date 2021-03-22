@@ -143,7 +143,16 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 
  	for typeIndex, vehicleType in pairs(VehicleSettings) do
 
+		if Settings.useVehicleLights_Airborne ~= true and vehicleType == Airborne then 
+			return 
+		end 
+
+		if Settings.useVehicleLights_Ground ~= true and vehicleType == Ground then 
+			return 
+		end
+
  		for vehicleIndex, vehicle in pairs(vehicleType) do
+			
 
 			--print(vehicle.name .." | ".. vehicle.partitionGUID .." |  ".. vehicle.chassisGUID)
 			chassisData = RM:Find(vehicle.partitionGUID, vehicle.chassisGUID)				--ResourceManager:FindInstanceByGuid(Guid(vehicle.partitionGUID), Guid(vehicle.chassisGUID))

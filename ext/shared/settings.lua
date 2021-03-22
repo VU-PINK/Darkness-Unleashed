@@ -1,5 +1,15 @@
 --Settings
-local debugPrintsEnabled = true
+local debugPrintsEnabled = {
+
+    Categories = {
+
+        ['enable'] = true,
+        ['adding'] = true,
+        ['removing'] = true, 
+        ['altering'] = true
+
+    }
+}
 
 -- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
 local lensflareEnabled = false
