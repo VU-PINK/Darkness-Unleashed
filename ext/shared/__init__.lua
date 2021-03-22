@@ -8,7 +8,7 @@ function VehicleLights()
 
     else 
 
-        Tool:DebugPrint('Not using Vehicle Lights')
+        Tool:DebugPrint('Not using Vehicle Lights', 'altering')
 
     end
 end

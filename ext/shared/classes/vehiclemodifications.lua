@@ -143,16 +143,7 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 
  	for typeIndex, vehicleType in pairs(VehicleSettings) do
 
-		if Settings.useVehicleLights_Airborne ~= true and vehicleType == Airborne then 
-			return 
-		end 
-
-		if Settings.useVehicleLights_Ground ~= true and vehicleType == Ground then 
-			return 
-		end
-
  		for vehicleIndex, vehicle in pairs(vehicleType) do
-			
 
 			--print(vehicle.name .." | ".. vehicle.partitionGUID .." |  ".. vehicle.chassisGUID)
 			chassisData = RM:Find(vehicle.partitionGUID, vehicle.chassisGUID)				--ResourceManager:FindInstanceByGuid(Guid(vehicle.partitionGUID), Guid(vehicle.chassisGUID))
@@ -192,8 +183,8 @@ function AddLensFlare(name, data, trans, vehicle)
 	if vehicle.name == 'SU35BM' or vehicle.name == 'F35' then
 		return
 	end
-	
-	local LensFlare = RM:LFED("65A5BFD9-028A-4D4F-8B89-3A60B2E06F83", "D8DB98E1-AEBA-485E-9AA4-D5F55C5CDECE")
+
+	local LensFlare = RM:LFED("65A5BFD9-028A-4D4F-8B89-3A60B2E06F83","D8DB98E1-AEBA-485E-9AA4-D5F55C5CDECE")
 	LensFlare:MakeWritable()
 
 	for key, value in pairs(LensFlare.elements) do
@@ -226,32 +217,18 @@ function AddLensFlare(name, data, trans, vehicle)
 	local name = LensFlareComponentData()
 	name.lensFlare = LensFlare
 
-Events:Subscribe('Level:RegisterEntityResources', function(levelData)
-	for componentIndex, components in pairs(newEntities) do
-		print('Added Light!')
-
-		local newSpotLight = SpotLightEntityData()
-		spotLightSettingsArray = components[3]
-		newSpotLight.shape = spotLightSettingsArray.shape
-		newSpotLight.frustumFov = spotLightSettingsArray.frustumFov
-		newSpotLight.frustumAspect = spotLightSettingsArray.frustumAspect
-		newSpotLight.castShadowsMinLevel = spotLightSettingsArray.castShadowsMinLevel
-		newSpotLight.castShadowsEnable = spotLightSettingsArray.castShadowsEnable
-		newSpotLight.intensity = spotLightSettingsArray.intensity
-		newSpotLight.radius = spotLightSettingsArray.radius
-		newSpotLight.texture = RM:Flashlight()
-
-		local newSpotlightComponentData = LightComponentData()
-		newSpotlightComponentData.light = newSpotLight
-		newSpotlightComponentData.transform = LinearTransform(
-		spotLightSettingsArray.transform.left,
-		spotLightSettingsArray.transform.up,
-		spotLightSettingsArray.transform.forward,
-		spotLightSettingsArray.transform.trans
+	name.transform = LinearTransform(
+		Vec3(-1.0, 0.0, 8.74227765735e-08), --rotation
+		Vec3(0, 1, 0),
+		Vec3(-8.74227765735e-08, 0, -1),
+		trans
 		)
 
 	data.components:add(name)
 	vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
+
+	--print('Added Lensflare: ' .. tostring(name))
+	--print('Component Data: ' .. tostring(data))
 
 end
 
