@@ -1,5 +1,5 @@
 local Settings = require '__shared/settings'
-local Tool = require '__shared/tools/tool'
+local Tool = require '__shared/classes/tools/tool'
 
 function VehicleLights()
     if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then  

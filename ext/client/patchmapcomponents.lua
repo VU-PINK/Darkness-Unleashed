@@ -167,9 +167,9 @@ Events:Subscribe('Partition:Loaded', function(partition)
             --PatchEmitterTemplateData(instance)
         elseif instance:Is('EffectEntityData') then
             PatchEffectEntityData(instance)
-	elseif instance:Is('LocalLightEntityData') then
-	    DynamicLights(instance)
-	end
+	    --elseif instance:Is('LocalLightEntityData') then
+	    --DynamicLights(instance)
+	    end
     end
 end)
 

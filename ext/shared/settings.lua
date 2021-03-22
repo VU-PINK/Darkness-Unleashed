@@ -1,14 +1,13 @@
 --Settings
-local debugPrintsEnabled = {
-
-    Categories = {
+local debugPrints = {
 
         ['enable'] = true,
         ['adding'] = true,
         ['removing'] = true, 
         ['altering'] = true,
-        ['player'] = true 
-    }
+        ['player'] = true,
+        ['common'] = true,
+
 }
 
 -- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
@@ -139,5 +138,5 @@ return {
     MapFogMultipliers = mapFogMultipliers,
     useVehicleLights_Airborne = useVehicleLights_Airborne,
     useVehicleLights_Ground = useVehicleLights_Airborne,
-    DebugPrintsEnabled = debugPrintsEnabled
+    DebugPrints = debugPrints
 }

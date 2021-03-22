@@ -1,37 +1,29 @@
 local Settings = require '__shared/settings'
 
 local Tool = class('Tool')
-local debugPrintCategory = Settings.Categories
+
 
 function Tool:__init() 
-
+	--
 end
 
 
 -- Enable/Disable all prints via Settings file
 function Tool:DebugPrint(text, category)
 
-    if debugPrintCategory.enable == true then
+    if Settings.DebugPrints['enable'] == true then
 
-        print(tostring(text), 'Category: '.. category)
+		if Settings.DebugPrints[category] == true then
 
-    elseif debugPrintCategory.enable == true and debugPrintCategory.adding == true and debugPrintCategory.all =~ true and debugPrintCategory.adding == category then 
+        	print(tostring(text), 'Category: '.. category)
 
-		print(tostring(text), 'Category: '.. category)
+		else 
 
-    elseif debugPrintCategory.enable == true and debugPrintCategory.removing == true and debugPrintCategory.removing == category and debugPrintCategory.all =~ true then 
+			print('Not a valid category')
+		
+		end
 
-		print(tostring(text), 'Category: '.. category)
-
-    elseif debugPrintCategory.enable == true and debugPrintCategory.altering == true and debugPrintCategory.altering == category and debugPrintCategory.all =~ true then 
-
-		print(tostring(text), 'Category: '.. category)
-
-	elseif debugPrintCategory.enable == true and debugPrintCategory.player == true and debugPrintCategory.player == category and debugPrintCategory.all =~ true then 
-
-		print(tostring(text), 'Category: '.. category)
-
-	elseif debugPrintCategory.enable == false 
+	elseif Settings.DebugPrints['enable'] == false then
         
 		return
 

@@ -271,7 +271,7 @@ end)
 
 Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
 
-    if InputManager:WentDown(23) and nvgActivated == true then
+    if InputManager:WentDown(23) and nvgActivated == true and player.inVehicle then
         NVG:Deactivate()
     end
 

@@ -2,7 +2,7 @@ local NVG = class("NVG")
 
 local AnimationClass = require '__shared/classes/animation'
 local Animation = AnimationClass()
-local Tool = require '__shared/tools/tool'
+local Tool = require '__shared/classes/tools/tool'
 
 nvgRunner = false
 
@@ -62,7 +62,7 @@ function NVG:Depleting()
     localPlayer = PlayerManager:GetLocalPlayer()
 
     if localPlayer.inVehicle == true then 
-        if (self.batteryLifeCurrent + 0.5) < self.batteryLifeMax then 
+        if (self.batteryLifeCurrent + 1) < self.batteryLifeMax then 
             self.batteryLifeCurrent = self.batteryLifeCurrent + 0.5
         end
     else
