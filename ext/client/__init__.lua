@@ -242,17 +242,11 @@ Events:Subscribe('SecondElapsed', function(lastSecond)
 end)
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 -- Vehicle Flash Light
 Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
     
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
         if p_Player.inVehicle == false then
-<<<<<<< HEAD
-=======
             Tool:DebugPrint("Not in a vehicle")
             return
         end
@@ -326,7 +320,6 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
     
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
         if p_Player.inVehicle == false then
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
             print("Not in a vehicle")
             return
         end
@@ -353,11 +346,6 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
                         local s_LightComponentData = LightComponentData(l_ChassisComponent)
 
                         -- Invert boolean
-<<<<<<< HEAD
-                        LocalLightEntityData(s_LightComponentData.light).visible = not LocalLightEntityData(s_LightComponentData.light).visible
-
-                        local lightClone = s_LightComponentData:clone()
-=======
                         local s_light = LocalLightEntityData(s_LightComponentData.light)
                         s_light.visible = not s_light.visible
 
@@ -365,7 +353,6 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
                         s_light.excluded = not s_light.visible
 
                         local lightClone = s_LightComponentData:Clone()
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
                         s_LightComponentData:Destroy()
                         s_ChassisComponents.add(lightClone)
 
@@ -419,11 +406,7 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
 						s_LocalLightEntityData.radius = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
 						s_LocalLightEntityData.intensity = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
 
-<<<<<<< HEAD
-                        local lightClone = s_LightComponentData:clone()
-=======
                         local lightClone = s_LightComponentData:Clone()
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
                         s_LightComponentData:Destroy()
                         s_ChassisComponents.add(lightClone)
 
@@ -437,10 +420,6 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
 		end
         
 	end
-<<<<<<< HEAD
-end)
-=======
 end)]]
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 
 
