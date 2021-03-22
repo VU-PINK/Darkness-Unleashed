@@ -286,13 +286,14 @@ end)
 Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
     
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
+
         if p_Player.inVehicle == false then
-            Tool:DebugPrint("Not in a vehicle")
+            Tool:DebugPrint("Not in a vehicle", 'player')
             return
         end
         
         if p_Player.controlledControllable == nil then
-            Tool:DebugPrint("Not a driver")
+            Tool:DebugPrint("Not a driver", 'player')
             return
         end
         
@@ -321,13 +322,13 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
 
                         while entity ~= nil do
                             entity:Destroy()
-                            Tool:DebugPrint(entity.data)
+                            Tool:DebugPrint(entity.data, 'removing')
                             entity = it:Next()
                         end
 
                         --Tool:DebugPrint('[TO] Is Visible: ' .. tostring(s_LightComponentData.excluded))
 
-                        Tool:DebugPrint("Light Visibility changed")
+                        Tool:DebugPrint("Light Visibility changed", 'altering')
                     end
 
                 end

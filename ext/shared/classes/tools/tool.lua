@@ -27,13 +27,17 @@ function Tool:DebugPrint(text, category)
 
 		print(tostring(text), 'Category: '.. category)
 
+	elseif debugPrintCategory.enable == true and debugPrintCategory.player == true and debugPrintCategory.player == category and debugPrintCategory.all =~ true then 
+
+		print(tostring(text), 'Category: '.. category)
+
 	elseif debugPrintCategory.enable == false 
         
 		return
 
 	else 
 
-		print('Debug Print Configuration Error | Line: ')
+		print('Debug Print Configuration Error')
 
     end
 

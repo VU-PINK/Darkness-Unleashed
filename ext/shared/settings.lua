@@ -6,8 +6,8 @@ local debugPrintsEnabled = {
         ['enable'] = true,
         ['adding'] = true,
         ['removing'] = true, 
-        ['altering'] = true
-
+        ['altering'] = true,
+        ['player'] = true 
     }
 }
 

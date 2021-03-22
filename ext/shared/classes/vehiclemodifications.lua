@@ -47,7 +47,7 @@ function AddPointLight(pointLightSettingsArray, chassisData, vehicle)
  		weaponData.components:add(newPointlightComponentData)
 		vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
 
-		Tool:DebugPrint('Added weapon pointlight to ' .. vehicle.name)
+		Tool:DebugPrint('Added weapon pointlight to ' .. vehicle.name, 'adding')
 		
  	else
  		--print(chassisData)
@@ -59,7 +59,7 @@ function AddPointLight(pointLightSettingsArray, chassisData, vehicle)
  		chassisData.components:add(newPointlightComponentData)
 		vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
 		
-		Tool:DebugPrint('Added '..pointLightSettingsArray.description..' to ' .. vehicle.name)
+		Tool:DebugPrint('Added '..pointLightSettingsArray.description..' to ' .. vehicle.name, 'adding')
  	end
 
 end
@@ -111,7 +111,7 @@ function AddSpotLight(spotLightSettingsArray, chassisData, vehicle)
  		weaponData.components:add(newSpotlightComponentData)
 		vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
 
-		Tool:DebugPrint('Added weapon spotlight to ' .. vehicle.name)
+		Tool:DebugPrint('Added weapon spotlight to ' .. vehicle.name, 'adding')
 
 		--FindInArray(weaponData.components, newSpotlightComponentData)
  	else
@@ -126,7 +126,7 @@ function AddSpotLight(spotLightSettingsArray, chassisData, vehicle)
  		chassisData.components:add(newSpotlightComponentData)
 		vehicleEntityData.runtimeComponentCount = vehicleEntityData.runtimeComponentCount + 1
 
-		Tool:DebugPrint('Added '..spotLightSettingsArray.description..' to ' .. vehicle.name)
+		Tool:DebugPrint('Added '..spotLightSettingsArray.description..' to ' .. vehicle.name, 'adding')
 
 		if spotLightSettingsArray.transform.mirrored == true then
 		AddMirrorSpotlight(spotLightSettingsArray.name, chassisData, spotLightSettingsArray, vehicle)
@@ -173,7 +173,7 @@ Events:Subscribe('Level:RegisterEntityResources', function(levelData)
 						end
 
  					end
-				Tool:DebugPrint('--------------------------------------------------')
+				Tool:DebugPrint('--------------------------------------------------', 'adding')
 				end
 				
  		end
@@ -283,7 +283,7 @@ function AddMirrorSpotlight(name, data, settings, vehicle)
 	-- add lensflare
 	AddLensFlare(name, data, settings.transform.trans * Vec3((-1), 1, 1), vehicle)
 
-	Tool:DebugPrint('Added ' .. settings.description .. ' Mirror Spotlight')
+	Tool:DebugPrint('Added ' .. settings.description .. ' Mirror Spotlight', 'adding')
 
 end
 

@@ -2,6 +2,8 @@ local NVG = class("NVG")
 
 local AnimationClass = require '__shared/classes/animation'
 local Animation = AnimationClass()
+local Tool = require '__shared/tools/tool'
+
 nvgRunner = false
 
 elapsedTime = 0
@@ -69,7 +71,7 @@ function NVG:Depleting()
 
 	uiBattery(self.batteryLifeCurrent) -- Update UI battery
 
-    print("Battery Life: " .. self.batteryLifeCurrent)
+    Tool:DebugPrint("Battery Life: " .. self.batteryLifeCurrent, 'altering')
 
     if(self.batteryLifeCurrent == 0) then
         --print("Battery has depleted!")
@@ -99,7 +101,7 @@ function NVG:Recharging()
     if(self.batteryLifeCurrent < self.batteryLifeMax) then
         self.batteryLifeCurrent = self.batteryLifeCurrent + 1
 		uiBattery(self.batteryLifeCurrent) -- Update UI battery
-        print("Battery Charged To: " .. self.batteryLifeCurrent)
+        Tool:DebugPrint("Battery Charged To: " .. self.batteryLifeCurrent, 'altering')
     end
 end
 
