@@ -45,11 +45,7 @@ local NightVision = { -- Night Vision Goggles
         cloudLayer1Speed = -0.0010000000475,
         cloudLayer1SunLightIntensity = 1,
         cloudLayer1SunLightPower = 1,
-<<<<<<< HEAD
-        cloudLayer1AmbientLightIntensity = 1,
-=======
         cloudLayer1AmbientLightIntensity = 5,
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
         cloudLayer1AlphaMul = 0.7,
         cloudLayer1Texture = 'MoonNightStars',
         panoramicTexture = nil,
@@ -59,11 +55,7 @@ local NightVision = { -- Night Vision Goggles
     },
     ColorCorrectionComponentData = {
         enable = true,
-<<<<<<< HEAD
-        brightness = Vec3(1.35, 1.35, 1.35),
-=======
         brightness = Vec3(1.4, 1.4, 1.4),
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
         contrast = Vec3(1.39999997616, 1.39999997616, 1.39999997616),
         saturation = Vec3(0.800000011921, 0.800000011921, 0.800000011921),
         hue = 0.0,
