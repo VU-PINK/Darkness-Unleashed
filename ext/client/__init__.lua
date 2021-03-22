@@ -191,6 +191,7 @@ function ApplySpecialVisualEnvironment(presetName)
 end
 
 function ResetSpecialVisualEnvironment(presetName)
+
 	if currentSpecialVisualEnvironment ~= nil then
 		currentSpecialVisualEnvironment:Destroy()
         currentSpecialVisualEnvironment = nil
@@ -198,23 +199,32 @@ function ResetSpecialVisualEnvironment(presetName)
         nvgActivated = false
 		--print('Removed Special Environment: ' .. presetName)
 	end
+    
 end
 
--- Night Vision Gadget Activate (For Now)
+--- Night Vision Gadget  (For Now)
+------------------------------------------------------------------------
 Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
+
     if useNightVisionGadget == true and isHud == true then
+
         if InputManager:WentKeyDown(8) then
+
             if nvgActivated ~= true then
 
                 NVG:Activate()
+
             elseif nvgActivated == true then
 
 				NVG:Deactivate()
             end
+
         end
 
     elseif nvgActivated == true then
+
         ResetSpecialVisualEnvironment("NightVision")
+
     end
 end)
 
@@ -232,6 +242,7 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
 end)
 
 Events:Subscribe('SecondElapsed', function(lastSecond)
+
     if(nvgActivated) then
         NVG:Depleting()
     end
@@ -239,7 +250,34 @@ Events:Subscribe('SecondElapsed', function(lastSecond)
     if (NVG.batteryLifeCurrent ~= NVG.batteryLifeMax) and (nvgActivated == false) then
         NVG:Recharging()
     end
+
 end)
+
+Events:Subscribe('Player:Killed', function(player)
+
+    NVG:Deactivate()
+
+end)
+
+Events:Subscribe('Soldier:HealthAction', function(soldier, action)
+
+    if action == 1 then 
+        NVG:Deactivate()
+    end
+
+end)
+
+Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
+
+    if InputManager:WentDown(23) then
+        NVG:Deactivate()
+    end
+
+end)
+
+
+------------------------------------------------------------------------
+
 
 
 -- Vehicle Flash Light
