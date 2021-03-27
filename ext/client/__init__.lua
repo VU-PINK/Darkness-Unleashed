@@ -4,6 +4,12 @@ require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
 require 'ui'
+require "__shared/DebugGUI"
+require 'cinematictools'
+
+if Settings.dayNightEnabled == true then 
+require 'clienttime'
+end 
 
 local NVGClass = require '__shared/classes/nvg'
 local NVG = NVGClass()
@@ -15,6 +21,7 @@ local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
 local currentVisualEnvironment = nil
 local currentSpecialVisualEnvironment = nil
+local currentOtherVisualEnvironment = nil 
 
 local nvgActivated = nil
 local useNightVisionGadget = true
@@ -22,7 +29,6 @@ local useNightVisionGadget = true
 UserSettingsSaved = nil
 UserSettings = {}
 changedSpotlightSettings = nil 
-
 
 
 local multipliedValues = {
@@ -35,46 +41,100 @@ local multipliedValues = {
 }
 
 Events:Subscribe('Level:Destroy', function()
+
     ResetVisualEnvironment()
-end)
 
-Events:Subscribe('Level:Loaded', function(levelName, gameMode)
-    local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
-    local mapPreset = Settings.MapPresets[mapName]
-
-    if mapPreset ~= nil then
-        print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
-        Multipliers(mapName)
-        ApplyVisualEnvironment(mapPreset)
-        if mapPreset == 'Night' then
-            EnforceBrightness()
-        else 
-            ReleaseBrightness()
-        end
-    else
-        print('Using Standard')
-        ResetVisualEnvironment()
+    if Settings.dayNightEnabled == true then 
+    ClientTime:OnLevelDestoyed()
     end
 
 end)
 
+Events:Subscribe('Level:Loaded', function(levelName, gameMode)
+    
+    -- ClientTime
+    if Settings.dayNightEnabled == true then 
+    ClientTime:OnLevelLoaded()
+    end
+
+    CinematicTools()
+    
+    -- Visual Environments
+    local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
+    local mapPreset = Settings.MapPresets[mapName]
+
+    if mapPreset ~= nil then
+
+        print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
+        Multipliers(mapName)
+        ApplyVisualEnvironment(mapPreset)
+        --ApplyOtherVisualEnvironments('Evening')
+        if mapPreset == 'Night' then
+
+            EnforceBrightness()
+
+        else 
+
+            ReleaseBrightness()
+
+        end
+
+    else
+        print('Using Standard')
+        ResetVisualEnvironment()
+
+    end
+
+end)
+
+
+Events:Subscribe('Extension:Loaded', function()
+    EmittersFlashlightsOnExtensionLoaded()
+end)
+
 -- Unload Forced Settings
 Events:Subscribe('Extension:Unloading', function()
+
     ReleaseBrightness()
     resetMoreSpotlights()
+
+end)
+
+Events:Subscribe('Partition:Loaded', function(partition)
+    PatchComponentsOnPartitionLoaded(partition)
+    EmittersOnPartitionLoaded(partition)
+    EmittersFlashlightsOnPartitionLoaded(partition)
 end)
 
 -- Change Settings to allow more Spotlight Shadows
 Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+
     allowMoreSpotlights()
+
 end)
 
 Events:Subscribe('Player:Respawn', function(player)
 	local localPlayer = PlayerManager:GetLocalPlayer()
 
     if player == localPlayer and useNightVisionGadget then
+
         NVG:__init()
+
 	end
+
+end)
+
+Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
+    
+    -- Night Vision Goggles
+    NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    
+    --  Vehicle lights toggle
+    Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+
+    -- Cinematic Tools
+    --CineTools_OnPlayerInput(p_Player, p_DeltaTime)
+
 end)
 
 -- Apply Map Presets
@@ -186,6 +246,7 @@ function ApplySpecialVisualEnvironment(presetName)
 
     if currentSpecialVisualEnvironment ~= nil then
         currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
+        Tool:DebugPrint('Creating Special Environment: ' .. presetName, 'VE')
     end
     nvgActivated = true
 end
@@ -193,20 +254,71 @@ end
 function ResetSpecialVisualEnvironment(presetName)
 
 	if currentSpecialVisualEnvironment ~= nil then
+
 		currentSpecialVisualEnvironment:Destroy()
         currentSpecialVisualEnvironment = nil
 
         nvgActivated = false
-		--print('Removed Special Environment: ' .. presetName)
+        
+        Tool:DebugPrint('Removed Special Environment: ' .. presetName, 'VE')
+
 	end
 
 end
 
+-- Apply DayNight Presets
+function ApplyOtherVisualEnvironments(presetName)
+    if currentOtherVisualEnvironment ~= nil then
+        return
+    end
+
+    local selectedPreset = presetValues[presetName]
+
+    if selectedPreset == nil then
+        print('Wrong Configuration')
+        return
+    end
+
+    local visualEnvironmentData = VisualEnvironmentEntityData()
+    visualEnvironmentData.enabled = true
+    visualEnvironmentData.visibility = 1.0
+    visualEnvironmentData.priority = 999998
+
+    -- looping through instance types
+    for instanceType, values in pairs(selectedPreset) do
+        -- creating new instance
+        local newInstance = _G[instanceType]()
+
+        -- patching instance properties
+        for key, value in pairs(values) do
+            if type(value) == 'string' then
+                -- patching texture property
+                newInstance[key] = TextureAsset(_G[value])
+            else
+                -- patching static property
+                newInstance[key] = value
+            end
+        end
+
+        -- adding visual environment components
+        visualEnvironmentData.components:add(newInstance)
+        visualEnvironmentData.runtimeComponentCount = visualEnvironmentData.runtimeComponentCount + 1
+    end
+
+    currentOtherVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+
+    if currentOtherVisualEnvironment ~= nil then
+        currentOtherVisualEnvironment:Init(Realm.Realm_Client, true)
+    end
+end
+
 --- Night Vision Gadget  (For Now)
 ------------------------------------------------------------------------
-Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
 
-    if useNightVisionGadget == true and isHud == true then
+function NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    
+    -- Night Vision Goggles
+    if useNightVisionGadget and isHud then
 
         if InputManager:WentKeyDown(8) then
 
@@ -214,19 +326,20 @@ Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
 
                 NVG:Activate()
 
-            elseif nvgActivated == true then
-
-				NVG:Deactivate()
+            elseif nvgActivated then
+                
+                NVG:Deactivate()
+                
             end
 
         end
 
-    elseif nvgActivated == true then
+    elseif nvgActivated then
 
         ResetSpecialVisualEnvironment("NightVision")
 
     end
-end)
+end
 
 Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
     -- Do stuff here.
@@ -235,25 +348,37 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
     elapsedTime = elapsedTime + deltaTime
 
     if(elapsedTime >= lastSecond + 1) then
+        
         lastSecond = lastSecond + 1
         Events:DispatchLocal('SecondElapsed', lastSecond)
+        
     end
+
+    if nvgRunner == true then
+        
+		Animation:nvg(deltaTime)
+        Tool:DebugPrint("RunAnimation", 'nvg')
+        
+	end
 
 end)
 
 Events:Subscribe('SecondElapsed', function(lastSecond)
 
-    if(nvgActivated) then
+    -- Deplete or Charge the NVG
+    if nvgActivated == true then
+        
         NVG:Depleting()
-    end
 
-    if (NVG.batteryLifeCurrent ~= NVG.batteryLifeMax) and (nvgActivated == false) then
+    elseif NVG.batteryLifeCurrent ~= NVG.batteryLifeMax then
+        
         NVG:Recharging()
+        
     end
 
 end)
 
-Events:Subscribe('Player:Killed', function(player)
+--[[Events:Subscribe('Player:Killed', function(player)
 
     if nvgActivated == true then
         NVG:Deactivate()
@@ -262,29 +387,21 @@ Events:Subscribe('Player:Killed', function(player)
 end)
 
 Events:Subscribe('Soldier:HealthAction', function(soldier, action)
-
+    print(action)
+    print(tostring(nvgActivated))
     if action == 1 and nvgActivated == true then 
         NVG:Deactivate()
     end
 
-end)
-
-Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
-
-    if InputManager:WentDown(23) and nvgActivated == true and player.inVehicle then
-        NVG:Deactivate()
-    end
-
-end)
-
+end)]]
 
 ------------------------------------------------------------------------
 
 
-
--- Vehicle Flash Light
-Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
+-- Vehicles
+function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     
+    --Vehicle lights toggle
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
 
         if p_Player.inVehicle == false then
@@ -338,8 +455,45 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
         end
 
     end
+end
 
-end)
+
+
+---- Cinematic Tools
+
+function CineTools_OnPlayerInput(p_Player, p_DeltaTime)
+    
+    if InputManager:WentKeyDown(59) then
+
+        DebugGUI:Show()
+
+    end
+
+end
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

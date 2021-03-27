@@ -2,22 +2,64 @@
 local debugPrints = {
 
         ['enable'] = true,
-        ['adding'] = true,
-        ['removing'] = true, 
-        ['altering'] = true,
-        ['player'] = true,
-        ['common'] = true,
+        ['adding'] = false,
+        ['removing'] = false, 
+        ['altering'] = false,
+        ['player'] = false,
+        ['common'] = false,
+        ['time'] = true,
+        ['nvg'] = false,
+        ['VE'] = true,
+        ['error'] = true,
 
 }
 
--- Standard Setting, decides if bluefilter is to be used with Standard Preset Maps [true/false]
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
+
+-- Standard Preset Settings, decides if bluefilter is to be used with Standard Preset Maps [true/false]
 local lensflareEnabled = false
 local sunflareEnabled = true
 local standardusebluefilter = false
 
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
+-- Day/Night Cycle Time 
+-- Disable to use Real-Time-Editing!
+
+-- How many minutes should a day last
+-- Example Values:
+-- 		full day night circle in 20 minutes 					: 20
+-- 		full day night circle in 15 minutes (suggested value) 	: 15
+-- 		full day night circle in 10 minutes 					: 10
+-- 		1 hour per second (good for debugging) 					: 24/60
+local dayNightEnabled = false
+
+local dayLengthInMinutes = 24/60
+
+-- Pure night duration in minutes
+local pureNightDuration = 0.1
+-- Pure day duration in minutes
+local pureDayDuration = 0.1
+
+
+-- How often, in seconds, should client update the environment (applying the new time lighting)
+-- This value can be increased if the day night circle is big enough
+-- local clientUpdateLimit = 0.001
+
+-- How often, in seconds, should the server update daytime and send info to the clients
+-- The server sends at this interval the new date time to the clients to keep them all in sync
+local serverUpdatesFrequency = 30
+
+-- The day time to start the server at (0 - 23) or os.date('%H') for real-time
+local startHour = os.date('%H')
+local startHourRandom = false
+local resetTimeEachLevel = true
+ 
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
 -- Vehicle Lights
 local useVehicleLights_Airborne = true
 local useVehicleLights_Ground = true
+
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
 local mapPresets = {
     MP_001 = 'Night', -- Grand Bazaar
@@ -51,6 +93,7 @@ local mapPresets = {
     XP5_004 = 'Night' -- Sabalan Pipeline
 }
 
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
 -- Fog and Brightness Settings - Night Preset
 -- Brightness: recommended max: {1.5} | higher values will raise brightness
@@ -123,6 +166,21 @@ local mapFogMultipliers = {
     XP5_004 = 1.0 -- Sabalan Pipeline
 }
 
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
+
+---- DONT CHANGE ANYTHING AFTER THIS LINE ----
+
+-- Generated settings based at the parameters above
+local dayLengthInSeconds = dayLengthInMinutes * 60
+local pureNightDurationInSeconds = pureNightDuration * 60
+local pureDayDurationInSeconds = pureDayDuration * 60
+
+-- Server day & hour state
+days = 0
+hours = startHour % 24
+
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
+
 
 
 
@@ -138,5 +196,16 @@ return {
     MapFogMultipliers = mapFogMultipliers,
     useVehicleLights_Airborne = useVehicleLights_Airborne,
     useVehicleLights_Ground = useVehicleLights_Airborne,
-    DebugPrints = debugPrints
+    DebugPrints = debugPrints,
+    dayLengthInMinutes = dayLengthInMinutes, 
+    pureNightDuration = pureNightDuration,
+    pureDayDuration = pureDayDuration,
+    serverUpdatesFrequency = serverUpdatesFrequency,
+    startHour = startHour,
+    startHourRandom = startHourRandom,
+    resetTimeEachLevel = resetTimeEachLevel,
+    dayLengthInSeconds = dayLengthInSeconds,
+    pureNightDurationInSeconds = pureNightDurationInSeconds,
+    pureDayDurationInSeconds = pureDayDurationInSeconds,
+    dayNightEnabled = dayNightEnabled
 }

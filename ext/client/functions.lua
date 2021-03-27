@@ -149,10 +149,6 @@ function resetMoreSpotlights()
 		Visual.meshScatteringCastShadowsEnable = UserSettings.meshScatteringCastShadowsEnable
 		Tool:DebugPrint('Resetting meshScatteringCastShadowsEnable to ' .. tostring(Visual.meshScatteringCastShadowsEnable), 'altering')
 
-		Visual.meshScatteringInstanceCullJobCount = UserSettings.meshScatteringInstanceCullJobCount
-		Tool:DebugPrint('Resetting meshScatteringInstanceCullJobCount to ' .. tostring(Visual.meshScatteringInstanceCullJobCount), 'altering')
-
-
 	end
 
 	if changedSpotlightSettings == true then

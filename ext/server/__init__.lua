@@ -1,6 +1,12 @@
 local Settings = require '__shared/settings'
 require 'version'
 
+if Settings.dayNightEnabled == true then 
+require 'time'
+end
+
+require 'cinematictools'
+
 local presetValues = require '__shared/presets'
 
 function getCurrentVersion()

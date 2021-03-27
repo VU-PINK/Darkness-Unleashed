@@ -1,9 +1,9 @@
 local Night = {
     OutdoorLightComponentData = {
         enable = true,
-        sunColor = Vec3(0, 0, 0),
-        skyColor = Vec3(0.04, 0.04, 0.04),
-        groundColor = Vec3(0.005, 0.005, 0.005),
+        sunColor = Vec3(1,0.3,0.051);
+        skyColor = Vec3(1,0.3,0.051)*0.1;
+        groundColor = Vec3(1,0.3,0.051)*0.2,
         skyEnvmapShadowScale = 0.25,
         cloudShadowEnable = true,
         cloudShadowSize = 2000.0,
@@ -12,20 +12,19 @@ local Night = {
         cloudShadowSpeed = Vec2(-15.000000, -15.000000),
         skyLightAngleFactor = 0.0089999996125698,
         sunSpecularScale = 0,
-        skyEnvmapShadowScale = 0.4,
-        sunShadowHeightScale = 1,
+        sunShadowHeightScale = 0,
         translucencyDistortion = 0.10000000149012,
         translucencyAmbient = 0,
         translucencyScale = 0,
         translucencyPower = 80.0,
-        sunRotationX = 255.48399353027,
-        sunRotationY = 25
+        sunRotationX = 90,
+        sunRotationY = 0
     },
     SkyComponentData = {
         enable = true,
-        brightnessScale = 0.055,
-        sunSize = 0,
-        sunScale = 0,
+        brightnessScale = 0.5,
+        sunSize = 0.005,
+        sunScale = 20,
         realm = 0,
         panoramicUVMinX = 0.280999988317,
         panoramicUVMaxX = 0.298999994993,
@@ -41,11 +40,11 @@ local Night = {
         cloudLayer1Altitude = 2000000.0,
         cloudLayer1TileFactor = 0.600000023842,
         cloudLayer1Rotation = 237.072998047,
-        cloudLayer1Speed = -0.0010000000475,
-        cloudLayer1SunLightIntensity = 0.40,
-        cloudLayer1SunLightPower = 0.40,
-        cloudLayer1AmbientLightIntensity = 0.40,
-        cloudLayer1AlphaMul = 0.40,
+        cloudLayer1Speed = 0, --0.0010000000475,
+        cloudLayer1SunLightIntensity = 0.20,
+        cloudLayer1SunLightPower = 0.20,
+        cloudLayer1AmbientLightIntensity = 0.20,
+        cloudLayer1AlphaMul = 0.20,
         cloudLayer1Texture = 'MoonNightStars',
         panoramicTexture = nil,
         panoramicAlphaTexture = nil,
@@ -92,7 +91,24 @@ local Night = {
     SunFlareComponentData = {
         enable = false
     },
-    LensScopeComponentData = {
+    DofComponentData = {
+        enable = false, 
+        scale = 0,
+        blurFilter = 6,
+        nearDistanceScale = 0,
+        farDistanceScale = 0,
+        focusDistance = 0,
+        blurAdd = 0,
+    },
+    VignetteComponentData = {
+        enable = false,
+        realm = 0,
+        scale = Vec2(1, 1), --Aspect ratio = 1,0909090909090909090909090909091
+        color = Vec3(0.1, 0.1, 0.1),
+        exponent = 0.0,
+        opacity = 0
+    },
+    --[[LensScopeComponentData = {
         enable = true,
         realm = 0,
         blurCenter = Vec2(0.5, 0.5),
@@ -103,7 +119,114 @@ local Night = {
         chromaticAberrationDisplacement1 = Vec2(-0.00200000009499, 0.00400000018999),
         chromaticAberrationDisplacement2 = Vec2(0.00600000005215, 0.0),
         radialBlendDistanceCoefficients = Vec2(1.2, -0.5)
-    }
+    }]]
+}
+
+local Evening = {
+    OutdoorLightComponentData = {
+        enable = true,
+        sunColor = Vec3(1,0.3,0.051);
+        skyColor = Vec3(0.04, 0.04, 0.04),
+        groundColor = Vec3(0.005, 0.005, 0.005),
+        skyEnvmapShadowScale = 0.25,
+        cloudShadowEnable = true,
+        cloudShadowSize = 2000.0,
+        cloudShadowExponent = 3,
+        cloudShadowCoverage = 0.44,
+        cloudShadowSpeed = Vec2(-15.000000, -15.000000),
+        skyLightAngleFactor = 0.0089999996125698,
+        sunSpecularScale = 0,
+        sunShadowHeightScale = 0,
+        translucencyDistortion = 0.10000000149012,
+        translucencyAmbient = 0,
+        translucencyScale = 0,
+        translucencyPower = 80.0,
+        sunRotationX = 90,
+        sunRotationY = -30
+    },
+    SkyComponentData = {
+        enable = true,
+        brightnessScale = 0.055,
+        sunSize = 0.1,
+        sunScale = 1.5,
+        realm = 0,
+        panoramicUVMinX = 0.280999988317,
+        panoramicUVMaxX = 0.298999994993,
+        panoramicUVMinY = 0.0630000010133,
+        panoramicUVMaxY = 0.307000011206,
+        panoramicTileFactor = 1.0,
+        panoramicRotation = 260,
+        staticEnvmapScale = 0,
+        skyVisibilityExponent = 1,
+        skyEnvmap8BitTexScale = 1,
+        customEnvmapScale = 1,
+        customEnvmapAmbient = 1,
+        cloudLayer1Altitude = 2000000.0,
+        cloudLayer1TileFactor = 0.600000023842,
+        cloudLayer1Rotation = 237.072998047,
+        cloudLayer1Speed = 0, --0.0010000000475,
+        cloudLayer1SunLightIntensity = 0.20,
+        cloudLayer1SunLightPower = 0.20,
+        cloudLayer1AmbientLightIntensity = 0.20,
+        cloudLayer1AlphaMul = 0.20,
+        cloudLayer1Texture = 'MoonNightStars',
+        panoramicTexture = nil,
+        panoramicAlphaTexture = nil,
+        staticEnvmapTexture = nil,
+        skyGradientTexture = 'MoonNightGradient'
+    },
+    ColorCorrectionComponentData = {
+        enable = true,
+        brightness = Vec3(1, 1, 1),
+        contrast = Vec3(1.05, 1.05, 1.05),
+        saturation = Vec3(1, 1, 1.05)
+    },
+    TonemapComponentData = {
+        minExposure = 0.01,
+        maxExposure = 1.75,
+        exposureAdjustTime = 1.75,
+        bloomScale = Vec3(0.25, 0.25, 0.25),
+        tonemapMethod = 2
+    },
+    FogComponentData = {
+        enable = true,
+        fogDistanceMultiplier = 2.0,
+        fogGradientEnable = true,
+        start = 15,
+        endValue = 250,
+        curve = Vec4(0.4, -0.77, 1.3, -0.01),
+        fogColorEnable = true,
+        fogColorStart = 0,
+        fogColorEnd = 5000,
+        fogColorCurve = Vec4(6.1, -11.7, 5.62, -0.18),
+        transparencyFadeStart = 0,
+        transparencyFadeEnd = 500,
+        transparencyFadeClamp = 1.0,
+        fogColor = Vec3(0.010, 0.010, 0.010)
+    },
+    EnlightenComponentData = {
+        enable = false
+    },
+    WindComponentData = {
+        realm = 0,
+        windDirection = 211.25799560547,
+        windStrength = 1.7
+    },
+    SunFlareComponentData = {
+        enable = false
+    },
+    --[[LensScopeComponentData = {
+        enable = true,
+        realm = 0,
+        blurCenter = Vec2(0.5, 0.5),
+        blurScale = 0.999000012875,
+        chromaticAberrationColor1 = Vec3(0.0, 0.707000017166, 0.707000017166),
+        chromaticAberrationColor2 = Vec3(0.707000017166, 0.0, 0.707000017166),
+        chromaticAberrationStrengths = Vec2(0.20000000298, 0.20000000298),
+        chromaticAberrationDisplacement1 = Vec2(-0.00200000009499, 0.00400000018999),
+        chromaticAberrationDisplacement2 = Vec2(0.00600000005215, 0.0),
+        radialBlendDistanceCoefficients = Vec2(1.2, -0.5)
+    }]]
 }
 
 local Bright_Night = {
@@ -120,7 +243,6 @@ local Bright_Night = {
         cloudShadowSpeed = Vec2(-15.000000, -15.000000),
         skyLightAngleFactor = 0.0089999996125698,
         sunSpecularScale = 4,
-        skyEnvmapShadowScale = 0.4,
         sunShadowHeightScale = 1,
         translucencyDistortion = 0.10000000149012,
         translucencyAmbient = 0,
@@ -214,4 +336,5 @@ local Bright_Night = {
 return {
     Night = Night,
     Bright_Night = Bright_Night,
+    Evening = Evening,
 }

@@ -31,10 +31,10 @@ function NVG:Activate()
             done = false
             nvgRunner = true
             nvgEnable = true
-            --print("activate")
+            Tool:DebugPrint('NVG Activate ...', 'nvg')
             uiGoggleIcon(true) -- Update UI battery icon
         else
-            --print("Animation Running")
+            Tool:DebugPrint('Animation Running', 'nvg')
             return
         end
     end
@@ -47,10 +47,10 @@ function NVG:Deactivate()
             done = false
             nvgRunner = true
             nvgDisable = true
-            --print("deactivate")
+            Tool:DebugPrint('Deactivate', 'nvg')
 		    uiDisableGoggleIcon(true) -- Update UI battery icon
         else
-            --print("Animation Running")
+            Tool:DebugPrint('Animation Running | NVG:Deactivate()', 'nvg')
             return
         end
 	--else
@@ -74,7 +74,7 @@ function NVG:Depleting()
     Tool:DebugPrint("Battery Life: " .. self.batteryLifeCurrent, 'altering')
 
     if(self.batteryLifeCurrent == 0) then
-        --print("Battery has depleted!")
+        Tool:DebugPrint('Battery has depleted!', 'nvg')
         if nvgRunner ~= true then
 
             done = false
@@ -83,7 +83,7 @@ function NVG:Depleting()
             nvgDisable = true
             uiDisableGoggleIcon(true) -- Update UI battery icon
             self.batteryEmptyTime = elapsedTime
-            --print("Battery Depletion Animation Started")
+            Tool:DebugPrint('Battery Depletion Animation Started', 'nvg')
         end
     end
 end

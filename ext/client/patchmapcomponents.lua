@@ -157,7 +157,7 @@ local envmaps = {
     ['levels/xp5_004/lighting/ve_xp5_004_02'] = true
 }
 
-Events:Subscribe('Partition:Loaded', function(partition)
+function PatchComponentsOnPartitionLoaded(partition)
     for _, instance in pairs(partition.instances) do
         if instance:Is('MeshAsset') then
             PatchMeshAsset(instance)
@@ -171,7 +171,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
 	    --DynamicLights(instance)
 	    end
     end
-end)
+end
 
 function PatchOutdoorLightComponentData(instance)
     local outdoor = OutdoorLightComponentData(instance)
