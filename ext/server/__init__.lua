@@ -5,7 +5,9 @@ if Settings.dayNightEnabled == true then
 require 'time'
 end
 
+if Settings.dayNightEnabled ~= true then 
 require 'cinematictools'
+end 
 
 local presetValues = require '__shared/presets'
 

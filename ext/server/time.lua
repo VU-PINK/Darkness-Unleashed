@@ -51,43 +51,83 @@ end
 
 function Time:Ticks()
 
-    -- Record Ticks
-    Events:Subscribe('Engine:Update', function(dt)
+    if Settings.useTicketBasedCycle ~= true then 
 
-        self.engineUpdateTimer = self.engineUpdateTimer + dt
-        self.serverDayLength = self.serverDayLength + dt
-        
-        -- Print Debug info
-        if Settings.DebugPrints['enable'] == true then
+        -- Record Ticks
+        Events:Subscribe('Engine:Update', function(dt)
 
-            if Settings.DebugPrints['time'] == true then
+            self.engineUpdateTimer = self.engineUpdateTimer + dt
+            self.serverDayLength = self.serverDayLength + dt
+            
+            -- Print Debug info
+            if Settings.DebugPrints['enable'] == true then
 
-            -- Update hours & days-- Update hours & days
-            self.days = nil
-            self.hours = nil
-            self.days, self.hours = Tool:getDaysHours(self.serverDayLength)
-                
-                if hours ~= self.hours or days ~= self.days then
-                    days = self.days
-                    hours = self.hours
-                    Tool:DebugPrint('Current Time | Day: ' ..tostring(days) .. 'Hour: '.. tostring(hours), 'time')
+                if Settings.DebugPrints['time'] == true then
+
+                -- Update hours & days-- Update hours & days
+                self.days = nil
+                self.hours = nil
+                self.days, self.hours = Tool:getDaysHours(self.serverDayLength)
+                    
+                    if hours ~= self.hours or days ~= self.days then
+                        days = self.days
+                        hours = self.hours
+                        Tool:DebugPrint('Current Time | Day: ' ..tostring(days) .. 'Hour: '.. tostring(hours), 'time')
+                    end
+
                 end
 
             end
+            
+            -- Check if it is time to send a client update (to ensure client sync)
+            if self.engineUpdateTimer < Settings.serverUpdatesFrequency then
+                return
+            end
+            self.engineUpdateTimer = 0.0
+            
+            -- Sync players
+            Time:Broadcast()
+            
+        end)
 
-        end
-        
-        -- Check if it is time to send a client update (to ensure client sync)
-        if self.engineUpdateTimer < Settings.serverUpdatesFrequency then
-            return
-        end
-        self.engineUpdateTimer = 0.0
-        
-        -- Sync players
-        Time:Broadcast()
-        
-    end)
+    elseif Settings.useTicketBasedCycle == true then 
 
+        self.maxtickets = nil
+        self.totaltickets = nil
+
+        Events:Subscribe('Engine:Update', function(dt)
+
+            -- Get Game Tickets
+            self.ticketsUS = TicketManager:GetTicketCount(1)
+            self.ticketsRU = TicketManager:GetTicketCount(2)
+
+            if self.ticketsUS <= 0 or self.ticketsUS <= 0 then 
+                return 
+            end
+
+            self.totaltickets = self.ticketsUS + self.ticketsRU 
+
+            if self.maxtickets == nil and self.totaltickets ~= 0 then 
+                self.maxtickets = self.totaltickets 
+            end
+
+            self.engineUpdateTimer = self.engineUpdateTimer + dt
+            self.serverDayLength = self.totaltickets / self.maxtickets
+
+            -- Check if it is time to send a client update (to ensure client sync)
+            if self.engineUpdateTimer < Settings.serverUpdatesFrequency then
+                return
+            end
+
+            self.engineUpdateTimer = 0.0
+            
+            -- Sync players
+            if (self.maxtickets - self.totaltickets) > 0 then 
+                Time:Broadcast()
+            end
+            
+        end)
+    end
 
 end 
 

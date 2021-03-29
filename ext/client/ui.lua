@@ -64,8 +64,8 @@ end
 -- Enable/disable UI
 Events:Subscribe('UI:DrawHud', function()
 	-- get player
-	local player = PlayerManager:GetLocalPlayer()
-	if player == nil or player.soldier == nil then
+	local lplayer = PlayerManager:GetLocalPlayer()
+	if lplayer == nil or lplayer.soldier == nil then
 		if isKilled then
 			WebUI:ExecuteJS('window.hideUI();')
 			return

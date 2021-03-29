@@ -81,7 +81,7 @@ function AddSpotLight(spotLightSettingsArray, chassisData, vehicle)
  	newSpotLight.frustumAspect = spotLightSettingsArray.frustumAspect
  	newSpotLight.texture = RM:Flashlight()													--TextureAsset(ResourceManager:FindInstanceByGuid(Guid('04C62561-2236-11DF-A528-EA655525F02D'), Guid('2EE018E8-1451-908C-0974-DB7676407D61')))
  	newSpotLight.castShadowsMinLevel = 0
- 	newSpotLight.castShadowsEnable = true
+ 	newSpotLight.castShadowsEnable = false
  	newSpotLight.radius = spotLightSettingsArray.radius
 
  	local newSpotlightComponentData = LightComponentData()
@@ -242,7 +242,7 @@ function AddMirrorSpotlight(name, data, settings, vehicle)
  	newSpotLight.frustumAspect = settings.frustumAspect
  	newSpotLight.texture = RM:Flashlight()
  	newSpotLight.castShadowsMinLevel = 0
- 	newSpotLight.castShadowsEnable = true
+ 	newSpotLight.castShadowsEnable = false
  	newSpotLight.radius = settings.radius
 
  	local name = LightComponentData()

@@ -103,17 +103,17 @@ function allowMoreSpotlights()
 		changedSpotlightSettings = true
 	end
 
-	local Visual = ResourceManager:GetSettings('VisualTerrainSettings')
+	local Debris = ResourceManager:GetSettings('DebrisSystemSettings')
 
-	if Visual ~= nil then 
+	if Debris ~= nil then 
 
-		Visual = VisualTerrainSettings(Visual)
-
-		UserSettings.meshScatteringCastShadowsEnable = Visual.meshScatteringCastShadowsEnable
+		Debris = DebrisSystemSettings(Debris)
 		
-		Tool:DebugPrint('[OLD] meshScatteringCastShadowsEnable ' .. tostring(Visual.meshScatteringCastShadowsEnable), 'altering')
-		Visual.meshScatteringCastShadowsEnable = false 
-		Tool:DebugPrint('[NEW] meshScatteringCastShadowsEnable ' .. tostring(Visual.meshScatteringCastShadowsEnable), 'altering')
+		Tool:DebugPrint('[OLD] meshShadowEnable  ' .. tostring(Debris.meshShadowEnable ), 'altering')
+		Debris.meshShadowEnable = false 
+		Tool:DebugPrint('[NEW] meshShadowEnable  ' .. tostring(Debris.meshShadowEnable ), 'altering')
+
+
 
 	end 
 
@@ -122,7 +122,7 @@ end
 
 function resetMoreSpotlights()
 	local WorldRender = ResourceManager:GetSettings('WorldRenderSettings')
-	local Visual = ResourceManager:GetSettings('VisualTerrainSettings')
+	local Debris = ResourceManager:GetSettings('DebrisSystemSettings')
 
 	if WorldRender ~= nil and changedSpotlightSettings == true then
 
@@ -142,12 +142,13 @@ function resetMoreSpotlights()
 
 	end
 
-	if Visual ~= nil and changedSpotlightSettings == true then
+	if Debris ~= nil and changedSpotlightSettings == true then
 
-		Visual = VisualTerrainSettings(Visual)
+		Debris = DebrisSystemSettings(Debris)
 
-		Visual.meshScatteringCastShadowsEnable = UserSettings.meshScatteringCastShadowsEnable
-		Tool:DebugPrint('Resetting meshScatteringCastShadowsEnable to ' .. tostring(Visual.meshScatteringCastShadowsEnable), 'altering')
+		Debris.meshShadowEnable = false
+		Tool:DebugPrint('Resetting meshShadowEnable to ' .. tostring(Debris.meshShadowEnable), 'altering')
+
 
 	end
 

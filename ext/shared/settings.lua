@@ -11,6 +11,7 @@ local debugPrints = {
         ['nvg'] = false,
         ['VE'] = true,
         ['error'] = true,
+        ['cinetools'] = true,
 
 }
 
@@ -31,19 +32,17 @@ local standardusebluefilter = false
 -- 		full day night circle in 15 minutes (suggested value) 	: 15
 -- 		full day night circle in 10 minutes 					: 10
 -- 		1 hour per second (good for debugging) 					: 24/60
-local dayNightEnabled = false
+local dayNightEnabled = true
+local useTicketBasedCycle = true
 
+
+--═══Only relevant if not in Ticket Mode════
 local dayLengthInMinutes = 24/60
-
 -- Pure night duration in minutes
 local pureNightDuration = 0.1
 -- Pure day duration in minutes
 local pureDayDuration = 0.1
-
-
--- How often, in seconds, should client update the environment (applying the new time lighting)
--- This value can be increased if the day night circle is big enough
--- local clientUpdateLimit = 0.001
+--------------------------------------------
 
 -- How often, in seconds, should the server update daytime and send info to the clients
 -- The server sends at this interval the new date time to the clients to keep them all in sync
@@ -207,5 +206,6 @@ return {
     dayLengthInSeconds = dayLengthInSeconds,
     pureNightDurationInSeconds = pureNightDurationInSeconds,
     pureDayDurationInSeconds = pureDayDurationInSeconds,
-    dayNightEnabled = dayNightEnabled
+    dayNightEnabled = dayNightEnabled,
+    useTicketBasedCycle = useTicketBasedCycle
 }

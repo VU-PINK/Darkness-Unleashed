@@ -10,8 +10,10 @@ end
 
 function ClientTime:__Init()
 
+    self.factor = 1
     self.clientDayLength = 0
     self.previousNightFactor = nil
+    self.t = 0
     ClientTime:GetVE()
     ClientTime:Ticks()
     ClientTime:Sync()
@@ -31,57 +33,76 @@ function ClientTime:Ticks()
 
     Events:Subscribe('DeltaTime', function(dt)
 
-        self.clientDayLength = self.clientDayLength + dt
+        if Settings.useTicketBasedCycle ~= true then 
 
-        self.engineUpdateTimer = 0.0
-        
-        -- Offset seconds to 0:00 AM
-        self.seconds = self.clientDayLength % Settings.dayLengthInSeconds 
+            self.clientDayLength = self.clientDayLength + dt
 
-        --print(self.seconds)
-
-        -- Offset seconds (0 is the middle of the night, but it should be the start of the night)
-        --seconds = seconds + pure_night_duration_sec / 2
-        
-        self.factor = nil
-        
-        -- Check if it is night
-        if self.seconds < Settings.pureNightDurationInSeconds / 2 then
-            self.factor = 1.0
-        
-        -- Check if it is night -> day
-        elseif self.seconds < Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2 then
-            self.factor = 1.0 - (self.seconds - Settings.pureNightDurationInSeconds / 2) / (Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2 - Settings.pureNightDurationInSeconds / 2)
+            self.engineUpdateTimer = 0.0
             
-        -- Check if it is day
-        elseif self.seconds < Settings.dayLengthInSeconds / 2 + Settings.pureDayDurationInSeconds / 2 then
-            self.factor = 0.001
+            -- Offset seconds to 0:00 AM
+            self.seconds = self.clientDayLength % Settings.dayLengthInSeconds 
+
+            --print(self.seconds)
+
+            -- Offset seconds (0 is the middle of the night, but it should be the start of the night)
+            --seconds = seconds + pure_night_duration_sec / 2
             
-        -- Check if it is day -> night
-        elseif self.seconds < Settings.dayLengthInSeconds - Settings.pureNightDurationInSeconds / 2 then
-            self.factor = (self.seconds - Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2) / (Settings.dayLengthInSeconds - Settings.pureNightDurationInSeconds / 2 - Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2)
-        
-        -- Check if it is night
-        else
-            self.factor = 1.0
+            self.factor = nil
+            
+            -- Check if it is night
+            if self.seconds < Settings.pureNightDurationInSeconds / 2 then
+                self.factor = 1.0
+            
+            -- Check if it is night -> day
+            elseif self.seconds < Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2 then
+                self.factor = 1.0 - (self.seconds - Settings.pureNightDurationInSeconds / 2) / (Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2 - Settings.pureNightDurationInSeconds / 2)
+                
+            -- Check if it is day
+            elseif self.seconds < Settings.dayLengthInSeconds / 2 + Settings.pureDayDurationInSeconds / 2 then
+                self.factor = 0.001
+                
+            -- Check if it is day -> night
+            elseif self.seconds < Settings.dayLengthInSeconds - Settings.pureNightDurationInSeconds / 2 then
+                self.factor = (self.seconds - Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2) / (Settings.dayLengthInSeconds - Settings.pureNightDurationInSeconds / 2 - Settings.dayLengthInSeconds / 2 - Settings.pureDayDurationInSeconds / 2)
+            
+            -- Check if it is night
+            else
+                self.factor = 1.0
+            end
+            
+            -- Update environment lighting
+
+            ClientTime:UpdateVE()
+                
+            -- Update hours & days
+            
+            -- Print Debug info
+            if self.hours ~= hours or self.days ~= days then 
+                self.hours = hours 
+                self.days = days
+
+                Tool:DebugPrint('Datetime : ' .. tostring(days) .. ' days ' .. tostring(hours) .. ' hours' .. ' -> ' .. tostring(self.factor), 'time')
+
+            end
+
+        elseif Settings.useTicketBasedCycle == true then 
+
+            if self.oldFactor ~= self.newfactor then 
+
+                self.t = self.t + (1 / Settings.serverUpdatesFrequency * dt) 
+                self.factor = MathUtils:Lerp(self.oldFactor, self.newFactor, self.t)
+                print("T: "..self.t)
+                print("Factor: "..self.factor)
+
+                if self.t >= 1 then
+                    self.t = 0
+                end
+
+            end
+
+            ClientTime:UpdateVE()
+
         end
-        
-        -- Update environment lighting
-
-        ClientTime:UpdateVE()
-            
-        -- Update hours & days
-        
-        -- Print Debug info
-        if self.hours ~= hours or self.days ~= days then 
-            self.hours = hours 
-            self.days = days
-
-            Tool:DebugPrint('Datetime : ' .. tostring(days) .. ' days ' .. tostring(hours) .. ' hours' .. ' -> ' .. tostring(self.factor), 'time')
-
-        end
-
-        
 
     end)
 
@@ -147,6 +168,7 @@ function ClientTime:UpdateVE()
 
             end
 
+
             Tool:DebugPrint('Changing VE: ' .. self.factor)
             
             self.previousNightFactor = self.factor
@@ -158,13 +180,27 @@ function ClientTime:Sync()
 
         -- Listen to sync from server
         NetEvents:Subscribe(NetMessage.S2C_SYNC_DAYTIME, function(serverTime)
-            self.clientDayLength = serverTime
-            
-            -- Update hours and days from server
-            days, hours = Tool:getDaysHours(serverTime)
 
-            -- Print Debug info
-            Tool:DebugPrint('Server Datetime Sync : ' .. tostring(days) .. ' days ' .. tostring(hours) .. ' hours', 'time')
+            if Settings.useTicketBasedCycle ~= true then 
+
+                self.clientDayLength = serverTime
+                
+                -- Update hours and days from server
+                days, hours = Tool:getDaysHours(serverTime)
+
+                -- Print Debug info
+                Tool:DebugPrint('Server Datetime Sync : ' .. tostring(days) .. ' days ' .. tostring(hours) .. ' hours', 'time')
+
+            elseif Settings.useTicketBasedCycle == true then 
+
+                self.oldFactor = self.factor
+                self.factor = serverTime 
+
+                if self.factor ~= self.newFactor then 
+                self.newFactor = self.factor 
+                end 
+
+            end 
 
         end)
 
@@ -176,3 +212,5 @@ function ClientTime:OnLevelDestoyed()
     Events:Unsubscribe('DeltaTime')
 
 end
+
+

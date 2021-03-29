@@ -5,11 +5,14 @@ require 'patchmapcomponents'
 require 'functions'
 require 'ui'
 require "__shared/DebugGUI"
-require 'cinematictools'
 
 if Settings.dayNightEnabled == true then 
 require 'clienttime'
 end 
+
+if Settings.dayNightEnabled ~= true then 
+require 'cinematictools'
+end
 
 local NVGClass = require '__shared/classes/nvg'
 local NVG = NVGClass()
@@ -57,7 +60,9 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     ClientTime:OnLevelLoaded()
     end
 
+    if Settings.dayNightEnabled ~= true then 
     CinematicTools()
+    end 
     
     -- Visual Environments
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
@@ -347,11 +352,17 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
 
     elapsedTime = elapsedTime + deltaTime
 
-    if(elapsedTime >= lastSecond + 1) then
+    if elapsedTime >= lastSecond + 1 then
         
         lastSecond = lastSecond + 1
         Events:DispatchLocal('SecondElapsed', lastSecond)
         
+    end
+
+    if elapsedTime >= lastSecond + 0.1 then 
+
+        Events:DispatchLocal('100msElapsed')
+
     end
 
     if nvgRunner == true then

@@ -112,7 +112,7 @@ function Tool:GetVisualEnvironmentStateArray(...)
 			end
 		end
 	end
-	Tool:DebugPrint('[ERROR] No visual environment state could be found with priority: ' .. priority, 'error')
+	--Tool:DebugPrint('[ERROR] No visual environment state could be found with priority: ' .. priority, 'error')
 	return foundStates
 end
 
