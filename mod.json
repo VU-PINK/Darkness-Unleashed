@@ -1,9 +1,9 @@
 {
-    "Name": "Darkness Unleashed Test-Build",
+    "Name": "Darkness Unleashed Development Build",
     "Description": "Custom Night Mode Experience",
     "Authors": ["Community Project (Reirei, GreatApo, Lesley, IllustrisJack)"],
     "Tags": ["darkness-unleashed"],
-    "Version": "1.0.7",
+    "Version": "1.0.9",
     "HasVeniceEXT": true,
     "HasWebUI": true,
     "Dependencies": {

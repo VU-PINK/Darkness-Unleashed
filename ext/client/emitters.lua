@@ -1,5 +1,5 @@
 --Configure Smoke, Muzzle & Emmiters
-Events:Subscribe('Partition:Loaded', function(partition)
+function EmittersOnPartitionLoaded(partition)
 	for _, instance in pairs(partition.instances) do
 		if instance:Is("EmitterTemplateData") then
 			local emitterTemplate = EmitterTemplateData(instance)
@@ -27,7 +27,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
 
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
-					emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 0.78
+					emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 0.65
 					emitterTemplate.maxSpawnDistance = 2000
 				end
 
@@ -56,7 +56,7 @@ Events:Subscribe('Partition:Loaded', function(partition)
 			end
 		end
 	end
-end)
+end
 
 
 
@@ -74,11 +74,7 @@ function patchFlashLight(instance)
 	instance:MakeWritable()
 
 	spotLight.radius = 120
-<<<<<<< HEAD
-	spotLight.intensity = 6 --brightness
-=======
 	spotLight.intensity = 10 --brightness
->>>>>>> 480e4742c7a56ca4b631f34145aa8881f5eec885
 	spotLight.coneOuterAngle = 50
 	spotLight.orthoWidth = 8
 	spotLight.orthoHeight = 8
@@ -90,7 +86,7 @@ function patchFlashLight(instance)
 	--print('Patching flashlight')
 end
 
-Events:Subscribe('Partition:Loaded', function(partition)
+function EmittersFlashlightsOnPartitionLoaded(partition)
 	for _, instance in pairs(partition.instances) do
 		if instance.instanceGuid == flashLight1PGuid then
 			patchFlashLight(instance)
@@ -98,9 +94,9 @@ Events:Subscribe('Partition:Loaded', function(partition)
 			patchFlashLight(instance)
 		end
 	end
-end)
+end
 
-Events:Subscribe('Extension:Loaded', function()
+function EmittersFlashlightsOnExtensionLoaded()
 	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight1PGuid))
 	patchFlashLight(ResourceManager:SearchForInstanceByGuid(flashLight3PGuid))
-end)
+end

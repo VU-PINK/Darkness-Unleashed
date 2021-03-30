@@ -14,8 +14,8 @@ function Multipliers(mapName)
 	BrightnessMultiplicator = Settings.Generalbrightness * Settings.MapBrightnessMultipliers[mapName]
 	FogMultiplicator = Settings.Generalfog * Settings.MapFogMultipliers[mapName]
 
-	Tool:DebugPrint("BrightnessMultiplicator: " ..BrightnessMultiplicator)
-	Tool:DebugPrint("FogMultiplicator: " ..FogMultiplicator)
+	Tool:DebugPrint("BrightnessMultiplicator: " ..BrightnessMultiplicator, 'common')
+	Tool:DebugPrint("FogMultiplicator: " ..FogMultiplicator, 'common')
 end
 
 --------------------------------------------------------------------------
@@ -31,9 +31,9 @@ local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 		UserSettings.userBrightnessMax = PostProcessing.userBrightnessMax
 		UserSettings.brightness = PostProcessing.brightness
 		UserSettings.forceExposure = PostProcessing.forceExposure
-		Tool:DebugPrint('Saving User PP Settings:')
-		Tool:DebugPrint('Brightness_Min: ' .. UserSettings.userBrightnessMin)
-		Tool:DebugPrint('Brightness_Max: '..UserSettings.userBrightnessMax)
+		Tool:DebugPrint('Saving User PP Settings:', 'common')
+		Tool:DebugPrint('Brightness_Min: ' .. UserSettings.userBrightnessMin, 'common')
+		Tool:DebugPrint('Brightness_Max: '..UserSettings.userBrightnessMax, 'common')
 		UserSettingsSaved = true
 
 	end
@@ -45,7 +45,7 @@ local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 		PostProcessing.userBrightnessMax = 1
 		PostProcessing.brightness = Vec3(1, 1, 1)
 		PostProcessing.forceExposure = 0.70
-		Tool:DebugPrint('Changed PostProcessing')
+		Tool:DebugPrint('Changed PostProcessing', 'common')
 			
 	end
 
@@ -65,7 +65,7 @@ function ReleaseBrightness()
 		PostProcessing.userBrightnessMax = UserSettings.userBrightnessMax
 		PostProcessing.brightness = UserSettings.brightness
 		PostProcessing.forceExposure = UserSettings.forceExposure
-		Tool:DebugPrint('Changed PostProcessing')
+		Tool:DebugPrint('Changed PostProcessing', 'common')
 
 	end
 
@@ -84,36 +84,36 @@ function allowMoreSpotlights()
 		UserSettings.shadowmapViewDistance = WorldRender.shadowmapViewDistance
 		UserSettings.lightOverdrawMaxLayerCount = WorldRender.lightOverdrawMaxLayerCount
 
-		Tool:DebugPrint('Changing Max Spotlight Count')
+		Tool:DebugPrint('Changing Max Spotlight Count', 'altering')
 		WorldRender.maxSpotLightShadowCount = 6
-		Tool:DebugPrint('[NEW] maxSpotLightShadowCount: ' ..WorldRender.maxSpotLightShadowCount)
+		Tool:DebugPrint('[NEW] maxSpotLightShadowCount: ' ..WorldRender.maxSpotLightShadowCount, 'altering')
 
-		Tool:DebugPrint('[OLD] maxSpotLightCount ' .. WorldRender.maxSpotLightCount)
+		Tool:DebugPrint('[OLD] maxSpotLightCount ' .. WorldRender.maxSpotLightCount, 'altering')
 		WorldRender.maxSpotLightCount = WorldRender.maxSpotLightCount * 2
-		Tool:DebugPrint('[NEW] maxSpotLightCount ' .. WorldRender.maxSpotLightCount)
+		Tool:DebugPrint('[NEW] maxSpotLightCount ' .. WorldRender.maxSpotLightCount, 'altering')
 	
-		Tool:DebugPrint('[OLD] shadowmapViewDistance ' .. WorldRender.shadowmapViewDistance)
+		Tool:DebugPrint('[OLD] shadowmapViewDistance ' .. WorldRender.shadowmapViewDistance, 'altering')
 		WorldRender.shadowmapViewDistance = 100
-		Tool:DebugPrint('[NEW] shadowmapViewDistance ' .. WorldRender.shadowmapViewDistance)
+		Tool:DebugPrint('[NEW] shadowmapViewDistance ' .. WorldRender.shadowmapViewDistance, 'altering')
 
-		Tool:DebugPrint('[OLD] lightOverdrawMaxLayerCount ' .. WorldRender.lightOverdrawMaxLayerCount)
+		Tool:DebugPrint('[OLD] lightOverdrawMaxLayerCount ' .. WorldRender.lightOverdrawMaxLayerCount, 'altering')
 		WorldRender.lightOverdrawMaxLayerCount = 32
-		Tool:DebugPrint('[NEW] lightOverdrawMaxLayerCount ' .. WorldRender.lightOverdrawMaxLayerCount)
+		Tool:DebugPrint('[NEW] lightOverdrawMaxLayerCount ' .. WorldRender.lightOverdrawMaxLayerCount, 'altering')
 
 		changedSpotlightSettings = true
 	end
 
-	local Visual = ResourceManager:GetSettings('VisualTerrainSettings')
+	local Debris = ResourceManager:GetSettings('DebrisSystemSettings')
 
-	if Visual ~= nil then 
+	if Debris ~= nil then 
 
-		Visual = VisualTerrainSettings(Visual)
-
-		UserSettings.meshScatteringCastShadowsEnable = Visual.meshScatteringCastShadowsEnable
+		Debris = DebrisSystemSettings(Debris)
 		
-		Tool:DebugPrint('[OLD] meshScatteringCastShadowsEnable ' .. tostring(Visual.meshScatteringCastShadowsEnable))
-		Visual.meshScatteringCastShadowsEnable = false 
-		Tool:DebugPrint('[NEW] meshScatteringCastShadowsEnable ' .. tostring(Visual.meshScatteringCastShadowsEnable))
+		Tool:DebugPrint('[OLD] meshShadowEnable  ' .. tostring(Debris.meshShadowEnable ), 'altering')
+		Debris.meshShadowEnable = false 
+		Tool:DebugPrint('[NEW] meshShadowEnable  ' .. tostring(Debris.meshShadowEnable ), 'altering')
+
+
 
 	end 
 
@@ -122,35 +122,32 @@ end
 
 function resetMoreSpotlights()
 	local WorldRender = ResourceManager:GetSettings('WorldRenderSettings')
-	local Visual = ResourceManager:GetSettings('VisualTerrainSettings')
+	local Debris = ResourceManager:GetSettings('DebrisSystemSettings')
 
 	if WorldRender ~= nil and changedSpotlightSettings == true then
 
 		WorldRender = WorldRenderSettings(WorldRender)
 
 		WorldRender.maxSpotLightShadowCount = UserSettings.maxSpotLightShadowCount
-		Tool:DebugPrint('Resetting Max Spotlight Shadow Count to ' .. WorldRender.xenonLightTileMaxSpotLightCount)
+		Tool:DebugPrint('Resetting Max Spotlight Shadow Count to ' .. WorldRender.xenonLightTileMaxSpotLightCount, 'altering')
 
 		WorldRender.shadowmapViewDistance = UserSettings.shadowmapViewDistance
-		Tool:DebugPrint('Resetting shadowmapViewDistance to ' .. WorldRender.shadowmapViewDistance)
+		Tool:DebugPrint('Resetting shadowmapViewDistance to ' .. WorldRender.shadowmapViewDistance, 'altering')
 
 		WorldRender.maxSpotLightCount = UserSettings.maxSpotLightCount
-		Tool:DebugPrint('Resetting Max Spotlight Count to ' .. WorldRender.maxSpotLightCount)
+		Tool:DebugPrint('Resetting Max Spotlight Count to ' .. WorldRender.maxSpotLightCount, 'altering')
 		
 		WorldRender.lightOverdrawMaxLayerCount = UserSettings.lightOverdrawMaxLayerCount
-		Tool:DebugPrint('Resetting lightOverdrawMaxLayerCount to ' .. WorldRender.lightOverdrawMaxLayerCount)
+		Tool:DebugPrint('Resetting lightOverdrawMaxLayerCount to ' .. WorldRender.lightOverdrawMaxLayerCount, 'altering')
 
 	end
 
-	if Visual ~= nil and changedSpotlightSettings == true then
+	if Debris ~= nil and changedSpotlightSettings == true then
 
-		Visual = VisualTerrainSettings(Visual)
+		Debris = DebrisSystemSettings(Debris)
 
-		Visual.meshScatteringCastShadowsEnable = UserSettings.meshScatteringCastShadowsEnable
-		Tool:DebugPrint('Resetting meshScatteringCastShadowsEnable to ' .. tostring(Visual.meshScatteringCastShadowsEnable))
-
-		Visual.meshScatteringInstanceCullJobCount = UserSettings.meshScatteringInstanceCullJobCount
-		Tool:DebugPrint('Resetting meshScatteringInstanceCullJobCount to ' .. tostring(Visual.meshScatteringInstanceCullJobCount))
+		Debris.meshShadowEnable = false
+		Tool:DebugPrint('Resetting meshShadowEnable to ' .. tostring(Debris.meshShadowEnable), 'altering')
 
 
 	end
