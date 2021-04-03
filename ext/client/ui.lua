@@ -4,7 +4,11 @@ isKilled = false
 
 -- Load UI
 Events:Subscribe('Extension:Loaded', function()
-    WebUI:Init()
+
+	if useNightVisionGadget == true then 
+    	WebUI:Init()
+	end
+	
 end)
 
 -- On player spawn, show night vision goggles hint

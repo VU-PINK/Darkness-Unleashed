@@ -40,14 +40,7 @@ function Tool:FindInArray(array, value)
 	for index,item in pairs(array) do
 
 		if(item == value) then
-			print('Found '..item..' in '..index)
-
 			return true
-
-		else 
-
-			print(array)
-
 		end
 
 	end
@@ -55,6 +48,18 @@ function Tool:FindInArray(array, value)
 	return  false
 end
 
+function Tool:GetArrayItemIndex(array, value)
+
+	for index,item in pairs(array) do
+
+		if(item == value) then
+			return index
+		end
+
+	end
+
+	return nil
+end
 
 function Tool:getDaysHours(seconds)
 

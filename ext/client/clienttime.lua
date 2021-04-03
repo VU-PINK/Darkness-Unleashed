@@ -15,14 +15,18 @@ function ClientTime:__Init()
     self.previousNightFactor = nil
     self.t = 0
     ClientTime:GetVE()
+    ClientTime:FindSkyGradientTexture()
     ClientTime:Ticks()
-    ClientTime:Sync()
+    
+    if Settings.useTicketBasedCycle ~= true then 
+        ClientTime:Sync()
+    end 
 
 end
 
 function ClientTime:GetVE()
 
-    VE = VisualEnvironmentManager:GetStates()
+    self.VES = VisualEnvironmentManager:GetStates()
 
 end
 
@@ -36,8 +40,6 @@ function ClientTime:Ticks()
         if Settings.useTicketBasedCycle ~= true then 
 
             self.clientDayLength = self.clientDayLength + dt
-
-            self.engineUpdateTimer = 0.0
             
             -- Offset seconds to 0:00 AM
             self.seconds = self.clientDayLength % Settings.dayLengthInSeconds 
@@ -87,18 +89,32 @@ function ClientTime:Ticks()
 
         elseif Settings.useTicketBasedCycle == true then 
 
-            if self.oldFactor ~= self.newfactor then 
+            -- Get Team Tickets
+            self.ticketsUS, self.ticketsRU = ClientTime:GetTicketCounterTickets()
 
-                self.t = self.t + (1 / Settings.serverUpdatesFrequency * dt) 
-                self.factor = MathUtils:Lerp(self.oldFactor, self.newFactor, self.t)
-                print("T: "..self.t)
-                print("Factor: "..self.factor)
-
-                if self.t >= 1 then
-                    self.t = 0
-                end
-
+            if self.ticketsUS == nil or self.ticketsRU == nil or type(self.ticketsUS) == 'string' or type(self.ticketsRU) == 'string' then
+                return 
             end
+
+            -- Get Total Tickets
+            self.totaltickets = self.ticketsUS + self.ticketsRU 
+
+            -- Set Maximum Tickets
+            if self.maxtickets == nil and self.totaltickets ~= 0 then 
+                self.maxtickets = self.totaltickets 
+            end
+
+            if self.maxtickets == nil then 
+                return
+            end
+
+            self.clientDayLength = self.clientDayLength + dt
+
+            if Settings.day2Night == true then 
+                self.factor = 1 - (self.totaltickets / self.maxtickets)
+            else
+                self.factor = self.totaltickets / self.maxtickets
+            end 
 
             ClientTime:UpdateVE()
 
@@ -112,50 +128,32 @@ end
 -- Change visibility
 function ClientTime:UpdateVE()
         
-        if (self.factor ~= self.previousNightFactor) then
+        if self.factor ~= self.previousNightFactor then
 
-            if states == nil then
-                states = Tool:GetVisualEnvironmentStateArray(1, 2, 3, 999999)
-            end
+            self.VES = VisualEnvironmentManager:GetStates()
+
             VisualEnvironmentManager:SetDirty(true)
             
             -- Update preset visibility
-            for _, state in pairs(states) do
+            for _, state in pairs(self.VES) do
 
-                if state.priority == 1 or state.priority == 2 or state.priority == 3 then 
+                if state.priority == self.s_VEPriority then 
 
-                    state.outdoorLight.sunColor = Vec3(0.905,0.045,0.045)
-                    state.outdoorLight.sunRotationX = 180
-                    state.outdoorLight.sunRotationY = 180
-
-                    state.sky.sunSize = 0.1
-                    state.sky.sunScale = 2
-                    state.sky.panoramicUVMinX = 0.280999988317
-                    state.sky.panoramicUVMaxX = 0.298999994993
-                    state.sky.panoramicUVMinY = 0.0630000010133
-                    state.sky.panoramicUVMaxY = 0.307000011206
+                    state.priority = 900000
+                    state.outdoorLight.sunColor = Vec3(1, 0.6, 0.21) 
+                    state.outdoorLight.groundColor = Vec3(0.34, 0.24, 0.18) 
+                    state.outdoorLight.skyColor = Vec3(0.38, 0.34, 0.21)
+                    state.outdoorLight.sunRotationX = 0
+                    state.outdoorLight.sunRotationY = 90
+                    state.sky.sunSize = 0.00700000021607
+                    state.sky.sunScale = 20.0
+                    state.sky.panoramicUVMinX = 0
+                    state.sky.panoramicUVMaxX = 1
+                    state.sky.panoramicUVMinY = 0
+                    state.sky.panoramicUVMaxY = 0.5
                     state.sky.panoramicTileFactor = 1.0
                     state.sky.panoramicRotation = 260
-                    state.sky.cloudLayer1Altitude = 2000000.0
-                    state.sky.cloudLayer1TileFactor = 0.600000023842
-                    state.sky.cloudLayer1Rotation = 237.072998047
-                    state.sky.cloudLayer1Speed = 0 --0.0010000000475,
-                    state.sky.cloudLayer1SunLightIntensity = 0.05
-                    state.sky.cloudLayer1SunLightPower = 0.05
-                    state.sky.cloudLayer1AmbientLightIntensity = 0.40
-                    state.sky.cloudLayer1Texture = TextureAsset(MoonNightStars)
-
-                    if state.sky.cloudLayer2AlphaMul ~= nil then 
-                        state.sky.cloudLayer2AlphaMul = 0.40
-                        state.sky.cloudLayer2Altitude = 4000000.0
-                        state.sky.cloudLayer2TileFactor = 0.600000023842
-                        state.sky.cloudLayer2Rotation = 237.072998047
-                        state.sky.cloudLayer2Speed = 0 --0.0010000000475,
-                        state.sky.cloudLayer2SunLightIntensity = 0.05
-                        state.sky.cloudLayer2SunLightPower = 0.05
-                        state.sky.cloudLayer2AmbientLightIntensity = 0.40
-                        state.sky.cloudLayer2AlphaMul = 0.40
-                    end
+                    state.colorCorrection.saturation = Vec3(0.8, 0.75, 0.75)
 
 
                 end
@@ -175,42 +173,83 @@ function ClientTime:UpdateVE()
         end			
 end
 
+function ClientTime:FindSkyGradientTexture()
+	-- Find the sky gradient texture of the lowest priority (basic) VE
+	self.s_VEPriority = -1
+	
+    if self.VES == nil then
+        self.VES = VisualEnvironmentManager:GetStates()
+    end
+	
+	for _, VEState in pairs(self.VES) do
+		
+		if VEState.sky ~= nil then
+			
+			if VEState.sky.skyGradientTexture ~= nil or VEState.sky.panoramicTexture ~= nil then
+
+				if self.s_VEPriority < 0 or VEState.priority < self.s_VEPriority then
+                    
+					self.s_VEPriority = VEState.priority
+                    m_SkyGradientTexture = VEState.sky.skyGradientTexture
+                    m_panoramicXmin = VEState.sky.panoramicUVMinX
+                    m_panoramicXmax = VEState.sky.panoramicUVMaxX 
+                    m_panoramicYmin = VEState.sky.panoramicUVMinY
+                    m_panoramicYmax = VEState.sky.panoramicUVMaxY
+                    m_panoramicTileFactor = VEState.sky.panoramicTileFactor
+                    m_panoramicRotation = VEState.sky.panoramicRotation
+                    print('Saved Panoramic Factors')
+
+				end
+
+			end
+
+		end
+
+	end
+
+end
+
 
 function ClientTime:Sync()
 
         -- Listen to sync from server
         NetEvents:Subscribe(NetMessage.S2C_SYNC_DAYTIME, function(serverTime)
 
-            if Settings.useTicketBasedCycle ~= true then 
+            self.clientDayLength = serverTime
+            
+            -- Update hours and days from server
+            days, hours = Tool:getDaysHours(serverTime)
 
-                self.clientDayLength = serverTime
-                
-                -- Update hours and days from server
-                days, hours = Tool:getDaysHours(serverTime)
-
-                -- Print Debug info
-                Tool:DebugPrint('Server Datetime Sync : ' .. tostring(days) .. ' days ' .. tostring(hours) .. ' hours', 'time')
-
-            elseif Settings.useTicketBasedCycle == true then 
-
-                self.oldFactor = self.factor
-                self.factor = serverTime 
-
-                if self.factor ~= self.newFactor then 
-                self.newFactor = self.factor 
-                end 
-
-            end 
+            -- Print Debug info
+            Tool:DebugPrint('Server Datetime Sync : ' .. tostring(days) .. ' days ' .. tostring(hours) .. ' hours', 'time')
 
         end)
 
 end
 
+function ClientTime:GetTicketCounterTickets()
+    -- Function Code credit BreeArnold
+    local clientTicketCounterIterator = EntityManager:GetIterator('ClientTicketCounterEntity')
+    local ticketCounterEntity = clientTicketCounterIterator:Next()
+    local usTickets = " "
+    local ruTickets = " "
 
-function ClientTime:OnLevelDestoyed()
+    while ticketCounterEntity ~= nil do
+        if TicketCounterEntity(ticketCounterEntity).team == TeamId.Team1 then
+            usTickets = TicketCounterEntity(ticketCounterEntity).ticketCount
+        else
+            ruTickets = TicketCounterEntity(ticketCounterEntity).ticketCount
+        end
+        ticketCounterEntity = clientTicketCounterIterator:Next()
+    end
+
+    return usTickets, ruTickets
+
+end
+
+function ClientTime:OnLevelDestroyed()
 
     Events:Unsubscribe('DeltaTime')
 
 end
-
 

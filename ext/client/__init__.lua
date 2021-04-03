@@ -4,7 +4,10 @@ require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
 require 'ui'
+
+if Settings.cineTools == true then
 require "__shared/DebugGUI"
+end
 
 if Settings.dayNightEnabled == true then 
 require 'clienttime'
@@ -27,12 +30,11 @@ local currentSpecialVisualEnvironment = nil
 local currentOtherVisualEnvironment = nil 
 
 local nvgActivated = nil
-local useNightVisionGadget = true
+useNightVisionGadget = false
 
 UserSettingsSaved = nil
 UserSettings = {}
 changedSpotlightSettings = nil 
-
 
 local multipliedValues = {
     SkyComponentData = {
@@ -46,24 +48,25 @@ local multipliedValues = {
 Events:Subscribe('Level:Destroy', function()
 
     ResetVisualEnvironment()
+    ResetOtherVisualEnvironment('Morning')
 
     if Settings.dayNightEnabled == true then 
-    ClientTime:OnLevelDestoyed()
+    ClientTime:OnLevelDestroyed()
     end
 
 end)
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
-    
+
     -- ClientTime
     if Settings.dayNightEnabled == true then 
     ClientTime:OnLevelLoaded()
     end
 
-    if Settings.dayNightEnabled ~= true then 
+    if Settings.cineTools == true and Settings.dayNightEnabled ~= true then 
     CinematicTools()
     end 
-    
+
     -- Visual Environments
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = Settings.MapPresets[mapName]
@@ -73,7 +76,11 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
         print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
         Multipliers(mapName)
         ApplyVisualEnvironment(mapPreset)
-        --ApplyOtherVisualEnvironments('Evening')
+
+        --if Settings.useTicketBasedCycle == true then 
+            ApplyOtherVisualEnvironments('Morning')
+        --end 
+
         if mapPreset == 'Night' then
 
             EnforceBrightness()
@@ -85,6 +92,7 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
         end
 
     else
+        
         print('Using Standard')
         ResetVisualEnvironment()
 
@@ -134,8 +142,9 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
     -- Night Vision Goggles
     NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     
-    --  Vehicle lights toggle
-    Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    --Vehicle lights toggle
+    --[[Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)]]
+    Events:DispatchLocal('UpdateInput', p_Player, p_DeltaTime)
 
     -- Cinematic Tools
     --CineTools_OnPlayerInput(p_Player, p_DeltaTime)
@@ -317,6 +326,19 @@ function ApplyOtherVisualEnvironments(presetName)
     end
 end
 
+function ResetOtherVisualEnvironment(presetName)
+
+	if currentOtherVisualEnvironment ~= nil then
+
+		currentOtherVisualEnvironment:Destroy()
+        currentOtherVisualEnvironment = nil
+
+        Tool:DebugPrint('Removed Other Environment: ' .. presetName, 'VE')
+
+	end
+
+end
+
 --- Night Vision Gadget  (For Now)
 ------------------------------------------------------------------------
 
@@ -361,9 +383,9 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
 
     if elapsedTime >= lastSecond + 0.1 then 
 
-        Events:DispatchLocal('100msElapsed')
-
-    end
+        Events:DispatchLocal('100msElapsed')                                                                         
+                                                                         
+    end                                                                         
 
     if nvgRunner == true then
         
@@ -407,66 +429,6 @@ Events:Subscribe('Soldier:HealthAction', function(soldier, action)
 end)]]
 
 ------------------------------------------------------------------------
-
-
--- Vehicles
-function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
-    
-    --Vehicle lights toggle
-    if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
-
-        if p_Player.inVehicle == false then
-            Tool:DebugPrint("Not in a vehicle", 'player')
-            return
-        end
-        
-        if p_Player.controlledControllable == nil then
-            Tool:DebugPrint("Not a driver", 'player')
-            return
-        end
-        
-        local s_VehicleEntityData = p_Player.controlledControllable.data
-        local s_VehicleComponents = GameEntityData(p_Player.controlledControllable.data).components
-        
-        for _, l_component in pairs(s_VehicleComponents) do
-            
-            if l_component.typeInfo.name == "ChassisComponentData" then
-                local s_ChassisComponents = ChassisComponentData(l_component).components
-
-                for _, l_ChassisComponent in pairs(s_ChassisComponents) do
-                    
-                    --Tool:DebugPrint(l_component.typeInfo.name)
-                    --Tool:DebugPrint('1')
-
-                    if l_ChassisComponent.typeInfo.name == "LightComponentData" then
-                        local s_LightComponentData = LightComponentData(l_ChassisComponent)
-                        --Tool:DebugPrint(tostring(s_LightComponentData.light))
-                        --Tool:DebugPrint('2')
-
-                        --Tool:DebugPrint('[FROM] Is Visible: ' .. tostring(s_LightComponentData.excluded))
-
-                        local it = EntityManager:GetIterator('SpotLightEntity')
-                        local entity = it:Next()
-
-                        while entity ~= nil do
-                            entity:Destroy()
-                            Tool:DebugPrint(entity.data, 'removing')
-                            entity = it:Next()
-                        end
-
-                        --Tool:DebugPrint('[TO] Is Visible: ' .. tostring(s_LightComponentData.excluded))
-
-                        Tool:DebugPrint("Light Visibility changed", 'altering')
-                    end
-
-                end
-
-            end
-
-        end
-
-    end
-end
 
 
 

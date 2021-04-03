@@ -7,20 +7,20 @@ local debugPrints = {
         ['altering'] = false,
         ['player'] = false,
         ['common'] = false,
-        ['time'] = true,
+        ['time'] = false,
         ['nvg'] = false,
-        ['VE'] = true,
-        ['error'] = true,
-        ['cinetools'] = true,
+        ['VE'] = false,
+        ['error'] = false,
+        ['cinetools'] = false,
 
 }
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
 -- Standard Preset Settings, decides if bluefilter is to be used with Standard Preset Maps [true/false]
-local lensflareEnabled = false
-local sunflareEnabled = true
-local standardusebluefilter = false
+local lensflareEnabled = false -- broken
+local sunflareEnabled = true -- broken 
+local standardusebluefilter = false 
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 -- Day/Night Cycle Time 
@@ -33,16 +33,18 @@ local standardusebluefilter = false
 -- 		full day night circle in 10 minutes 					: 10
 -- 		1 hour per second (good for debugging) 					: 24/60
 local dayNightEnabled = true
-local useTicketBasedCycle = true
+-- Uses Day/Night Cycle based on tickets instead of the time settings. 
+local useTicketBasedCycle = false
+-- Use Day --> Night ; Instead of Night --> Day ; in Ticket Based Mode
+local day2Night = false 
 
 
---═══Only relevant if not in Ticket Mode════
-local dayLengthInMinutes = 24/60
+----Only relevant if not in Ticket Mode----
+local dayLengthInMinutes = 10
 -- Pure night duration in minutes
-local pureNightDuration = 0.1
+local pureNightDuration = 0.2
 -- Pure day duration in minutes
 local pureDayDuration = 0.1
---------------------------------------------
 
 -- How often, in seconds, should the server update daytime and send info to the clients
 -- The server sends at this interval the new date time to the clients to keep them all in sync
@@ -52,8 +54,11 @@ local serverUpdatesFrequency = 30
 local startHour = os.date('%H')
 local startHourRandom = false
 local resetTimeEachLevel = true
+-------------------------------------------
+local cineTools = true
  
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
+
 -- Vehicle Lights
 local useVehicleLights_Airborne = true
 local useVehicleLights_Ground = true
@@ -207,5 +212,7 @@ return {
     pureNightDurationInSeconds = pureNightDurationInSeconds,
     pureDayDurationInSeconds = pureDayDurationInSeconds,
     dayNightEnabled = dayNightEnabled,
-    useTicketBasedCycle = useTicketBasedCycle
+    useTicketBasedCycle = useTicketBasedCycle,
+    day2Night = day2Night,
+    cineTools = cineTools,
 }

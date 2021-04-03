@@ -86,6 +86,7 @@ function Animation:nvgDisableLoop()
 		firstloop = false
 		Tool:DebugPrint('NVG Disable Animation called!', 'nvg')
 		ResetSpecialVisualEnvironment("NightVision")
+		ResetSpecialVisualEnvironment("NightVisionVehicle")
 
 		if nvgState == nil then
 			nvgState = Tool:GetVisualEnvironmentState(1000000)

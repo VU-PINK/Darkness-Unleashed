@@ -132,7 +132,7 @@ function CinematicTools()
         end)
 
         -- sunRotationX
-        DebugGUI:Range('Sun Rotation Y', {DefValue = 0, Min = 0, Max = 359, Step = 1}, function(value)
+        DebugGUI:Range('Sun Rotation Y', {DefValue = 0, Min = 0, Max = 180, Step = 1}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)
@@ -689,7 +689,7 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Range('Minimum Exposure (broken)', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
+        DebugGUI:Range('Minimum Exposure', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)
@@ -704,7 +704,7 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Range('Maximum Exposure (broken)', {DefValue = 1.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
+        DebugGUI:Range('Maximum Exposure', {DefValue = 1.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)
@@ -719,7 +719,7 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Range('Middle Gray (broken)', {DefValue = 1.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
+        DebugGUI:Range('Middle Gray ', {DefValue = 1.0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)
@@ -734,7 +734,7 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Range('Exposure Adjust Time (broken)', {DefValue = 1.0, Min = 0.0, Max = 50.0, Step = 0.1}, function(value)
+        DebugGUI:Range('Exposure Adjust Time', {DefValue = 1.0, Min = 0.0, Max = 50.0, Step = 0.1}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)
@@ -873,7 +873,7 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Range('Fog Transparency Fade Start', {DefValue = 25.0, Min = 0.0, Max = 1000.0, Step = 1.0}, function(value)
+        DebugGUI:Range('Fog Transparency Fade Start', {DefValue = 25.0, Min = 0.0, Max = 5000.0, Step = 1.0}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)
@@ -903,7 +903,7 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Range('Transparency Fade End', {DefValue = 100.0, Min = 1.0, Max = 5000.0, Step = 1.0}, function(value)
+        DebugGUI:Range('Transparency Fade End', {DefValue = 100.0, Min = 0.0, Max = 5000.0, Step = 1.0}, function(value)
 
             if state == nil then
                 state = Tool:GetVisualEnvironmentState(999999)

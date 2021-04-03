@@ -5,12 +5,13 @@ if Settings.dayNightEnabled == true then
 require 'time'
 end
 
-if Settings.dayNightEnabled ~= true then 
+if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
 require 'cinematictools'
 end 
 
 local presetValues = require '__shared/presets'
 
+-- Code from https://gitlab.com/n4gi0s/vu-mapvote by N4gi0s
 function getCurrentVersion()
     options = HttpOptions({}, 10);
     options.verifyCertificate = false;
@@ -31,6 +32,7 @@ function checkVersion()
         print("You're running the lastest version!")
     end
 end
+--
 
 checkVersion();
 
@@ -68,8 +70,8 @@ local customMapNames = {
 
 local presetParameters = {
     Night = {
-        colorCorrectionEnabled = true,
-        sunFlareEnabled = true
+        colorCorrectionEnabled = false,
+        sunFlareEnabled = false
     },
     Bright_Night = {
         colorCorrectionEnabled = true,
@@ -104,3 +106,14 @@ end)
 Events:Subscribe('Level:Destroy', function(levelName, gameMode, isDedicatedServer)
     ServerUtils:ClearCustomMapName()
 end)
+
+
+
+--[[Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)
+
+    print(vehicle)
+    ChatManager:SendMessage('Destroyed Vehicle ID: ' .. tostring(vehicle.uniqueId))
+    NetEvents:Broadcast('Vehicle:DestroyedID', vehicle.uniqueId)
+
+end)
+]]
