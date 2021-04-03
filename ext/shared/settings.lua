@@ -8,9 +8,9 @@ local debugPrints = {
         ['player'] = false,
         ['common'] = false,
         ['time'] = false,
-        ['nvg'] = false,
+        ['nvg'] = true,
         ['VE'] = false,
-        ['error'] = false,
+        ['error'] = true,
         ['cinetools'] = false,
 
 }
@@ -56,6 +56,7 @@ local startHourRandom = false
 local resetTimeEachLevel = true
 -------------------------------------------
 local cineTools = true
+local useNightVisionGadget = true
  
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
@@ -215,4 +216,5 @@ return {
     useTicketBasedCycle = useTicketBasedCycle,
     day2Night = day2Night,
     cineTools = cineTools,
+    useNightVisionGadget = useNightVisionGadget,
 }

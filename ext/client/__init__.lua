@@ -17,11 +17,8 @@ if Settings.dayNightEnabled ~= true then
 require 'cinematictools'
 end
 
-local NVGClass = require '__shared/classes/nvg'
-local NVG = NVGClass()
-
-local AnimationClass = require '__shared/classes/animation'
-local Animation = AnimationClass()
+local NVG = require 'nightvisiongoggles/nvg'
+local Animation = require 'nightvisiongoggles/animation'
 
 local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
@@ -29,8 +26,7 @@ local currentVisualEnvironment = nil
 local currentSpecialVisualEnvironment = nil
 local currentOtherVisualEnvironment = nil 
 
-local nvgActivated = nil
-useNightVisionGadget = false
+nvgActivated = nil
 
 UserSettingsSaved = nil
 UserSettings = {}
@@ -49,6 +45,7 @@ Events:Subscribe('Level:Destroy', function()
 
     ResetVisualEnvironment()
     ResetOtherVisualEnvironment('Morning')
+    ResetSpecialVisualEnvironment()
 
     if Settings.dayNightEnabled == true then 
     ClientTime:OnLevelDestroyed()
@@ -129,7 +126,7 @@ end)
 Events:Subscribe('Player:Respawn', function(player)
 	local localPlayer = PlayerManager:GetLocalPlayer()
 
-    if player == localPlayer and useNightVisionGadget then
+    if player == localPlayer and Settings.useNightVisionGadget == true then
 
         NVG:__init()
 
@@ -228,8 +225,8 @@ function ApplySpecialVisualEnvironment(presetName)
     local visualEnvironmentData = VisualEnvironmentEntityData()
     visualEnvironmentData.enabled = true
     visualEnvironmentData.visibility = 1.0
-    visualEnvironmentData.priority = 1000000
 
+    visualEnvironmentData.priority = 1000000
 
     -- looping through instance types
     for instanceType, values in pairs(selectedPreset) do
@@ -262,7 +259,8 @@ function ApplySpecialVisualEnvironment(presetName)
         currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
         Tool:DebugPrint('Creating Special Environment: ' .. presetName, 'VE')
     end
-    nvgActivated = true
+
+    
 end
 
 function ResetSpecialVisualEnvironment(presetName)
@@ -273,8 +271,6 @@ function ResetSpecialVisualEnvironment(presetName)
         currentSpecialVisualEnvironment = nil
 
         nvgActivated = false
-        
-        Tool:DebugPrint('Removed Special Environment: ' .. presetName, 'VE')
 
 	end
 
@@ -333,8 +329,6 @@ function ResetOtherVisualEnvironment(presetName)
 		currentOtherVisualEnvironment:Destroy()
         currentOtherVisualEnvironment = nil
 
-        Tool:DebugPrint('Removed Other Environment: ' .. presetName, 'VE')
-
 	end
 
 end
@@ -345,7 +339,7 @@ end
 function NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     
     -- Night Vision Goggles
-    if useNightVisionGadget and isHud then
+    if Settings.useNightVisionGadget == true and isHud == true then
 
         if InputManager:WentKeyDown(8) then
 
@@ -361,11 +355,8 @@ function NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
 
         end
 
-    elseif nvgActivated then
+    end 
 
-        ResetSpecialVisualEnvironment("NightVision")
-
-    end
 end
 
 Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
@@ -389,8 +380,8 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
 
     if nvgRunner == true then
         
-		Animation:nvg(deltaTime)
-        Tool:DebugPrint("RunAnimation", 'nvg')
+		Animation:nvg()
+        --Tool:DebugPrint("RunAnimation", 'nvg')
         
 	end
 
@@ -411,38 +402,12 @@ Events:Subscribe('SecondElapsed', function(lastSecond)
 
 end)
 
---[[Events:Subscribe('Player:Killed', function(player)
 
-    if nvgActivated == true then
-        NVG:Deactivate()
-    end
-
-end)
-
-Events:Subscribe('Soldier:HealthAction', function(soldier, action)
-    print(action)
-    print(tostring(nvgActivated))
-    if action == 1 and nvgActivated == true then 
-        NVG:Deactivate()
-    end
-
-end)]]
 
 ------------------------------------------------------------------------
 
 
 
----- Cinematic Tools
-
-function CineTools_OnPlayerInput(p_Player, p_DeltaTime)
-    
-    if InputManager:WentKeyDown(59) then
-
-        DebugGUI:Show()
-
-    end
-
-end
 
 
 

@@ -1,3 +1,5 @@
+local Settings = require '__shared/settings'
+
 -- by GreatApo
 isHud = false
 isKilled = false
@@ -5,7 +7,7 @@ isKilled = false
 -- Load UI
 Events:Subscribe('Extension:Loaded', function()
 
-	if useNightVisionGadget == true then 
+	if Settings.useNightVisionGadget == true then 
     	WebUI:Init()
 	end
 	

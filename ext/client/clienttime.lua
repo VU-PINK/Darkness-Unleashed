@@ -164,6 +164,7 @@ function ClientTime:UpdateVE()
                     --print("*visibility changed: " .. state.visibility)
                 end
 
+
             end
 
 
