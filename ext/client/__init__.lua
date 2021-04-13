@@ -1,62 +1,151 @@
 local Settings = require '__shared/settings'
-require 'interchangable'
+require 'resources'
 require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
 require 'ui'
+require 'clienttime'
 
-local NVGClass = require '__shared/classes/nvg'
-local NVG = NVGClass()
+if Settings.cineTools == true then
+require "__shared/DebugGUI"
+end
 
-local AnimationClass = require '__shared/classes/animation'
-local Animation = AnimationClass()
+
+
+if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
+require 'cinematictools'
+end
+
+local NVG = require 'nightvisiongoggles/nvg'
+local Animation = require 'nightvisiongoggles/animation'
 
 local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
 local currentVisualEnvironment = nil
 local currentSpecialVisualEnvironment = nil
+local currentOtherVisualEnvironment = nil 
 
-local nvgActivated = nil
-local useNightVisionGadget = true
+nvgActivated = nil
 
-
-
+UserSettingsSaved = nil
+UserSettings = {}
+changedSpotlightSettings = nil 
 
 local multipliedValues = {
     SkyComponentData = {
         brightnessScale = 'BrightnessMultiplicator'
     },
     FogComponentData = {
-        fogColorCurve = 'FogMultiplicator'
+        fogDistanceMultiplier = 'FogMultiplicator'
     },
 }
 
 Events:Subscribe('Level:Destroy', function()
+
     ResetVisualEnvironment()
+    ResetOtherVisualEnvironment('Morning')
+    ResetSpecialVisualEnvironment()
+
+    if Settings.dayNightEnabled == true then 
+    ClientTime:OnLevelDestroyed()
+    end
+
 end)
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
+
+    -- ClientTime
+    ClientTime:OnLevelLoaded()
+
+    if Settings.cineTools == true and Settings.dayNightEnabled ~= true then 
+    CinematicTools()
+    end 
+
+    -- Visual Environments
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = Settings.MapPresets[mapName]
 
-
     if mapPreset ~= nil then
+
         print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
         Multipliers(mapName)
         ApplyVisualEnvironment(mapPreset)
+
+        --if Settings.useTicketBasedCycle == true then 
+            ApplyOtherVisualEnvironments('Morning')
+        --end 
+
+        if mapPreset == 'Night' then
+
+            EnforceBrightness()
+
+        else 
+
+            ReleaseBrightness()
+
+        end
+
     else
+        
         print('Using Standard')
         ResetVisualEnvironment()
+
     end
+
+end)
+
+
+Events:Subscribe('Extension:Loaded', function()
+    EmittersFlashlightsOnExtensionLoaded()
+end)
+
+-- Unload Forced Settings
+Events:Subscribe('Extension:Unloading', function()
+
+    ReleaseBrightness()
+    resetMoreSpotlights()
+
+end)
+
+Events:Subscribe('Partition:Loaded', function(partition)
+    PatchComponentsOnPartitionLoaded(partition)
+    EmittersOnPartitionLoaded(partition)
+    EmittersFlashlightsOnPartitionLoaded(partition)
+end)
+
+-- Change Settings to allow more Spotlight Shadows
+Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicatedServer)
+
+    allowMoreSpotlights()
+
 end)
 
 Events:Subscribe('Player:Respawn', function(player)
 	local localPlayer = PlayerManager:GetLocalPlayer()
 
-    if player == localPlayer and useNightVisionGadget then
+    if player == localPlayer and Settings.useNightVisionGadget == true then
+
+        NVG:Deactivate()
         NVG:__init()
+
 	end
+
 end)
+
+Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
+    
+    -- Night Vision Goggles
+    NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    
+    --Vehicle lights toggle
+    --[[Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)]]
+    Events:DispatchLocal('UpdateInput', p_Player, p_DeltaTime)
+
+    -- Cinematic Tools
+    --CineTools_OnPlayerInput(p_Player, p_DeltaTime)
+
+end)
+
 -- Apply Map Presets
 function ApplyVisualEnvironment(presetName)
     if currentVisualEnvironment ~= nil then
@@ -134,8 +223,76 @@ function ApplySpecialVisualEnvironment(presetName)
     local visualEnvironmentData = VisualEnvironmentEntityData()
     visualEnvironmentData.enabled = true
     visualEnvironmentData.visibility = 1.0
+
     visualEnvironmentData.priority = 1000000
 
+    -- looping through instance types
+    for instanceType, values in pairs(selectedPreset) do
+        -- creating new instance
+        local newInstance = _G[instanceType]()
+
+        -- patching instance properties
+        for key, value in pairs(values) do
+            if type(value) == 'string' then
+                if value == 'FlirData' then 
+                newInstance[key] = 'FlirData'
+                elseif key == cloudLayer1Texture then 
+                newInstance[key] = TextureAsset(_G[Stars])
+                else 
+                -- patching texture property
+                newInstance[key] = TextureAsset(_G[value])
+                end
+            else
+                -- patching static property
+                newInstance[key] = value
+            end
+        end
+
+        -- adding visual environment components
+        visualEnvironmentData.components:add(newInstance)
+        visualEnvironmentData.runtimeComponentCount = visualEnvironmentData.runtimeComponentCount + 1
+    end
+
+    currentSpecialVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+
+    if currentSpecialVisualEnvironment ~= nil then
+        currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
+        Tool:DebugPrint('Creating Special Environment: ' .. presetName, 'VE')
+    end
+
+    
+end
+
+function ResetSpecialVisualEnvironment(presetName)
+
+	if currentSpecialVisualEnvironment ~= nil then
+
+		currentSpecialVisualEnvironment:Destroy()
+        currentSpecialVisualEnvironment = nil
+
+        nvgActivated = false
+
+	end
+
+end
+
+-- Apply DayNight Presets
+function ApplyOtherVisualEnvironments(presetName)
+    if currentOtherVisualEnvironment ~= nil then
+        return
+    end
+
+    local selectedPreset = presetValues[presetName]
+
+    if selectedPreset == nil then
+        print('Wrong Configuration')
+        return
+    end
+
+    local visualEnvironmentData = VisualEnvironmentEntityData()
+    visualEnvironmentData.enabled = true
+    visualEnvironmentData.visibility = 1.0
+    visualEnvironmentData.priority = 999998
 
     -- looping through instance types
     for instanceType, values in pairs(selectedPreset) do
@@ -158,41 +315,49 @@ function ApplySpecialVisualEnvironment(presetName)
         visualEnvironmentData.runtimeComponentCount = visualEnvironmentData.runtimeComponentCount + 1
     end
 
-    currentSpecialVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+    currentOtherVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
 
-    if currentSpecialVisualEnvironment ~= nil then
-        currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
+    if currentOtherVisualEnvironment ~= nil then
+        currentOtherVisualEnvironment:Init(Realm.Realm_Client, true)
     end
-    nvgActivated = true
 end
 
-function ResetSpecialVisualEnvironment(presetName)
-	if currentSpecialVisualEnvironment ~= nil then
-		currentSpecialVisualEnvironment:Destroy()
-        currentSpecialVisualEnvironment = nil
+function ResetOtherVisualEnvironment(presetName)
 
-        nvgActivated = false
-		--print('Removed Special Environment: ' .. presetName)
+	if currentOtherVisualEnvironment ~= nil then
+
+		currentOtherVisualEnvironment:Destroy()
+        currentOtherVisualEnvironment = nil
+
 	end
+
 end
 
--- Night Vision Gadget Activate (For Now)
-Events:Subscribe('Player:UpdateInput', function(player, deltaTime)
-    if useNightVisionGadget == true and isHud == true then
+--- Night Vision Gadget  (For Now)
+------------------------------------------------------------------------
+
+function NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    
+    -- Night Vision Goggles
+    if Settings.useNightVisionGadget == true and isHud == true then
+
         if InputManager:WentKeyDown(8) then
+
             if nvgActivated ~= true then
 
                 NVG:Activate()
-            elseif nvgActivated == true then
 
-				NVG:Deactivate()
+            elseif nvgActivated then
+                
+                NVG:Deactivate()
+                
             end
+
         end
 
-    elseif nvgActivated == true then
-        ResetSpecialVisualEnvironment("NightVision")
-    end
-end)
+    end 
+
+end
 
 Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
     -- Do stuff here.
@@ -200,19 +365,194 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
 
     elapsedTime = elapsedTime + deltaTime
 
-    if(elapsedTime >= lastSecond + 1) then
+    if elapsedTime >= lastSecond + 1 then
+        
         lastSecond = lastSecond + 1
         Events:DispatchLocal('SecondElapsed', lastSecond)
+        
     end
+
+    if elapsedTime >= lastSecond + 0.1 then 
+
+        Events:DispatchLocal('100msElapsed')                                                                         
+                                                                         
+    end                                                                         
+
+    if nvgRunner == true then
+        
+		Animation:nvg()
+        --Tool:DebugPrint("RunAnimation", 'nvg')
+        
+	end
 
 end)
 
 Events:Subscribe('SecondElapsed', function(lastSecond)
-    if(nvgActivated) then
+
+    -- Deplete or Charge the NVG
+    if nvgActivated == true then
+        
         NVG:Depleting()
+
+    elseif NVG.batteryLifeCurrent ~= NVG.batteryLifeMax then
+        
+        NVG:Recharging()
+        
     end
 
-    if (NVG.batteryLifeCurrent ~= NVG.batteryLifeMax) and (nvgActivated == false) then
-        NVG:Recharging()
-    end
 end)
+
+
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--[[ Vehicle Flash Light
+Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
+    
+    if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
+        if p_Player.inVehicle == false then
+            print("Not in a vehicle")
+            return
+        end
+        
+        if p_Player.controlledControllable == nil then
+            print("Not a driver")
+            return
+        end
+
+        print('Pressed Key T')
+        
+        local s_VehicleEntityData = p_Player.controlledControllable.data
+
+        local s_VehicleComponents = GameEntityData(p_Player.controlledControllable.data).components
+        
+        for _, l_component in pairs(s_VehicleComponents) do
+            
+            if l_component.typeInfo.name == "ChassisComponentData" then
+                local s_ChassisComponents = ChassisComponentData(l_component).components
+                for _, l_ChassisComponent in pairs(s_ChassisComponents) do
+                    
+                    --print(l_component.typeInfo.name)
+                    if l_ChassisComponent.typeInfo.name == "LightComponentData" then
+                        local s_LightComponentData = LightComponentData(l_ChassisComponent)
+
+                        -- Invert boolean
+                        local s_light = LocalLightEntityData(s_LightComponentData.light)
+                        s_light.visible = not s_light.visible
+
+                        --s_light:PropertyChanged('visible', (not s_light.visible))
+                        s_light.excluded = not s_light.visible
+
+                        local lightClone = s_LightComponentData:Clone()
+                        s_LightComponentData:Destroy()
+                        s_ChassisComponents.add(lightClone)
+
+                        print("Light visible changed: " .. tostring(LocalLightEntityData(s_LightComponentData.light).visible))
+                    end
+                    
+                end
+            end
+            --print(l_component.typeInfo.name)
+            
+        end
+    end
+
+    -- Debug: Apply settings on lights
+	if InputManager:WentKeyDown(InputDeviceKeys.IDK_R) then
+		if p_Player.inVehicle == false then
+			print("Not in a vehicle")
+			return
+		end
+		
+		if p_Player.controlledControllable == nil then
+			print("Not a driver")
+			return
+		end
+		
+        print('Pressed Key R')
+
+		local s_VehicleEntityData = p_Player.controlledControllable.data
+		local s_VehicleComponents = GameEntityData(p_Player.controlledControllable.data).components
+		
+		for _, l_component in pairs(s_VehicleComponents) do
+			
+			if l_component.typeInfo.name == "ChassisComponentData" then
+				local s_ChassisComponents = ChassisComponentData(l_component).components
+				for _, l_ChassisComponent in pairs(s_ChassisComponents) do
+					
+
+					--print(l_component.typeInfo.name)
+					if l_ChassisComponent.typeInfo.name == "LightComponentData" then
+						local s_LightComponentData = LightComponentData(l_ChassisComponent)
+
+						s_LightComponentData.transform = LinearTransform(
+							Vec3(-1, 0, 0), --rotation
+							Vec3(0, 1, 0),
+							Vec3(0, 0, 1),
+							Vec3(0, 0, 0) -- CHANGE POSITION VALUE AND RELOAD THE MOD
+						)
+						
+						-- Invert boolean
+						local s_LocalLightEntityData = LocalLightEntityData(s_LightComponentData.light)
+						s_LocalLightEntityData.radius = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
+						s_LocalLightEntityData.intensity = 10 -- CHANGE RADIUS VALUE AND RELOAD THE MOD
+
+                        local lightClone = s_LightComponentData:Clone()
+                        s_LightComponentData:Destroy()
+                        s_ChassisComponents.add(lightClone)
+
+						print("Light settings changed")
+					end
+					
+				end
+			end
+			--print(l_component.typeInfo.name)
+			
+		end
+        
+	end
+end)]]
+
+

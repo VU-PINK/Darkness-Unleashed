@@ -1,12 +1,21 @@
 local Settings = require '__shared/settings'
 require 'version'
 
+if Settings.dayNightEnabled == true then 
+require 'time'
+end
+
+if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
+require 'cinematictools'
+end 
+
 local presetValues = require '__shared/presets'
 
+-- Code from https://gitlab.com/n4gi0s/vu-mapvote by N4gi0s
 function getCurrentVersion()
     options = HttpOptions({}, 10);
     options.verifyCertificate = false;
-    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/live-wip/mod.json", options);
+    res = Net:GetHTTP("https://raw.githubusercontent.com/IllustrisJack/Darkness-Unleashed/development/mod.json", options);
     if res.status ~= 200 then
         return null;
     end
@@ -17,11 +26,13 @@ function checkVersion()
     if getCurrentVersion() ~= localModVersion then
         print("Version: "..localModVersion)
         print("This mod seems to be out of date! Please visit https://github.com/IllustrisJack/Darkness-Unleashed/");
+        print(json.Version .. ' is the latest version!')
       else
         print("Version: "..localModVersion)
         print("You're running the lastest version!")
     end
 end
+--
 
 checkVersion();
 
@@ -59,10 +70,18 @@ local customMapNames = {
 
 local presetParameters = {
     Night = {
-        colorCorrectionEnabled = true,
+        colorCorrectionEnabled = false,
         sunFlareEnabled = true
     },
     Bright_Night = {
+        colorCorrectionEnabled = true,
+        sunFlareEnabled = true
+    },
+    Morning = {
+        colorCorrectionEnabled = false,
+        sunFlareEnabled = true
+    },
+    Evening = {
         colorCorrectionEnabled = true,
         sunFlareEnabled = true
     }
@@ -95,3 +114,20 @@ end)
 Events:Subscribe('Level:Destroy', function(levelName, gameMode, isDedicatedServer)
     ServerUtils:ClearCustomMapName()
 end)
+
+
+
+--[[Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)
+
+    print(vehicle)
+    ChatManager:SendMessage('Destroyed Vehicle ID: ' .. tostring(vehicle.uniqueId))
+    NetEvents:Broadcast('Vehicle:DestroyedID', vehicle.uniqueId)
+
+end)
+]]
+
+
+
+
+
+

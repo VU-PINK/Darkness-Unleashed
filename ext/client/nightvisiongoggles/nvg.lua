@@ -1,7 +1,6 @@
 local NVG = class("NVG")
 
-local AnimationClass = require '__shared/classes/animation'
-local Animation = AnimationClass()
+local Animation = require 'nightvisiongoggles/animation'
 local Tool = require '__shared/classes/tools/tool'
 
 nvgRunner = false
@@ -27,10 +26,12 @@ end
 function NVG:Activate()
     if(self.batteryLifeCurrent >= self.batteryLifeMin) then
         if nvgRunner ~= true then
+            Animation:__init()
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             done = false
             nvgRunner = true
             nvgEnable = true
+            nvgActivated = true 
             Tool:DebugPrint('NVG Activate ...', 'nvg')
             uiGoggleIcon(true) -- Update UI battery icon
         else
@@ -43,6 +44,7 @@ end
 function NVG:Deactivate()
 	--if(self.batteryLifeCurrent < self.batteryLifeMin) then
         if nvgRunner ~= true then
+            Animation:__init()
             WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
             done = false
             nvgRunner = true
@@ -59,11 +61,15 @@ function NVG:Deactivate()
 end
 
 function NVG:Depleting()
-    localPlayer = PlayerManager:GetLocalPlayer()
+    local localPlayer = PlayerManager:GetLocalPlayer()
+
+    if localPlayer == nil then
+        return
+    end
 
     if localPlayer.inVehicle == true then 
         if (self.batteryLifeCurrent + 1) < self.batteryLifeMax then 
-            self.batteryLifeCurrent = self.batteryLifeCurrent + 0.5
+            self.batteryLifeCurrent = self.batteryLifeCurrent + 1
         end
     else
 	    self.batteryLifeCurrent = self.batteryLifeCurrent - 1
@@ -73,7 +79,7 @@ function NVG:Depleting()
 
     Tool:DebugPrint("Battery Life: " .. self.batteryLifeCurrent, 'altering')
 
-    if(self.batteryLifeCurrent == 0) then
+    if(self.batteryLifeCurrent <= 0) then
         Tool:DebugPrint('Battery has depleted!', 'nvg')
         if nvgRunner ~= true then
 

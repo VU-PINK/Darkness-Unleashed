@@ -149,7 +149,7 @@ local effects = {
 }
 
 local envmaps = {
-    ['levels/mp_subway/lighting/ve_mp_subway_city_01'] = true,
+     ['levels/mp_subway/lighting/ve_mp_subway_city_01'] = true,
     ['levels/mp_011/lighting/ve_mp_011_day01'] = true,
     ['levels/xp5_001/lighting/ve_xp5_001_01'] = true,
     ['levels/xp5_002/lighting/ve_xp5_002_01'] = true,
@@ -157,21 +157,21 @@ local envmaps = {
     ['levels/xp5_004/lighting/ve_xp5_004_02'] = true
 }
 
-Events:Subscribe('Partition:Loaded', function(partition)
+function PatchComponentsOnPartitionLoaded(partition)
     for _, instance in pairs(partition.instances) do
         if instance:Is('MeshAsset') then
             PatchMeshAsset(instance)
         elseif instance:Is('MeshMaterialVariation') then
             PatchMeshMaterialVariation(instance)
-        elseif instance:Is('EmitterTemplateData') then
-            PatchEmitterTemplateData(instance)
+        --elseif instance:Is('EmitterTemplateData') then
+            --PatchEmitterTemplateData(instance)
         elseif instance:Is('EffectEntityData') then
             PatchEffectEntityData(instance)
-	elseif instance:Is('LocalLightEntityData') then
-	    DynamicLights(instance)
-	end
+	    --elseif instance:Is('LocalLightEntityData') then
+	    --DynamicLights(instance)
+	    end
     end
-end)
+end
 
 function PatchOutdoorLightComponentData(instance)
     local outdoor = OutdoorLightComponentData(instance)

@@ -1,10 +1,16 @@
+local Settings = require '__shared/settings'
+
 -- by GreatApo
 isHud = false
 isKilled = false
 
 -- Load UI
 Events:Subscribe('Extension:Loaded', function()
-    WebUI:Init()
+
+	if Settings.useNightVisionGadget == true then 
+    	WebUI:Init()
+	end
+	
 end)
 
 -- On player spawn, show night vision goggles hint
@@ -64,8 +70,8 @@ end
 -- Enable/disable UI
 Events:Subscribe('UI:DrawHud', function()
 	-- get player
-	local player = PlayerManager:GetLocalPlayer()
-	if player == nil or player.soldier == nil then
+	local lplayer = PlayerManager:GetLocalPlayer()
+	if lplayer == nil or lplayer.soldier == nil then
 		if isKilled then
 			WebUI:ExecuteJS('window.hideUI();')
 			return

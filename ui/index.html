@@ -212,7 +212,7 @@
 						
 
 					lastBattery = newBattery
-					document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ newBattery +".png')";
+					document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-"+ Math.floor(newBattery) +".png')";
 				}
 			};
 			
