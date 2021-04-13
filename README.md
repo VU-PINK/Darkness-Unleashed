@@ -1,5 +1,9 @@
 # Darkness Unleashed WIP-Testing-Build
 
+!! To use the cineTools you have to have DEBUGUI by Breaknix installed
+https://github.com/kapraran/vu-debug-gui
+!!  
+
 With this build you can test new features! (for now less features tho duh)
 (not meant to be used)
 - Faster Code (due to complete almost full rewrite)
