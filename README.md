@@ -4,5 +4,5 @@
 https://github.com/kapraran/vu-debug-gui
 !!  
 
-Needs PREMIUM or Armored Kill DLC to work.
+
 
