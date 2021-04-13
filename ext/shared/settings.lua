@@ -8,7 +8,7 @@ local debugPrints = {
         ['player'] = false,
         ['common'] = false,
         ['time'] = false,
-        ['nvg'] = true,
+        ['nvg'] = false,
         ['VE'] = false,
         ['error'] = true,
         ['cinetools'] = false,
@@ -40,18 +40,18 @@ local day2Night = false
 
 
 ----Only relevant if not in Ticket Mode----
-local dayLengthInMinutes = 10
+local dayLengthInMinutes = 24/60
 -- Pure night duration in minutes
-local pureNightDuration = 0.2
+local pureNightDuration = 0
 -- Pure day duration in minutes
-local pureDayDuration = 0.1
+local pureDayDuration = 0
 
 -- How often, in seconds, should the server update daytime and send info to the clients
 -- The server sends at this interval the new date time to the clients to keep them all in sync
 local serverUpdatesFrequency = 30
 
 -- The day time to start the server at (0 - 23) or os.date('%H') for real-time
-local startHour = os.date('%H')
+local startHour = 0
 local startHourRandom = false
 local resetTimeEachLevel = true
 -------------------------------------------

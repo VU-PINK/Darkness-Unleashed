@@ -1,19 +1,18 @@
 local Settings = require '__shared/settings'
-require 'interchangable'
+require 'resources'
 require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
 require 'ui'
+require 'clienttime'
 
 if Settings.cineTools == true then
 require "__shared/DebugGUI"
 end
 
-if Settings.dayNightEnabled == true then 
-require 'clienttime'
-end 
 
-if Settings.dayNightEnabled ~= true then 
+
+if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
 require 'cinematictools'
 end
 
@@ -56,9 +55,7 @@ end)
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
 
     -- ClientTime
-    if Settings.dayNightEnabled == true then 
     ClientTime:OnLevelLoaded()
-    end
 
     if Settings.cineTools == true and Settings.dayNightEnabled ~= true then 
     CinematicTools()
@@ -128,6 +125,7 @@ Events:Subscribe('Player:Respawn', function(player)
 
     if player == localPlayer and Settings.useNightVisionGadget == true then
 
+        NVG:Deactivate()
         NVG:__init()
 
 	end
@@ -238,6 +236,8 @@ function ApplySpecialVisualEnvironment(presetName)
             if type(value) == 'string' then
                 if value == 'FlirData' then 
                 newInstance[key] = 'FlirData'
+                elseif key == cloudLayer1Texture then 
+                newInstance[key] = TextureAsset(_G[Stars])
                 else 
                 -- patching texture property
                 newInstance[key] = TextureAsset(_G[value])

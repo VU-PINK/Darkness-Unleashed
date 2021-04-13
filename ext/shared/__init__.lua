@@ -29,7 +29,7 @@ end)]]
 --Vehicles
 Events:Subscribe('UpdateInput', function(p_Player, p_DeltaTime)
 
-    --Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
 
 end)
 
@@ -41,7 +41,7 @@ local loopingLights = false
 local vehicleIsDead = false
 local index = nil
 
---[[local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, entityData, transform)
+local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, entityData, transform)
 
 
     if entityData:Is('SpotLightEntityData') then
@@ -71,23 +71,8 @@ Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)
 
     end
 
-end)]]
+end)
 
---[[Hooks:Install('EntityFactory:CreateFromBlueprint', 100, function(hookCtx, blueprint, transform, variation, parentRepresentative)
-
-    local createdBus = hookCtx:Call()
-
-    for _, entity in pairs(createdBus.entities) do
-
-        if entity.uniqueId == 0 then 
-
-            print(entity.data)
-
-        end
-
-    end
-
-end)]]
 
 function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     
@@ -111,27 +96,45 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
         end
 
         if controllableEntity ~= nil then 
-            print('C Entity:')
-            print(controllableEntity)
-            print('DATA:')
-            print(controllableEntity.data)
-            print(controllableEntity.bus.entities)
-            print(controllableEntity.bus.parent.entities)
+            --print('C Entity:')
+            --print(controllableEntity)
+            --print('DATA:')
+            --print(controllableEntity.data)
+            --print(controllableEntity.bus.entities)
+            --print(controllableEntity.bus.parent.entities)
         end
 
-        print('-------------------------------------------------------')
+        for _, component in pairs(controllableEntity.bus.parent.entities) do
 
-        print('Vehicle Controllable Entity: ')
+            if component:Is('SpotlightComponentData') then 
 
-        print(controllableEntity)
+                print('Hi')
+
+            else 
+
+                print(component)
+
+            end 
+
+        end 
+
+    end
+
+end
+
+        --print('-------------------------------------------------------')
+
+        --print('Vehicle Controllable Entity: ')
+
+        --print(controllableEntity)
 
         --print('Vehicle Controllable Entity Bus: ')
 
         --print(controllableEntity.bus.entities)
 
-        print('-------------------------------------------------------')
+        --print('-------------------------------------------------------')
 
-        -- iterate through all entities
+        --[[ iterate through all entities
         local it = EntityManager:GetIterator('SpotLightEntity')
 
         local entity = it:Next()
@@ -149,13 +152,13 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
 
                         if busentity:Is('ClientVehicleEntity') then
 
-                            print('-----------------------')
-                            print('Bus:')
-                            print(busentity)
-                            print('-----------------------')
-                            print('Iterated Entity:')
-                            print(entity)
-                            print('-----------------------')
+                            --print('-----------------------')
+                            --print('Bus:')
+                            --print(busentity)
+                            --print('-----------------------')
+                            --print('Iterated Entity:')
+                            --print(entity)
+                            --print('-----------------------')
 
                             if busentity == controllableEntity and Tool:FindInArray(bufferedLights, entity.bus.parent) == true then
     
@@ -166,9 +169,9 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     
                                 if Tool:FindInArray(bufferedLights, entity.bus.parent) ~= true then 
     
+                                    print(entity)
                                     entity:FireEvent('Enable')  
                                     print('Enabled Lights')
-                                    print(bufferedLights)
     
                                 end 
     
@@ -179,9 +182,9 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     
                                 if Tool:FindInArray(bufferedLights, entity.bus.parent) == true then 
     
+                                    print(entity)
                                     entity:FireEvent('Disable')
                                     print('Disabled Lights')
-                                    print(bufferedLights)
     
                                 end 
     
@@ -202,4 +205,5 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
     end
 
 
-end
+end]]
+

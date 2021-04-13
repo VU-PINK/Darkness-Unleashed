@@ -29,7 +29,7 @@ end)]]
 --Vehicles
 Events:Subscribe('UpdateInput', function(p_Player, p_DeltaTime)
 
-    Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
+    --Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
 
 end)
 

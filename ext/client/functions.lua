@@ -44,7 +44,7 @@ local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 		PostProcessing.userBrightnessMin = 1
 		PostProcessing.userBrightnessMax = 1
 		PostProcessing.brightness = Vec3(1, 1, 1)
-		PostProcessing.forceExposure = 0.7
+		PostProcessing.forceExposure = 0.85
 		Tool:DebugPrint('Changed PostProcessing', 'common')
 			
 	end

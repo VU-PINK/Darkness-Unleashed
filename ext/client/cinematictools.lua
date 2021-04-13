@@ -33,12 +33,13 @@ function CinematicTools()
     local botCLR = 1.0
     local botCLG = 1.0
     local botCLB = 1.0
+    local presetPriority = 999999
 
     local pendingDirty = false
 
     Events:Subscribe('VE:StateAdded', function(foundstate)
         
-        if foundstate.priority == 999999 then 
+        if foundstate.priority == presetPriority then 
 
             state = foundstate 
             Tool:DebugPrint('DU VE State has been added to the VEM', 'cinetools')
@@ -68,7 +69,7 @@ function CinematicTools()
         DebugGUI:Range('Sky Brightness', {DefValue = 1, Min = 0, Max = 5, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sky.brightnessScale == value then 
@@ -81,10 +82,10 @@ function CinematicTools()
         end)
 
         -- Sun Size
-        DebugGUI:Range('Sun Size', {DefValue = 0.01, Min = 0, Max = 0.2, Step = 0.01}, function(value)
+        DebugGUI:Range('Sun Size', {DefValue = 0.01, Min = 0, Max = 1, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sky.sunSize == value then 
@@ -98,10 +99,10 @@ function CinematicTools()
         end)
 
         -- Sun Scale
-        DebugGUI:Range('Sun Scale', {DefValue = 5, Min = 0, Max = 50, Step = 0.1}, function(value)
+        DebugGUI:Range('Sun Scale', {DefValue = 5, Min = 0, Max = 100, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sky.sunScale == value then 
@@ -118,7 +119,7 @@ function CinematicTools()
         DebugGUI:Range('Sun Rotation X', {DefValue = 90, Min = 0, Max = 359, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.sunRotationX == value then 
@@ -135,7 +136,7 @@ function CinematicTools()
         DebugGUI:Range('Sun Rotation Y', {DefValue = 0, Min = 0, Max = 180, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.sunRotationY == value then 
@@ -153,7 +154,7 @@ function CinematicTools()
             R = value 
             
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.sunColor == Vec3(R, G, B) then 
@@ -171,7 +172,7 @@ function CinematicTools()
             G = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.sunColor == Vec3(R, G, B) then 
@@ -189,7 +190,7 @@ function CinematicTools()
             B = value
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.sunColor == Vec3(R, G, B) then 
@@ -205,7 +206,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Sun Color Change', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.sunColor == Vec3(R, G, B) then 
@@ -220,7 +221,7 @@ function CinematicTools()
         --[[DebugGUI:Checkbox('Sun Flare Enable', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.enable == value then 
@@ -235,7 +236,7 @@ function CinematicTools()
         DebugGUI:Checkbox('Element 1 Enable', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1Enable == value then 
@@ -250,7 +251,7 @@ function CinematicTools()
         DebugGUI:Range('Element 1 Ray Distance', {DefValue = 0.0, Min = 0.0, Max = 359, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1RayDistance == value then 
@@ -265,7 +266,7 @@ function CinematicTools()
         DebugGUI:Range('Element 1 Size', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1Size == state.sunFlare.element1Size * value then 
@@ -280,7 +281,7 @@ function CinematicTools()
         DebugGUI:Range('Element 1 Size Occluder Curve', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1SizeOccluderCurve == state.sunFlare.element1SizeOccluderCurve * value then 
@@ -296,7 +297,7 @@ function CinematicTools()
         DebugGUI:Range('Element 1 Size Screen Position Curve', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1SizeScreenPosCurve == state.sunFlare.element1SizeScreenPosCurve * value then 
@@ -311,7 +312,7 @@ function CinematicTools()
         DebugGUI:Range('Element 1 Alpha Occluder Curve', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1AlphaOccluderCurve == state.sunFlare.element1AlphaOccluderCurve * value then 
@@ -327,7 +328,7 @@ function CinematicTools()
         DebugGUI:Range('Element 1 Alpha Screen Position Curve', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.sunFlare.element1AlphaScreenPosCurve == state.sunFlare.element1AlphaScreenPosCurve * value then 
@@ -353,7 +354,7 @@ function CinematicTools()
             groundR = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.groundColor == Vec3(groundR, groundG, groundB) then 
@@ -371,7 +372,7 @@ function CinematicTools()
             groundG = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.groundColor == Vec3(groundR, groundG, groundB) then 
@@ -389,7 +390,7 @@ function CinematicTools()
             groundB = value
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.groundColor == Vec3(groundR, groundG, groundB) then 
@@ -405,7 +406,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Ground Color Change', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.groundColor == Vec3(groundR, groundG, groundB) then 
@@ -463,7 +464,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Sky Color Change', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.skyColor == Vec3(skyColorR, skyColorG, skyColorB) then 
@@ -479,7 +480,7 @@ function CinematicTools()
         DebugGUI:Checkbox('Apply Full Moon Skybox', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if value == true then 
@@ -494,7 +495,7 @@ function CinematicTools()
         DebugGUI:Range('Sky Light Angle (broken)', {DefValue = 45, Min = 0, Max = 90, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.outdoorLight.skyLightAngleFactor == value then 
@@ -515,7 +516,7 @@ function CinematicTools()
         DebugGUI:Checkbox('Color Correction Enable', true, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if value == true then 
@@ -658,7 +659,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Color Correction Change', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
             
             state.colorCorrection.brightness = Vec3(brightnessR, brightnessG, brightnessB)
@@ -677,7 +678,7 @@ function CinematicTools()
         DebugGUI:Range('Method', {DefValue = 2.0, Min = 0.0, Max = 3.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.tonemapMethod == value then 
@@ -692,7 +693,7 @@ function CinematicTools()
         DebugGUI:Range('Minimum Exposure', {DefValue = 0.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.minExposure == value then 
@@ -707,7 +708,7 @@ function CinematicTools()
         DebugGUI:Range('Maximum Exposure', {DefValue = 1.0, Min = 0.0, Max = 10.0, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.maxExposure == value then 
@@ -722,7 +723,7 @@ function CinematicTools()
         DebugGUI:Range('Middle Gray ', {DefValue = 1.0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.middleGray == value then 
@@ -737,7 +738,7 @@ function CinematicTools()
         DebugGUI:Range('Exposure Adjust Time', {DefValue = 1.0, Min = 0.0, Max = 50.0, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.exposureAdjustTime == value then 
@@ -755,7 +756,7 @@ function CinematicTools()
             bloomR = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.bloomScale == Vec3(bloomR, bloomG, bloomB) then 
@@ -773,7 +774,7 @@ function CinematicTools()
             bloomG = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.bloomScale == Vec3(bloomR, bloomG, bloomB) then 
@@ -791,7 +792,7 @@ function CinematicTools()
             bloomB = value
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.bloomScale == Vec3(bloomR, bloomG, bloomB) then 
@@ -807,7 +808,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Bloom Change', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.tonemap.bloomScale == Vec3(bloomR, bloomG, bloomB) then 
@@ -831,7 +832,7 @@ function CinematicTools()
         DebugGUI:Range('Fog Start', {DefValue = 0.0, Min = -100.0, Max = 10000.0, Step = 10.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.start == value then 
@@ -846,7 +847,7 @@ function CinematicTools()
         DebugGUI:Range('Fog End', {DefValue = 5000.0, Min = 0.0, Max = 15000.0, Step = 10.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.endValue == value then 
@@ -861,7 +862,7 @@ function CinematicTools()
         DebugGUI:Range('Fog Distance Multiplier (broken)', {DefValue = 1.0, Min = 0.0, Max = 5.0, Step = 0.2}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.fogDistanceMultiplier == value then 
@@ -876,7 +877,7 @@ function CinematicTools()
         DebugGUI:Range('Fog Transparency Fade Start', {DefValue = 25.0, Min = 0.0, Max = 5000.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.transparencyFadeStart == value then 
@@ -891,7 +892,7 @@ function CinematicTools()
         DebugGUI:Range('Transparency Fade Clamp', {DefValue = 1.0, Min = 0.0, Max = 1.0, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.transparencyFadeClamp == value then 
@@ -906,7 +907,7 @@ function CinematicTools()
         DebugGUI:Range('Transparency Fade End', {DefValue = 100.0, Min = 0.0, Max = 5000.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.transparencyFadeEnd == value then 
@@ -921,7 +922,7 @@ function CinematicTools()
         DebugGUI:Range('Fog Color Start', {DefValue = 0.0, Min = 0.0, Max = 5000.0, Step = 10.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.fogColorStart == value then 
@@ -936,7 +937,7 @@ function CinematicTools()
         DebugGUI:Range('Fog Color End', {DefValue = 10000.0, Min = 0.0, Max = 20000.0, Step = 10.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.fogColorEnd == value then 
@@ -994,7 +995,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Fog Color Change', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.fog.fogColor == Vec3(FogR, FogG, FogB) then 
@@ -1015,7 +1016,7 @@ function CinematicTools()
         DebugGUI:Range('Wind Direction', {DefValue = 0.0, Min = 0.0, Max = 359, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.wind.windDirection == value then 
@@ -1030,7 +1031,7 @@ function CinematicTools()
         DebugGUI:Range('Wind Strength', {DefValue = 1.0, Min = 0.0, Max = 10.0, Step = 0.5}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.wind.windStrength == value then 
@@ -1051,7 +1052,7 @@ function CinematicTools()
         DebugGUI:Checkbox('DoF Enable', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.enable == value then 
@@ -1067,7 +1068,7 @@ function CinematicTools()
         --[[DebugGUI:Range('Blur Filter', {DefValue = 0, Min = 0, Max = 6, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             state.dof.blurFilter = value 
@@ -1078,7 +1079,7 @@ function CinematicTools()
         DebugGUI:Range('Scale', {DefValue = 100.0, Min = 0.0, Max = 500.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.scale == value then 
@@ -1093,7 +1094,7 @@ function CinematicTools()
         DebugGUI:Range('Near Distance Scale', {DefValue = 0.0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
        
             if state.dof.nearDistanceScale == value then 
@@ -1108,7 +1109,7 @@ function CinematicTools()
         DebugGUI:Range('Far Distance Scale', {DefValue = 0.1, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.farDistanceScale == value then 
@@ -1124,7 +1125,7 @@ function CinematicTools()
         DebugGUI:Range('Focus Distance', {DefValue = 50.0, Min = 0.0, Max = 1000.0, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.focusDistance == value then 
@@ -1142,7 +1143,7 @@ function CinematicTools()
         DebugGUI:Range('Add Blur', {DefValue = 0.0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.blurAdd == value then 
@@ -1157,7 +1158,7 @@ function CinematicTools()
         DebugGUI:Checkbox('DoF Diffusion Enable', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             state.dof.diffusionDofEnable = value 
@@ -1168,7 +1169,7 @@ function CinematicTools()
         DebugGUI:Range('DoF Diffusion Aperture (broken)', {DefValue = 1.0, Min = 0.6, Max = 20.0, Step = 0.2}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.diffusionDofAperture == value then 
@@ -1183,7 +1184,7 @@ function CinematicTools()
         DebugGUI:Range('DoF Diffusion Focal Length (broken)', {DefValue = 1.0, Min = 10.0, Max = 135.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.dof.diffusionDofFocalLength == value then 
@@ -1204,7 +1205,7 @@ function CinematicTools()
         DebugGUI:Checkbox('Vignette Enable', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.vignette.enable == value then 
@@ -1219,7 +1220,7 @@ function CinematicTools()
         DebugGUI:Range('Vignette Opacity', {DefValue = 1.0, Min = 0.0, Max = 1.0, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.vignette.opacity == value then 
@@ -1235,7 +1236,7 @@ function CinematicTools()
         DebugGUI:Range('Vignette Exponent', {DefValue = 1.0, Min = 0.0, Max = 1.0, Step = 0.1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.vignette.exponent == value then 
@@ -1280,7 +1281,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Vignette Scale', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.vignette.scale == Vec2(vignetteScaleX, vignetteScaleY) then 
@@ -1301,7 +1302,7 @@ function CinematicTools()
         DebugGUI:Checkbox('Character Lighting Enable', false, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.characterLightEnable == value then 
@@ -1316,7 +1317,7 @@ function CinematicTools()
         DebugGUI:Checkbox('First Person Enable', true, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.firstPersonEnable == value then 
@@ -1331,7 +1332,7 @@ function CinematicTools()
         DebugGUI:Range('Character Lighting Mode', {DefValue = 0.0, Min = 0.0, Max = 1.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.characterLightingMode == value then 
@@ -1346,7 +1347,7 @@ function CinematicTools()
         DebugGUI:Range('Blend Factor [In Mode 1]', {DefValue = 0.0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.blendFactor == value then 
@@ -1361,7 +1362,7 @@ function CinematicTools()
         DebugGUI:Checkbox('Lock to Camera Direction', true, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.lockToCameraDirection == value then 
@@ -1377,7 +1378,7 @@ function CinematicTools()
         DebugGUI:Range('Camera Up Rotation', {DefValue = 90.0, Min = 0.0, Max = 180.0, Step = 1.0}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.cameraUpRotation == value then 
@@ -1395,7 +1396,7 @@ function CinematicTools()
             topCLR = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.topLight == value then 
@@ -1414,7 +1415,7 @@ function CinematicTools()
             topCLG = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.topLight == value then 
@@ -1432,7 +1433,7 @@ function CinematicTools()
             topCLB = value
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.topLight == value then 
@@ -1448,7 +1449,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Top Character Lighting', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.topLight == value then 
@@ -1463,7 +1464,7 @@ function CinematicTools()
         DebugGUI:Range('Top Light Direction X', {DefValue = 0.0, Min = 0.0, Max = 360.0, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.topLightDirX == value then 
@@ -1478,7 +1479,7 @@ function CinematicTools()
         DebugGUI:Range('Top Light Direction Y', {DefValue = 50.0, Min = 0.0, Max = 180.0, Step = 1}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.topLightDirY == value then 
@@ -1496,7 +1497,7 @@ function CinematicTools()
             botCLR = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.bottomLight == value then 
@@ -1514,7 +1515,7 @@ function CinematicTools()
             botCLG = value 
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.bottomLight == value then 
@@ -1532,7 +1533,7 @@ function CinematicTools()
             botCLB = value
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.bottomLight == value then 
@@ -1548,7 +1549,7 @@ function CinematicTools()
         DebugGUI:Button('Apply Bottom Character Lighting', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.characterLighting.bottomLight == value then 
@@ -1559,6 +1560,102 @@ function CinematicTools()
             pendingDirty = true
 
         end)]]
+
+    end)
+        --══════════════════════════════════════════════════════════════════════════════════════════════════════--
+    -- Ambient Occlusion
+    DebugGUI:Folder('Ambient Occlusion', function ()
+
+        DebugGUI:Range('HBAO Radius', {DefValue = 0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
+
+            if state == nil then
+                state = Tool:GetVisualEnvironmentState(presetPriority)
+            end
+
+            if state.dynamicAO.hbaoRadius == value then 
+                return 
+            end
+
+            state.dynamicAO.hbaoRadius = value 
+            pendingDirty = true
+        
+        end)
+
+        DebugGUI:Range('HBAO Attentuation', {DefValue = 0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
+
+            if state == nil then
+                state = Tool:GetVisualEnvironmentState(presetPriority)
+            end
+
+            if state.dynamicAO.hbaoAttenuation == value then 
+                return 
+            end
+
+            state.dynamicAO.hbaoAttenuation = value 
+            pendingDirty = true
+        
+        end)
+
+        DebugGUI:Range('HBAO Angle Bias', {DefValue = 0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
+
+            if state == nil then
+                state = Tool:GetVisualEnvironmentState(presetPriority)
+            end
+
+            if state.dynamicAO.hbaoAngleBias == value then 
+                return 
+            end
+
+            state.dynamicAO.hbaoAngleBias = value 
+            pendingDirty = true
+        
+        end)
+
+        DebugGUI:Range('HBAO Power Exponent', {DefValue = 0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
+
+            if state == nil then
+                state = Tool:GetVisualEnvironmentState(presetPriority)
+            end
+
+            if state.dynamicAO.hbaoPowerExponent == value then 
+                return 
+            end
+
+            state.dynamicAO.hbaoPowerExponent = value 
+            pendingDirty = true
+        
+        end)
+
+        DebugGUI:Range('HBAO Contrast', {DefValue = 0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
+
+            if state == nil then
+                state = Tool:GetVisualEnvironmentState(presetPriority)
+            end
+
+            if state.dynamicAO.hbaoContrast == value then 
+                return 
+            end
+
+            state.dynamicAO.hbaoContrast = value 
+            pendingDirty = true
+        
+        end)
+
+        DebugGUI:Range('HBAO Max Footprint Radius', {DefValue = 0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
+
+            if state == nil then
+                state = Tool:GetVisualEnvironmentState(presetPriority)
+            end
+
+            if state.dynamicAO.hbaoMaxFootprintRadius == value then 
+                return 
+            end
+
+            state.dynamicAO.hbaoMaxFootprintRadius = value 
+            pendingDirty = true
+        
+        end)
+
 
     end)
 
@@ -1576,7 +1673,7 @@ function CinematicTools()
         DebugGUI:Range('Preset Visibility', {DefValue = 1.0, Min = 0.0, Max = 1.0, Step = 0.01}, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             if state.visibility == value then 
@@ -1588,17 +1685,13 @@ function CinematicTools()
 
         end)
 
-        DebugGUI:Number('Preset Priority', 999999, function(value)
+        DebugGUI:Number('Preset Priority', presetPriority, function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
-            if state.priority == value then 
-                return 
-            end 
-
-            state.priority = value 
+            presetPriority = value 
             pendingDirty = true
 
         end)
@@ -1606,7 +1699,7 @@ function CinematicTools()
         DebugGUI:Button('(WIP) Save Preset', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             NetEvents:Send('Cinetools:Save', presetname, state)
@@ -1618,7 +1711,7 @@ function CinematicTools()
             playerObject = PlayerManager:GetLocalPlayer()
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
             NetEvents:Send('Cinetools:Load', presetname, player)
@@ -1630,7 +1723,7 @@ function CinematicTools()
             --playerObject = PlayerManager:GetLocalPlayer()
 
 
-            local preset = Tool:GetVisualEnvironmentState(999999)
+            local preset = Tool:GetVisualEnvironmentState(presetPriority)
 
             local stateTable = {}
             local blacklist = { "TextureAsset", "SurfaceShaderBaseAsset", "BlurFilter"} 
@@ -1662,7 +1755,7 @@ function CinematicTools()
         DebugGUI:Button('(WIP) Reset All', function(value)
 
             if state == nil then
-                state = Tool:GetVisualEnvironmentState(999999)
+                state = Tool:GetVisualEnvironmentState(presetPriority)
             end
 
         end)
@@ -1677,7 +1770,7 @@ end
 NetEvents:Subscribe('Cinetools:SyncServer', function(clientState)
 
     if state == nil then
-        state = Tool:GetVisualEnvironmentState(999999)
+        state = Tool:GetVisualEnvironmentState(presetPriority)
     end
 
     if clientState == nil then
@@ -1698,7 +1791,7 @@ end)
 NetEvents:Subscribe('Cinetools:LoadClient', function(loadedPreset)
 
     if state == nil then 
-        state = Tool:GetVisualEnvironmentState(999999)
+        state = Tool:GetVisualEnvironmentState(presetPriority)
     end
 
     if state == loadedPreset then 

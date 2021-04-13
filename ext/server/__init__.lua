@@ -71,9 +71,17 @@ local customMapNames = {
 local presetParameters = {
     Night = {
         colorCorrectionEnabled = false,
-        sunFlareEnabled = false
+        sunFlareEnabled = true
     },
     Bright_Night = {
+        colorCorrectionEnabled = true,
+        sunFlareEnabled = true
+    },
+    Morning = {
+        colorCorrectionEnabled = false,
+        sunFlareEnabled = true
+    },
+    Evening = {
         colorCorrectionEnabled = true,
         sunFlareEnabled = true
     }
@@ -117,3 +125,9 @@ end)
 
 end)
 ]]
+
+
+
+
+
+

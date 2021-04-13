@@ -16,7 +16,10 @@ function ClientTime:__Init()
     self.t = 0
     ClientTime:GetVE()
     ClientTime:FindSkyGradientTexture()
-    ClientTime:Ticks()
+
+    if Settings.dayNightEnabled == true then 
+        ClientTime:Ticks()
+    end
     
     if Settings.useTicketBasedCycle ~= true then 
         ClientTime:Sync()
@@ -101,7 +104,7 @@ function ClientTime:Ticks()
 
             -- Set Maximum Tickets
             if self.maxtickets == nil and self.totaltickets ~= 0 then 
-                self.maxtickets = self.totaltickets 
+                self.maxtickets = self.totaltickets - (self.totaltickets * 0.05) -- 5% of match will always be full night
             end
 
             if self.maxtickets == nil then 
@@ -168,7 +171,7 @@ function ClientTime:UpdateVE()
             end
 
 
-            Tool:DebugPrint('Changing VE: ' .. self.factor)
+            Tool:DebugPrint('Changing VE: ' .. self.factor, 'time')
             
             self.previousNightFactor = self.factor
         end			
@@ -191,13 +194,18 @@ function ClientTime:FindSkyGradientTexture()
 				if self.s_VEPriority < 0 or VEState.priority < self.s_VEPriority then
                     
 					self.s_VEPriority = VEState.priority
+                    m_panoramicTexture = VEState.sky.panoramicTexture
+                    m_panoramicAlphaTexture = VEState.sky.panoramicAlphaTexture
                     m_SkyGradientTexture = VEState.sky.skyGradientTexture
+                    m_cloudLayer1Texture = VEState.sky.cloudLayer1Texture
                     m_panoramicXmin = VEState.sky.panoramicUVMinX
                     m_panoramicXmax = VEState.sky.panoramicUVMaxX 
                     m_panoramicYmin = VEState.sky.panoramicUVMinY
                     m_panoramicYmax = VEState.sky.panoramicUVMaxY
                     m_panoramicTileFactor = VEState.sky.panoramicTileFactor
+                    m_staticEnvmapScale = VEState.sky.staticEnvmapScale
                     m_panoramicRotation = VEState.sky.panoramicRotation
+
                     print('Saved Panoramic Factors')
 
 				end
@@ -209,6 +217,9 @@ function ClientTime:FindSkyGradientTexture()
 	end
 
 end
+
+
+
 
 
 function ClientTime:Sync()

@@ -50,9 +50,9 @@ function Animation:nvgEnableLoop()
 		if localPlayer.inVehicle == true then 
 
 			ApplySpecialVisualEnvironment('NightVisionVehicle')
-			print('Hola')
+			--print('Hola')
 			self.nvgState = Tool:GetVisualEnvironmentState(1000000)
-			print(self.nvgState)
+			--print(self.nvgState)
 
 			if self.nvgState == nil then
 
@@ -64,9 +64,9 @@ function Animation:nvgEnableLoop()
 		else
 
 			ApplySpecialVisualEnvironment('NightVision')
-			print('Hola2')
+			--print('Hola2')
 			self.nvgState = Tool:GetVisualEnvironmentState(1000000)
-			print(self.nvgState)
+			--print(self.nvgState)
 
 			if self.nvgState == nil then
 
@@ -82,7 +82,7 @@ function Animation:nvgEnableLoop()
 		if self.lerpFactor <= 1.0 then
 
 			self.lerpFactor = self.lerpFactor + (animationSmoothnessMultiplierON * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
-			print(self.nvgState.priority)
+			--print(self.nvgState.priority)
 			local lerp1 = MathUtils:Lerp(0.2, 1.0, self.lerpFactor)--lerp(0, 1, t)
 			local lerp2 = MathUtils:Lerp(0.0, 2.0, self.lerpFactor)--lerp(0, 2, t)
 			self.nvgState.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
@@ -128,7 +128,7 @@ function Animation:nvgDisableLoop()
 		if self.lerpFactor <= 1.0 then
 
 			self.lerpFactor = self.lerpFactor + (animationSmoothnessMultiplierOFF * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
-			print(self.nvgState.priority)
+			--print(self.nvgState.priority)
 			local lerp1 = MathUtils:Lerp(0.2, 1.0, self.lerpFactor)--lerp(0, 1, t)
 			self.nvgState.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
 			VisualEnvironmentManager:SetDirty(true)

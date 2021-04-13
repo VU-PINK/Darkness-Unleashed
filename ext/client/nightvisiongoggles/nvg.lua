@@ -69,7 +69,7 @@ function NVG:Depleting()
 
     if localPlayer.inVehicle == true then 
         if (self.batteryLifeCurrent + 1) < self.batteryLifeMax then 
-            self.batteryLifeCurrent = self.batteryLifeCurrent + 0.5
+            self.batteryLifeCurrent = self.batteryLifeCurrent + 1
         end
     else
 	    self.batteryLifeCurrent = self.batteryLifeCurrent - 1
