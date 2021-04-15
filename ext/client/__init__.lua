@@ -1,23 +1,27 @@
 local Settings = require '__shared/settings'
+local NetMessage = require '__shared/net'
+local ClientTime = require 'systems/clienttime'
 require 'resources'
 require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
 require 'ui'
-require 'clienttime'
+
 
 if Settings.cineTools == true then
 require "__shared/DebugGUI"
 end
 
-
-
 if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
-require 'cinematictools'
+require 'systems/cinematictools'
 end
 
-local NVG = require 'nightvisiongoggles/nvg'
-local Animation = require 'nightvisiongoggles/animation'
+if Settings.weatherEnabled == true then 
+local ClientWeather = require 'systems/weather'
+end 
+
+local NVG = require 'systems/nvg'
+local Animation = require 'systems/animation'
 
 local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
@@ -56,6 +60,9 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
 
     -- ClientTime
     ClientTime:OnLevelLoaded()
+
+    -- Animations
+    Animation:__init()
 
     if Settings.cineTools == true and Settings.dayNightEnabled ~= true then 
     CinematicTools()
@@ -222,9 +229,14 @@ function ApplySpecialVisualEnvironment(presetName)
 
     local visualEnvironmentData = VisualEnvironmentEntityData()
     visualEnvironmentData.enabled = true
-    visualEnvironmentData.visibility = 1.0
 
-    visualEnvironmentData.priority = 1000000
+    if specialValues.isWeather[presetName] == true then 
+        visualEnvironmentData.visibility = 0.0
+        visualEnvironmentData.priority = 1000000
+    else 
+        visualEnvironmentData.visibility = 1.0
+        visualEnvironmentData.priority = 1000001
+    end 
 
     -- looping through instance types
     for instanceType, values in pairs(selectedPreset) do
@@ -382,8 +394,14 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
         
 		Animation:nvg()
         --Tool:DebugPrint("RunAnimation", 'nvg')
-        
+
 	end
+
+    if weatherRunner == true then 
+
+        Animation:Weather()
+
+    end 
 
 end)
 
@@ -405,6 +423,14 @@ end)
 
 
 ------------------------------------------------------------------------
+-- Weather
+
+NetEvents:Subscribe(NetMessage.WEATHER_START, function(weatherType)
+
+    ClientWeather:__Init(weatherType)
+    Tool:DebugPrint('Received Weather NetEvent', 'weather')
+
+end)
 
 
 

@@ -29,6 +29,23 @@ Events:Subscribe('Partition:Loaded', function(partition)
     
     end 
 
+	--[[if partition.guid == Guid('60E5C442-B4DE-11DE-9313-8968807F1BCA') then 
+
+		print('Dicke Nudel')
+
+        for _, instance in pairs(partition.instances) do 
+
+            if instance.instanceGuid == Guid('7DA8CB23-5BCF-D7D3-6157-FADA9325DE97') then 
+
+                print(instance)
+                Clouds = instance
+
+            end 
+
+        end
+    
+    end]]
+
 end)
 
 -- Load Resources

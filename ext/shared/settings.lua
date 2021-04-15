@@ -8,10 +8,11 @@ local debugPrints = {
         ['player'] = false,
         ['common'] = false,
         ['time'] = false,
-        ['nvg'] = false,
-        ['VE'] = false,
+        ['nvg'] = true,
+        ['VE'] = true,
         ['error'] = true,
         ['cinetools'] = false,
+        ['weather'] = true,
 
 }
 
@@ -40,7 +41,7 @@ local day2Night = false
 
 
 ----Only relevant if not in Ticket Mode----
-local dayLengthInMinutes = 24/60
+local dayLengthInMinutes = 1
 -- Pure night duration in minutes
 local pureNightDuration = 0
 -- Pure day duration in minutes
@@ -63,6 +64,11 @@ local useNightVisionGadget = true
 -- Vehicle Lights
 local useVehicleLights_Airborne = true
 local useVehicleLights_Ground = true
+
+--══════════════════════════════════════════════════════════════════════════════════════════════════════--
+
+--Weather
+local weatherEnabled = true 
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
@@ -217,4 +223,5 @@ return {
     day2Night = day2Night,
     cineTools = cineTools,
     useNightVisionGadget = useNightVisionGadget,
+    weatherEnabled = weatherEnabled,
 }

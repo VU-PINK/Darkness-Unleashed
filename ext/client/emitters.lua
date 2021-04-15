@@ -73,12 +73,10 @@ function patchFlashLight(instance)
 	local spotLight = SpotLightEntityData(instance)
 	instance:MakeWritable()
 
-	spotLight.radius = 120
+	spotLight.radius = 90
 	spotLight.intensity = 10 --brightness
 	spotLight.coneOuterAngle = 50
-	spotLight.orthoWidth = 8
-	spotLight.orthoHeight = 8
-	spotLight.frustumFov = 24 --size
+	spotLight.frustumFov = 55 --size
 	spotLight.castShadowsEnable = true
 	spotLight.castShadowsMinLevel = 0
 	spotLight.shape = 1

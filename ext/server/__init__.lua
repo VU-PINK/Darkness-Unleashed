@@ -9,6 +9,10 @@ if Settings.dayNightEnabled ~= true and Settings.cineTools == true then
 require 'cinematictools'
 end 
 
+if Settings.weatherEnabled == true then 
+require 'weather'
+end 
+
 local presetValues = require '__shared/presets'
 
 -- Code from https://gitlab.com/n4gi0s/vu-mapvote by N4gi0s
@@ -115,6 +119,10 @@ Events:Subscribe('Level:Destroy', function(levelName, gameMode, isDedicatedServe
     ServerUtils:ClearCustomMapName()
 end)
 
+
+Events:Subscribe('Engine:Update', function(dt)
+    Events:DispatchLocal('ServerDeltaTime', dt)
+end)
 
 
 --[[Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)

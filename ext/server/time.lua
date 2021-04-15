@@ -15,7 +15,7 @@ end)
 
 Events:Subscribe('Level:Destroy', function()
 
-    Events:Unsubscribe('Engine:Update')
+    Events:Unsubscribe('ServerDeltaTime')
 
 end)
 
@@ -26,7 +26,7 @@ function Time:__Init()
     self.serverDayLength = 0.0 
     self.engineUpdateTimer = 0.0
     Time:Ticks()
-    Time:PlayerJoin()
+    Time:Requests()
 
     
     if Settings.resetTimeEachLevel == true then 
@@ -38,7 +38,7 @@ function Time:__Init()
             hours = math.random(0, 23)
         end
         
-        self.serverDayLength = hours / 24 * self.serverDayLength
+        self.serverDayLength = hours / 24 
 
     end 
 
@@ -51,7 +51,7 @@ function Time:Ticks()
     if Settings.useTicketBasedCycle ~= true then 
 
         -- Record Ticks
-        Events:Subscribe('Engine:Update', function(dt)
+        Events:Subscribe('ServerDeltaTime', function(dt)
 
             self.engineUpdateTimer = self.engineUpdateTimer + dt
             self.serverDayLength = self.serverDayLength + dt
@@ -99,18 +99,17 @@ function Time:Broadcast()
 
 end
 
-function Time:PlayerJoin()
 
-    Events:Subscribe('Player:Authenticated', function(name, playerGuid, ipAddress, accountGuid)
+function Time:Requests()
 
-        Tool:DebugPrint("[Authenticated Broadcast] Date: " .. tostring(self.serverDayLength) .. " sec", 'time')
-        NetEvents:Broadcast(NetMessage.S2C_SYNC_DAYTIME, self.serverDayLength)
-    
+    NetEvents:Subscribe(NetMessage.REQUEST_SYNC, function(player)
+
+        Tool:DebugPrint("[Broadcast] Date: " .. tostring(self.serverDayLength) .. " sec", 'time')
+        NetEvents:SendTo(NetMessage.S2C_SYNC_DAYTIME, player, self.serverDayLength)
+
     end)
 
 end
-
-
 
 
 return Time
