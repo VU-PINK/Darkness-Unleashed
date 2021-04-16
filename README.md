@@ -4,5 +4,7 @@
 https://github.com/kapraran/vu-debug-gui
 !!  
 
+ENABLE MOUSE WITH F9
+
 
 
