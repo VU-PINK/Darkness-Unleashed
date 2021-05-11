@@ -3,7 +3,7 @@ local RM = class('RM')
 
 -- Easier Loading of different VU / Battlefield Components
 
-function RM:__init() 
+function RM:__init()
 
 end
 
@@ -21,7 +21,7 @@ function RM:Flashlight()
     if FlashlightTexture == nil then
         local FlashlightTexture = TextureAsset(RM:Find('04C62561-2236-11DF-A528-EA655525F02D', '2EE018E8-1451-908C-0974-DB7676407D61'))
         return FlashlightTexture
-    else 
+    else
         return FlashlightTexture
     end
 end

@@ -14,20 +14,37 @@ EveningEnvmap = nil
 
 Events:Subscribe('Partition:Loaded', function(partition)
 
-    if partition.guid == Guid('6E5D35D9-D9D5-11DE-ADB5-9D4DBC23632A') then 
+    if partition.guid == Guid('6E5D35D9-D9D5-11DE-ADB5-9D4DBC23632A') then
 
-        for _, instance in pairs(partition.instances) do 
+        for _, instance in pairs(partition.instances) do
 
-            if instance.instanceGuid == Guid('32CE96BB-E578-9589-7B11-B670661DF2DF') then 
+            if instance.instanceGuid == Guid('32CE96BB-E578-9589-7B11-B670661DF2DF') then
 
                 --print(instance)
                 Stars = instance
 
-            end 
+            end
 
         end
     
-    end 
+    end
+
+	--[[if partition.guid == Guid('60E5C442-B4DE-11DE-9313-8968807F1BCA') then
+
+		print('Dicke Nudel')
+
+        for _, instance in pairs(partition.instances) do
+
+            if instance.instanceGuid == Guid('7DA8CB23-5BCF-D7D3-6157-FADA9325DE97') then
+
+                print(instance)
+                Clouds = instance
+
+            end
+
+        end
+    
+    end]]
 
 end)
 

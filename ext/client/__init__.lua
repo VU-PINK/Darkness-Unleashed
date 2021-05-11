@@ -1,35 +1,40 @@
 local Settings = require '__shared/settings'
+local NetMessage = require '__shared/net'
+local ClientTime = require 'systems/clienttime'
 require 'resources'
 require 'emitters'
 require 'patchmapcomponents'
 require 'functions'
 require 'ui'
-require 'clienttime'
+
 
 if Settings.cineTools == true then
 require "__shared/DebugGUI"
 end
 
-
-
-if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
-require 'cinematictools'
+if Settings.dayNightEnabled ~= true and Settings.cineTools == true then
+require 'systems/cinematictools'
 end
 
-local NVG = require 'nightvisiongoggles/nvg'
-local Animation = require 'nightvisiongoggles/animation'
+if Settings.weatherEnabled == true then
+local ClientWeather = require 'systems/weather'
+end
+
+local NVG = require 'systems/nvg'
+local Animation = require 'systems/animation'
 
 local presetValues = require '__shared/presets'
 local specialValues = require '__shared/special'
 local currentVisualEnvironment = nil
 local currentSpecialVisualEnvironment = nil
-local currentOtherVisualEnvironment = nil 
+local currentOtherVisualEnvironment = nil
+local levelLoaded = false
 
 nvgActivated = nil
 
 UserSettingsSaved = nil
 UserSettings = {}
-changedSpotlightSettings = nil 
+changedSpotlightSettings = nil
 
 local multipliedValues = {
     SkyComponentData = {
@@ -45,8 +50,9 @@ Events:Subscribe('Level:Destroy', function()
     ResetVisualEnvironment()
     ResetOtherVisualEnvironment('Morning')
     ResetSpecialVisualEnvironment()
+    levelLoaded = false
 
-    if Settings.dayNightEnabled == true then 
+    if Settings.dayNightEnabled == true then
     ClientTime:OnLevelDestroyed()
     end
 
@@ -57,13 +63,18 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     -- ClientTime
     ClientTime:OnLevelLoaded()
 
-    if Settings.cineTools == true and Settings.dayNightEnabled ~= true then 
+    -- Animations
+    Animation:__init()
+
+    if Settings.cineTools == true and Settings.dayNightEnabled ~= true then
     CinematicTools()
-    end 
+    end
 
     -- Visual Environments
     local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
     local mapPreset = Settings.MapPresets[mapName]
+
+    levelLoaded = true
 
     if mapPreset ~= nil then
 
@@ -71,15 +82,15 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
         Multipliers(mapName)
         ApplyVisualEnvironment(mapPreset)
 
-        --if Settings.useTicketBasedCycle == true then 
+        --if Settings.useTicketBasedCycle == true then
             ApplyOtherVisualEnvironments('Morning')
-        --end 
+        --end
 
         if mapPreset == 'Night' then
 
             EnforceBrightness()
 
-        else 
+        else
 
             ReleaseBrightness()
 
@@ -145,6 +156,30 @@ Events:Subscribe('Player:UpdateInput', function(p_Player, p_DeltaTime)
     --CineTools_OnPlayerInput(p_Player, p_DeltaTime)
 
 end)
+
+--[[Events:Subscribe('Player:Respawn', function(player)
+    ImportFXShit()
+end)]]
+
+function ImportFXShit()
+    local fxParams = EffectParams()
+    fxParams:SetInt('size', 1000)
+    local player = PlayerManager:GetLocalPlayer()
+
+    if(player == nil) then
+        print('Player is nil!')
+        return
+    end
+
+    local fxDataContainer = ResourceManager:FindInstanceByGuid(guid('6EF8602F-47E5-40F2-A62D-6EC1441F364B'), guid('20BC5303-8915-4D5A-8D64-6E681273B733'))
+
+    if(fxDataContainer == nil) then
+        print('Effect DataContainer is nil!')
+        return
+    end
+
+    EffectManager:PlayEffect(fxDataContainer, player.soldier.worldTransform, fxParams, true)
+end
 
 -- Apply Map Presets
 function ApplyVisualEnvironment(presetName)
@@ -222,9 +257,14 @@ function ApplySpecialVisualEnvironment(presetName)
 
     local visualEnvironmentData = VisualEnvironmentEntityData()
     visualEnvironmentData.enabled = true
-    visualEnvironmentData.visibility = 1.0
 
-    visualEnvironmentData.priority = 1000000
+    if specialValues.isWeather[presetName] == true then
+        visualEnvironmentData.visibility = 0.0
+        visualEnvironmentData.priority = 1000000
+    else
+        visualEnvironmentData.visibility = 1.0
+        visualEnvironmentData.priority = 1000001
+    end
 
     -- looping through instance types
     for instanceType, values in pairs(selectedPreset) do
@@ -234,11 +274,11 @@ function ApplySpecialVisualEnvironment(presetName)
         -- patching instance properties
         for key, value in pairs(values) do
             if type(value) == 'string' then
-                if value == 'FlirData' then 
+                if value == 'FlirData' then
                 newInstance[key] = 'FlirData'
-                elseif key == cloudLayer1Texture then 
+                elseif key == cloudLayer1Texture then
                 newInstance[key] = TextureAsset(_G[Stars])
-                else 
+                else
                 -- patching texture property
                 newInstance[key] = TextureAsset(_G[value])
                 end
@@ -253,14 +293,24 @@ function ApplySpecialVisualEnvironment(presetName)
         visualEnvironmentData.runtimeComponentCount = visualEnvironmentData.runtimeComponentCount + 1
     end
 
-    currentSpecialVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+    if visualEnvironmentData.priority == 1000000 then
+        currentSpecialVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+    end
+
+    if visualEnvironmentData.priority == 1000001 then
+        currentWeatherVisualEnvironment = EntityManager:CreateEntity(visualEnvironmentData, LinearTransform())
+    end
 
     if currentSpecialVisualEnvironment ~= nil then
         currentSpecialVisualEnvironment:Init(Realm.Realm_Client, true)
         Tool:DebugPrint('Creating Special Environment: ' .. presetName, 'VE')
     end
 
-    
+    if currentWeatherVisualEnvironment ~= nil then
+        currentWeatherVisualEnvironment:Init(Realm.Realm_Client, true)
+        Tool:DebugPrint('Creating Weather Environment: ' .. presetName, 'VE')
+    end
+
 end
 
 function ResetSpecialVisualEnvironment(presetName)
@@ -337,7 +387,6 @@ end
 ------------------------------------------------------------------------
 
 function NVG_OnPlayerUpdateInput(p_Player, p_DeltaTime)
-    
     -- Night Vision Goggles
     if Settings.useNightVisionGadget == true and isHud == true then
 
@@ -372,18 +421,24 @@ Events:Subscribe('Engine:Update', function(deltaTime, simulationDeltaTime)
         
     end
 
-    if elapsedTime >= lastSecond + 0.1 then 
+    if elapsedTime >= lastSecond + 0.1 then
 
-        Events:DispatchLocal('100msElapsed')                                                                         
-                                                                         
-    end                                                                         
+        Events:DispatchLocal('100msElapsed')
+
+    end
 
     if nvgRunner == true then
         
 		Animation:nvg()
         --Tool:DebugPrint("RunAnimation", 'nvg')
-        
+
 	end
+
+    if weatherRunner == true then
+
+        Animation:Weather()
+
+    end 
 
 end)
 
@@ -405,13 +460,23 @@ end)
 
 
 ------------------------------------------------------------------------
+-- Weather
+
+NetEvents:Subscribe(NetMessage.WEATHER_START, function(weatherType)
+
+    if levelLoaded ~= true then
+        return
+    end
+
+    ClientWeather:__Init(weatherType)
+    Tool:DebugPrint('Received Weather NetEvent', 'weather')
+
+end)
 
 
 
 
 
-
-              
 
 
 

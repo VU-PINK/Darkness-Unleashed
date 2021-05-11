@@ -167,8 +167,8 @@ function PatchComponentsOnPartitionLoaded(partition)
             --PatchEmitterTemplateData(instance)
         elseif instance:Is('EffectEntityData') then
             PatchEffectEntityData(instance)
-	    --elseif instance:Is('LocalLightEntityData') then
-	    --DynamicLights(instance)
+	    elseif instance:Is('LocalLightEntityData') then
+	        DynamicLights(instance)
 	    end
     end
 end

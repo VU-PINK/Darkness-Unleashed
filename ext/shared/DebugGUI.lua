@@ -13,9 +13,9 @@ DebugGUIControlType = {
   Number = 6
 }
 
--- 
+--
 -- DebugGUIControl
--- 
+--
 
 class "DebugGUIControl"
 
@@ -71,9 +71,9 @@ function DebugGUIControl:AsTable()
   }
 end
 
--- 
+--
 -- DebugGUIManager
--- 
+--
 
 class "DebugGUIManager"
 
@@ -188,9 +188,9 @@ end
 
 local debugGUIManager = DebugGUIManager()
 
--- 
+--
 -- DebugGUI
--- 
+--
 
 class "DebugGUI"
 
