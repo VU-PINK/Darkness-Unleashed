@@ -51,7 +51,7 @@ VehicleSettings.Airborne.AH1Z.Components.Pointlight_1.transform.trans = Vec3(0, 
 
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2 = {}
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.enabled = true
-VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.description = 'Top Red Blinker' 
+VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.description = 'Top Red Blinker'
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.weaponmounted = false
 VehicleSettings.Airborne.AH1Z.Components.Pointlight_2.radius = 2.35
@@ -151,7 +151,7 @@ VehicleSettings.Airborne.Mi28.Components.Pointlight_1.transform.trans = Vec3(0, 
 
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2 = {}
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.enabled = true
-VehicleSettings.Airborne.Mi28.Components.Pointlight_2.description = 'Top Red Blinker' 
+VehicleSettings.Airborne.Mi28.Components.Pointlight_2.description = 'Top Red Blinker'
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.weaponmounted = false
 VehicleSettings.Airborne.Mi28.Components.Pointlight_2.radius = 6.25
@@ -272,7 +272,7 @@ VehicleSettings.Airborne.Venom.Components.Spotlight_2.transform.trans = Vec3(0, 
 
 VehicleSettings.Airborne.Venom.Components.Pointlight_1 = {}
 VehicleSettings.Airborne.Venom.Components.Pointlight_1.enabled = true
-VehicleSettings.Airborne.Venom.Components.Pointlight_1.description = 'Top Red Blinker' 
+VehicleSettings.Airborne.Venom.Components.Pointlight_1.description = 'Top Red Blinker'
 VehicleSettings.Airborne.Venom.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.Venom.Components.Pointlight_1.weaponmounted = false
 VehicleSettings.Airborne.Venom.Components.Pointlight_1.radius = 5
@@ -370,7 +370,7 @@ VehicleSettings.Airborne.SU35BM.Components.Spotlight_1.transform.trans = Vec3(0,
 
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1 = {}
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.enabled = true
-VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.description = 'Top Red Blinker' 
+VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.description = 'Top Red Blinker'
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.weaponmounted = false
 VehicleSettings.Airborne.SU35BM.Components.Pointlight_1.radius = 130
@@ -452,7 +452,7 @@ VehicleSettings.Airborne.F35.Components.Spotlight_1.transform.trans = Vec3(0, -0
 
 VehicleSettings.Airborne.F35.Components.Pointlight_1 = {}
 VehicleSettings.Airborne.F35.Components.Pointlight_1.enabled = true
-VehicleSettings.Airborne.F35.Components.Pointlight_1.description = 'Top Red Blinker' 
+VehicleSettings.Airborne.F35.Components.Pointlight_1.description = 'Top Red Blinker'
 VehicleSettings.Airborne.F35.Components.Pointlight_1.type = 1 -- Pointlight [1] ; Spotlight [2]
 VehicleSettings.Airborne.F35.Components.Pointlight_1.weaponmounted = false
 VehicleSettings.Airborne.F35.Components.Pointlight_1.radius = 6.35
@@ -1053,7 +1053,7 @@ VehicleSettings.Ground.LAV.Components.Pointlight_1.transform = {}
 VehicleSettings.Ground.LAV.Components.Pointlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.LAV.Components.Pointlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.LAV.Components.Pointlight_1.transform.forward = Vec3(0, 0, 1)
-VehicleSettings.Ground.LAV.Components.Pointlight_1.transform.trans = Vec3(0, 2.5, 9.5)   -- left/right x, height y, front/back z  
+VehicleSettings.Ground.LAV.Components.Pointlight_1.transform.trans = Vec3(0, 2.5, 9.5)   -- left/right x, height y, front/back z
 
 -- Skidloader
 -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XPack01/SkidLoader/SkidLoader.txt
@@ -1387,6 +1387,6 @@ VehicleSettings.Ground.M1128.Components.Pointlight_1.transform = {}
 VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.left = Vec3(-1, 0, 0)
 VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.up = Vec3(0, 1, 0)
 VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.forward = Vec3(0, 0, 1)
-VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.trans = Vec3(0, 2.4, 9.5) 
+VehicleSettings.Ground.M1128.Components.Pointlight_1.transform.trans = Vec3(0, 2.4, 9.5)
 
 return VehicleSettings

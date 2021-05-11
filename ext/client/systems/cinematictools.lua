@@ -3,7 +3,7 @@ function CinematicTools()
     local states = nil
     local state = nil
     local R = 1.0
-    local G = 1.0 
+    local G = 1.0
     local B = 1.0
     local brightnessR = 1.0
     local brightnessG = 1.0
@@ -14,21 +14,21 @@ function CinematicTools()
     local saturationR = 1.0
     local saturationG = 1.0
     local saturationB = 1.0
-    local bloomR = 1.0 
-    local bloomG = 1.0 
+    local bloomR = 1.0
+    local bloomG = 1.0
     local bloomB = 1.0
     local vignetteScaleX = 1.0
     local vignetteScaleY = 1.0
-    local groundR = 1.0 
-    local groundG = 1.0 
+    local groundR = 1.0
+    local groundG = 1.0
     local groundB = 1.0
-    local skyColorR = 1.0 
-    local skyColorG = 1.0 
+    local skyColorR = 1.0
+    local skyColorG = 1.0
     local skyColorB = 1.0
     local presetname = nil
     local playerObject = nil
-    local topCLR = 1.0 
-    local topCLG = 1.0 
+    local topCLR = 1.0
+    local topCLG = 1.0
     local topCLB = 1.0
     local botCLR = 1.0
     local botCLG = 1.0
@@ -39,9 +39,9 @@ function CinematicTools()
 
     Events:Subscribe('VE:StateAdded', function(foundstate)
         
-        if foundstate.priority == presetPriority then 
+        if foundstate.priority == presetPriority then
 
-            state = foundstate 
+            state = foundstate
             Tool:DebugPrint('DU VE State has been added to the VEM', 'cinetools')
 
         end
@@ -1801,3 +1801,4 @@ NetEvents:Subscribe('Cinetools:LoadClient', function(loadedPreset)
     state = loadedPreset 
 
 end)
+

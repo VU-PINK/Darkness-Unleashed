@@ -3,11 +3,11 @@ local Tool = require '__shared/classes/tools/tool'
 
 function VehicleLights()
 
-    if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then  
+    if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then
 
         local vehiclemodifications = require '__shared/classes/vehiclemodifications'
 
-    else 
+    else
 
         Tool:DebugPrint('Not using Vehicle Lights', 'altering')
 
@@ -50,7 +50,7 @@ local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, 
 
         local entityBus = createdEntity.bus.parent
 
-        if createdEntity.uniqueId == 0 then 
+        if createdEntity.uniqueId == 0 then
 
             table.insert(lightEntities, entityBus)
             --print('added entity to table')
@@ -63,8 +63,8 @@ local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, 
 end)
 
 Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)
-    
-    if vehicle == controllableEntity then 
+
+    if vehicle == controllableEntity then
 
         print('Vehicle Destroyed: ' .. lightEntities)
         print('---------------------------------------------------------------')
@@ -89,13 +89,13 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
             return
         end
 
-        controllableEntity = p_Player.controlledControllable	
+        controllableEntity = p_Player.controlledControllable
 
-        if controllableEntity == nil then 
-            return 
+        if controllableEntity == nil then
+            return
         end
 
-        if controllableEntity ~= nil then 
+        if controllableEntity ~= nil then
             --print('C Entity:')
             --print(controllableEntity)
             --print('DATA:')
@@ -106,17 +106,17 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
 
         for _, component in pairs(controllableEntity.bus.parent.entities) do
 
-            if component:Is('SpotlightComponentData') then 
+            if component:Is('SpotlightComponentData') then
 
                 print('Hi')
 
-            else 
+            else
 
                 print(component)
 
-            end 
+            end
 
-        end 
+        end
 
     end
 

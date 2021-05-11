@@ -46,7 +46,6 @@ local PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 		PostProcessing.brightness = Vec3(1, 1, 1)
 		PostProcessing.forceExposure = 0.85
 		Tool:DebugPrint('Changed PostProcessing', 'common')
-			
 	end
 
 end
@@ -105,12 +104,12 @@ function allowMoreSpotlights()
 
 	local Debris = ResourceManager:GetSettings('DebrisSystemSettings')
 
-	if Debris ~= nil then 
+	if Debris ~= nil then
 
 		Debris = DebrisSystemSettings(Debris)
 		
 		Tool:DebugPrint('[OLD] meshShadowEnable  ' .. tostring(Debris.meshShadowEnable ), 'altering')
-		Debris.meshShadowEnable = false 
+		Debris.meshShadowEnable = false
 		Tool:DebugPrint('[NEW] meshShadowEnable  ' .. tostring(Debris.meshShadowEnable ), 'altering')
 
 
@@ -153,7 +152,7 @@ function resetMoreSpotlights()
 	end
 
 	if changedSpotlightSettings == true then
-		changedSpotlightSettings = false 
+		changedSpotlightSettings = false
 	end
 
 end

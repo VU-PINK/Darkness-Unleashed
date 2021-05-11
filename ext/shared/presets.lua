@@ -127,8 +127,8 @@ local Night = {
         enable = false
     },
     DofComponentData = {
-        enable = true, 
-        scale = 500,
+        enable = false, 
+        scale = 1,
         blurFilter = 6,
         nearDistanceScale = 0,
         farDistanceScale = 1,
@@ -226,10 +226,10 @@ local Evening = {
         cloudLayer1AmbientLightIntensity = 0.25,
         cloudLayer1AlphaMul = 0.25,
         --cloudLayer1Texture = nil, --'MoonNightStars',
-        panoramicTexture = 'MoonNightSkybox',
-        panoramicAlphaTexture = 'MoonNightAlpha',
+        panoramicTexture = 'm_panoramicTexture',
+        panoramicAlphaTexture = 'm_panoramicAlphaTexture',
         staticEnvmapTexture = nil,
-        skyGradientTexture = 'MoonNightGradient'
+        skyGradientTexture = 'm_SkyGradientTexture'
     },
     ColorCorrectionComponentData = {
         enable = true,

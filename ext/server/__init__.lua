@@ -1,17 +1,17 @@
 local Settings = require '__shared/settings'
 require 'version'
 
-if Settings.dayNightEnabled == true then 
+if Settings.dayNightEnabled == true then
 require 'time'
 end
 
-if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
+if Settings.dayNightEnabled ~= true and Settings.cineTools == true then
 require 'cinematictools'
-end 
+end
 
-if Settings.weatherEnabled == true then 
+if Settings.weatherEnabled == true then
 require 'weather'
-end 
+end
 
 local presetValues = require '__shared/presets'
 
@@ -31,7 +31,7 @@ function checkVersion()
         print("Version: "..localModVersion)
         print("This mod seems to be out of date! Please visit https://github.com/IllustrisJack/Darkness-Unleashed/");
         print(json.Version .. ' is the latest version!')
-      else
+    else
         print("Version: "..localModVersion)
         print("You're running the lastest version!")
     end
@@ -104,9 +104,9 @@ Events:Subscribe('Level:LoadResources', function(levelName, gameMode, isDedicate
 
         local customMapName = nil
         if mapPreset == 'Bright_Night' then
-          customMapName = customMapNames[mapName] .. ' Bright Night'
+            customMapName = customMapNames[mapName] .. ' Bright Night'
         else
-          customMapName = customMapNames[mapName] .. ' ' .. mapPreset
+            customMapName = customMapNames[mapName] .. ' ' .. mapPreset
         end
         ServerUtils:SetCustomMapName(customMapName)
     else

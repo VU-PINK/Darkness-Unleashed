@@ -224,7 +224,7 @@ local Sandstorm = {
         enable = true,
         brightness = Vec3(0.46, 0.4, 0.36),
         contrast = Vec3(0.7, 0.53, 0.44),
-        saturation = Vec3(1, 0.84, 0.84),
+        saturation = Vec3(0.94, 0.84, 0.84),
     },
     TonemapComponentData = {
         minExposure = 0,
@@ -284,8 +284,8 @@ local Sandstorm = {
         enable = false
     },
     DofComponentData = {
-        enable = true, 
-        scale = 35,
+        enable = false, 
+        scale = 1,
         blurFilter = 6,
         nearDistanceScale = 0,
         farDistanceScale = 0.14,

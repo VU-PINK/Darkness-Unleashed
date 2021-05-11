@@ -7,7 +7,7 @@ isKilled = false
 -- Load UI
 Events:Subscribe('Extension:Loaded', function()
 
-	if Settings.useNightVisionGadget == true then 
+	if Settings.useNightVisionGadget == true then
     	WebUI:Init()
 	end
 	

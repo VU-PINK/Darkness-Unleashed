@@ -50,7 +50,7 @@ function Animation:nvgEnableLoop()
 
 		local localPlayer = PlayerManager:GetLocalPlayer()
 
-		if localPlayer.inVehicle == true then 
+		if localPlayer.inVehicle == true then
 
 			ApplySpecialVisualEnvironment('NightVisionVehicle')
 			--print('Hola')
@@ -89,7 +89,7 @@ function Animation:nvgEnableLoop()
 			local lerp1 = MathUtils:Lerp(0.2, 1.0, self.lerpFactor)--lerp(0, 1, t)
 			local lerp2 = MathUtils:Lerp(0.0, 2.0, self.lerpFactor)--lerp(0, 2, t)
 			self.nvgState.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
-			self.nvgState.vignette.exponent = lerp2 
+			self.nvgState.vignette.exponent = lerp2
 			VisualEnvironmentManager:SetDirty(true)
 
 		elseif self.lerpFactor >= 1.0 then
@@ -155,15 +155,15 @@ end
 function Animation:Weather(weatherType)
 
 	if weatherFadeIn == true then
-		Animation:WeatherFadeIn(weatherType) 
+		Animation:WeatherFadeIn(weatherType)
 	elseif weatherFadeOut == true then
-		Animation:WeatherFadeOut() 
-	end 
+		Animation:WeatherFadeOut()
+	end
 
 end
 
 
-function Animation:WeatherFadeIn(weatherType) 
+function Animation:WeatherFadeIn(weatherType)
 
 	if self.firstloopWeather ~= false then
 
@@ -202,9 +202,9 @@ function Animation:WeatherFadeIn(weatherType)
 
 	end
 
-end 
+end
 
-function Animation:WeatherFadeOut() 
+function Animation:WeatherFadeOut()
 
 	if self.firstloopWeather ~= false then
 
@@ -239,7 +239,7 @@ function Animation:WeatherFadeOut()
 
 	end
 
-end 
+end
 
 
 return Animation

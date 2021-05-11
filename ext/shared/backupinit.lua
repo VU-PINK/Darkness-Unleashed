@@ -3,11 +3,11 @@ local Tool = require '__shared/classes/tools/tool'
 
 function VehicleLights()
 
-    if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then  
+    if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then
 
         local vehiclemodifications = require '__shared/classes/vehiclemodifications'
 
-    else 
+    else
 
         Tool:DebugPrint('Not using Vehicle Lights', 'altering')
 
@@ -50,17 +50,17 @@ local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, 
 
         local clonedData = createdEntity.data:Clone()
 
-        if Tool:FindInArray(lightEntities, clonedData) then 
+        if Tool:FindInArray(lightEntities, clonedData) then
 
             print('Entity already in Table')
             index = Tool:GetArrayItemIndex(bufferedLights, clonedData)
             table.remove(bufferedLights, index)
             entityList:Uninstall()
-            return 
+            return
 
-        end 
+        end
 
-        if createdEntity.uniqueId == 0 then 
+        if createdEntity.uniqueId == 0 then
 
             table.insert(lightEntities, clonedData)
             --print('added entity to table')
@@ -74,7 +74,7 @@ end)
 
 Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)
     
-    if vehicle == controllableEntity then 
+    if vehicle == controllableEntity then
 
         print('Vehicle Destroyed: ' .. lightEntities)
         print('---------------------------------------------------------------')
@@ -89,7 +89,7 @@ end)
 
     for _, entity in pairs(createdBus.entities) do
 
-        if entity.uniqueId == 0 then 
+        if entity.uniqueId == 0 then
 
             print(entity.data)
 
@@ -116,17 +116,17 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
             return
         end
 
-        controllableEntity = p_Player.controlledControllable	
+        controllableEntity = p_Player.controlledControllable
 
-        if controllableEntity == nil then 
-            return 
+        if controllableEntity == nil then
+            return
         end
 
         if controllableEntity:Is('EntityBusPeer') then
             print('1' .. controllableEntity.entities)
             print('2' .. controllableEntity.parent.entities)
-            return 
-        end  
+            return
+        end
 
         print('-------------------------------------------------------')
 
@@ -141,12 +141,12 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
         print('-------------------------------------------------------')
 
 
-        for index, entity in pairs(lightEntities) do 
+        for index, entity in pairs(lightEntities) do
 
             --print(entity.bus.parent)
             --print(entity.bus.parent.entities)
 
-            for _, busentity in pairs(entity.bus.parent.entities) do 
+            for _, busentity in pairs(entity.bus.parent.entities) do
 
 
                     if busentity:Is('ClientVehicleEntity') then
@@ -159,34 +159,34 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
                             indexItem = Tool:GetArrayItemIndex(bufferedLights, entity)
                             table.remove(bufferedLights, indexItem)
 
-                            if Tool:FindInArray(bufferedLights, entity) ~= true then 
+                            if Tool:FindInArray(bufferedLights, entity) ~= true then
 
-                                entity:FireEvent('Enable')  
+                                entity:FireEvent('Enable')
                                 print('Enabled Lights')
                                 print(bufferedLights)
 
-                            end 
+                            end
 
                         elseif busentity == controllableEntity and Tool:FindInArray(bufferedLights, entity) ~= true then
 
                             table.insert(bufferedLights, entity)
                             print('Disabling entity...')
 
-                            if Tool:FindInArray(bufferedLights, entity) == true then 
+                            if Tool:FindInArray(bufferedLights, entity) == true then
 
                                 entity:FireEvent('Disable')
                                 print('Disabled Lights')
                                 print(bufferedLights)
 
-                            end 
+                            end
 
                         end
 
 
-                    end 
+                    end
 
 
-            end 
+            end
 
 
 

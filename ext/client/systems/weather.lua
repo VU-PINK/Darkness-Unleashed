@@ -8,17 +8,21 @@ local ClientWeather = class('ClientWeather')
 
 function ClientWeather:__Init(weatherType)
 
-    if weatherType == 0 then 
+    if self.currentWeather == weatherType then 
+        return 
+    end 
+
+    self.currentWeather = weatherType
+
+    if weatherType == 0 then
         ClientWeather:FadeOut()
-    end 
+    end
 
-    if weatherType == 1 then 
+    if weatherType == 1 then
         ClientWeather:FadeIn('Sandstorm')
-    end 
+    end
 
-end 
-
-
+end
 
 function ClientWeather:FadeIn(weatherType)
 
@@ -28,16 +32,16 @@ function ClientWeather:FadeIn(weatherType)
     weatherFadeOut = false
     Animation:Weather(weatherType)
 
-end 
+end
 
 function ClientWeather:FadeOut()
 
     Tool:DebugPrint('Calling Fade Out Animation', 'weather')
     weatherRunner = true
-    weatherFadeIn = false 
-    weatherFadeOut = true 
+    weatherFadeIn = false
+    weatherFadeOut = true
 
-end 
+end
 
 
 

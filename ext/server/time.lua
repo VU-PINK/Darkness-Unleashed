@@ -23,24 +23,23 @@ end)
 function Time:__Init()
 
 
-    self.serverDayLength = 0.0 
+    self.serverDayLength = 0.0
     self.engineUpdateTimer = 0.0
     Time:Ticks()
     Time:Requests()
 
-    
-    if Settings.resetTimeEachLevel == true then 
+    if Settings.resetTimeEachLevel == true then
 
-        days = 0 
-        hours = Settings.startHour % 24 
+        days = 0
+        hours = Settings.startHour % 24
 
-        if Settings.startHourRandom == true then 
+        if Settings.startHourRandom == true then
             hours = math.random(0, 23)
         end
-        
-        self.serverDayLength = hours / 24 
 
-    end 
+        self.serverDayLength = hours / 24
+
+    end
 
 
 end
@@ -48,14 +47,14 @@ end
 
 function Time:Ticks()
 
-    if Settings.useTicketBasedCycle ~= true then 
+    if Settings.useTicketBasedCycle ~= true then
 
         -- Record Ticks
         Events:Subscribe('ServerDeltaTime', function(dt)
 
             self.engineUpdateTimer = self.engineUpdateTimer + dt
             self.serverDayLength = self.serverDayLength + dt
-            
+
             -- Print Debug info
             if Settings.DebugPrints['enable'] == true then
 
