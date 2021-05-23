@@ -1,5 +1,4 @@
 -- Code by Reirei
-
 local emitters = {
     -- MP_Subway
     ['fx/ambient/levelspecific/mp15/emitters/em_amb_mp15_background_smokepillar_m_01'] = true,
@@ -156,6 +155,7 @@ local envmaps = {
     ['levels/xp5_003/lighting/ve_xp5_003_01'] = true,
     ['levels/xp5_004/lighting/ve_xp5_004_02'] = true
 }
+
 
 function PatchComponentsOnPartitionLoaded(partition)
     for _, instance in pairs(partition.instances) do

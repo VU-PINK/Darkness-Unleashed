@@ -471,12 +471,16 @@ NetEvents:Subscribe(NetMessage.WEATHER_START, function(weatherType)
     ClientWeather:__Init(weatherType)
     Tool:DebugPrint('Received Weather NetEvent', 'weather')
 
+<<<<<<< Updated upstream
 end)
 
 
 
 
 
+=======
+              
+>>>>>>> Stashed changes
 
 
 

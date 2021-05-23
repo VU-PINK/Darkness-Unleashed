@@ -116,7 +116,6 @@ function allowMoreSpotlights()
 
 	end 
 
-		
 end
 
 function resetMoreSpotlights()
