@@ -89,7 +89,7 @@ function Main:OnLevelLoad(levelName, gameMode)
 
         -- ClientTime
         if Settings.dayNightEnabled == true then 
-            ClientTime:OnLevelLoaded()
+            ClientTime:__Init()
         end
         
         if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
@@ -119,11 +119,18 @@ function Main:OnLevelLoad(levelName, gameMode)
             else
 
                 Tool:DebugPrint('Using Standard', 'common')
-                ResetVisualEnvironment('all')
+                Main:ResetVisualEnvironment('all')
 
             end
 
 end
+
+
+function Main:OnLevelDestroy()
+
+    ClientTime.serverSyncEvent:Unsubscribe()
+
+end 
 
 
 function Main:OnPartitionLoad(partition)
@@ -391,6 +398,12 @@ function Main:OnEngineUpdate(deltaTime, simulationDeltaTime)
         end
         
     end
+
+    if Settings.dayNightEnabled == true then 
+
+        ClientTime:Ticks(deltaTime)
+
+    end 
 
     if elapsedTime >= lastSecond + 0.1 then
 

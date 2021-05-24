@@ -51,26 +51,6 @@ function Time:deltaTime()
             self.engineUpdateTimer = self.engineUpdateTimer + dt
             self.serverDayLength = self.serverDayLength + dt
 
-            -- Print Debug info
-            if Settings.DebugPrints['enable'] == true then
-
-                if Settings.DebugPrints['time'] == true then
-
-                -- Update hours & days-- Update hours & days
-                local prevDay = nil
-                local prevHour = nil
-                self.days, self.hours = Tool:getDaysHours(self.serverDayLength)
-                    
-                    if prevHour ~= self.hours or prevDay ~= self.days then
-                        prevDay = self.days
-                        prevHour = self.hours
-                        Tool:DebugPrint('Current Time | Day: ' ..tostring(self.days) .. 'Hour: '.. tostring(self.hours), 'time')
-                    end
-
-                end
-
-            end
-            
             -- Check if it is time to send a client update (to ensure client sync)
             if self.engineUpdateTimer < Settings.serverUpdatesFrequency then
                 return

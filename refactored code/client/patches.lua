@@ -110,6 +110,7 @@ function Patch:AllowMoreSpotlights()
 		Tool:DebugPrint('[NEW] lightOverdrawMaxLayerCount ' .. self.WorldRender.lightOverdrawMaxLayerCount, 'altering')
 
 		self.changedSpotlightSettings = true
+
 	end
 
 	self.Debris = ResourceManager:GetSettings('DebrisSystemSettings')
@@ -158,7 +159,9 @@ function Patch:ResetMoreSpotlights()
 	end
 
 	if self.changedSpotlightSettings == true then
+
 		self.changedSpotlightSettings = false 
+
 	end
 
 end
@@ -175,6 +178,7 @@ function Patch:Emitters(partition)
 
 			-- Tweak smoke and dust to last longer
 			if string.find(emitterTemplate.name:lower(), "smoke" or string.find(emitterTemplate.name:lower(), "dust")) then
+                
 				emitterTemplate:MakeWritable()
 
 				if not (emitterTemplate.emissive or emitterTemplate.actAsPointLight or emitterTemplate.repeatParticleSpawning or emitterTemplate.opaque) then
