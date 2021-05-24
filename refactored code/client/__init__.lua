@@ -78,6 +78,10 @@ function Main:OnExtensionLoad()
 
     Patches:__Init()
 
+    if Settings.useNightVisionGadget == true then
+    	UI:__Init()
+	end
+
 end
 
 
@@ -137,7 +141,7 @@ function Main:OnResourceLoad()
 end
 
 
-function Main:OnPlayerRespawn()
+function Main:OnPlayerRespawn(player)
 
     local localPlayer = PlayerManager:GetLocalPlayer()
 
@@ -146,6 +150,8 @@ function Main:OnPlayerRespawn()
         NVG:__Init()
 
 	end
+
+    UI:PlayerRespawn(player, localPlayer)
 
 end
 
@@ -366,14 +372,23 @@ end
 
 function Main:OnEngineUpdate(deltaTime, simulationDeltaTime)
 
-    Events:DispatchLocal('DeltaTime', deltaTime)
+    Animation:Lerper(deltaTime)
 
     elapsedTime = elapsedTime + deltaTime
 
     if elapsedTime >= lastSecond + 1 then
         
         lastSecond = lastSecond + 1
-        Events:DispatchLocal('SecondElapsed', lastSecond)
+
+        if NVG.activated == true then
+        
+            NVG:Depleting(elapsedTime)
+    
+        elseif NVG.batteryLifeCurrent ~= NVG.batteryLifeMax then
+            
+            NVG:Recharging()
+            
+        end
         
     end
 
@@ -383,36 +398,8 @@ function Main:OnEngineUpdate(deltaTime, simulationDeltaTime)
 
     end
 
-    if nvgRunner == true then
-        
-		Animation:nvg()
-        --Tool:DebugPrint("RunAnimation", 'nvg')
-
-	end
-
-    if weatherRunner == true then
-
-        Animation:Weather()
-
-    end 
-
 end
 
-
-Events:Subscribe('SecondElapsed', function(lastSecond)
-
-    -- Deplete or Charge the NVG
-    if nvgActivated == true then
-        
-        NVG:Depleting()
-
-    elseif NVG.batteryLifeCurrent ~= NVG.batteryLifeMax then
-        
-        NVG:Recharging()
-        
-    end
-
-end)
 
 
 -- Weather --
