@@ -1,6 +1,6 @@
 local Shared = class('Shared')
 local Settings = require '__shared/settings'
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tools'
 
 
 function Shared:__Init()

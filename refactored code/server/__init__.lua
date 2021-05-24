@@ -1,7 +1,6 @@
 local Server = class('Server')
-
 local Settings = require '__shared/settings'
-local presetValues = require '__shared/presets'
+local presetValues = require '__shared/datatables/presets'
 require 'version'
 
 if Settings.dayNightEnabled == true then

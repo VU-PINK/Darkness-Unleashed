@@ -1,5 +1,5 @@
 local Weather = class('Weather')
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tool'
 local Settings = require '__shared/settings'
 local NetMessage = require '__shared/net'
 
@@ -108,3 +108,6 @@ function Weather:OnPlayerChat(player, recipientMask, message)
     end
 
 end
+
+
+return Weather

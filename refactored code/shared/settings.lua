@@ -199,7 +199,7 @@ return {
 LensflareEnabled = lensflareEnabled,
 SunflareEnabled = sunflareEnabled,
 Standardusebluefilter = standardusebluefilter,
-MapPresets = mapPresets,
+mapPresets = mapPresets,
 Generalbrightness = generalbrightness,
 Generalfog = generalfog,
 MapBrightnessMultipliers = mapBrightnessMultipliers,

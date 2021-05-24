@@ -1,7 +1,7 @@
 local Vehicle = class('Vehicle')
 local Settings = require '__shared/settings'
-local RM = require '__shared/classes/tools/resourcemanager'
-local Tool = require '__shared/classes/tools/tool'
+local RM = require '__shared/darknesstools/resourcemanager'
+local Tool = require '__shared/darknesstools/tools'
 local VehicleSettings = require '__shared/vehicles'
 local vehicleEntityData = nil 
 
@@ -284,3 +284,6 @@ function Vehicle:AddMirrorSpotlight(name, data, settings, vehicle)
 	Tool:DebugPrint('Added ' .. settings.description .. ' Mirror Spotlight', 'adding')
 
 end
+
+
+return Vehicle

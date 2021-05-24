@@ -1,9 +1,9 @@
 local Patch = class('Patch')
+local Settings = require '__shared/settings' 
+local Tool = require '__shared/darknesstools/tools'
 
 function Patch:__Init()
 
-    self.Settings = require '__shared/settings' 
-    self.Tool = require '__shared/classes/tools/tool'
     self.UserSettingsSaved = false
     self.changedSpotlightSettings = false
     self.UserSettings = {}
@@ -17,11 +17,11 @@ end
 
 function Patch:Multipliers(mapName)
 
-    local brightnessMultiplicator = self.Settings.generalBrightness * Settings.mapBrightnessMultipliers[mapName]
+    local brightnessMultiplicator = Settings.generalBrightness * Settings.mapBrightnessMultipliers[mapName]
 	local fogMultiplicator = Settings.generalFog * Settings.mapFogMultipliers[mapName]
 
-	self.Tool:DebugPrint("BrightnessMultiplicator: " ..brightnessMultiplicator, 'common')
-	self.Tool:DebugPrint("FogMultiplicator: " ..fogMultiplicator, 'common')
+	Tool:DebugPrint("BrightnessMultiplicator: " ..brightnessMultiplicator, 'common')
+	Tool:DebugPrint("FogMultiplicator: " ..fogMultiplicator, 'common')
 
     return brightnessMultiplicator, fogMultiplicator
 
@@ -73,7 +73,7 @@ function Patch:ReleaseBrightness()
 		self.PostProcessing.userBrightnessMax = self.UserSettings.userBrightnessMax
 		self.PostProcessing.brightness = self.UserSettings.brightness
 		self.PostProcessing.forceExposure = self.UserSettings.forceExposure
-		self.Tool:DebugPrint('Changed PostProcessing', 'common')
+		Tool:DebugPrint('Changed PostProcessing', 'common')
 
 	end
 
@@ -135,16 +135,16 @@ function Patch:ResetMoreSpotlights()
 		self.WorldRender = WorldRenderSettings(self.WorldRender)
 
 		self.WorldRender.maxSpotLightShadowCount = self.UserSettings.maxSpotLightShadowCount
-		self.Tool:DebugPrint('Resetting Max Spotlight Shadow Count to ' .. self.WorldRender.xenonLightTileMaxSpotLightCount, 'altering')
+		Tool:DebugPrint('Resetting Max Spotlight Shadow Count to ' .. self.WorldRender.xenonLightTileMaxSpotLightCount, 'altering')
 
 		self.WorldRender.shadowmapViewDistance = self.UserSettings.shadowmapViewDistance
-		self.Tool:DebugPrint('Resetting shadowmapViewDistance to ' .. self.WorldRender.shadowmapViewDistance, 'altering')
+		Tool:DebugPrint('Resetting shadowmapViewDistance to ' .. self.WorldRender.shadowmapViewDistance, 'altering')
 
 		self.WorldRender.maxSpotLightCount = self.UserSettings.maxSpotLightCount
-		self.Tool:DebugPrint('Resetting Max Spotlight Count to ' .. self.WorldRender.maxSpotLightCount, 'altering')
+		Tool:DebugPrint('Resetting Max Spotlight Count to ' .. self.WorldRender.maxSpotLightCount, 'altering')
 		
 		self.WorldRender.lightOverdrawMaxLayerCount = self.UserSettings.lightOverdrawMaxLayerCount
-		self.Tool:DebugPrint('Resetting lightOverdrawMaxLayerCount to ' .. self.WorldRender.lightOverdrawMaxLayerCount, 'altering')
+		Tool:DebugPrint('Resetting lightOverdrawMaxLayerCount to ' .. self.WorldRender.lightOverdrawMaxLayerCount, 'altering')
 
 	end
 
@@ -153,7 +153,7 @@ function Patch:ResetMoreSpotlights()
 		self.Debris = DebrisSystemSettings(self.Debris)
 
 		self.Debris.meshShadowEnable = false
-		self.Tool:DebugPrint('Resetting meshShadowEnable to ' .. tostring(self.Debris.meshShadowEnable), 'altering')
+		Tool:DebugPrint('Resetting meshShadowEnable to ' .. tostring(self.Debris.meshShadowEnable), 'altering')
 
 
 	end
@@ -662,3 +662,6 @@ function Patch:Components(partition)
     end
 
 end
+
+
+return Patch

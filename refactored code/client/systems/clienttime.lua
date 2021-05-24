@@ -1,5 +1,5 @@
 local ClientTime = class('ClientTime')
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tools'
 local Settings = require '__shared/settings'
 local NetMessage = require '__shared/net'
 
@@ -253,3 +253,6 @@ function ClientTime:GetTicketCounterTickets()
     return usTickets, ruTickets
 
 end
+
+
+return ClientTime

@@ -1,7 +1,6 @@
 local NVG = class("NVG")
-
-local Animation = require 'systems/animation'
-local Tool = require '__shared/classes/tools/tool'
+local Animation = require 'systems/animations'
+local Tool = require '__shared/darknesstools/tools'
 
 function NVG:__init()
 

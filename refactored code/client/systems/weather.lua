@@ -1,4 +1,4 @@
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tools'
 local Settings = require '__shared/settings'
 local NetMessage = require '__shared/net'
 local Animation = require 'systems/weather'

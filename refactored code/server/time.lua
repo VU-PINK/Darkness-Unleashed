@@ -1,5 +1,5 @@
 local Time = class('Time')
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tool'
 local Settings = require '__shared/settings'
 local NetMessage = require '__shared/net'
 

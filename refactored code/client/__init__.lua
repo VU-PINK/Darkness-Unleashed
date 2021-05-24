@@ -1,33 +1,21 @@
 local Main = class('Main')
-
 local Settings = require '__shared/settings'
-local Tool = require '__shared/tool'
+local Tool = require '__shared/darknesstools/tools'
 local Patches = require 'patches'
 local Resources = require 'resources'
 local NetMessage = require '__shared/net'
 local clientTime = require 'systems/clienttime'
-local Animation = require 'systems/animation'
-local Presets = require '__shared/presets'
-local specialPresets = require '__shared/special'
-local cineTools = nil 
-local clientWeather = nil 
-local NVG = nil
+local Animation = require 'systems/animations'
+local Presets = require '__shared/datatables/presets'
+local specialPresets = require '__shared/datatables/special'
+--local cineTools = require 'systems/cinematictools'
+--local clientWeather = require 'systems/weather'
+local NVG = require 'systems/nvg'
 require 'ui'
 require "__shared/DebugGUI"
 
-if Settings.dayNightEnabled ~= true and Settings.cineTools == true then
-    cineTools = require 'systems/cinematictools'
-end
-
-
-if Settings.weatherEnabled == true then
-    clientWeather = require 'systems/weather'
-end
-
-
-if Settings.useNightVisionGadget == true then 
-    NVG = require 'systems/nvg'
-end
+local lastSecond = 0
+local elapsedTime = 0
 
 
 function Main:__Init()
@@ -41,9 +29,6 @@ end
 function Main:RegisterVars()
 
     self.levelLoaded = false 
-    self.elapsedTime = 0
-    self.lastSecond = 0
-
     self.currentMainVE = nil
     self.currentSpecialVE = nil 
     self.currentWeatherVE = nil
@@ -89,7 +74,7 @@ function Main:OnLevelLoad(levelName, gameMode)
 
         -- ClientTime
         if Settings.dayNightEnabled == true then 
-            ClientTime:__Init()
+            clientTime:__Init()
         end
         
         if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
@@ -98,12 +83,12 @@ function Main:OnLevelLoad(levelName, gameMode)
             
         -- Visual Environments
         local mapName = levelName:match('/[^/]+'):sub(2) -- MP_001
-        local mapPreset = self.Settings.mapPresets[mapName]
+        local mapPreset = Settings.mapPresets[mapName]
         
             if mapPreset ~= nil then
         
                 print('Calling Preset ' .. mapPreset .. ' on ' .. mapName)
-                self.brightnessMultiplicator, self.fogMultiplicator = self.Patches:Multipliers(mapName)
+                self.brightnessMultiplicator, self.fogMultiplicator = Patches:Multipliers(mapName)
                 Main:ApplyVisualEnvironment(mapPreset, 'main')
 
                 if mapPreset == 'Night' then
@@ -128,7 +113,7 @@ end
 
 function Main:OnLevelDestroy()
 
-    ClientTime.serverSyncEvent:Unsubscribe()
+    clientTime.serverSyncEvent:Unsubscribe()
 
 end 
 
@@ -387,11 +372,11 @@ function Main:OnEngineUpdate(deltaTime, simulationDeltaTime)
         
         lastSecond = lastSecond + 1
 
-        if NVG.activated == true then
+        if NVG.activated == true and Settings.useNightVisionGadget == true then
         
             NVG:Depleting(elapsedTime)
     
-        elseif NVG.batteryLifeCurrent ~= NVG.batteryLifeMax then
+        elseif NVG.batteryLifeCurrent ~= NVG.batteryLifeMax and Settings.useNightVisionGadget == true  then
             
             NVG:Recharging()
             
@@ -401,7 +386,7 @@ function Main:OnEngineUpdate(deltaTime, simulationDeltaTime)
 
     if Settings.dayNightEnabled == true then 
 
-        ClientTime:Ticks(deltaTime)
+        clientTime:Ticks(deltaTime)
 
     end 
 
@@ -422,13 +407,13 @@ NetEvents:Subscribe(NetMessage.WEATHER_START, function(weatherType)
         return
     end
 
-    ClientWeather:Call(weatherType)
+    clientWeather:Call(weatherType)
     Tool:DebugPrint('Received Weather NetEvent', 'weather')
 
 end)
 
 
-return Main
+return Main:__Init()
 
 
 
