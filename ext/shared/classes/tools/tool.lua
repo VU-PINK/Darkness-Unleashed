@@ -64,8 +64,8 @@ end
 function Tool:getDaysHours(seconds)
 
 		-- Update hours & days
-		days = nil
-		hours = nil
+		local days = nil
+		local hours = nil
 		days, hours = Tool:getFloatDaysHours(seconds)
 		hours = math.floor(hours)
 		
@@ -75,8 +75,8 @@ end
 function Tool:getFloatDaysHours(seconds)
 
 		-- Update hours & days
-		days = math.floor(seconds / Settings.dayLengthInSeconds)
-		hours = seconds % Settings.dayLengthInSeconds / (Settings.dayLengthInSeconds / 24)
+		local days = math.floor(seconds / Settings.dayLengthInSeconds)
+		local hours = seconds % Settings.dayLengthInSeconds / (Settings.dayLengthInSeconds / 24)
 		
 		return days, hours
 

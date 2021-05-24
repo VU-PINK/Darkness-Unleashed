@@ -8,6 +8,20 @@ local ClientWeather = class('ClientWeather')
 
 function ClientWeather:__Init(weatherType)
 
+    ClientWeather:RegisterVars()
+
+end
+
+
+function ClientWeather:RegisterVars()
+
+    self.currentWeather = nil 
+    
+end 
+
+
+function ClientWeather:Call(weatherType)
+
     if self.currentWeather == weatherType then 
         return 
     end 
@@ -15,14 +29,18 @@ function ClientWeather:__Init(weatherType)
     self.currentWeather = weatherType
 
     if weatherType == 0 then
+
         ClientWeather:FadeOut()
+
     end
 
     if weatherType == 1 then
+
         ClientWeather:FadeIn('Sandstorm')
+
     end
 
-end
+end 
 
 
 function ClientWeather:FadeIn(weatherType)

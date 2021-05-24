@@ -409,13 +409,13 @@ NetEvents:Subscribe(NetMessage.WEATHER_START, function(weatherType)
         return
     end
 
-    ClientWeather:__Init(weatherType)
+    ClientWeather:Call(weatherType)
     Tool:DebugPrint('Received Weather NetEvent', 'weather')
 
 end)
 
 
-
+return Main
 
 
 
