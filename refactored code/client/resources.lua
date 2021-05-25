@@ -3,7 +3,7 @@ local Resources = class('Resources')
 
 function Resources:__Init()
 
-    Resources:RegistersVars()
+    Resources:RegisterVars()
     Resources:RegisterEvents()
     Resources:RegisterHooks()
 
@@ -13,11 +13,14 @@ end
 function Resources:RegisterVars()
 
     -- Death Valley Skybox
-    self.deathValleySkybox = nil
-    self.deathValleyAlpha = nil
-    self.deathValleyGradient = nil
-    self.deathValleyEnvmap = nil
-    self.deathValleyStars = nil
+    deathValleySkybox = nil
+    deathValleyAlpha = nil
+    deathValleyGradient = nil
+    deathValleyEnvmap = nil
+    deathValleyStars = nil
+
+	-- General
+	Stars = nil
 
 end
 
@@ -44,7 +47,7 @@ function Resources:OnPartitionLoad(partition)
             if instance.instanceGuid == Guid('32CE96BB-E578-9589-7B11-B670661DF2DF') then
 
                 --print(instance)
-                self.Stars = instance
+                Stars = instance
 
             end
 
@@ -78,7 +81,7 @@ function Resources:OnResourceLoad()
 	--ResourceManager:MountSuperBundle('levels/xp3_valley/xp3_valley') -- Death Valley Bright Night Skybox & Star Clouds
 
 	ResourceManager:RegisterInstanceLoadHandler(Guid("0FF47F8B-423F-4EC3-A8D5-B56E55A01225"), Guid('E79F27A1-7B97-4A63-8ED8-372FE5012A31'), function(loadedInstance)
-		self.nvColorGrade = loadedInstance
+		nvColorGrade = loadedInstance
 	end)
 
 end
@@ -134,12 +137,4 @@ end)
 --]]
 
 
-return {
-deathValleySkybox = Resources.deathValleySkybox,
-deathValleyAlpha = Resources.deathValleyAlpha,
-deathValleyGradient = Resources.deathValleyGradient,
-deathValleyEnvmap = Resources.deathValleyEnvmap,
-deathValleyStars = Resources.deathValleyStars,
-Stars = Resources.Stars,
-nvColorGrade = Resources.nv_colorgrade
-}
+return Resources

@@ -1,12 +1,15 @@
 local Patch = class('Patch')
 local Settings = require '__shared/settings' 
 local Tool = require '__shared/darknesstools/tools'
+local RM = require '__shared/darknesstools/resourcemanager'
 
 function Patch:__Init()
 
     self.UserSettingsSaved = false
     self.changedSpotlightSettings = false
     self.UserSettings = {}
+    self.flashLight1PGuidPartition = Guid('83E2B938-E678-11DF-A7B3-CBA49C34928F')
+    self.flashLight3PGuidPartition = Guid('65A5BFD9-028A-4D4F-8B89-3A60B2E06F83')
     self.flashLight1PGuid = Guid('995E49EE-8914-4AFD-8EF5-59125CA8F9CD', 'D')
     self.flashLight3PGuid = Guid('5FBA51D6-059F-4284-B5BB-6E20F145C064', 'D')
 
@@ -39,9 +42,9 @@ function Patch:EnforceBrightness()
             self.UserSettings.userBrightnessMax = self.PostProcessing.userBrightnessMax
             self.UserSettings.brightness = self.PostProcessing.brightness
             self.UserSettings.forceExposure = self.PostProcessing.forceExposure
-            self.Tool:DebugPrint('Saving User PP Settings:', 'common')
-            self.Tool:DebugPrint('Brightness_Min: ' .. self.UserSettings.userBrightnessMin, 'common')
-            self.Tool:DebugPrint('Brightness_Max: '..self.UserSettings.userBrightnessMax, 'common')
+            Tool:DebugPrint('Saving User PP Settings:', 'common')
+            Tool:DebugPrint('Brightness_Min: ' .. self.UserSettings.userBrightnessMin, 'common')
+            Tool:DebugPrint('Brightness_Max: '..self.UserSettings.userBrightnessMax, 'common')
             UserSettingsSaved = true
     
         end
@@ -53,7 +56,7 @@ function Patch:EnforceBrightness()
             self.PostProcessing.userBrightnessMax = 1
             self.PostProcessing.brightness = Vec3(1, 1, 1)
             self.PostProcessing.forceExposure = 0.70
-            self.Tool:DebugPrint('Changed PostProcessing', 'common')
+            Tool:DebugPrint('Changed PostProcessing', 'common')
                 
         end
     
@@ -273,29 +276,10 @@ function Patch:Flashlight(instance)
 end
 
 
-function Patch:FlashlighPartitions(partition)
-
-	for _, instance in pairs(partition.instances) do
-
-		if instance.instanceGuid == self.flashLight1PGuid then
-
-			Patch:FlashLight(instance)
-
-		elseif instance.instanceGuid == self.flashLight3PGuid then
-
-			Patch:FlashLight(instance)
-
-		end
-
-	end
-
-end
-
-
 function Patch:Flashlights()
 
-	Patch:FlashlighPartitions(ResourceManager:SearchForInstanceByGuid(self.flashLight1PGuid))
-	Patch:FlashlighPartitions(ResourceManager:SearchForInstanceByGuid(self.flashLight3PGuid))
+	Patch:Flashlight(RM:Find(self.flashLight1PGuidPartition, self.flashLight1PGuid))
+	Patch:Flashlight(RM:Find(self.flashLight3PGuidPartition, self.flashLight3PGuid))
 
 end
 

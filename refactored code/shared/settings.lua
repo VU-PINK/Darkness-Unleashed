@@ -2,14 +2,14 @@
 local debugPrints = {
 
     ['enable'] = true,
-    ['adding'] = false,
-    ['removing'] = false,
-    ['altering'] = false,
-    ['player'] = false,
-    ['common'] = false,
-    ['time'] = false,
+    ['adding'] = true,
+    ['removing'] = true,
+    ['altering'] = true,
+    ['player'] = true,
+    ['common'] = true,
+    ['time'] = true,
     ['nvg'] = true,
-    ['VE'] = false,
+    ['VE'] = true,
     ['error'] = true,
     ['cinetools'] = true,
     ['weather'] = true,
@@ -61,8 +61,8 @@ local useNightVisionGadget = false
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
 -- Vehicle Lights
-local useVehicleLights_Airborne = true
-local useVehicleLights_Ground = true
+local useVehicleLights_Airborne = false
+local useVehicleLights_Ground = false
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
@@ -200,10 +200,10 @@ LensflareEnabled = lensflareEnabled,
 SunflareEnabled = sunflareEnabled,
 Standardusebluefilter = standardusebluefilter,
 mapPresets = mapPresets,
-Generalbrightness = generalbrightness,
-Generalfog = generalfog,
-MapBrightnessMultipliers = mapBrightnessMultipliers,
-MapFogMultipliers = mapFogMultipliers,
+generalBrightness = generalbrightness,
+generalFog = generalfog,
+mapBrightnessMultipliers = mapBrightnessMultipliers,
+mapFogMultipliers = mapFogMultipliers,
 useVehicleLights_Airborne = useVehicleLights_Airborne,
 useVehicleLights_Ground = useVehicleLights_Airborne,
 DebugPrints = debugPrints,

@@ -13,6 +13,10 @@ function RM:Find(partition, instance)
     return ResourceManager:FindInstanceByGuid(Guid(partition), Guid(instance))
 end
 
+function RM:GetPartition(partition)
+    return ResourceManager:FindDatabasePartition(Guid(partition))
+end 
+
 function RM:Tex(partition, instance)
     return TextureAsset(RM:Find(partition, instance))
 end

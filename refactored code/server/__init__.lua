@@ -166,3 +166,6 @@ function Server:CheckVersion()
     end
 
 end
+
+
+return Server

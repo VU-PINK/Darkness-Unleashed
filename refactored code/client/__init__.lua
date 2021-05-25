@@ -61,6 +61,7 @@ end
 
 function Main:OnExtensionLoad()
 
+    Resources:__Init()
     Patches:__Init()
 
     if Settings.useNightVisionGadget == true then
@@ -73,10 +74,8 @@ end
 function Main:OnLevelLoad(levelName, gameMode)
 
         -- ClientTime
-        if Settings.dayNightEnabled == true then 
-            clientTime:__Init()
-        end
-        
+        clientTime:__Init()
+ 
         if Settings.dayNightEnabled ~= true and Settings.cineTools == true then 
             CinematicTools()
         end 
@@ -113,8 +112,12 @@ end
 
 function Main:OnLevelDestroy()
 
-    clientTime.serverSyncEvent:Unsubscribe()
+    if dayNightEnabled == true and Settings.useTicketBasedCycle ~= true then 
 
+        clientTime.serverSyncEvent:Unsubscribe()
+
+    end 
+    
 end 
 
 
@@ -169,7 +172,7 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
         return
     end
 
-    local selectedPreset = presetValues[presetName]
+    local selectedPreset = Presets[presetName]
 
     if selectedPreset == nil then
         print('Wrong Configuration')
@@ -211,13 +214,13 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
 
                     newInstance[key] = 'FlirData'
 
-                elseif key == cloudLayer1Texture then
+                elseif key == cloudLayer1Texture and presetType == 'special' then
 
-                    newInstance[key] = TextureAsset(Resources.Stars)
+                    newInstance[key] = TextureAsset(_G['Stars'])
 
                 else 
                     -- patching texture property
-                    newInstance[key] = TextureAsset(Resources[value])
+                    newInstance[key] = TextureAsset(_G[value])
 
                 end
 
@@ -230,7 +233,7 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
                 end
 
             else 
-
+                -- patching static property
                 newInstance[key] = value
 
             end
@@ -250,6 +253,7 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
         if self.currentMainVE ~= nil then
 
             self.currentMainVE:Init(Realm.Realm_Client, true)
+            Tool:DebugPrint('Main VE Initialized', 'VE')
 
         end
 
@@ -260,6 +264,7 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
         if self.currentSpecialVE ~= nil then
 
             self.currentSpecialVE:Init(Realm.Realm_Client, true)
+            Tool:DebugPrint('Special VE Initialized', 'VE')
 
         end
 
@@ -270,6 +275,7 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
         if self.currentWeatherVE ~= nil then
 
             self.currentWeatherVE:Init(Realm.Realm_Client, true)
+            Tool:DebugPrint('Weather VE Initialized', 'VE')
 
         end
 
