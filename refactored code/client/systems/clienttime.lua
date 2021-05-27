@@ -95,7 +95,7 @@ function ClientTime:Ticks(dt)
             --print(self.seconds)
 
             -- Offset seconds (0 is the middle of the night, but it should be the start of the night)
-            seconds = seconds + pure_night_duration_sec / 2
+            self.seconds = seconds + pure_night_duration_sec / 2
             
             self.factor = nil
             
