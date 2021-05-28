@@ -1,5 +1,5 @@
 local Patch = class('Patch')
-local Settings = require '__shared/settings' 
+local Settings = require '__shared/settings'
 local Tool = require '__shared/darknesstools/tools'
 local RM = require '__shared/darknesstools/resourcemanager'
 
@@ -15,7 +15,7 @@ function Patch:__Init()
 
     Patch:Flashlights()
 
-end 
+end
 
 
 function Patch:Multipliers(mapName)
@@ -32,11 +32,11 @@ end
 
 
 function Patch:EnforceBrightness()
-    
+
     self.PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
-    
+
         if self.PostProcessing ~= nil and self.UserSettingsSaved ~= true then
-    
+
             self.PostProcessing = GlobalPostProcessSettings(self.PostProcessing)
             self.UserSettings.userBrightnessMin = self.PostProcessing.userBrightnessMin
             self.UserSettings.userBrightnessMax = self.PostProcessing.userBrightnessMax
