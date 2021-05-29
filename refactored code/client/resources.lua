@@ -4,8 +4,7 @@ local Resources = class('Resources')
 function Resources:__Init()
 
     Resources:RegisterVars()
-    Resources:RegisterEvents()
-    Resources:RegisterHooks()
+    --Resources:RegisterHooks()
 
 end 
 
@@ -24,13 +23,6 @@ function Resources:RegisterVars()
 
 end
 
-
-function Resources:RegisterEvents()
-
-    self.partitionLoadedEvent = Events:Subscribe('Partition:Loaded', self, self.OnPartitionLoad)
-    self.resourcesLoadEvent = Events:Subscribe('Level:LoadResources', self, self.OnResourceLoad)
-
-end 
 
 function Resources:RegisterHooks()
 

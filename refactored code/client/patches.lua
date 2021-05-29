@@ -5,6 +5,18 @@ local RM = require '__shared/darknesstools/resourcemanager'
 
 function Patch:__Init()
 
+    Patch:RegisterVars()
+    Patch:AllowMoreSpotlights()
+
+    if Settings.useHighDefinitionPatches == true then
+        Patch:ApplyLodPatches()
+    end
+
+end
+
+
+function Patch:RegisterVars()
+
     self.UserSettingsSaved = false
     self.changedSpotlightSettings = false
     self.UserSettings = {}
@@ -13,7 +25,8 @@ function Patch:__Init()
     self.flashLight1PGuid = Guid('995E49EE-8914-4AFD-8EF5-59125CA8F9CD', 'D')
     self.flashLight3PGuid = Guid('5FBA51D6-059F-4284-B5BB-6E20F145C064', 'D')
 
-    Patch:Flashlights()
+    self.meshSettingsSaved = false
+    self.visualSettingsSaved = false
 
 end
 
@@ -31,35 +44,107 @@ function Patch:Multipliers(mapName)
 end
 
 
+function Patch:RemoveAll()
+
+    Patch:ResetMoreSpotlights()
+    Patch:ReleaseBrightness()
+
+    if Settings.useHighDefinitionPatches == true then
+        Patch:RemoveLodPatches()
+    end
+
+end
+
+
 function Patch:EnforceBrightness()
 
     self.PostProcessing = ResourceManager:GetSettings("GlobalPostProcessSettings")
 
-        if self.PostProcessing ~= nil and self.UserSettingsSaved ~= true then
+    if self.PostProcessing ~= nil and self.UserSettingsSaved ~= true then
 
-            self.PostProcessing = GlobalPostProcessSettings(self.PostProcessing)
-            self.UserSettings.userBrightnessMin = self.PostProcessing.userBrightnessMin
-            self.UserSettings.userBrightnessMax = self.PostProcessing.userBrightnessMax
-            self.UserSettings.brightness = self.PostProcessing.brightness
-            self.UserSettings.forceExposure = self.PostProcessing.forceExposure
-            Tool:DebugPrint('Saving User PP Settings:', 'common')
-            Tool:DebugPrint('Brightness_Min: ' .. self.UserSettings.userBrightnessMin, 'common')
-            Tool:DebugPrint('Brightness_Max: '..self.UserSettings.userBrightnessMax, 'common')
-            UserSettingsSaved = true
-    
-        end
-    
-        if self.UserSettingsSaved == true then
-    
-            self.PostProcessing = GlobalPostProcessSettings(self.PostProcessing)
-            self.PostProcessing.userBrightnessMin = 1
-            self.PostProcessing.userBrightnessMax = 1
-            self.PostProcessing.brightness = Vec3(1, 1, 1)
-            self.PostProcessing.forceExposure = 0.70
-            Tool:DebugPrint('Changed PostProcessing', 'common')
-                
-        end
-    
+        self.PostProcessing = GlobalPostProcessSettings(self.PostProcessing)
+        self.UserSettings.userBrightnessMin = self.PostProcessing.userBrightnessMin
+        self.UserSettings.userBrightnessMax = self.PostProcessing.userBrightnessMax
+        self.UserSettings.brightness = self.PostProcessing.brightness
+        self.UserSettings.forceExposure = self.PostProcessing.forceExposure
+        Tool:DebugPrint('Saving User PP Settings:', 'common')
+        Tool:DebugPrint('Brightness_Min: ' .. self.UserSettings.userBrightnessMin, 'common')
+        Tool:DebugPrint('Brightness_Max: '..self.UserSettings.userBrightnessMax, 'common')
+        self.UserSettingsSaved = true
+
+    end
+
+    if self.UserSettingsSaved == true then
+
+        self.PostProcessing = GlobalPostProcessSettings(self.PostProcessing)
+        self.PostProcessing.userBrightnessMin = 1
+        self.PostProcessing.userBrightnessMax = 1
+        self.PostProcessing.brightness = Vec3(1, 1, 1)
+        self.PostProcessing.forceExposure = 0.70
+        Tool:DebugPrint('Changed PostProcessing', 'common')
+
+    end
+
+end
+
+function Patch:ApplyLodPatches()
+
+    self.VisualTerrainSettings = ResourceManager:GetSettings("VisualTerrainSettings")
+
+    if self.VisualTerrainSettings ~= nil and self.visualSettingsSaved ~= true then
+
+        self.VisualTerrainSettings = VisualTerrainSettings(self.VisualTerrainSettings)
+        self.UserSettings.lodScale = self.VisualTerrainSettings.lodScale
+        self.UserSettings.textureQuadsPerTileLevel = self.VisualTerrainSettings.textureQuadsPerTileLevel
+        self.visualSettingsSaved = true
+
+    end
+
+    if self.visualSettingsSaved == true then
+        self.VisualTerrainSettings = VisualTerrainSettings(self.VisualTerrainSettings)
+        self.VisualTerrainSettings.lodScale = self.VisualTerrainSettings.lodScale * 100
+        self.VisualTerrainSettings.textureQuadsPerTileLevel = self.VisualTerrainSettings.textureQuadsPerTileLevel * 50
+        Tool:DebugPrint('Changed VisualTerrainSettings', 'common')
+    end
+
+    self.MeshSettings = ResourceManager:GetSettings("MeshSettings")
+
+    if self.MeshSettings ~= nil and self.meshSettingsSaved ~= true then
+
+        self.MeshSettings = MeshSettings(self.MeshSettings)
+        self.UserSettings.globalLodScale = self.MeshSettings.globalLodScale
+        self.meshSettingsSaved = true
+
+    end
+
+    if self.meshSettingsSaved == true then
+        self.MeshSettings = MeshSettings(self.MeshSettings)
+        self.MeshSettings.globalLodScale = self.MeshSettings.globalLodScale * 100
+        Tool:DebugPrint('Changed Meshes', 'common')
+    end
+end
+
+function Patch:RemoveLodPatches()
+
+    self.VisualTerrainSettings = ResourceManager:GetSettings("VisualTerrainSettings")
+
+    if self.visualSettingsSaved == true and self.VisualTerrainSettings ~= nil then
+        self.VisualTerrainSettings = VisualTerrainSettings(self.VisualTerrainSettings)
+        self.VisualTerrainSettings.lodScale = UserSettings.lodScale
+        self.VisualTerrainSettings.textureQuadsPerTileLevel = UserSettings.textureQuadsPerTileLevel
+        self.visualSettingsSaved = false
+        Tool:DebugPrint('Reset VisualTerrainSettings', 'common')
+    end
+
+    self.MeshSettings = ResourceManager:GetSettings("MeshSettings")
+
+
+    if self.meshSettingsSaved == true  and self.MeshSettings ~= nil then
+        self.MeshSettings = MeshSettings(self.MeshSettings)
+        self.MeshSettings.globalLodScale = UserSettings.globalLodScale
+        self.meshSettingsSaved = false
+        Tool:DebugPrint('Reset Meshes', 'common')
+    end
 end
 
 
@@ -90,7 +175,7 @@ function Patch:AllowMoreSpotlights()
 	if self.WorldRender ~= nil and self.changedSpotlightSettings ~= true then
 
 		self.WorldRender = WorldRenderSettings(self.WorldRender)
-		
+
 		self.UserSettings.maxSpotLightShadowCount = self.WorldRender.maxSpotLightShadowCount
 		self.UserSettings.maxSpotLightCount = self.WorldRender.maxSpotLightCount
 		self.UserSettings.shadowmapViewDistance = self.WorldRender.shadowmapViewDistance
@@ -101,15 +186,15 @@ function Patch:AllowMoreSpotlights()
 		Tool:DebugPrint('[NEW] maxSpotLightShadowCount: ' ..self.WorldRender.maxSpotLightShadowCount, 'altering')
 
 		Tool:DebugPrint('[OLD] maxSpotLightCount ' .. self.WorldRender.maxSpotLightCount, 'altering')
-		self.WorldRender.maxSpotLightCount = self.WorldRender.maxSpotLightCount * 2
+		self.WorldRender.maxSpotLightCount = 1024
 		Tool:DebugPrint('[NEW] maxSpotLightCount ' .. self.WorldRender.maxSpotLightCount, 'altering')
-	
+
 		Tool:DebugPrint('[OLD] shadowmapViewDistance ' .. self.WorldRender.shadowmapViewDistance, 'altering')
-		self.WorldRender.shadowmapViewDistance = 100
+		self.WorldRender.shadowmapViewDistance = 75
 		Tool:DebugPrint('[NEW] shadowmapViewDistance ' .. self.WorldRender.shadowmapViewDistance, 'altering')
 
 		Tool:DebugPrint('[OLD] lightOverdrawMaxLayerCount ' .. self.WorldRender.lightOverdrawMaxLayerCount, 'altering')
-		self.WorldRender.lightOverdrawMaxLayerCount = 32
+		self.WorldRender.lightOverdrawMaxLayerCount = 256
 		Tool:DebugPrint('[NEW] lightOverdrawMaxLayerCount ' .. self.WorldRender.lightOverdrawMaxLayerCount, 'altering')
 
 		self.changedSpotlightSettings = true
@@ -118,15 +203,15 @@ function Patch:AllowMoreSpotlights()
 
 	self.Debris = ResourceManager:GetSettings('DebrisSystemSettings')
 
-	if self.Debris ~= nil then 
+	if self.Debris ~= nil then
 
 		self.Debris = DebrisSystemSettings(self.Debris)
-		
+
 		Tool:DebugPrint('[OLD] meshShadowEnable  ' .. tostring(self.Debris.meshShadowEnable ), 'altering')
-		self.Debris.meshShadowEnable = false 
+		self.Debris.meshShadowEnable = false
 		Tool:DebugPrint('[NEW] meshShadowEnable  ' .. tostring(self.Debris.meshShadowEnable ), 'altering')
 
-	end 
+	end
 
 end
 
@@ -145,7 +230,7 @@ function Patch:ResetMoreSpotlights()
 
 		self.WorldRender.maxSpotLightCount = self.UserSettings.maxSpotLightCount
 		Tool:DebugPrint('Resetting Max Spotlight Count to ' .. self.WorldRender.maxSpotLightCount, 'altering')
-		
+
 		self.WorldRender.lightOverdrawMaxLayerCount = self.UserSettings.lightOverdrawMaxLayerCount
 		Tool:DebugPrint('Resetting lightOverdrawMaxLayerCount to ' .. self.WorldRender.lightOverdrawMaxLayerCount, 'altering')
 
@@ -163,7 +248,7 @@ function Patch:ResetMoreSpotlights()
 
 	if self.changedSpotlightSettings == true then
 
-		self.changedSpotlightSettings = false 
+		self.changedSpotlightSettings = false
 
 	end
 
@@ -181,7 +266,7 @@ function Patch:Emitters(partition)
 
 			-- Tweak smoke and dust to last longer
 			if string.find(emitterTemplate.name:lower(), "smoke" or string.find(emitterTemplate.name:lower(), "dust")) then
-                
+
 				emitterTemplate:MakeWritable()
 
 				if not (emitterTemplate.emissive or emitterTemplate.actAsPointLight or emitterTemplate.repeatParticleSpawning or emitterTemplate.opaque) then
@@ -253,33 +338,60 @@ end
 
 --Configure Flashlights
 --this is based on NoFate's infection Mod: https://github.com/OrfeasZ/infection/tree/38e60ebc1709a8b7586c3f44970c234d8572f45d
-function Patch:Flashlight(instance)
+function Patch:Flashlight(instance, type)
 
 	if instance == nil then
 		return
 	end
 
 	local spotLight = SpotLightEntityData(instance)
-	instance:MakeWritable()
+	spotLight:MakeWritable()
 
-	spotLight.radius = 120
-	spotLight.intensity = 10 --brightness
-	spotLight.coneOuterAngle = 50
-	spotLight.orthoWidth = 8
-	spotLight.orthoHeight = 8
-	spotLight.frustumFov = 38 --size
-	spotLight.castShadowsEnable = true
-	spotLight.castShadowsMinLevel = 0
-	spotLight.shape = 1
+    if type == 1 then 
+        spotLight.radius = 120
+        spotLight.intensity = 100 --brightness
+        spotLight.coneOuterAngle = 50
+        spotLight.orthoWidth = 40
+        spotLight.orthoHeight = 40
+        spotLight.frustumFov = 40 --size
+        spotLight.castShadowsEnable = true
+        spotLight.castShadowsMinLevel = 0
+        spotLight.shape = 1
+    end 
+
+    if type == 3 then 
+        spotLight.radius = 70
+        spotLight.intensity = 100 --brightness
+        spotLight.coneOuterAngle = 38
+        spotLight.orthoWidth = 40
+        spotLight.orthoHeight = 40
+        spotLight.frustumFov = 40 --size
+        spotLight.castShadowsEnable = true
+        spotLight.castShadowsMinLevel = 0
+        spotLight.shape = 1
+    end
+
+    Tool:DebugPrint('Patched Flashlight Type ' .. type .. ' to: ' .. spotLight.frustumFov, 'altering')
 
 	--print('Patching flashlight')
 end
 
 
-function Patch:Flashlights()
+function Patch:Flashlights(partition)
 
-	Patch:Flashlight(RM:Find(self.flashLight1PGuidPartition, self.flashLight1PGuid))
-	Patch:Flashlight(RM:Find(self.flashLight3PGuidPartition, self.flashLight3PGuid))
+    for _, instance in pairs(partition.instances) do
+
+		if instance.instanceGuid == self.flashLight1PGuid then
+
+			self:Flashlight(instance, 1)
+
+		elseif instance.instanceGuid == self.flashLight3PGuid then
+
+			self:Flashlight(instance, 3)
+
+		end
+
+	end
 
 end
 
@@ -498,16 +610,6 @@ function Patch:SkyComponentData(instance)
 end
 
 
-function Patch:FogComponentData(instance)
-
-    local fog = FogComponentData(instance)
-    fog:MakeWritable()
-
-    fog.fogColor = Vec3(0.02, 0.02, 0.02)
-
-end
-
-
 function Patch:TonemapComponentData(instance)
 
     local tonemap = TonemapComponentData(instance)
@@ -567,13 +669,16 @@ end
 
 function Patch:MeshAsset(instance)
 
+    local meshAsset = MeshAsset(instance)
+    meshAsset:MakeWritable()
+    meshAsset.lodScale = meshAsset.lodScale * 5
+
     if meshs[instance.partition.name] then
         local mesh = MeshAsset(instance)
 
         for _, value in pairs(mesh.materials) do
 
             value:MakeWritable()
-
             value.shader.shader = nil
 
         end
@@ -611,18 +716,56 @@ function Patch:EffectEntityData(instance)
 end
 
 
-function Patch:DynamicLights(instance)
+function Patch:HDLights(instance)
 
-    local Dynamic = LocalLightEntityData(instance)
-    Dynamic:MakeWritable()
-    Dynamic.visible = true
-    Dynamic.specularEnable = true
+    local BetterLight = LocalLightEntityData(instance)
+    BetterLight:MakeWritable()
+    --BetterLight.visible = true
+    BetterLight.specularEnable = true
+    BetterLight.radius = BetterLight.radius * 1.25
+    BetterLight.intensity = BetterLight.intensity * 0.6
+    BetterLight.enlightenColorMode = 0
+    BetterLight.enlightenEnable = true
+    BetterLight.attenuationOffset = BetterLight.attenuationOffset * 25
+
+    if instance.typeInfo.name == 'SpotLightEntityData' then
+
+        Patch:Spotlights(instance)
+
+    end
+
+end
+
+
+function Patch:Spotlights(instance)
+
+    local Spotlight = SpotLightEntityData(instance)
+    Spotlight:MakeWritable()
+
+    Spotlight.castShadowsEnable = true
+    Spotlight.castShadowsMinLevel = 3
+    Spotlight.coneInnerAngle = Spotlight.coneInnerAngle * 1
+    Spotlight.coneOuterAngle = Spotlight.coneOuterAngle * 2
+
+end
+
+
+function Patch:LensFlareEntityData(instance)
+
+    local flares = LensFlareEntityData(instance)
+    flares:MakeWritable()
+
+    for _, element in pairs(flares.elements) do
+
+        element.size = element.size * 0.25
+
+    end
 
 end
 
 
 function Patch:Components(partition)
-    
+
     for _, instance in pairs(partition.instances) do
 
         if instance:Is('MeshAsset') then
@@ -633,13 +776,13 @@ function Patch:Components(partition)
 
             Patch:MeshMaterialVariation(instance)
 
-        elseif instance:Is('EffectEntityData') then
-
-            Patch:EffectEntityData(instance)
-
 	    elseif instance:Is('LocalLightEntityData') then
 
-	        Patch:DynamicLights(instance)
+	        Patch:HDLights(instance)
+
+        elseif instance:Is('LensFlareEntityData') then
+
+            Patch:LensFlareEntityData(instance)
 
 	    end
 

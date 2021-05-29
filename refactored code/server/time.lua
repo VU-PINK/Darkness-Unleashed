@@ -37,7 +37,7 @@ function Time:RegisterEvents()
 
     if Settings.useTicketBasedCycle ~= true then 
 
-        self.serverDeltaTime = Events:Subscribe('ServerDeltaTime', self, self.deltaTime)
+        self.serverDeltaTime = Events:Subscribe('Engine:Update', self, self.deltaTime)
         self.syncRequest = NetEvents:Subscribe(NetMessage.REQUEST_SYNC, self, self.PlayerRequest)
 
     end 
@@ -57,11 +57,11 @@ function Time:deltaTime()
             end
 
             self.engineUpdateTimer = 0.0
-            
+
             -- Sync players
             Time:Broadcast()
 
-end 
+end
 
 
 function Time:Broadcast()
@@ -80,14 +80,4 @@ function Time:PlayerRequest(player)
 
 end
 
-
 return Time
-
-
-
-
-
-
-
-
-

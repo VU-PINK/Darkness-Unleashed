@@ -11,7 +11,7 @@ local specialPresets = require '__shared/datatables/special'
 --local cineTools = require 'systems/cinematictools'
 --local clientWeather = require 'systems/weather'
 local NVG = require 'systems/nvg'
-require 'ui'
+local UI = require 'ui'
 require "__shared/DebugGUI"
 
 local lastSecond = 0
@@ -37,6 +37,10 @@ function Main:RegisterVars()
     fogMultiplicator = nil
 
     self.presetMultipliers = {
+        OutdoorLightComponentData = {
+            skyColor = 'brightnessMultiplicator',
+            groundColor = 'brightnessMultiplicator'
+        },
         SkyComponentData = {
             brightnessScale = 'brightnessMultiplicator'
         },
@@ -67,10 +71,31 @@ function Main:OnExtensionLoad()
 
     Resources:__Init()
     Patches:__Init()
+    NVG:__Init()
 
-    if Settings.useNightVisionGadget == true then
-    	UI:__Init()
-	end
+end
+
+
+function Main:OnExtensionUnload()
+
+    Patches:RemoveAll()
+
+end
+
+
+function Main:OnResourceLoad()
+
+    Resources:OnResourceLoad()
+
+end
+
+
+function Main:OnPartitionLoad(partition)
+
+    Resources:OnPartitionLoad(partition)
+    Patches:Components(partition)
+    Patches:Flashlights(partition)
+    Patches:Emitters(partition)
 
 end
 
@@ -116,7 +141,7 @@ end
 
 function Main:OnLevelDestroy()
 
-    if dayNightEnabled == true and Settings.useTicketBasedCycle ~= true then
+    if Settings.dayNightEnabled == true and Settings.useTicketBasedCycle ~= true then
 
         clientTime.serverSyncEvent:Unsubscribe()
 
@@ -127,28 +152,12 @@ function Main:OnLevelDestroy()
 end
 
 
-function Main:OnPartitionLoad(partition)
-
-    Patches:Emitters(partition)
-    Patches:Components(partition)
-
-end
-
-
-function Main:OnResourceLoad()
-
-    Patches:AllowMoreSpotlights()
-
-end
-
-
 function Main:OnPlayerRespawn(player)
 
     local localPlayer = PlayerManager:GetLocalPlayer()
 
     if player == localPlayer and useNightVisionGadget == true then
 
-        NVG:__Init()
         UI:PlayerRespawn(player, localPlayer)
 
 	end
@@ -234,12 +243,14 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
                 -- applying multiplier
                 if self.presetMultipliers[instanceType] ~= nil and self.presetMultipliers[instanceType][key] ~= nil and presetType == 'main' then
                     local multiplier = self.presetMultipliers[instanceType][key]
+                    Tool:DebugPrint("[OLD] " .. key .. ' ' .. tostring(value), "VE")
                     value = value * _G[multiplier]
-                    Tool:DebugPrint("Applied multipliers!", "common")
+                    Tool:DebugPrint("[NEW] " .. key .. ' ' .. tostring(value), "VE")
                 end
 
                 -- patching static property
                 newInstance[key] = value
+                Tool:DebugPrint("Changed: " .. key , "VE")
 
             end
 
@@ -326,12 +337,16 @@ function Main:ResetVisualEnvironment(type)
             self.currentMainVE:Destroy()
             self.currentMainVE = nil
 
+            Tool:DebugPrint('Removed Current Preset', 'VE')
+
         end
 
         if self.currentSpecialVE ~= nil then
 
             self.currentSpecialVE:Destroy()
             self.currentSpecialVE = nil
+
+            Tool:DebugPrint('Removed Current Special Preset', 'VE')
 
         end
 
@@ -340,9 +355,11 @@ function Main:ResetVisualEnvironment(type)
             self.currentWeatherVE:Destroy()
             self.currentWeatherVE = nil
 
+            Tool:DebugPrint('Removed Current Weather Preset', 'VE')
+
         end
 
-        Tool:DebugPrint('Removed All Visual Environments', 'VE')
+
 
     end
 
@@ -424,18 +441,9 @@ NetEvents:Subscribe(NetMessage.WEATHER_START, function(weatherType)
 end)
 
 
-return Main:__Init()
 
-
-
-
-
-
-
-
-
-
-
+-- Initialize
+Main:__Init()
 
 
 ---- WIP VEHICLE LIGHT SWITCH

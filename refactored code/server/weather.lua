@@ -25,7 +25,7 @@ end
 function Weather:RegisterEvents()
 
     self.playerAuthEvent = Events:Subscribe('Player:Authenticated', self, self.OnPlayerAuth)
-    self.serverDeltaTime = Events:Subscribe('ServerDeltaTime', self, self.deltaTime)
+    self.serverDeltaTime = Events:Subscribe('Engine:Update', self, self.deltaTime)
     self.playerChatEvent = Events:Subscribe('Player:Chat', self, self.OnPlayerChat)
 
 end 

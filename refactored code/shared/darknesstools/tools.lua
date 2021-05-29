@@ -14,7 +14,7 @@ function Tool:DebugPrint(text, category)
 
 		if Settings.DebugPrints[category] == true then
 
-        	print(tostring(text), 'Category: '.. category)
+        	print('[' .. category .. ']' .. tostring(text))
 
 		else 
 

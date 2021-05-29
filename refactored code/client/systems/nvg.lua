@@ -2,7 +2,7 @@ local NVG = class("NVG")
 local Animation = require 'systems/animations'
 local Tool = require '__shared/darknesstools/tools'
 
-function NVG:__init()
+function NVG:__Init()
 
     NVG:RegisterVars()
 

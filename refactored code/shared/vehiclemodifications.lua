@@ -36,11 +36,11 @@ function Vehicle:OnEntityRegister()
 
                         if component.type == 1 and component.enabled then
 
-                           AddPointLight(component, chassisData, vehicle)
+							Vehicle:AddPointLight(component, chassisData, vehicle)
 
                         elseif component.type == 2 and component.enabled then
 
-                           AddSpotLight(component, chassisData, vehicle)
+							Vehicle:AddPointLight(component, chassisData, vehicle)
 
                        end
 
