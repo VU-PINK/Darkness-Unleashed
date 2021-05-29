@@ -361,7 +361,7 @@ function Patch:Flashlight(instance, type)
 
     if type == 3 then 
         spotLight.radius = 70
-        spotLight.intensity = 100 --brightness
+        spotLight.intensity = 300 --brightness
         spotLight.coneOuterAngle = 38
         spotLight.orthoWidth = 40
         spotLight.orthoHeight = 40
@@ -722,11 +722,11 @@ function Patch:HDLights(instance)
     BetterLight:MakeWritable()
     --BetterLight.visible = true
     BetterLight.specularEnable = true
-    BetterLight.radius = BetterLight.radius * 1.25
-    BetterLight.intensity = BetterLight.intensity * 0.6
+    BetterLight.radius = BetterLight.radius * 1.5
+    BetterLight.intensity = BetterLight.intensity * 0.65
     BetterLight.enlightenColorMode = 0
     BetterLight.enlightenEnable = true
-    BetterLight.attenuationOffset = BetterLight.attenuationOffset * 25
+    BetterLight.attenuationOffset = BetterLight.attenuationOffset * 17.5
 
     if instance.typeInfo.name == 'SpotLightEntityData' then
 
