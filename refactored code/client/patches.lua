@@ -80,7 +80,7 @@ function Patch:EnforceBrightness()
         self.PostProcessing.userBrightnessMin = 1
         self.PostProcessing.userBrightnessMax = 1
         self.PostProcessing.brightness = Vec3(1, 1, 1)
-        self.PostProcessing.forceExposure = 0.70
+        self.PostProcessing.forceExposure = 0.8
         Tool:DebugPrint('Changed PostProcessing', 'common')
 
     end
@@ -348,7 +348,7 @@ function Patch:Flashlight(instance, type)
 	spotLight:MakeWritable()
 
     if type == 1 then 
-        spotLight.radius = 120
+        spotLight.radius = 100
         spotLight.intensity = 100 --brightness
         spotLight.coneOuterAngle = 50
         spotLight.orthoWidth = 40
@@ -361,11 +361,11 @@ function Patch:Flashlight(instance, type)
 
     if type == 3 then 
         spotLight.radius = 70
-        spotLight.intensity = 300 --brightness
-        spotLight.coneOuterAngle = 38
-        spotLight.orthoWidth = 40
-        spotLight.orthoHeight = 40
-        spotLight.frustumFov = 40 --size
+        spotLight.intensity = 100 --brightness
+        spotLight.coneOuterAngle = 50
+        spotLight.orthoWidth = 35
+        spotLight.orthoHeight = 35
+        spotLight.frustumFov = 35 --size
         spotLight.castShadowsEnable = true
         spotLight.castShadowsMinLevel = 0
         spotLight.shape = 1
