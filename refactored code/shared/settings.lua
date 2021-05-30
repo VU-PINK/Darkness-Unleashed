@@ -62,8 +62,8 @@ local useNightVisionGadget = false
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
 -- Vehicle Lights
-local useVehicleLights_Airborne = true
-local useVehicleLights_Ground = true
+local useVehicleLights_Airborne = false
+local useVehicleLights_Ground = false
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
