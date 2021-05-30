@@ -718,23 +718,19 @@ end
 
 function Patch:HDLights(instance)
 
-    if instance.guid ~= nil then
+    local BetterLight = LocalLightEntityData(instance)
+    BetterLight:MakeWritable()
+    --BetterLight.visible = true
+    BetterLight.specularEnable = true
+    BetterLight.radius = BetterLight.radius * 1.5
+    BetterLight.intensity = BetterLight.intensity * 0.65
+    BetterLight.enlightenColorMode = 0
+    BetterLight.enlightenEnable = true
+    BetterLight.attenuationOffset = BetterLight.attenuationOffset * 17.5
 
-        local BetterLight = LocalLightEntityData(instance)
-        BetterLight:MakeWritable()
-        --BetterLight.visible = true
-        BetterLight.specularEnable = true
-        BetterLight.radius = BetterLight.radius * 1.5
-        BetterLight.intensity = BetterLight.intensity * 0.65
-        BetterLight.enlightenColorMode = 0
-        BetterLight.enlightenEnable = true
-        BetterLight.attenuationOffset = BetterLight.attenuationOffset * 17.5
+    if instance.typeInfo.name == 'SpotLightEntityData' then
 
-        if instance.typeInfo.name == 'SpotLightEntityData' then
-
-            Patch:Spotlights(instance)
-
-        end
+        Patch:Spotlights(instance)
 
     end
 
