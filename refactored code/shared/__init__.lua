@@ -7,7 +7,7 @@ function Shared:__Init()
 
     Shared:RegisterVars()
     Shared:RegisterEvents()
-    Shared:RegisterHooks()
+    --Shared:RegisterHooks()
     Shared:AddVehicleLights()
 
 end 
@@ -40,7 +40,7 @@ function Shared:AddVehicleLights()
 
     if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then
 
-        require '__shared/classes/vehiclemodifications'
+        require '__shared/vehiclemodifications'
 
     else
 
@@ -132,8 +132,7 @@ function Shared:OnPlayerInput(player, deltaTime)
 end 
 
 
-
-
+Shared:__Init()
 
 
 

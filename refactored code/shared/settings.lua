@@ -62,8 +62,8 @@ local useNightVisionGadget = false
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
 -- Vehicle Lights
-local useVehicleLights_Airborne = false
-local useVehicleLights_Ground = false
+local useVehicleLights_Airborne = true
+local useVehicleLights_Ground = true
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--
 
@@ -126,23 +126,23 @@ MP_Subway = 1.2, -- Operation Metro
 XP1_001 = 1.15, -- Strike at Karkand
 XP1_002 = 1.15, -- Gulf of Oman
 XP1_003 = 1.2, -- Sharqi Peninsula
-XP1_004 = 1.0, -- Wake Island
+XP1_004 = 1.65, -- Wake Island
 XP2_Palace = 1.1, -- Donya Fortress
 XP2_Office = 1.0, -- Operation 925
 XP2_Factory = 1.0, -- Scrapmetal
 XP2_Skybar = 1.5, -- Ziba Tower
 XP3_Alborz = 1.5, -- Alborz Mountains
 XP3_Shield = 3.0, -- Armored Shield
-XP3_Desert = 2.0, -- Bandar Desert
-XP3_Valley = 2.25, -- Death Valley
+XP3_Desert = 1.75, -- Bandar Desert
+XP3_Valley = 2.15, -- Death Valley
 XP4_Parl = 1.2, -- Azadi Palace
 XP4_Quake = 0.9, -- Epicenter
 XP4_FD = 0.95, -- Markaz Monolith
 XP4_Rubble = 1.0, -- Talah Market
 XP5_001 = 2.5, -- Operation Riverside
 XP5_002 = 1.0, -- Nebandan Flats
-XP5_003 = 1.75, -- Kiasar Railroad
-XP5_004 = 0.4 -- Sabalan Pipeline
+XP5_003 = 1.9, -- Kiasar Railroad
+XP5_004 = 0.65 -- Sabalan Pipeline
 }
 
 local mapFogMultipliers = {
@@ -158,7 +158,7 @@ MP_Subway = 0.2, -- Operation Metro
 XP1_001 = 0.7, -- Strike at Karkand
 XP1_002 = 0.7, -- Gulf of Oman
 XP1_003 = 1.0, -- Sharqi Peninsula
-XP1_004 = 1.0, -- Wake Island
+XP1_004 = 0.2, -- Wake Island
 XP2_Palace = 1.0, -- Donya Fortress
 XP2_Office = 1.0, -- Operation 925
 XP2_Factory = 1.0, -- Scrapmetal

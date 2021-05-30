@@ -3,7 +3,7 @@ local Night = {
         enable = true,
         sunColor = Vec3(0, 0 ,0),
         skyColor = Vec3(0.025, 0.025, 0.025),
-        groundColor = Vec3(0.005, 0.005, 0.005),
+        groundColor = Vec3(0.01, 0.01, 0.01),
         skyEnvmapShadowScale = 0.25,
         cloudShadowEnable = true,
         cloudShadowSize = 2000.0,
@@ -22,7 +22,7 @@ local Night = {
     },
     SkyComponentData = {
         enable = true,
-        brightnessScale = 0.013,
+        brightnessScale = 0.015,
         sunSize = 0.1,
         sunScale = 0,
         realm = 0,
@@ -70,9 +70,9 @@ local Night = {
         saturation = Vec3(0.97, 1.03, 1.23) * 0.7
     },
     TonemapComponentData = {
-        minExposure = 0.5,
-        maxExposure = 2,
-        exposureAdjustTime = 0.25,
+        minExposure = 0.8,
+        maxExposure = 3.5,
+        exposureAdjustTime = 0.5,
         bloomScale = Vec3(0.30, 0.30, 0.30),
         tonemapMethod = 1
     },

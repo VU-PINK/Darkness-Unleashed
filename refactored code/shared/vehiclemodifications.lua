@@ -2,8 +2,10 @@ local Vehicle = class('Vehicle')
 local Settings = require '__shared/settings'
 local RM = require '__shared/darknesstools/resourcemanager'
 local Tool = require '__shared/darknesstools/tools'
-local VehicleSettings = require '__shared/vehicles'
+local VehicleSettings = require '__shared/datatables/vehicles'
 local vehicleEntityData = nil 
+local chassisData = nil
+local vehicleData = nil
 
 
 function Vehicle:__Init()
@@ -27,7 +29,7 @@ function Vehicle:OnEntityRegister()
         for vehicleIndex, vehicle in pairs(vehicleType) do
 
            Tool:DebugPrint(vehicle.name .." | ".. vehicle.partitionGUID .." |  ".. vehicle.chassisGUID, 'adding')
-           chassisData = RM:Find(vehicle.partitionGUID, vehicle.chassisGUID)				
+           chassisData = RM:Find(vehicle.partitionGUID, vehicle.chassisGUID)
 
                if chassisData ~= nil then
                    chassisData = ChassisComponentData(chassisData)
@@ -70,7 +72,7 @@ function Vehicle:AddPointLight(pointLightSettingsArray, chassisData, vehicle)
  	--newPointLight.width = pointLightSettingsArray.width
  	newPointLight.color = pointLightSettingsArray.color
  	newPointLight.intensity = pointLightSettingsArray.intensity
- 	newPointLight.visible = pointLightSettingsArray.visible
+ 	--newPointLight.visible = pointLightSettingsArray.visible
 
  	local newPointlightComponentData = LightComponentData()
  	newPointlightComponentData.light = newPointLight
@@ -198,7 +200,7 @@ function Vehicle:AddSpotLight(spotLightSettingsArray, chassisData, vehicle)
 
 		Vehicle:AddMirrorSpotlight(spotLightSettingsArray.name, chassisData, spotLightSettingsArray, vehicle)
 
-		end 
+		end
 
  	end
 
@@ -286,4 +288,4 @@ function Vehicle:AddMirrorSpotlight(name, data, settings, vehicle)
 end
 
 
-return Vehicle
+Vehicle:__Init()

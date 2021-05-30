@@ -20,6 +20,7 @@ function Resources:RegisterVars()
 
 	-- General
 	Stars = nil
+	Gradient = nil
 
 end
 
@@ -47,16 +48,14 @@ function Resources:OnPartitionLoad(partition)
     
     end
 
-	--[[if partition.guid == Guid('60E5C442-B4DE-11DE-9313-8968807F1BCA') then
-
-		print('')
+	--[[if partition.guid == Guid('97A2430C-BFB4-11DE-92EA-B810A97F145C') then
 
         for _, instance in pairs(partition.instances) do
 
-            if instance.instanceGuid == Guid('7DA8CB23-5BCF-D7D3-6157-FADA9325DE97') then
+            if instance.instanceGuid == Guid('BACD9CBB-D213-5E10-0CAA-ECB187BF7ED4') then
 
                 print(instance)
-                Clouds = instance
+                Gradient = instance
 
             end
 

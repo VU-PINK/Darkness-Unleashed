@@ -80,7 +80,7 @@ function Patch:EnforceBrightness()
         self.PostProcessing.userBrightnessMin = 1
         self.PostProcessing.userBrightnessMax = 1
         self.PostProcessing.brightness = Vec3(1, 1, 1)
-        self.PostProcessing.forceExposure = 0.8
+        self.PostProcessing.forceExposure = 0.85
         Tool:DebugPrint('Changed PostProcessing', 'common')
 
     end
@@ -182,7 +182,7 @@ function Patch:AllowMoreSpotlights()
 		self.UserSettings.lightOverdrawMaxLayerCount = self.WorldRender.lightOverdrawMaxLayerCount
 
 		Tool:DebugPrint('Changing Max Spotlight Count', 'altering')
-		self.WorldRender.maxSpotLightShadowCount = 6
+		self.WorldRender.maxSpotLightShadowCount = 8
 		Tool:DebugPrint('[NEW] maxSpotLightShadowCount: ' ..self.WorldRender.maxSpotLightShadowCount, 'altering')
 
 		Tool:DebugPrint('[OLD] maxSpotLightCount ' .. self.WorldRender.maxSpotLightCount, 'altering')
@@ -348,7 +348,7 @@ function Patch:Flashlight(instance, type)
 	spotLight:MakeWritable()
 
     if type == 1 then 
-        spotLight.radius = 100
+        spotLight.radius = 75
         spotLight.intensity = 100 --brightness
         spotLight.coneOuterAngle = 50
         spotLight.orthoWidth = 40
@@ -360,12 +360,12 @@ function Patch:Flashlight(instance, type)
     end 
 
     if type == 3 then 
-        spotLight.radius = 70
-        spotLight.intensity = 100 --brightness
+        spotLight.radius = 75
+        spotLight.intensity = 125 --brightness
         spotLight.coneOuterAngle = 50
-        spotLight.orthoWidth = 35
-        spotLight.orthoHeight = 35
-        spotLight.frustumFov = 35 --size
+        spotLight.orthoWidth = 40
+        spotLight.orthoHeight = 40
+        spotLight.frustumFov = 40 --size
         spotLight.castShadowsEnable = true
         spotLight.castShadowsMinLevel = 0
         spotLight.shape = 1
@@ -718,19 +718,23 @@ end
 
 function Patch:HDLights(instance)
 
-    local BetterLight = LocalLightEntityData(instance)
-    BetterLight:MakeWritable()
-    --BetterLight.visible = true
-    BetterLight.specularEnable = true
-    BetterLight.radius = BetterLight.radius * 1.5
-    BetterLight.intensity = BetterLight.intensity * 0.65
-    BetterLight.enlightenColorMode = 0
-    BetterLight.enlightenEnable = true
-    BetterLight.attenuationOffset = BetterLight.attenuationOffset * 17.5
+    if instance.guid ~= nil then
 
-    if instance.typeInfo.name == 'SpotLightEntityData' then
+        local BetterLight = LocalLightEntityData(instance)
+        BetterLight:MakeWritable()
+        --BetterLight.visible = true
+        BetterLight.specularEnable = true
+        BetterLight.radius = BetterLight.radius * 1.5
+        BetterLight.intensity = BetterLight.intensity * 0.65
+        BetterLight.enlightenColorMode = 0
+        BetterLight.enlightenEnable = true
+        BetterLight.attenuationOffset = BetterLight.attenuationOffset * 17.5
 
-        Patch:Spotlights(instance)
+        if instance.typeInfo.name == 'SpotLightEntityData' then
+
+            Patch:Spotlights(instance)
+
+        end
 
     end
 
@@ -757,7 +761,7 @@ function Patch:LensFlareEntityData(instance)
 
     for _, element in pairs(flares.elements) do
 
-        element.size = element.size * 0.25
+        element.size = element.size * 0.3
 
     end
 
