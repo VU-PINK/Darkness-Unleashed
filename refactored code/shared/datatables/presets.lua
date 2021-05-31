@@ -67,7 +67,7 @@ local Night = {
         enable = true,
         brightness = Vec3(1, 1, 1),
         contrast = Vec3(1.0, 1.0, 1.02),
-        saturation = Vec3(0.97, 1.03, 1.23) * 0.7
+        saturation = Vec3(0.97, 1.03, 1.23) * 0.75
     },
     TonemapComponentData = {
         minExposure = 0.8,

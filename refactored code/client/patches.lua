@@ -349,7 +349,7 @@ function Patch:Flashlight(instance, type)
 
     if type == 1 then 
         spotLight.radius = 75
-        spotLight.intensity = 100 --brightness
+        spotLight.intensity = 125 --brightness
         spotLight.coneOuterAngle = 50
         spotLight.orthoWidth = 40
         spotLight.orthoHeight = 40
