@@ -1,18 +1,38 @@
---- Skyboxes
---- Globals to call
--- Death Valley Skybox
-MoonNightSkybox = nil
-MoonNightAlpha = nil
-MoonNightGradient = nil
-MoonNightEnvmap = nil
-MoonNightStars = nil
--- Bandar Desert Skybox
-EveningSkybox = nil
-EveningAlpha = nil
-EveningGradient = nil
-EveningEnvmap = nil
+local Resources = class('Resources')
 
-Events:Subscribe('Partition:Loaded', function(partition)
+
+function Resources:__Init()
+
+    Resources:RegisterVars()
+    --Resources:RegisterHooks()
+
+end 
+
+
+function Resources:RegisterVars()
+
+    -- Death Valley Skybox
+    deathValleySkybox = nil
+    deathValleyAlpha = nil
+    deathValleyGradient = nil
+    deathValleyEnvmap = nil
+    deathValleyStars = nil
+
+	-- General
+	Stars = nil
+	Gradient = nil
+	NvColorGrade = nil
+
+end
+
+
+function Resources:RegisterHooks()
+
+    self.bundleLoadHook = Hooks:Install('ResourceManager:LoadBundles', 100, self, self.LoadBundles)
+
+end
+
+function Resources:OnPartitionLoad(partition)
 
     if partition.guid == Guid('6E5D35D9-D9D5-11DE-ADB5-9D4DBC23632A') then
 
@@ -29,16 +49,14 @@ Events:Subscribe('Partition:Loaded', function(partition)
     
     end
 
-	--[[if partition.guid == Guid('60E5C442-B4DE-11DE-9313-8968807F1BCA') then
-
-		print('Dicke Nudel')
+	--[[if partition.guid == Guid('97A2430C-BFB4-11DE-92EA-B810A97F145C') then
 
         for _, instance in pairs(partition.instances) do
 
-            if instance.instanceGuid == Guid('7DA8CB23-5BCF-D7D3-6157-FADA9325DE97') then
+            if instance.instanceGuid == Guid('BACD9CBB-D213-5E10-0CAA-ECB187BF7ED4') then
 
                 print(instance)
-                Clouds = instance
+                Gradient = instance
 
             end
 
@@ -46,22 +64,21 @@ Events:Subscribe('Partition:Loaded', function(partition)
     
     end]]
 
-end)
+end
 
 -- Load Resources
-Events:Subscribe('Level:LoadResources', function()
+function Resources:OnResourceLoad()
 
 	-- Mount Superbundles
 	--ResourceManager:MountSuperBundle('levels/xp3_valley/xp3_valley') -- Death Valley Bright Night Skybox & Star Clouds
 
-	-- Night Vision
-	FLIRData = 'FLIRData'
-
 	ResourceManager:RegisterInstanceLoadHandler(Guid("0FF47F8B-423F-4EC3-A8D5-B56E55A01225"), Guid('E79F27A1-7B97-4A63-8ED8-372FE5012A31'), function(loadedInstance)
-		nv_colorgrade = loadedInstance
+
+		NvColorGrade = loadedInstance
+
 	end)
 
-end)
+end
 
 --[[ Inject Bundles
 Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compartment)
@@ -112,3 +129,6 @@ Hooks:Install('ResourceManager:LoadBundles', 100, function(hook, bundles, compar
 end)
 
 --]]
+
+
+return Resources

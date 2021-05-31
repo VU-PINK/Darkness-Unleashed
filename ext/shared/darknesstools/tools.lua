@@ -1,5 +1,4 @@
 local Settings = require '__shared/settings'
-
 local Tool = class('Tool')
 
 
@@ -15,19 +14,19 @@ function Tool:DebugPrint(text, category)
 
 		if Settings.DebugPrints[category] == true then
 
-        	print(tostring(text), 'Category: '.. category)
+        	print('[' .. category .. ']' .. tostring(text))
 
-		else 
+		else
 
-			--print('Not a valid category')
-		
+			print('Not a valid category')
+
 		end
 
 	elseif Settings.DebugPrints['enable'] == false then
-        
+
 		return
 
-	else 
+	else
 
 		print('Debug Print Configuration Error')
 
@@ -92,12 +91,11 @@ function Tool:GetVisualEnvironmentState(...)
 		
 		for i,priority in pairs(args) do
 			if state.priority == priority then
-				Tool:DebugPrint('Found VisualEnvironmentState with priority: ' .. priority, 'VE')
+				Tool:DebugPrint('Found VisualEnvironmentState with priority: ' .. tostring(priority), 'VE')
 				return state
 			end
 		end
 	end
-	Tool:DebugPrint('[ERROR] No visual environment state could be found with priority: ' .. priority, 'error')
 	return nil
 end
 
@@ -112,7 +110,7 @@ function Tool:GetVisualEnvironmentStateArray(...)
 		
 		for i,priority in pairs(args) do
 			if state.priority == priority then
-				Tool:DebugPrint('Found VisualEnvironmentState with priority: ' .. priority, 'VE')
+				Tool:DebugPrint('Found VisualEnvironmentState with priority: ' .. tostring(priority), 'VE')
 				table.insert(foundStates, state)
 			end
 		end
@@ -120,16 +118,6 @@ function Tool:GetVisualEnvironmentStateArray(...)
 	--Tool:DebugPrint('[ERROR] No visual environment state could be found with priority: ' .. priority, 'error')
 	return foundStates
 end
-
-
-
-
-
-
-
-
-
-
 
 
 return Tool

@@ -12,13 +12,14 @@ function Animation:RegisterVars()
 	self.nvgState = nil
 	self.lerpFactor = 0
     self.currentState = nil
+    self.fadeType = 1
 
     self.animationSmoothness = 1
     self.animationSmoothnessMultiplierON = 0.5
     self.animationSmoothnessMultiplierOFF = 0.25
     self.animationFinish = false
     self.animationRunning = false
-    self.animationFirstLoop = false
+    self.animationFirstLoop = true
     self.weatherFirstLoop = false
 
     self.localPlayer = nil
@@ -29,13 +30,17 @@ function Animation:RegisterVars()
 end
 
 
-function Animation:Lerper(deltaTime)
+function Animation:LerpLoop(deltaTime)
 
     self.deltaTime = deltaTime
 
-    if self.animationFinish ~= true and self.animationRunning == true then
+    if self.animationFinish ~= true and self.animationRunning == true and self.fadeType == 1 then
 
         Animation:FadeIn()
+
+    elseif self.animationFinish ~= true and self.animationRunning == true and self.fadeType == 2 then
+
+        Animation:FadeOut()
 
     end
 
@@ -51,15 +56,22 @@ end
 
 function Animation:FadeIn(type, weatherPreset)
 
-    self.type = type
+    if self.type == nil then
+        self.type = type
+    end
+
+    self.fadeType = 1
+
+    print("Type: " .. self.type)
+    print("Fade Type: " .. self.fadeType)
 
     if self.type == 'nightvision' then
 
         self.animationRunning = true
+        self.animationFinish = false
 
-        if self.animationFirstLoop ~= false then
+        if self.animationFirstLoop == true then
 
-            self.animationFirstLoop = false
             Tool:DebugPrint('Animation: ' .. self.type .. ' called.', 'animation')
 
             self.localPlayer = PlayerManager:GetLocalPlayer()
@@ -71,7 +83,9 @@ function Animation:FadeIn(type, weatherPreset)
 
                 if self.nvgState == nil then
 
-                    Tool:DebugPrint('[ERROR] VisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                    Tool:DebugPrint('[ERROR] NightVisionVehicle VisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                    self.animationRunning = false
+                    self.animationFinish = true
                     return
 
                 end
@@ -83,16 +97,22 @@ function Animation:FadeIn(type, weatherPreset)
 
                 if self.nvgState == nil then
 
-                    Tool:DebugPrint('[ERROR] wisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                    Tool:DebugPrint('[ERROR] NightVision VisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                    self.animationRunning = false
+                    self.animationFinish = true
                     return
 
                 end
 
             end
 
+            self.animationFirstLoop = false
+
         elseif self.animationFirstLoop == false then
 
             if self.lerpFactor <= 1.0 then
+
+                print(self.lerpFactor)
 
                 self.lerpFactor = self.lerpFactor + (self.animationSmoothnessMultiplierON * self.animationSmoothness * Animation:GetFramePercentage(self.deltaTime, self.animationSmoothness)) --Total time before it's done
                 --print(self.nvgState.priority)
@@ -104,10 +124,11 @@ function Animation:FadeIn(type, weatherPreset)
 
             elseif self.lerpFactor >= 1.0 then
 
+                self.lerpFactor = 0
+                self.type = nil
                 self.animationFinish = true
                 self.animationRunning = false
                 self.animationFirstLoop = true
-                self.lerpFactor = 0
                 Tool:DebugPrint('Lerping ended', 'nvg')
                 return
 
@@ -118,6 +139,7 @@ function Animation:FadeIn(type, weatherPreset)
     elseif self.type == 'weather' then
 
         self.animationRunning = true
+        self.animationFinish = false
 
         if self.weatherFirstLoop ~= false then
 
@@ -130,7 +152,9 @@ function Animation:FadeIn(type, weatherPreset)
 
             if self.weatherState == nil then
 
-                Tool:DebugPrint('[ERROR] visualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                Tool:DebugPrint('[ERROR] Weather VisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                self.animationRunning = false
+                self.animationFinish = true
                 return
 
             end
@@ -164,20 +188,24 @@ end
 
 function Animation:FadeOut(type, weatherPreset)
 
-    if type == nil or preset == nil then
+    if type == nil then
+        return
+    elseif type == 'weather' and weatherPreset == nil then
         return
     end
 
     self.type = type
+    self.fadeType = 2
 
     if self.type == 'nightvision' then
 
         self.animationRunning = true
+        self.animationFinish = false
 
-        if self.animationFirstLoop ~= false then
+        if self.animationFirstLoop == true then
 
-            self.animationFirstLoop = true
-            Tool:DebugPrint('Animation: ' .. self.type .. ' called.', 'animation')
+            self.animationFirstLoop = false
+            Tool:DebugPrint('Animation: ' .. self.type .. ' Fade Out called.', 'animation')
 
             self.localPlayer = PlayerManager:GetLocalPlayer()
 
@@ -188,7 +216,23 @@ function Animation:FadeOut(type, weatherPreset)
 
                 if self.nvgState == nil then
 
-                    Tool:DebugPrint('[ERROR] VisualEnvironmentState could not be found for nvgDisableLoop', 'error')
+                    Tool:DebugPrint('[ERROR] NightVisionVehicle VisualEnvironmentState could not be found for nvgDisableLoop', 'error')
+                    self.animationRunning = false
+                    self.animationFinish = true
+                    return
+
+                end
+
+            else
+
+                Main:ResetVisualEnvironment('NightVision', 'special')
+                self.nvgState = Tool:GetVisualEnvironmentState(999998)
+
+                if self.nvgState == nil then
+
+                    Tool:DebugPrint('[ERROR] NightVision VisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                    self.animationRunning = false
+                    self.animationFinish = true
                     return
 
                 end
@@ -196,6 +240,8 @@ function Animation:FadeOut(type, weatherPreset)
             end
 
         elseif self.animationFirstLoop == false then
+
+            print('HOLA HOLA HOLA')
 
             if self.lerpFactor <= 1.0 then
 
@@ -209,6 +255,8 @@ function Animation:FadeOut(type, weatherPreset)
                 self.firstloopNVG = true
                 self.lerpFactor = 0
                 Tool:DebugPrint('Lerping ended', 'nvg')
+                self.animationRunning = false
+                self.animationFinish = true
                 return
 
             end
@@ -218,6 +266,7 @@ function Animation:FadeOut(type, weatherPreset)
     elseif self.type == 'weather' then
 
         self.animationRunning = true
+        self.animationFinish = false
 
         if self.weatherFirstLoop ~= false then
 
@@ -230,7 +279,8 @@ function Animation:FadeOut(type, weatherPreset)
 
             if self.weatherState == nil then
 
-                Tool:DebugPrint('[ERROR] visualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                Tool:DebugPrint('[ERROR] Weather VisualEnvironmentState could not be found for nvgEnableLoop', 'error')
+                self.animationRunning = false
                 return
 
             end
@@ -249,6 +299,8 @@ function Animation:FadeOut(type, weatherPreset)
                 self.firstloopWeather = true
                 self.lerpFactor = 0
                 Tool:DebugPrint('Lerping ended', 'weather')
+                self.animationRunning = false
+                self.animationFinish = true
                 return
 
             end

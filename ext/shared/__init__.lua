@@ -1,48 +1,57 @@
+local Shared = class('Shared')
 local Settings = require '__shared/settings'
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tools'
 
-function VehicleLights()
+
+function Shared:__Init()
+
+    Shared:RegisterVars()
+    Shared:RegisterEvents()
+    --Shared:RegisterHooks()
+    Shared:AddVehicleLights()
+
+end 
+
+
+function Shared:RegisterVars()
+
+    self.lightEntities = {}
+    self.bufferedLights = {}
+
+end 
+
+
+function Shared:RegisterEvents()
+
+    self.vehicleDestroyEvent = Events:Subscribe('Vehicle:Destroyed', self, self.OnVehicleDestroy)
+    self.playerInputEvent = Events:Subscribe('UpdateInput', self, self.OnPlayerInput)
+
+end 
+
+
+function Shared:RegisterHooks()
+
+    self.entityFactoryCreateHook = Hooks:Install('EntityFactory:Create', self, self.OnEntityCreation)
+
+end 
+
+
+function Shared:AddVehicleLights()
 
     if Settings.useVehicleLights_Airborne == true or Settings.useVehicleLights_Ground == true then
 
-        local vehiclemodifications = require '__shared/classes/vehiclemodifications'
+        require '__shared/vehiclemodifications'
 
     else
 
         Tool:DebugPrint('Not using Vehicle Lights', 'altering')
 
     end
-end
 
-VehicleLights()
-
+end 
 
 
---[[ResourceManager:RegisterInstanceLoadHandler(Guid('6F91A4CF-344D-11E0-930F-E8BE623140CB'),Guid('A11805B7-0656-4D9A-9226-D746EA0C857C'), function(engineInstance)
-    local engine = EngineConfigData(engineInstance)
-    engine:MakeWritable()
-    engine.rpmMax = engine.rpmMax * 2.5
-    engine.enginePowerMultiplier = engine.enginePowerMultiplier * 2.5
-end)]]
-
-
---Vehicles
-Events:Subscribe('UpdateInput', function(p_Player, p_DeltaTime)
-
-    Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
-
-end)
-
-local lightEntities = {}
-local bufferedLights = {}
-
-local controllableEntity
-local loopingLights = false
-local vehicleIsDead = false
-local index = nil
-
-local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, entityData, transform)
-
+function Shared:OnEntityCreation(hookCtx, entityData, transform)
 
     if entityData:Is('SpotLightEntityData') then
 
@@ -59,37 +68,37 @@ local entityList = Hooks:Install('EntityFactory:Create', 100, function(hookCtx, 
 
     end
 
+end 
 
-end)
 
-Events:Subscribe('Vehicle:Destroyed', function(vehicle, vehiclePoints, hotTeam)
+function Shared:OnVehicleDestroy(vehicle, vehiclePoints, hotTeam)
 
     if vehicle == controllableEntity then
 
-        print('Vehicle Destroyed: ' .. lightEntities)
-        print('---------------------------------------------------------------')
+        Tool:DebugPrint('Vehicle Destroyed: ' .. lightEntities, 'removing')
+        Tool:DebugPrint('---------------------------------------------------------------', 'removing')
 
     end
 
-end)
+end 
 
 
-function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
-    
+function Shared:OnPlayerInput(player, deltaTime)
+
     --Vehicle lights toggle
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_T) then
 
-        if p_Player.inVehicle == false then
+        if player.inVehicle == false then
             Tool:DebugPrint("Not in a vehicle", 'player')
             return
         end
         
-        if p_Player.controlledControllable == nil then
+        if player.controlledControllable == nil then
             Tool:DebugPrint("Not a driver", 'player')
             return
         end
 
-        controllableEntity = p_Player.controlledControllable
+        controllableEntity = player.controlledControllable
 
         if controllableEntity == nil then
             return
@@ -120,9 +129,22 @@ function Vehicles_OnPlayerUpdateInput(p_Player, p_DeltaTime)
 
     end
 
-end
+end 
 
-        --print('-------------------------------------------------------')
+
+Shared:__Init()
+
+
+
+
+
+
+
+
+
+
+
+       --print('-------------------------------------------------------')
 
         --print('Vehicle Controllable Entity: ')
 

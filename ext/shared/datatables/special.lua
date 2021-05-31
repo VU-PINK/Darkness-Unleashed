@@ -25,7 +25,7 @@ local NightVision = { -- Night Vision Goggles
         contrast = Vec3(1.39999997616, 1.39999997616, 1.39999997616),
         saturation = Vec3(0.800000011921, 0.800000011921, 0.800000011921),
         hue = 0.0,
-        colorGradingTexture = 'nv_colorgrade',
+        colorGradingTexture = 'NvColorGrade',
         colorGradingEnable = true
     },
     FilmGrainComponentData = {

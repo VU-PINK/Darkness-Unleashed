@@ -1,16 +1,21 @@
 local NVG = class("NVG")
+local Animation = require 'systems/animations'
+local Tool = require '__shared/darknesstools/tools'
 
-local Animation = require 'systems/animation'
-local Tool = require '__shared/classes/tools/tool'
+function NVG:__Init()
 
-nvgRunner = false
+    NVG:RegisterVars()
 
-elapsedTime = 0
-lastSecond = 0
+    -- Set value on the UI
+	UI:Batteries(self.batteryLifeMin, self.batteryLifeMax)
 
-local localPlayer = nil
+end
 
-function NVG:__init()
+
+function NVG:RegisterVars()
+
+    self.activated = false
+
     self.batteryLifeMax = 60
     self.batteryLifeMin = 10
 
@@ -19,96 +24,131 @@ function NVG:__init()
 
     self.batteryLifeCurrent = 60
 
-	-- Set value on the UI
-	uiBatteries( self.batteryLifeMin, self.batteryLifeMax );
 end
+
 
 function NVG:Activate()
-    if(self.batteryLifeCurrent >= self.batteryLifeMin) then
-        if nvgRunner ~= true then
-            Animation:__init()
+    Tool:DebugPrint('NVG Activate called!', 'nvg')
+
+    if self.batteryLifeCurrent >= self.batteryLifeMin then
+
+        if self.activated == false and Animation.animationRunning == false then
+
+            self.activated = true
+            Animation:FadeIn('nightvision')
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
-            done = false
-            nvgRunner = true
-            nvgEnable = true
-            nvgActivated = true 
             Tool:DebugPrint('NVG Activate ...', 'nvg')
-            uiGoggleIcon(true) -- Update UI battery icon
+            UI:GoggleIcon(true) -- Update UI battery icon
+
         else
-            Tool:DebugPrint('Animation Running', 'nvg')
+			if(self.activated == true) then
+				Tool:DebugPrint('NVG Already active | NVG:Activate()', 'nvg')
+			else
+				Tool:DebugPrint('Animation Running | NVG:Activate()', 'nvg')
+			end
+
             return
+
         end
+
+    else
+        Tool:DebugPrint('Not enough battery to activate | ' .. tostring(self.batteryLifeCurrent) .. '/' .. tostring(self.batteryLifeMax), 'nvg')
+        Tool:DebugPrint('Needs more than ' .. tostring(self.batteryLifeMin) .. ' to activate!')
     end
+
 end
+
 
 function NVG:Deactivate()
-	--if(self.batteryLifeCurrent < self.batteryLifeMin) then
-        if nvgRunner ~= true then
-            Animation:__init()
-            WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
-            done = false
-            nvgRunner = true
-            nvgDisable = true
-            Tool:DebugPrint('Deactivate', 'nvg')
-		    uiDisableGoggleIcon(true) -- Update UI battery icon
-        else
-            Tool:DebugPrint('Animation Running | NVG:Deactivate()', 'nvg')
-            return
-        end
-	--else
-		--uiGoggleIcon(false) -- Update UI battery icon
-	--end
+    Tool:DebugPrint('NVG Deactivate called!', 'nvg')
+
+    if self.activated == true and Animation.animationRunning == false then
+
+        self.activated = false
+        Animation:FadeOut('nightvision')
+        WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
+        Tool:DebugPrint('Deactivate', 'nvg')
+        UI:DisableGoggleIcon(true) -- Update UI battery icon
+
+    else
+
+		if(self.activated == false) then
+			Tool:DebugPrint('NVG not active | NVG:Deactivate()', 'nvg')
+		else
+			Tool:DebugPrint('Animation Running | NVG:Deactivate()', 'nvg')
+		end
+
+        return
+
+    end
+
 end
 
-function NVG:Depleting()
+
+function NVG:Depleting(elapsedTime)
+
     local localPlayer = PlayerManager:GetLocalPlayer()
 
     if localPlayer == nil then
         return
     end
 
-    if localPlayer.inVehicle == true then 
-        if (self.batteryLifeCurrent + 1) < self.batteryLifeMax then 
+    if localPlayer.inVehicle == true then
+
+        if self.batteryLifeCurrent + 1 < self.batteryLifeMax then
+
             self.batteryLifeCurrent = self.batteryLifeCurrent + 1
+
         end
+
     else
-	    self.batteryLifeCurrent = self.batteryLifeCurrent - 1
+
+		self.batteryLifeCurrent = self.batteryLifeCurrent - 1
+
     end
 
-	uiBattery(self.batteryLifeCurrent) -- Update UI battery
+	UI:Battery(self.batteryLifeCurrent) -- Update UI battery
 
     Tool:DebugPrint("Battery Life: " .. self.batteryLifeCurrent, 'altering')
 
-    if(self.batteryLifeCurrent <= 0) then
-        Tool:DebugPrint('Battery has depleted!', 'nvg')
-        if nvgRunner ~= true then
+    if self.batteryLifeCurrent <= 0 then
 
-            done = false
-            nvgRunner = true
-            nvgEnable = false
-            nvgDisable = true
-            uiDisableGoggleIcon(true) -- Update UI battery icon
+        Tool:DebugPrint('Battery has depleted!', 'nvg')
+
+        if self.activated == true and Animation.animationRunning == false then
+
+            UI:DisableGoggleIcon(true) -- Update UI battery icon
             self.batteryEmptyTime = elapsedTime
             Tool:DebugPrint('Battery Depletion Animation Started', 'nvg')
+
         end
+
     end
+
 end
 
-function NVG:Recharging()
-    if(self.batteryEmptyTime + self.batteryLifeCooldown > elapsedTime) then
-        return;
+
+function NVG:Recharging(elapsedTime)
+
+    if self.batteryEmptyTime + self.batteryLifeCooldown > elapsedTime then
+        return
 	end
 
 	-- Show Enabled/Disabled Goggles icon
-	if(self.batteryLifeCurrent >= self.batteryLifeMin) then
-		uiDisableGoggleIcon(false) -- Update UI battery icon
+	if self.batteryLifeCurrent >= self.batteryLifeMin then
+
+		UI:DisableGoggleIcon(false) -- Update UI battery icon
+
 	end
 
-    if(self.batteryLifeCurrent < self.batteryLifeMax) then
+    if self.batteryLifeCurrent < self.batteryLifeMax then
+
         self.batteryLifeCurrent = self.batteryLifeCurrent + 1
-		uiBattery(self.batteryLifeCurrent) -- Update UI battery
+		UI:Battery(self.batteryLifeCurrent) -- Update UI battery
         Tool:DebugPrint("Battery Charged To: " .. self.batteryLifeCurrent, 'altering')
+
     end
+
 end
 
 

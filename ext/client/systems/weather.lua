@@ -1,12 +1,26 @@
-local ClientTime = class('ClientTime')
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tools'
 local Settings = require '__shared/settings'
 local NetMessage = require '__shared/net'
+local Animation = require 'systems/weather'
 
 local ClientWeather = class('ClientWeather')
 
 
 function ClientWeather:__Init(weatherType)
+
+    ClientWeather:RegisterVars()
+
+end
+
+
+function ClientWeather:RegisterVars()
+
+    self.currentWeather = nil 
+    
+end 
+
+
+function ClientWeather:Call(weatherType)
 
     if self.currentWeather == weatherType then 
         return 
@@ -15,34 +29,34 @@ function ClientWeather:__Init(weatherType)
     self.currentWeather = weatherType
 
     if weatherType == 0 then
+
         ClientWeather:FadeOut()
+
     end
 
     if weatherType == 1 then
+
         ClientWeather:FadeIn('Sandstorm')
+
     end
 
-end
+end 
+
 
 function ClientWeather:FadeIn(weatherType)
 
     Tool:DebugPrint('Calling Fade In Animation', 'weather')
-    weatherRunner = true
-    weatherFadeIn = true
-    weatherFadeOut = false
-    Animation:Weather(weatherType)
+    Animation:FadeIn('weather', weatherType)
 
 end
+
 
 function ClientWeather:FadeOut()
 
     Tool:DebugPrint('Calling Fade Out Animation', 'weather')
-    weatherRunner = true
-    weatherFadeIn = false
-    weatherFadeOut = true
+    Animation:FadeOut('weather')
 
 end
-
 
 
 return ClientWeather

@@ -1,94 +1,68 @@
 local Time = class('Time')
-local Tool = require '__shared/classes/tools/tool'
+local Tool = require '__shared/darknesstools/tool'
 local Settings = require '__shared/settings'
 local NetMessage = require '__shared/net'
 
 
-Events:Subscribe('Level:Loaded', function(levelName, gameMode, round, roundsPerMap)
-
-    Time:__Init()
-
-    -- Broadcast to sync already joined players
-    Time:Broadcast()
-
-end)
-
-Events:Subscribe('Level:Destroy', function()
-
-    Events:Unsubscribe('ServerDeltaTime')
-
-end)
-
-
 function Time:__Init()
 
+    Time:RegisterVars()
+    Time:RegisterEvents()
 
-    self.serverDayLength = 0.0
-    self.engineUpdateTimer = 0.0
-    Time:Ticks()
-    Time:Requests()
+end 
+
+
+function Time:RegisterVars()
+
+    self.serverDayLength = 0.0 
+    self.engineUpdateTimer = 0.0 
 
     if Settings.resetTimeEachLevel == true then
 
-        days = 0
-        hours = Settings.startHour % 24
+        self.days = 0
+        self.hours = Settings.startHour % 24
 
         if Settings.startHourRandom == true then
-            hours = MathUtils:GetRandomInt(0, 23)
+            self.hours = MathUtils:GetRandomInt(0, 23)
         end
 
-        self.serverDayLength = hours / 24
-
-    end
-
-
-end
-
-
-function Time:Ticks()
-
-    if Settings.useTicketBasedCycle ~= true then
-
-        -- Record Ticks
-        Events:Subscribe('ServerDeltaTime', function(dt)
-
-            self.engineUpdateTimer = self.engineUpdateTimer + dt
-            self.serverDayLength = self.serverDayLength + dt
-
-            -- Print Debug info
-            if Settings.DebugPrints['enable'] == true then
-
-                if Settings.DebugPrints['time'] == true then
-
-                -- Update hours & days-- Update hours & days
-                self.days = nil
-                self.hours = nil
-                self.days, self.hours = Tool:getDaysHours(self.serverDayLength)
-                    
-                    if hours ~= self.hours or days ~= self.days then
-                        days = self.days
-                        hours = self.hours
-                        Tool:DebugPrint('Current Time | Day: ' ..tostring(days) .. 'Hour: '.. tostring(hours), 'time')
-                    end
-
-                end
-
-            end
-            
-            -- Check if it is time to send a client update (to ensure client sync)
-            if self.engineUpdateTimer < Settings.serverUpdatesFrequency then
-                return
-            end
-            self.engineUpdateTimer = 0.0
-            
-            -- Sync players
-            Time:Broadcast()
-            
-        end)
+        self.serverDayLength = self.hours / 24
 
     end
 
 end 
+
+
+function Time:RegisterEvents()
+
+    if Settings.useTicketBasedCycle ~= true then 
+
+        self.serverDeltaTime = Events:Subscribe('Engine:Update', self, self.deltaTime)
+        self.syncRequest = NetEvents:Subscribe(NetMessage.REQUEST_SYNC, self, self.PlayerRequest)
+
+    end 
+
+end 
+
+
+function Time:deltaTime()
+
+        -- Record Ticks
+            self.engineUpdateTimer = self.engineUpdateTimer + dt
+            self.serverDayLength = self.serverDayLength + dt
+
+            -- Check if it is time to send a client update (to ensure client sync)
+            if self.engineUpdateTimer < Settings.serverUpdatesFrequency then
+                return
+            end
+
+            self.engineUpdateTimer = 0.0
+
+            -- Sync players
+            Time:Broadcast()
+
+end
+
 
 function Time:Broadcast()
 
@@ -99,33 +73,11 @@ function Time:Broadcast()
 end
 
 
-function Time:Requests()
+function Time:PlayerRequest(player)
 
-    NetEvents:Subscribe(NetMessage.REQUEST_SYNC, function(player)
-
-        Tool:DebugPrint("[Broadcast] Date: " .. tostring(self.serverDayLength) .. " sec", 'time')
-        NetEvents:SendTo(NetMessage.S2C_SYNC_DAYTIME, player, self.serverDayLength)
-
-    end)
+    Tool:DebugPrint("[Broadcast] Date: " .. tostring(self.serverDayLength) .. " sec", 'time')
+    NetEvents:SendTo(NetMessage.S2C_SYNC_DAYTIME, player, self.serverDayLength)
 
 end
 
-
 return Time
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
