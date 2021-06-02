@@ -29,6 +29,14 @@ function Animation:RegisterVars()
 
 end
 
+function Animation:printAnimationState()
+    print("Lerp Factor: " .. tostring(self.lerpFactor))
+    print("Fade Type: " .. tostring(self.fadeType))
+    print("Animation Finished: " .. tostring(self.animationFinish))
+    print("Animation Running: " .. tostring(self.animationRunning))
+    print("Animation First Loop: " .. tostring(self.animationFirstloop))
+end
+
 
 function Animation:LerpLoop(deltaTime)
 
@@ -36,11 +44,11 @@ function Animation:LerpLoop(deltaTime)
 
     if self.animationFinish ~= true and self.animationRunning == true and self.fadeType == 1 then
 
-        Animation:FadeIn()
+        Animation:FadeIn('nightvision')
 
     elseif self.animationFinish ~= true and self.animationRunning == true and self.fadeType == 2 then
 
-        Animation:FadeOut()
+        Animation:FadeOut('nightvision')
 
     end
 
@@ -112,8 +120,6 @@ function Animation:FadeIn(type, weatherPreset)
 
             if self.lerpFactor <= 1.0 then
 
-                print(self.lerpFactor)
-
                 self.lerpFactor = self.lerpFactor + (self.animationSmoothnessMultiplierON * self.animationSmoothness * Animation:GetFramePercentage(self.deltaTime, self.animationSmoothness)) --Total time before it's done
                 --print(self.nvgState.priority)
                 local lerp1 = MathUtils:Lerp(0.2, 1.0, self.lerpFactor)--lerp(0, 1, t)
@@ -126,6 +132,7 @@ function Animation:FadeIn(type, weatherPreset)
 
                 self.lerpFactor = 0
                 self.type = nil
+                self.fadeType = 2
                 self.animationFinish = true
                 self.animationRunning = false
                 self.animationFirstLoop = true
@@ -211,8 +218,8 @@ function Animation:FadeOut(type, weatherPreset)
 
             if self.localPlayer.inVehicle == true then
 
-                Main:ResetVisualEnvironment('NightVisionVehicle', 'special')
-                self.nvgState = Tool:GetVisualEnvironmentState(999999)
+                Main:ResetVisualEnvironment('special')
+                self.nvgState = Tool:GetVisualEnvironmentState(999998)
 
                 if self.nvgState == nil then
 
@@ -225,7 +232,7 @@ function Animation:FadeOut(type, weatherPreset)
 
             else
 
-                Main:ResetVisualEnvironment('NightVision', 'special')
+                Main:ResetVisualEnvironment('special')
                 self.nvgState = Tool:GetVisualEnvironmentState(999998)
 
                 if self.nvgState == nil then
@@ -241,11 +248,11 @@ function Animation:FadeOut(type, weatherPreset)
 
         elseif self.animationFirstLoop == false then
 
-            print('HOLA HOLA HOLA')
-
             if self.lerpFactor <= 1.0 then
 
-                self.lerpFactor = self.lerpFactor + (animationSmoothnessMultiplierOFF * animationSmoothness * Animation:GetFramePercentage(dTime, animationSmoothness)) --Total time before it's done
+
+
+                self.lerpFactor = self.lerpFactor + (self.animationSmoothnessMultiplierOFF * self.animationSmoothness * Animation:GetFramePercentage(self.deltaTime, self.animationSmoothness)) --Total time before it's done
                 local lerp1 = MathUtils:Lerp(0.2, 1.0, self.lerpFactor)--lerp(0, 1, t)
                 self.nvgState.colorCorrection.brightness = Vec3((1.25*lerp1), (1.25*lerp1), (1.25*lerp1))
                 VisualEnvironmentManager:SetDirty(true)
@@ -254,9 +261,11 @@ function Animation:FadeOut(type, weatherPreset)
 
                 self.firstloopNVG = true
                 self.lerpFactor = 0
+                self.fadeType = 1
                 Tool:DebugPrint('Lerping ended', 'nvg')
                 self.animationRunning = false
                 self.animationFinish = true
+                self.animationFirstLoop = true
                 return
 
             end

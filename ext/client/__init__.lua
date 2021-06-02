@@ -190,7 +190,7 @@ function Main:ApplyVisualEnvironment(presetName, presetType)
 
     local selectedPreset = nil
 
-    if presetType == 'main' then 
+    if presetType == 'main' then
         selectedPreset = Presets[presetName]
     elseif presetType == 'special' or presetType == 'weather' then
         selectedPreset = specialPresets[presetName]
@@ -401,6 +401,8 @@ function Main:NVGPlayerInput(player, deltaTime)
 
         end
 
+    elseif InputManager:WentKeyDown(9) then
+        Animation:printAnimationState()
     end
 
 end
