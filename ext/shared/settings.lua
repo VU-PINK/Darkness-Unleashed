@@ -1,108 +1,40 @@
---Settings
-local debugPrints = {
-
-    ['enable'] = true,
-    ['adding'] = true,
-    ['removing'] = true,
-    ['altering'] = true,
-    ['player'] = true,
-    ['common'] = true,
-    ['time'] = true,
-    ['nvg'] = true,
-    ['animation'] = true,
-    ['VE'] = true,
-    ['error'] = true,
-    ['cinetools'] = true,
-    ['weather'] = true,
-
-}
-
---══════════════════════════════════════════════════════════════════════════════════════════════════════--
-
--- Standard Preset Settings, decides if bluefilter is to be used with Standard Preset Maps [true/false]
-local lensflareEnabled = false -- broken
-local sunflareEnabled = true -- broken
-local standardusebluefilter = false
-local useHighDefinitionPatches = true -- changes lighting and render settings at the cost of performance [usually ~10fps ; will only work on ultra settings]
-
---══════════════════════════════════════════════════════════════════════════════════════════════════════--
--- Day/Night Cycle Time
--- Disable to use Real-Time-Editing!
-
--- How many minutes should a day last
--- Example Values:
--- 		full day night circle in 20 minutes 					: 20
--- 		full day night circle in 15 minutes (suggested value) 	: 15
--- 		full day night circle in 10 minutes 					: 10
--- 		1 hour per second (good for debugging) 					: 24/60
-local dayNightEnabled = false
--- Uses Day/Night Cycle based on tickets instead of the time settings.
-local useTicketBasedCycle = false
--- Use Day --> Night ; Instead of Night --> Day ; in Ticket Based Mode
-local day2Night = false
-
-
-----Only relevant if not in Ticket Mode----
-local dayLengthInMinutes = 10
--- Pure night duration in minutes
-local pureNightDuration = 1
--- Pure day duration in minutes
-local pureDayDuration = 1
-
--- How often, in seconds, should the server update daytime and send info to the clients
--- The server sends at this interval the new date time to the clients to keep them all in sync
-local serverUpdatesFrequency = 30
-
--- The day time to start the server at (0 - 23) or os.date('%H') for real-time
-local startHour = 0
-local startHourRandom = false
-local resetTimeEachLevel = true
--------------------------------------------
-local cineTools = false
-local useNightVisionGadget = true
---══════════════════════════════════════════════════════════════════════════════════════════════════════--
-
--- Vehicle Lights
-local useVehicleLights_Airborne = false
-local useVehicleLights_Ground = false
-
---══════════════════════════════════════════════════════════════════════════════════════════════════════--
-
---Weather
-local weatherEnabled = false -- don´t enable HEAVY WIP
-
---══════════════════════════════════════════════════════════════════════════════════════════════════════--
-
-local mapPresets = {
-MP_001 = 'Night', -- Grand Bazaar
-MP_003 = 'Night', -- Teheran Highway
-MP_007 = 'Night', -- Caspian Border
-MP_011 = 'Night', -- Seine Crossing
-MP_012 = 'Night', -- Operation Firestorm
-MP_013 = 'Night', -- Damavand Peak
-MP_017 = 'Night', -- Noshahr Canals
-MP_018 = 'Night', -- Kharg Island
-MP_Subway = 'Night', -- Operation Metro
-XP1_001 = 'Night', -- Strike at Karkand
-XP1_002 = 'Night', -- Gulf of Oman
-XP1_003 = 'Night', -- Sharqi Peninsula
-XP1_004 = 'Night', -- Wake Island
-XP2_Palace = 'Night', -- Donya Fortress
-XP2_Office = 'Night', -- Operation 925
-XP2_Factory = 'Night', -- Scrapmetal
-XP2_Skybar = 'Night', -- Ziba Tower
-XP3_Alborz = 'Night', -- Alborz Mountains
-XP3_Shield = 'Night', -- Armored Shield
-XP3_Desert = 'Night', -- Bandar Desert
-XP3_Valley = 'Night', -- Death Valley
-XP4_Parl = 'Night', -- Azadi Palace
-XP4_Quake = 'Night', -- Epicenter
-XP4_FD = 'Night', -- Markaz Monolith
-XP4_Rubble = 'Night', -- Talah Market
-XP5_001 = 'Night', -- Operation Riverside
-XP5_002 = 'Night', -- Nebandan Flats
-XP5_003 = 'Night', -- Kiasar Railroad
-XP5_004 = 'Night' -- Sabalan Pipeline
+-- Default MapVE Configuration
+CONFIG = {
+    MAPS = {
+        MP_001 = 'Night', -- Grand Bazaar
+        MP_003 = 'Night', -- Teheran Highway
+        MP_007 = 'Night', -- Caspian Border
+        MP_011 = 'Night', -- Seine Crossing
+        MP_012 = 'Night', -- Operation Firestorm
+        MP_013 = 'Night', -- Damavand Peak
+        MP_017 = 'Night', -- Noshahr Canals
+        MP_018 = 'Night', -- Kharg Island
+        MP_Subway = 'Night', -- Operation Metro
+        XP1_001 = 'Night', -- Strike at Karkand
+        XP1_002 = 'Night', -- Gulf of Oman
+        XP1_003 = 'Night', -- Sharqi Peninsula
+        XP1_004 = 'Night', -- Wake Island
+        XP2_Palace = 'Night', -- Donya Fortress
+        XP2_Office = 'Night', -- Operation 925
+        XP2_Factory = 'Night', -- Scrapmetal
+        XP2_Skybar = 'Night', -- Ziba Tower
+        XP3_Alborz = 'Night', -- Alborz Mountains
+        XP3_Shield = 'Night', -- Armored Shield
+        XP3_Desert = 'Night', -- Bandar Desert
+        XP3_Valley = 'Night', -- Death Valley
+        XP4_Parl = 'Night', -- Azadi Palace
+        XP4_Quake = 'Night', -- Epicenter
+        XP4_FD = 'Night', -- Markaz Monolith
+        XP4_Rubble = 'Night', -- Talah Market
+        XP5_001 = 'Night', -- Operation Riverside
+        XP5_002 = 'Night', -- Nebandan Flats
+        XP5_003 = 'Night', -- Kiasar Railroad
+        XP5_004 = 'Night' -- Sabalan Pipeline
+    },
+    VEHICLES = {
+        USE_VEHICLE_LIGHTS_AIRBORNE = false,
+        USE_VEHICLE_LIGHTS_GROUND = false
+    },
 }
 
 --══════════════════════════════════════════════════════════════════════════════════════════════════════--

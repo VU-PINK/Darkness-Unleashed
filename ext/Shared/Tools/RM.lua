@@ -1,10 +1,8 @@
-local RM = class('RM')
-
+class('RM')
 
 -- Easier Loading of different VU / Battlefield Components
-
 function RM:__init()
-
+    print("Initializing DU-ResourceManager")
 end
 
 --- Common
@@ -57,5 +55,8 @@ function RM:WCP(partition, instance)
     return WeaponComponentData(RM:Find(partition, instance))
 end
 
+if g_RM == nil then
+    g_RM = RM()
+end
 
-return RM
+return g_RM
