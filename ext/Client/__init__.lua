@@ -31,6 +31,7 @@ function DarknessClient:RegisterEvents()
     Events:Subscribe('Level:RegisterEntityResources', self, self.OnEntityRegister)
     Events:Subscribe("Engine:Update", self, self.OnEngineUpdate)
     Events:Subscribe("Client:UpdateInput", self, self.OnUpdateInput)
+    Events:Subscribe("VEManager:PresetsLoaded", self, self.OnPresetsLoaded)
 end
 
 function DarknessClient:RegisterPresets()
@@ -64,6 +65,11 @@ end
 function DarknessClient:OnUpdateInput(p_Player, p_DeltaTime)
     -- Self
     self:NVGPlayerInput(p_Player, p_DeltaTime)
+end
+
+function DarknessClient:OnPresetsLoaded()
+    -- Distribute
+    g_MapVEManager:OnPresetsLoaded()
 end
 
 -- Night Vision Gadget --

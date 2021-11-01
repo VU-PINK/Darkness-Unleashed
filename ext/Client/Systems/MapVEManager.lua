@@ -8,6 +8,7 @@ end
 
 function MapVEManager:RegisterVars()
     self.m_CurrentMapPreset = nil
+    self.m_LoadedPreset = nil
 end
 
 function MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
@@ -15,7 +16,7 @@ function MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
         if type(l_CategoryData) == "table" then
             for l_CategoryKey, l_Value in pairs(l_CategoryData) do
                 if string.find(p_LevelName, l_CategoryKey) then
-                    MapVEManager:ApplyPreset(p_LevelName, l_Value)
+                    self.m_LoadedPreset = {p_LevelName, l_Value}
                     break
                 end
             end
@@ -23,8 +24,14 @@ function MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
     end
 end
 
+function MapVEManager:OnPresetsLoaded()
+    MapVEManager:ApplyPreset(self.m_LoadedPreset[1], self.m_LoadedPreset[2])
+end
+
 function MapVEManager:OnLevelDestroyed()
     MapVEManager:RemovePreset(self.m_CurrentMapPreset)
+    MapVEManager:RegisterVars()
+    collectgarbage("collect")
 end
 
 function MapVEManager:ApplyPreset(p_LevelName, p_Preset)
