@@ -1,8 +1,9 @@
+local m_Logger = Logger("RM", false)
 class('RM')
 
 -- Easier Loading of different VU / Battlefield Components
 function RM:__init()
-    print("Initializing DU-ResourceManager")
+    m_Logger:Write("Initializing DU-RM")
 end
 
 --- Common

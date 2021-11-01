@@ -1,10 +1,11 @@
+local m_Logger = Logger("UI", false)
 class('UI')
 
 function UI:__init()
 	UI:RegisterVars()
 	UI:RegisterEvents()
-	if Settings.useNightVisionGadget == true then
-		Tool:DebugPrint('Initializing NVG UI', 'nvg')
+	if CONFIG.GENERAL.USE_NIGHTVISION_GADGET == true then
+		m_Logger:Write('Initializing NVG UI')
 		WebUI:Init()
 	end
 end
@@ -94,18 +95,18 @@ Hooks:Install('UI:PushScreen', 999, function(hook, screen, graphPriority, parent
 
 	if screen.name == 'UI/Flow/Screen/IngameMenuMP' or screen.name == 'UI/Flow/Screen/SpawnScreenPC' then
 		WebUI:ExecuteJS('window.hideUI();')
-		g_UI.m_HudActive = false
+		UI.m_HudActive = false
 		m_Logger:Write("Hiding Battery UI")
 	end
 
 	if screen.name == 'UI/Flow/Screen/HudMPScreen' then
 		WebUI:ExecuteJS('window.showUI();')
-		g_UI.m_HudActive = true
+		UI.m_HudActive = true
 		m_Logger:Write("Showing Battery UI")
 	end
 
 	if screen.name == 'UI/Flow/Screen/KillScreen' then
-		g_UI.m_PlayerDead = true
+		UI.m_PlayerDead = true
 		m_Logger:Write("Player is Dead")
 	end
 end)

@@ -1,10 +1,10 @@
 -- Requires
 require("Systems/UI")
-require("Systems/MapManager")
+require("Systems/MapVEManager")
 require("Systems/VehicleManager")
 
 -- Logger
-local m_Logger = Logger("DarknessClient", false)
+local m_Logger = Logger("DarknessClient", true)
 
 -- Class
 class("DarknessClient")
@@ -22,7 +22,7 @@ function DarknessClient:RegisterVars()
     self.m_PlayerName = PlayerManager:GetLocalPlayer().name
 end
 
-function MapVEManager:RegisterEvents()
+function DarknessClient:RegisterEvents()
     Events:Subscribe("Level:Loaded", self, self.OnLevelLoaded)
     Events:Subscribe("Level:Destroy", self, self.OnLevelDestroyed)
     Events:Subscribe("Player:Respawn", self, self.OnPlayerRespawn)
@@ -33,11 +33,13 @@ function DarknessClient:RegisterPresets()
     for l_Name, l_Preset in pairs(self.m_Presets) do
         local s_Prefix = "Darkness_Unleashed_"
         local s_Preset = s_Prefix .. l_Preset
-        NetEvents:Send("VEManager:Register", tostring(l_Name), s_Preset)
+        Events:Dispatch("VEManager:Register", tostring(l_Name), s_Preset)
+        m_Logger:Write("Registering Preset: " .. l_Name)
+        m_Logger:Write(s_Preset)
     end
 end
 
-function MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
+function DarknessClient:OnLevelLoaded(p_LevelName, p_GameMode)
     -- Self
     self:RegisterPresets()
 
@@ -45,12 +47,12 @@ function MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
     g_MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
 end
 
-function MapVEManager:OnPlayerRespawn(p_Player)
+function DarknessClient:OnPlayerRespawn(p_Player)
     -- Distribute
     g_UI:OnPlayerRespawn(p_Player)
 end
 
-function MapVEManager:OnEntityRegister(p_LevelData)
+function DarknessClient:OnEntityRegister(p_LevelData)
     -- Distribute
     g_VehicleManager:OnEntityRegister(p_LevelData)
 end

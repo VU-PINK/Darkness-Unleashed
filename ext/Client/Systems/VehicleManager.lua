@@ -1,3 +1,4 @@
+local m_Logger = Logger("VehicleManager", false)
 class('VehicleManager')
 
 function VehicleManager:__init()
@@ -19,12 +20,12 @@ function VehicleManager:OnEntityRegister(p_LevelData)
                if self.m_CurrentChassisData ~= nil then
                     self.m_CurrentChassisData = ChassisComponentData(self.m_CurrentChassisData)
 
-                    for l_ComponentKey, l_Component in pairs(l_VehicleTable.Components) do
+                    for l_ComponentKey, l_Component in pairs(l_VehicleData.Components) do
 
                         if l_Component.type == 1 and l_Component.enabled then
 							VehicleManager:AddPointLight(l_Component, self.m_CurrentChassisData, l_Vehicle)
 
-                        elseif component.type == 2 and component.enabled then
+                        elseif l_Component.type == 2 and l_Component.enabled then
 							VehicleManager:AddSpotLight(l_Component, self.m_CurrentChassisData, l_Vehicle)
                         end
                     end
@@ -186,7 +187,7 @@ function VehicleManager:AddLensFlare(p_Name, p_Data, p_Trans, p_Vehicle)
 end
 
 
-function Vehicle:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle)
+function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle)
 	local s_NewSpotLight = SpotLightEntityData()
     s_NewSpotLight.shape = settings.shape
     s_NewSpotLight.intensity = settings.intensity
