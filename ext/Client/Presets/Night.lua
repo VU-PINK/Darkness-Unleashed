@@ -1,7 +1,7 @@
 return [[
 {
     "Name": "DU_Night",
-    "Priority": "10",
+    "Priority": "1",
     "Visibility": "1",
     "CharacterLighting": {
         "CharacterLightEnable": "true",

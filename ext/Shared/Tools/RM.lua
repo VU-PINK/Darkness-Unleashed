@@ -1,4 +1,4 @@
-local m_Logger = Logger("RM", false)
+local m_Logger = Logger("ResourceManager", false)
 class('RM')
 
 -- Easier Loading of different VU / Battlefield Components
