@@ -28,7 +28,7 @@ function MapVEManager:OnLevelDestroyed()
 end
 
 function MapVEManager:ApplyPreset(p_LevelName, p_Preset)
-    local s_Prefix = "Darkness_Unleashed_"
+    local s_Prefix = "DU_"
     local s_Preset = s_Prefix .. p_Preset
     Events:Dispatch("VEManager:EnablePreset", s_Preset)
     self.m_CurrentMapPreset = s_Preset

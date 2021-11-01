@@ -23,10 +23,10 @@ function VehicleManager:OnEntityRegister(p_LevelData)
                     for l_ComponentKey, l_Component in pairs(l_VehicleData.Components) do
 
                         if l_Component.type == 1 and l_Component.enabled then
-							VehicleManager:AddPointLight(l_Component, self.m_CurrentChassisData, l_Vehicle)
+							VehicleManager:AddPointLight(l_Component, self.m_CurrentChassisData, l_VehicleData)
 
                         elseif l_Component.type == 2 and l_Component.enabled then
-							VehicleManager:AddSpotLight(l_Component, self.m_CurrentChassisData, l_Vehicle)
+							VehicleManager:AddSpotLight(l_Component, self.m_CurrentChassisData, l_VehicleData)
                         end
                     end
                end
@@ -36,11 +36,11 @@ end
 
 
 function VehicleManager:AddPointLight(p_PointLightSettingsArray, p_ChassisData, p_Vehicle)
-    if vehicle == nil then
+    if p_Vehicle == nil then
 		return
 	end
 
-	self.m_CurrentVehicleData = g_RM:VED(vehicle.partitionGUID, vehicle.vehicleDataGUID)
+	self.m_CurrentVehicleData = g_RM:VED(p_Vehicle.partitionGUID, p_Vehicle.vehicleDataGUID)
 	self.m_CurrentVehicleData:MakeWritable()
 
  	local s_NewPointLight = PointLightEntityData()
@@ -75,17 +75,17 @@ function VehicleManager:AddPointLight(p_PointLightSettingsArray, p_ChassisData, 
         self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
  	else
 
- 		if self.m_CurrentChassisData.isReadOnly then
-            self.m_CurrentChassisData:MakeWritable()
+ 		if p_ChassisData.isReadOnly then
+            p_ChassisData:MakeWritable()
  		end
- 		self.m_CurrentChassisData.components:add(s_NewPointlightComponentData)
+ 		p_ChassisData.components:add(s_NewPointlightComponentData)
         self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
  	end
 end
 
 
 function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_Vehicle)
-	if vehicle == nil then
+	if p_Vehicle == nil then
 	    return
 	end
 
@@ -128,16 +128,16 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
         s_WeaponData.components:add(s_NewSpotlightComponentData)
 		self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
  	else
- 		if chassisData.isReadOnly then
- 			chassisData:MakeWritable()
+ 		if p_ChassisData.isReadOnly then
+            p_ChassisData:MakeWritable()
  		end
 
-        self:AddLensFlare(p_SpotLightSettingsArray.name, self.m_CurrentChassisData, p_SpotLightSettingsArray.transform.trans, p_Vehicle)
-        self.m_CurrentChassisData.components:add(s_NewSpotlightComponentData)
+        self:AddLensFlare(p_SpotLightSettingsArray.name, p_ChassisData, p_SpotLightSettingsArray.transform.trans, p_Vehicle)
+        p_ChassisData.components:add(s_NewSpotlightComponentData)
         self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
 
-		if p_SpotLightSettingsArray.name.transform.mirrored == true then
-		    self:AddMirrorSpotlight(p_SpotLightSettingsArray.name.name, chassisData, p_SpotLightSettingsArray.name, p_Vehicle)
+		if p_SpotLightSettingsArray.transform.mirrored == true then
+		    self:AddMirrorSpotlight(p_SpotLightSettingsArray.name, p_ChassisData, p_SpotLightSettingsArray, p_Vehicle)
 		end
  	end
 end
@@ -166,14 +166,14 @@ function VehicleManager:AddLensFlare(p_Name, p_Data, p_Trans, p_Vehicle)
 		l_Value.alphaAngleCurve = alphaAngle
 		l_Value.sizeScreenPosCurve = l_Value.sizeScreenPosCurve
 		l_Value.alphaScreenPosCurve = l_Value.alphaScreenPosCurve
-		l_Value.size = value.size * 0.92
+		l_Value.size = l_Value.size * 0.92
 		l_Value.sizeOccluderCurve = l_Value.sizeOccluderCurve * 1
 		l_Value.alphaCamDistCurve = l_Value.alphaCamDistCurve * 1
 		l_Value.alphaOccluderCurve = l_Value.alphaOccluderCurve * 1
 	end
 
 	local s_Name = LensFlareComponentData()
-	s_Name.lensFlare = LensFlare
+	s_Name.lensFlare = s_LensFlare
 
 	s_Name.transform = LinearTransform(
 		Vec3(-1.0, 0.0, 8.74227765735e-08), --rotation
@@ -189,23 +189,23 @@ end
 
 function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle)
 	local s_NewSpotLight = SpotLightEntityData()
-    s_NewSpotLight.shape = settings.shape
-    s_NewSpotLight.intensity = settings.intensity
-    s_NewSpotLight.color = settings.color
-    s_NewSpotLight.frustumFov = settings.frustumFov
-    s_NewSpotLight.frustumAspect = settings.frustumAspect
-    s_NewSpotLight.texture = RM:Flashlight()
+    s_NewSpotLight.shape = p_Settings.shape
+    s_NewSpotLight.intensity = p_Settings.intensity
+    s_NewSpotLight.color = p_Settings.color
+    s_NewSpotLight.frustumFov = p_Settings.frustumFov
+    s_NewSpotLight.frustumAspect = p_Settings.frustumAspect
+    s_NewSpotLight.texture = g_RM:Flashlight()
     s_NewSpotLight.castShadowsMinLevel = 0
     s_NewSpotLight.castShadowsEnable = false
-    s_NewSpotLight.radius = settings.radius
+    s_NewSpotLight.radius = p_Settings.radius
 
  	local s_Name = LightComponentData()
- 	s_Name.light = newSpotLight
+ 	s_Name.light = s_NewSpotLight
  	s_Name.transform = LinearTransform(
-		settings.transform.left,
-		settings.transform.up,
-		settings.transform.forward,
-		settings.transform.trans * Vec3((-1), 1, 1)
+		p_Settings.transform.left,
+		p_Settings.transform.up,
+		p_Settings.transform.forward,
+		p_Settings.transform.trans * Vec3((-1), 1, 1)
  	)
 
     p_Data.components:add(s_Name)

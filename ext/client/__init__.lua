@@ -24,25 +24,26 @@ end
 
 function DarknessClient:RegisterEvents()
     Events:Subscribe("Level:Loaded", self, self.OnLevelLoaded)
+    Events:Subscribe("Level:LoadResources", self, self.OnLoadResources)
     Events:Subscribe("Level:Destroy", self, self.OnLevelDestroyed)
-    Events:Subscribe("Player:Respawn", self, self.OnPlayerRespawn)
     Events:Subscribe('Level:RegisterEntityResources', self, self.OnEntityRegister)
+    Events:Subscribe("Player:Respawn", self, self.OnPlayerRespawn)
 end
 
 function DarknessClient:RegisterPresets()
     for l_Name, l_Preset in pairs(self.m_Presets) do
-        local s_Prefix = "Darkness_Unleashed_"
-        local s_Preset = s_Prefix .. l_Preset
-        Events:Dispatch("VEManager:Register", tostring(l_Name), s_Preset)
-        m_Logger:Write("Registering Preset: " .. l_Name)
-        m_Logger:Write(s_Preset)
+        local s_Prefix = "DU_"
+        local s_Name = s_Prefix .. l_Name
+        Events:Dispatch("VEManager:RegisterPreset", s_Name, l_Preset)
     end
 end
 
-function DarknessClient:OnLevelLoaded(p_LevelName, p_GameMode)
+function DarknessClient:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Self
     self:RegisterPresets()
+end
 
+function DarknessClient:OnLevelLoaded(p_LevelName, p_GameMode)
     -- Distribute
     g_MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
 end
