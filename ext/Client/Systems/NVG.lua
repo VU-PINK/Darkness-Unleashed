@@ -7,7 +7,6 @@ function NVG:__init()
 	g_UI:Batteries(self.m_BatteryLifeMin, self.m_BatteryLifeMax)
 end
 
-
 function NVG:RegisterVars()
     self.m_Activated = false
     self.m_BatteryLifeMax = 60
@@ -17,7 +16,6 @@ function NVG:RegisterVars()
     self.m_BatteryLifeCurrent = 60
     self.m_FadeLengthMS = 2500
 end
-
 
 function NVG:Activate()
     m_Logger:Write('NVG Activate called!')
@@ -42,7 +40,6 @@ function NVG:Activate()
     end
 end
 
-
 function NVG:Deactivate()
     m_Logger:Write('NVG Deactivate called!')
     if self.m_Activated then
@@ -59,7 +56,6 @@ function NVG:Deactivate()
 		end
     end
 end
-
 
 function NVG:Depleting(p_ElapsedTime)
     local s_LocalPlayer = PlayerManager:GetLocalPlayer()
@@ -90,7 +86,6 @@ function NVG:Depleting(p_ElapsedTime)
         end
     end
 end
-
 
 function NVG:Recharging(p_ElapsedTime)
     if self.m_BatteryEmptyTime + self.m_BatteryLifeCooldown > p_ElapsedTime then
