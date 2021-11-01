@@ -78,7 +78,7 @@ function NVG:Depleting(p_ElapsedTime)
     if self.m_BatteryLifeCurrent <= 0 then
         m_Logger:Write('Battery has depleted!')
 
-        if self.m_Activated == true then
+        if self.m_Activated then
             g_UI:DisableGoggleIcon(true) -- Update UI battery icon
             self.m_BatteryEmptyTime = p_ElapsedTime
             m_Logger:Write('Battery Depletion Animation Started')

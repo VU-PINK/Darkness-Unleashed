@@ -1,7 +1,7 @@
 return [[
 {
     "Name": "DU_NVG",
-    "Priority": "10",
+    "Priority": "2",
     "Visibility": "1",
     "CharacterLighting":{
         "CharacterLightEnable":"true",
