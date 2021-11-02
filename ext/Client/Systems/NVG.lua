@@ -23,7 +23,6 @@ function NVG:Activate()
 
         if not self.m_Activated then
             self.m_Activated = true
-            g_VEManagerClient.m_LerpingSingleValues[#g_VEManagerClient.m_LerpingSingleValues + 1] = self.fogValues
             Events:Dispatch("VEManager:FadeIn", "DU_NVG", self.m_FadeLengthMS)
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             m_Logger:Write('NVG Activate ...')
