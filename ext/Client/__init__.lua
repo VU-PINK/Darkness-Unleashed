@@ -3,6 +3,7 @@ require("Systems/UI")
 require("Systems/MapVEManager")
 require("Systems/VehicleManager")
 require("Systems/NVG")
+require("Systems/Patches")
 
 -- Logger
 local m_Logger = Logger("DarknessClient", false)
