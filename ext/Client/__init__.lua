@@ -46,11 +46,12 @@ end
 function DarknessClient:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Self
     self:RegisterPresets()
+    -- Distribute
+    g_MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
 end
 
 function DarknessClient:OnLevelLoaded(p_LevelName, p_GameMode)
-    -- Distribute
-    g_MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
+
 end
 
 function DarknessClient:OnPlayerRespawn(p_Player)

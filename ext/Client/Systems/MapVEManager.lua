@@ -11,13 +11,16 @@ function MapVEManager:RegisterVars()
     self.m_LoadedPreset = nil
 end
 
-function MapVEManager:OnLevelLoaded(p_LevelName, p_GameMode)
+function MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     for l_Category, l_CategoryData in pairs(CONFIG) do
         if type(l_CategoryData) == "table" then
             for l_CategoryKey, l_Value in pairs(l_CategoryData) do
                 if string.find(p_LevelName, l_CategoryKey) then
                     self.m_LoadedPreset = {p_LevelName, l_Value}
                     break
+                else
+                    self.m_LoadedPreset = {p_LevelName, "Night"}
+                    m_Logger:Write("Bad Configuration | MapVEManager:OnLoadResources")
                 end
             end
         end
