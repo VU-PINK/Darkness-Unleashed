@@ -193,4 +193,5 @@ return [[
        "WindDirection":"211.25799560547",
        "WindStrength":"1.0"
     }
-}]]
+}
+]]
