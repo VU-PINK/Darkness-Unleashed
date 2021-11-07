@@ -124,6 +124,7 @@ return [[{
 		"CloudLayer2AmbientLightIntensity":"0.15000000596046",
 		"CloudLayer2Color":"(1.0, 1.0, 1.0)",
 		"CloudLayer2AlphaMul":"0.5",
+		"CloudLayer2Texture": "levels/testrange_lighting/sky/sky_07_starlayer_d",
 		"StaticEnvmapScale":"0.0",
 		"SkyEnvmap8BitTexScale":"0.25",
 		"CustomEnvmapScale":"0.0",
