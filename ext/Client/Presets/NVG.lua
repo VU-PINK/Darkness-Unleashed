@@ -9,7 +9,8 @@ return [[
         "Contrast":"(1.0000000476837, 0.85999997854233, 1.0500000476837)",
         "Saturation":"(0.0, 0.75, 0.0)",
         "Hue":"0.0",
-        "ColorGradingEnable":"false"
+        "ColorGradingTexture":"FX/VisualEnviroments/NightVision/colorCube_flir_IRNVG_CoOp",
+        "ColorGradingEnable":"true"
     },
     "Dof":{
         "Enable":"false",
@@ -60,6 +61,9 @@ return [[
         "Exponent":"1.5",
         "Color":"(0.0, 0.20000000298023, 0.20000000298023)",
         "Opacity":"0.80000001192093"
+    },
+    "Sky":{
+        "SkyGradientTexture":"FX/VisualEnviroments/NightVision/IRNVG_Sky_Gradient_01"
     }
 }
 ]]
