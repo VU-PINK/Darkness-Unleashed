@@ -38,8 +38,8 @@ function MapVEManager:OnLevelDestroyed()
 end
 
 function MapVEManager:ApplyPreset(p_LevelName, p_Preset)
-    local s_Prefix = "DU_"
-    local s_Preset = s_Prefix .. p_Preset
+    local s_Prefix = g_DarknessClient.m_Prefix .. p_LevelName:match('/[^/]+'):sub(2)
+    local s_Preset = s_Prefix .. "_" .. p_Preset
     Events:Dispatch("VEManager:EnablePreset", s_Preset)
     self.m_CurrentMapPreset = s_Preset
     m_Logger:Write("Applying Preset: " .. self.m_CurrentMapPreset)

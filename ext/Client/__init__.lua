@@ -19,10 +19,12 @@ end
 function DarknessClient:RegisterVars()
     self.m_Presets = {
         Night = require("Presets/Night"),
-        NVG = require("Presets/NVG")
+        NVG = require("Presets/NVG"),
+        MP_001_Night = require("Presets/Vanilla/MP_001/Night")
     }
 
     self.m_PlayerName = PlayerManager:GetLocalPlayer().name
+    self.m_Prefix = "DU_"
 end
 
 function DarknessClient:RegisterEvents()
@@ -35,17 +37,17 @@ function DarknessClient:RegisterEvents()
     Events:Subscribe("VEManager:PresetsLoaded", self, self.OnPresetsLoaded)
 end
 
-function DarknessClient:RegisterPresets()
+function DarknessClient:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     for l_Name, l_Preset in pairs(self.m_Presets) do
-        local s_Prefix = "DU_"
-        local s_Name = s_Prefix .. l_Name
+        local s_Prefix = self.m_Prefix
+        local s_Name = s_Prefix .. "_" .. l_Name
         Events:Dispatch("VEManager:RegisterPreset", s_Name, l_Preset)
     end
 end
 
 function DarknessClient:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Self
-    self:RegisterPresets()
+    self:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Distribute
     g_MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
 end

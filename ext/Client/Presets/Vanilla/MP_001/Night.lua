@@ -1,6 +1,6 @@
 return [[
 {
-	"Name": "DU_Night",
+	"Name": "DU_MP_001_Night",
 	"Priority": "1",
 	"Visibility": "1",
 	"CharacterLighting":{
