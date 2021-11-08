@@ -1,8 +1,8 @@
-return [[{
-    "Name": "DU_Night",
-    "Priority": "1",
-    "Visibility": "1",
-    {
+return [[
+{
+	"Name": "DU_MP_003_Night",
+	"Priority": "1",
+	"Visibility": "1",
 	"CharacterLighting":{
 		"CharacterLightEnable":"true",
 		"FirstPersonEnable":"true",
@@ -193,5 +193,4 @@ return [[{
 		"WindDirection":"211.25799560547",
 		"WindStrength":"1.7000000476837"
 	}
- }
- ]]
+}]]

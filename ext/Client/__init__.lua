@@ -20,7 +20,16 @@ function DarknessClient:RegisterVars()
     self.m_Presets = {
         Night = require("Presets/Night"),
         NVG = require("Presets/NVG"),
-        MP_001_Night = require("Presets/Vanilla/MP_001/Night")
+        MP_001_Night = require("Presets/Vanilla/MP_001/Night"),
+        MP_003_Night = require("Presets/Vanilla/MP_003/Night"),
+        MP_007_Night = require("Presets/Vanilla/MP_007/Night"),
+        MP_011_Night = require("Presets/Vanilla/MP_011/Night"),
+        MP_012_Night = require("Presets/Vanilla/MP_012/Night"),
+        MP_013_Night = require("Presets/Vanilla/MP_013/Night"),
+        MP_017_Night = require("Presets/Vanilla/MP_017/Night"),
+        MP_018_Night = require("Presets/Vanilla/MP_018/Night"),
+        MP_Subway_Night = require("Presets/Vanilla/MP_Subway/Night")
+
     }
 
     self.m_PlayerName = PlayerManager:GetLocalPlayer().name

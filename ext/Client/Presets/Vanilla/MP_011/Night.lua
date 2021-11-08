@@ -1,6 +1,6 @@
 return [[
 {
-    "Name": "DU_Night",
+    "Name": "DU_MP_011_Night",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting":{
@@ -193,5 +193,4 @@ return [[
        "WindDirection":"211.25799560547",
        "WindStrength":"1.0"
     }
-}
-]]
+}]]
