@@ -126,10 +126,7 @@ function PatchEmitters(partition)
 
                 if emitterTemplate.pointLightColor == Vec3(1,1,1) then
                     emitterTemplate.pointLightColor = Vec3(1,0.25,0)
-                    print("Adjusted colour!")
                 end
-
-                print("Adjusted wreck emitter!")
 			end
 		end
 	end
