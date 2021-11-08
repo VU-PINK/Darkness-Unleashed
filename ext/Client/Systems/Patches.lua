@@ -115,14 +115,13 @@ function PatchEmitters(partition)
 				end
             elseif string.find(emitterTemplate.name:lower(), "wreck/tank/emitters") or string.find(emitterTemplate.name:lower(), "wreck/heli/emitters") or string.find(emitterTemplate.name:lower(), "wreck/car/emitters") or string.find(emitterTemplate.name:lower(), "wreck/airplane/emitters") then
                 emitterTemplate:MakeWritable()
-                --emitterTemplate.lifetime = 300
 
                 emitterTemplate.maxSpawnDistance = 3000
-                --emitterTemplate.emissive = true
                 emitterTemplate.actAsPointLight = true
-                emitterTemplate.repeatParticleSpawning = true
+                --emitterTemplate.repeatParticleSpawning = true
                 emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 1.5
                 emitterTemplate.pointLightIntensity = emitterTemplate.pointLightIntensity * 1.5
+                emitterTemplate.lifetime = emitterTemplate.lifetime * 3
 
                 if emitterTemplate.pointLightColor == Vec3(1,1,1) then
                     emitterTemplate.pointLightColor = Vec3(1,0.25,0)
