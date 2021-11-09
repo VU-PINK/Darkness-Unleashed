@@ -8,6 +8,6 @@
     "HasWebUI": true,
     "Dependencies": {
         "veniceext": "^1.0.0",
-        "VEManager": "0.2.1",
+        "VEManager": "0.2.1"
     }
 }
