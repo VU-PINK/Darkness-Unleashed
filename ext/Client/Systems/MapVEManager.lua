@@ -16,10 +16,10 @@ function MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServ
         if type(l_CategoryData) == "table" then
             for l_CategoryKey, l_Value in pairs(l_CategoryData) do
                 if string.find(p_LevelName, l_CategoryKey) then
-                    self.m_LoadedPreset = {p_LevelName, l_Value}
+                    self.m_LoadedPreset = {p_LevelName:match('/[^/]+'):sub(2), l_Value}
                     break
                 else
-                    self.m_LoadedPreset = {p_LevelName, "Night"}
+                    self.m_LoadedPreset = {p_LevelName:match('/[^/]+'):sub(2), "Night"}
                     m_Logger:Write("Bad Configuration | MapVEManager:OnLoadResources")
                 end
             end
@@ -38,7 +38,7 @@ function MapVEManager:OnLevelDestroyed()
 end
 
 function MapVEManager:ApplyPreset(p_LevelName, p_Preset)
-    local s_Prefix = g_DarknessClient.m_Prefix .. p_LevelName:match('/[^/]+'):sub(2)
+    local s_Prefix = g_DarknessClient.m_Prefix .. p_LevelName
     local s_Preset = s_Prefix .. "_" .. p_Preset
     Events:Dispatch("VEManager:EnablePreset", s_Preset)
     self.m_CurrentMapPreset = s_Preset

@@ -123,7 +123,7 @@ return [[
         "CloudLayer2Altitude": "5000000.0",
         "CloudLayer2TileFactor": "0.60000002384186",
         "CloudLayer2Rotation": "237.07299804688",
-        "CloudLayer2Speed": "0.0080000003799796",
+        "CloudLayer2Speed": "0.00",
         "CloudLayer2SunLightIntensity": "0.0",
         "CloudLayer2SunLightPower": "0.0",
         "CloudLayer2AmbientLightIntensity": "0.0",

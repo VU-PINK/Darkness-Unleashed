@@ -20,6 +20,7 @@ function DarknessClient:RegisterVars()
     self.m_Presets = {
         Night = require("Presets/Night"),
         NVG = require("Presets/NVG"),
+
         MP_001_Night = require("Presets/Vanilla/MP_001/Night"),
         MP_003_Night = require("Presets/Vanilla/MP_003/Night"),
         MP_007_Night = require("Presets/Vanilla/MP_007/Night"),
@@ -28,8 +29,18 @@ function DarknessClient:RegisterVars()
         MP_013_Night = require("Presets/Vanilla/MP_013/Night"),
         MP_017_Night = require("Presets/Vanilla/MP_017/Night"),
         MP_018_Night = require("Presets/Vanilla/MP_018/Night"),
-        MP_Subway_Night = require("Presets/Vanilla/MP_Subway/Night")
+        MP_Subway_Night = require("Presets/Vanilla/MP_Subway/Night"),
 
+        MP_001_NVG = require("Presets/Vanilla/MP_001/NVG"),
+        --MP_003_NVG = require("Presets/Vanilla/MP_003/NVG"),
+        MP_007_NVG = require("Presets/Vanilla/MP_007/NVG"),
+        --MP_011_NVG = require("Presets/Vanilla/MP_011/NVG"),
+        --MP_012_NVG = require("Presets/Vanilla/MP_012/NVG"),
+        --MP_013_NVG = require("Presets/Vanilla/MP_013/NVG"),
+        --MP_017_NVG = require("Presets/Vanilla/MP_017/NVG"),
+        --MP_018_NVG = require("Presets/Vanilla/MP_018/NVG"),
+        --MP_Subway_NVG = require("Presets/Vanilla/MP_Subway/NVG"),
+        
     }
 
     self.m_PlayerName = PlayerManager:GetLocalPlayer().name
@@ -95,10 +106,10 @@ function DarknessClient:NVGPlayerInput(p_Player, p_DeltaTime)
 
             if not g_NVG.m_Activated then
                 m_Logger:Write('Calling NVG:Activate()')
-                g_NVG:Activate()
+                g_NVG:Activate(g_MapVEManager.m_LoadedPreset[1])
 			else
                 m_Logger:Write('Calling NVG:Deactivate()')
-                g_NVG:Deactivate()
+                g_NVG:Deactivate(g_MapVEManager.m_LoadedPreset[1])
             end
         else
             m_Logger:Write('Failed to enable NVG. useNightVisionGadget = ' .. tostring(CONFIG.GENERAL.USE_NIGHTVISION_GADGET) .. ' | isHud = ' .. tostring(g_UI.m_HudActive) .. ' | isKilled = ' .. tostring(g_UI.m_PlayerDead))

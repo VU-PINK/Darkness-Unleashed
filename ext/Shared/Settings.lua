@@ -39,7 +39,7 @@ CONFIG = {
         USE_NIGHTVISION_GADGET = true
     },
     LOGGER_ENABLED = true,
-    LOGGER_PRINT_ALL = true
+    LOGGER_PRINT_ALL = false
 }
 
 return CONFIG

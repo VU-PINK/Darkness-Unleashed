@@ -5,12 +5,12 @@ return [[
     "Visibility": "1",
     "ColorCorrection":{
         "Enable":"false",
-        "Brightness":"(1.16999998092651, 1.17999997138977, 1.25000001192093)",
-        "Contrast":"(1.0000000476837, 0.85999997854233, 1.0500000476837)",
-        "Saturation":"(0.0, 0.75, 0.0)",
-        "Hue":"0.0",
         "ColorGradingTexture":"FX/VisualEnviroments/NightVision/colorCube_flir_IRNVG_CoOp",
-        "ColorGradingEnable":"true"
+        "ColorGradingEnable":"true",
+        "Brightness": "1:1:1:",
+        "Contrast": "1.15:1.15:1.15:",
+        "Saturation": "1.0:1.0:1.0:",
+        "Hue": "0.0"
     },
     "Dof":{
         "Enable":"false",
@@ -46,10 +46,10 @@ return [[
         "RandomEnable":"true"
     },
     "Tonemap":{
-        "MiddleGray":"1.35",
-        "MinExposure":"3.50",
-        "MaxExposure":"3.50",
-        "ExposureAdjustTime":"2.0",
+        "MiddleGray":"0.50",
+        "MinExposure":"0.25",
+        "MaxExposure":"1.00",
+        "ExposureAdjustTime":"3.0",
         "BloomScale":"(0.10000000149012, 0.10000000149012, 0.10000000149012)",
         "ChromostereopsisEnable":"true",
         "ChromostereopsisScale":"1.0",
@@ -63,6 +63,7 @@ return [[
         "Opacity":"0.80000001192093"
     },
     "Sky":{
+        "Enable":"true",
         "SkyGradientTexture":"FX/VisualEnviroments/NightVision/IRNVG_Sky_Gradient_01"
     }
 }

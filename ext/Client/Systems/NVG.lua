@@ -17,13 +17,13 @@ function NVG:RegisterVars()
     self.m_FadeLengthMS = 2500
 end
 
-function NVG:Activate()
+function NVG:Activate(p_LevelName)
     m_Logger:Write('NVG Activate called!')
     if self.m_BatteryLifeCurrent >= self.m_BatteryLifeMin then
 
         if not self.m_Activated then
             self.m_Activated = true
-            Events:Dispatch("VEManager:FadeIn", "DU_NVG", self.m_FadeLengthMS)
+            Events:Dispatch("VEManager:FadeIn", "DU_" .. p_LevelName .. "_NVG", self.m_FadeLengthMS)
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             m_Logger:Write('NVG Activate ...')
             g_UI:GoggleIcon(true) -- Update UI battery icon
@@ -40,11 +40,11 @@ function NVG:Activate()
     end
 end
 
-function NVG:Deactivate()
+function NVG:Deactivate(p_LevelName)
     m_Logger:Write('NVG Deactivate called!')
     if self.m_Activated then
         self.m_Activated = false
-        Events:Dispatch("VEManager:FadeOut", "DU_NVG", self.m_FadeLengthMS)
+        Events:Dispatch("VEManager:FadeOut", "DU_" .. p_LevelName .. "_NVG", self.m_FadeLengthMS)
         --Beep boop sound
         WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
         m_Logger:Write('Deactivate')
@@ -83,7 +83,7 @@ function NVG:Depleting(p_ElapsedTime)
             g_UI:DisableGoggleIcon(true) -- Update UI battery icon
             self.m_BatteryEmptyTime = p_ElapsedTime
             m_Logger:Write('Battery Depletion Animation Started')
-            self:Deactivate()
+            self:Deactivate(g_MapVEManager.m_LoadedPreset[1])
         end
     end
 end

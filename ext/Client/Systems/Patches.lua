@@ -1,11 +1,14 @@
 class("Patches")
 
+require("Systems/PatchAssets")
+
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     --Patch https://github.com/EmulatorNexus/Venice-EBX/blob/f06c290fa43c80e07985eda65ba74c59f4c01aa0/Weapons/Accessories/flashlight/Flashlight_1p.txt
     PatchFlashLight(ResourceManager:FindInstanceByGuid(Guid('83E2B938-E678-11DF-A7B3-CBA49C34928F'), Guid('995E49EE-8914-4AFD-8EF5-59125CA8F9CD')))
-
     --Patch https://github.com/EmulatorNexus/Venice-EBX/blob/f06c290fa43c80e07985eda65ba74c59f4c01aa0/Weapons/Accessories/flashlight/Flashlight_3p.txt
     PatchFlashLight(ResourceManager:FindInstanceByGuid(Guid('65A5BFD9-028A-4D4F-8B89-3A60B2E06F83'), Guid('5FBA51D6-059F-4284-B5BB-6E20F145C064')))
+
+    AllowMoreSpotlights()
 end)
 
 Events:Subscribe('Partition:Loaded', function(partition)
@@ -20,16 +23,6 @@ function PatchFlashLight(instance)
 
     instance = SpotLightEntityData(instance)
     instance:MakeWritable()
-
-    --instance.shape = 1
-    --instance.radius = 250 --range
-    --instance.intensity = 155.55 --brightness
-    --instance.frustumFov = 45 --size
-    --instance.castShadowsEnable = true
-    --instance.castShadowsMinLevel = QualityLevel.QualityLevel_Ultra
-    --instance.coneInnerAngle = 0.0
-    --instance.coneOuterAngle = 32.3720016479
-
     instance.radius = 75
     instance.intensity = 9 --brightness
     instance.coneOuterAngle = 50
@@ -39,25 +32,123 @@ function PatchFlashLight(instance)
     instance.castShadowsEnable = true
     instance.castShadowsMinLevel = 0
     instance.shape = 1
-
+    
     instance = LocalLightEntityData(instance)
     instance:MakeWritable()
-
     instance.attenuationOffset = 250
-    print('Patched flashlight!')
 end
 
 function PatchComponents(partition)
     for _, instance in pairs(partition.instances) do
-        if instance:Is('LocalLightEntityData') then
+        if instance:Is('MeshAsset') then
+            PatchMeshAsset(instance)
+        elseif instance:Is('MeshMaterialVariation') then
+            PatchMeshMaterialVariation(instance)
+        elseif instance:Is('EffectEntityData') then
+            PatchEffectEntityData(instance)
+        elseif instance:Is('LocalLightEntityData') then
 	        PatchHDLights(instance)
+        elseif instance:Is('EmitterTemplateData') then
+            EmitterEntityDataRemoval(instance)
 	    end
+    end
+end
+
+function PatchHDLights(instance)
+    instance = LocalLightEntityData(instance)
+    instance:MakeWritable()
+    --instance.visible = true
+    instance.specularEnable = true
+    instance.radius = instance.radius * 1.5
+    instance.intensity = instance.intensity * 0.65
+    instance.enlightenColorMode = 0
+    instance.enlightenEnable = true
+    instance.attenuationOffset = instance.attenuationOffset * 17.5
+
+    if instance.typeInfo.name == 'SpotLightEntityData' then
+        PatchSpotlights(instance)
+    end
+end
+
+function PatchSpotlights(instance)
+    instance = SpotLightEntityData(instance)
+    instance:MakeWritable()
+
+    instance.castShadowsEnable = true
+    instance.castShadowsMinLevel = 3
+    instance.coneInnerAngle = instance.coneInnerAngle * 1
+    instance.coneOuterAngle = instance.coneOuterAngle * 2
+
+end
+
+function AllowMoreSpotlights()
+	local worldRender = ResourceManager:GetSettings('WorldRenderSettings')
+
+	if worldRender ~= nil then
+		worldRender = WorldRenderSettings(worldRender)
+		worldRender.maxSpotLightShadowCount = 9
+		worldRender.maxSpotLightCount = 1024
+		worldRender.shadowmapViewDistance = 75
+		worldRender.lightOverdrawMaxLayerCount = 256
+        print("Patched World Renderer spotlights!")
+	end
+
+	local debris = ResourceManager:GetSettings('DebrisSystemSettings')
+
+	if debris ~= nil then
+		debris = DebrisSystemSettings(debris)
+		debris.meshShadowEnable = false
+        print("Patched debris shadows!")
+	end
+
+end
+
+function PatchMeshMaterialVariation(instance)
+    if variations[instance.partition.name] then
+        instance = MeshMaterialVariation(instance)
+        instance:MakeWritable()
+
+        instance.shader.shader = nil
+        print("Removed: " .. instance.partition.name)
+    end
+end
+
+function PatchMeshAsset(instance)
+    if meshs[instance.partition.name] then
+        instance = MeshAsset(instance)
+
+        for _, value in pairs(instance.materials) do
+            value:MakeWritable()
+
+            value.shader.shader = nil
+            print("Removed: " .. instance.partition.name)
+        end
+    end
+end
+
+function PatchEffectEntityData(instance)
+    if effects[instance.partition.name] then
+        instance = EffectEntityData(instance)
+        instance:MakeWritable()
+
+        instance.components:clear()
+        print("Removed: " .. instance.partition.name)
+    end
+end
+
+function EmitterEntityDataRemoval(instance)
+    if emitters[instance.partition.name] then
+        instance = EmitterTemplateData(instance)
+        instance:MakeWritable()
+
+        instance.emissive = false
+
+        print("Removed: " .. instance.partition.name)
     end
 end
 
 --Configure Smoke, Muzzle & Emmiters
 function PatchEmitters(partition)
-
 	for _, instance in pairs(partition.instances) do
 		if instance:Is("EmitterTemplateData") then
 			local emitterTemplate = EmitterTemplateData(instance)
@@ -129,40 +220,6 @@ function PatchEmitters(partition)
 			end
 		end
 	end
-
-end
-
-function PatchHDLights(instance)
-
-    instance = LocalLightEntityData(instance)
-    instance:MakeWritable()
-    --instance.visible = true
-    instance.specularEnable = true
-    instance.radius = instance.radius * 1.5
-    instance.intensity = instance.intensity * 0.65
-    instance.enlightenColorMode = 0
-    instance.enlightenEnable = true
-    instance.attenuationOffset = instance.attenuationOffset * 17.5
-
-    if instance.typeInfo.name == 'SpotLightEntityData' then
-
-        PatchSpotlights(instance)
-
-    end
-
-end
-
-
-function PatchSpotlights(instance)
-
-    instance = SpotLightEntityData(instance)
-    instance:MakeWritable()
-
-    instance.castShadowsEnable = true
-    instance.castShadowsMinLevel = 3
-    instance.coneInnerAngle = instance.coneInnerAngle * 1
-    instance.coneOuterAngle = instance.coneOuterAngle * 2
-
 end
 
 if g_Patches == nil then
