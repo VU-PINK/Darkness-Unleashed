@@ -4,6 +4,7 @@ require("Systems/MapVEManager")
 require("Systems/VehicleManager")
 require("Systems/NVG")
 require("Systems/Patches")
+require("Systems/Lights")
 
 -- Logger
 local m_Logger = Logger("DarknessClient", false)
@@ -84,6 +85,7 @@ end
 function DarknessClient:OnEntityRegister(p_LevelData)
     -- Distribute
     g_VehicleManager:OnEntityRegister(p_LevelData)
+    g_Lights:OnEntityRegister(p_LevelData)
 end
 
 function DarknessClient:OnUpdateInput(p_Player, p_DeltaTime)

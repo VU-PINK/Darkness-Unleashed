@@ -112,6 +112,30 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
         p_SpotLightSettingsArray.transform.trans
  	)
 
+	 local s_LightBeamMesh = RigidMeshAsset(g_RM:Find("77C2CBE6-7180-C6CB-8282-6235F2B9AC2E", "587C9B0B-B8A1-2675-0CC8-20D6F0F14347"):Clone())
+	 --  s_LightBeamMesh.lodGroup = MeshLodGroup(g_RM:Find("64991A4A-4C5E-11DE-B1F5-FE435F0A1D8F", "6F61313B-C996-C1CB-CE6F-34392F6CC1E1"))
+	 --  s_LightBeamMesh.lodScale = 1.0
+	 --  s_LightBeamMesh.cullScale = 1.0
+	 --  s_LightBeamMesh.streamingEnable = true
+	 --  s_LightBeamMesh.occluderMeshEnable = false
+	 --  s_LightBeamMesh.occluderHighPriority = false
+	 --  s_LightBeamMesh.destructionMaterialEnable = false
+	 --  s_LightBeamMesh.enlightenType = 0
+	 --  s_LightBeamMesh.name = "weapons/accessories/flashlight/flashlightbeam_3p_Mesh"
+	 --  local s_lightBeamMaterial = MeshMaterial(g_RM:Find("EF4BED7C-B1E4-1B36-0D95-19FF7A173B3D","B1202F61-67E8-4D57-8400-1EAA02E0014D"))
+	 --  s_LightBeamMesh.materials:add(s_lightBeamMaterial)
+	 --  s_LightBeamMesh.nameHash = 2097245143
+	 --  s_LightBeamMesh.name = "weapons/accessories/flashlight/big_lightcone_01_3p_Mesh"
+
+	local s_NewLightBeamEntity = MeshComponentData()
+	s_NewLightBeamEntity.mesh = s_LightBeamMesh
+	s_NewLightBeamEntity.transform = LinearTransform(
+        p_SpotLightSettingsArray.lightbeamTransform.left,
+        p_SpotLightSettingsArray.lightbeamTransform.up,
+        p_SpotLightSettingsArray.lightbeamTransform.forward,
+        p_SpotLightSettingsArray.lightbeamTransform.trans
+ 	)
+
  	if p_SpotLightSettingsArray.weaponmounted then
 		local s_WeaponData = nil
 
@@ -126,7 +150,8 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
  		end
         self:AddLensFlare(p_SpotLightSettingsArray.name, s_WeaponData, p_SpotLightSettingsArray.transform.trans, p_Vehicle) 
         s_WeaponData.components:add(s_NewSpotlightComponentData)
-		self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
+		s_WeaponData.components:add(s_NewLightBeamEntity)
+		self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 2
  	else
  		if p_ChassisData.isReadOnly then
             p_ChassisData:MakeWritable()
@@ -134,7 +159,8 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
 
         self:AddLensFlare(p_SpotLightSettingsArray.name, p_ChassisData, p_SpotLightSettingsArray.transform.trans, p_Vehicle)
         p_ChassisData.components:add(s_NewSpotlightComponentData)
-        self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
+		p_ChassisData.components:add(s_NewLightBeamEntity)
+        self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 2
 
 		if p_SpotLightSettingsArray.transform.mirrored == true then
 		    self:AddMirrorSpotlight(p_SpotLightSettingsArray.name, p_ChassisData, p_SpotLightSettingsArray, p_Vehicle)
@@ -208,8 +234,33 @@ function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle
 		p_Settings.transform.trans * Vec3((-1), 1, 1)
  	)
 
+	 local s_LightBeamMesh = RigidMeshAsset(g_RM:Find("77C2CBE6-7180-C6CB-8282-6235F2B9AC2E", "587C9B0B-B8A1-2675-0CC8-20D6F0F14347"):Clone())
+	--  s_LightBeamMesh.lodGroup = MeshLodGroup(g_RM:Find("64991A4A-4C5E-11DE-B1F5-FE435F0A1D8F", "6F61313B-C996-C1CB-CE6F-34392F6CC1E1"))
+	--  s_LightBeamMesh.lodScale = 1.0
+	--  s_LightBeamMesh.cullScale = 1.0
+	--  s_LightBeamMesh.streamingEnable = true
+	--  s_LightBeamMesh.occluderMeshEnable = false
+	--  s_LightBeamMesh.occluderHighPriority = false
+	--  s_LightBeamMesh.destructionMaterialEnable = false
+	--  s_LightBeamMesh.enlightenType = 0
+	--  s_LightBeamMesh.name = "weapons/accessories/flashlight/flashlightbeam_3p_Mesh"
+	--  local s_lightBeamMaterial = MeshMaterial(g_RM:Find("EF4BED7C-B1E4-1B36-0D95-19FF7A173B3D","B1202F61-67E8-4D57-8400-1EAA02E0014D"))
+	--  s_LightBeamMesh.materials:add(s_lightBeamMaterial)
+	--  s_LightBeamMesh.nameHash = 2097245143
+	--  s_LightBeamMesh.name = "weapons/accessories/flashlight/big_lightcone_01_3p_Mesh"
+
+	local s_NewLightBeamEntity = MeshComponentData()
+	s_NewLightBeamEntity.mesh = s_LightBeamMesh
+	s_NewLightBeamEntity.transform = LinearTransform(
+		p_Settings.lightbeamTransform.left,
+		p_Settings.lightbeamTransform.up,
+		p_Settings.lightbeamTransform.forward,
+		p_Settings.lightbeamTransform.trans * Vec3((-1), 1, 1)
+ 	)
+
     p_Data.components:add(s_Name)
-	self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
+	p_Data.components:add(s_NewLightBeamEntity)
+	self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 2
 	self:AddLensFlare(p_Name, p_Data, p_Settings.transform.trans * Vec3((-1), 1, 1), p_Vehicle)
 end
 

@@ -153,6 +153,10 @@ function PatchEmitters(partition)
 		if instance:Is("EmitterTemplateData") then
 			local emitterTemplate = EmitterTemplateData(instance)
 
+            emitterTemplate:MakeWritable()
+            emitterTemplate.maxCount = emitterTemplate.maxCount * 2
+            emitterTemplate.maxSpawnDistance = emitterTemplate.maxSpawnDistance * 2
+
 			-- Tweak smoke and dust to last longer
 			if string.find(emitterTemplate.name:lower(), "smoke" or string.find(emitterTemplate.name:lower(), "dust")) then
 				emitterTemplate:MakeWritable()
@@ -165,7 +169,7 @@ function PatchEmitters(partition)
 						rootProcessor.lifetime = rootProcessor.lifetime * 1.2
 
 						emitterTemplate.lifetime = emitterTemplate.lifetime * 1.2
-						emitterTemplate.maxCount = emitterTemplate.maxCount * 3
+						emitterTemplate.maxCount = emitterTemplate.maxCount * 1.5
 					end
 				end
 
@@ -173,7 +177,7 @@ function PatchEmitters(partition)
 			elseif string.find(emitterTemplate.name:lower(), "muzz") then
 				emitterTemplate:MakeWritable()
 				emitterTemplate.actAsPointLight = true
-                emitterTemplate.maxCount = emitterTemplate.maxCount * 4
+                emitterTemplate.maxCount = emitterTemplate.maxCount * 2
 				
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
@@ -185,7 +189,7 @@ function PatchEmitters(partition)
 			elseif string.find(emitterTemplate.name:lower(), "tracer") then
 				emitterTemplate:MakeWritable()
 				emitterTemplate.actAsPointLight = true
-                emitterTemplate.maxCount = emitterTemplate.maxCount * 4
+                emitterTemplate.maxCount = emitterTemplate.maxCount * 2
 
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
@@ -197,21 +201,38 @@ function PatchEmitters(partition)
 			elseif string.find(emitterTemplate.name:lower(), "spark") then
 				emitterTemplate:MakeWritable()
 				emitterTemplate.actAsPointLight = true
-                emitterTemplate.maxCount = emitterTemplate.maxCount * 4
+                emitterTemplate.maxCount = emitterTemplate.maxCount * 1.5
 
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
                     emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 1.15
 					emitterTemplate.maxSpawnDistance = 3000
 				end
-            elseif string.find(emitterTemplate.name:lower(), "wreck/tank/emitters") or string.find(emitterTemplate.name:lower(), "wreck/heli/emitters") or string.find(emitterTemplate.name:lower(), "wreck/car/emitters") or string.find(emitterTemplate.name:lower(), "wreck/airplane/emitters") then
+            elseif string.find(emitterTemplate.name:lower(), "wreck/tank/emitters") then
                 emitterTemplate:MakeWritable()
 
                 emitterTemplate.maxSpawnDistance = 3000
                 emitterTemplate.actAsPointLight = true
-                --emitterTemplate.repeatParticleSpawning = true
+                emitterTemplate.repeatParticleSpawning = true
+                emitterTemplate.maxCount = emitterTemplate.maxCount * 3
                 emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 1.5
                 emitterTemplate.pointLightIntensity = emitterTemplate.pointLightIntensity * 1.5
+                emitterTemplate.lifetime = emitterTemplate.lifetime * 3
+                emitterTemplate.forceFullRes = true
+                emitterTemplate.repeatParticleSpawning = true
+
+                if emitterTemplate.pointLightColor == Vec3(1,1,1) then
+                    emitterTemplate.pointLightColor = Vec3(1,0.25,0)
+                end
+            elseif string.find(emitterTemplate.name:lower(), "wreck/heli/emitters") or string.find(emitterTemplate.name:lower(), "wreck/car/emitters") then
+                emitterTemplate:MakeWritable()
+
+                emitterTemplate.maxSpawnDistance = 3000
+                emitterTemplate.actAsPointLight = true
+                emitterTemplate.maxCount = emitterTemplate.maxCount * 3
+                emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 1.75
+                emitterTemplate.pointLightIntensity = emitterTemplate.pointLightIntensity * 1.75
+                emitterTemplate.forceFullRes = true
                 emitterTemplate.lifetime = emitterTemplate.lifetime * 3
 
                 if emitterTemplate.pointLightColor == Vec3(1,1,1) then

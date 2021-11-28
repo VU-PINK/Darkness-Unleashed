@@ -29,6 +29,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, 0, 0)
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-16, 0, 0),
+                        up = Vec3(0, 16, 0),
+                        forward = Vec3(0, 0, 32),   
+                        trans = Vec3(0, 0, -2.7)
                     }
                 },
                 Pointlight_1 = {
@@ -133,6 +139,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, 0, 0)
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 64),
+                        trans = Vec3(0, 0, -1.4)
                     }
                 },
                 Pointlight_1 = {
@@ -253,10 +265,16 @@ VEHICLESETTINGS = {
                     radius = 200,
                     color = Vec3(1, 0.9, 0.8),
                     transform = {
-                        left = Vec3(-1, 0, 0),
+                        left = Vec3(-1.0, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, -0.035, 0.075),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0.125, -0.035, -0.65)
                     }
                 },
                 Spotlight_2 = {
@@ -278,6 +296,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, -0.025, 0.075)
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0.125, -0.025, -0.65)
                     }
                 },
                 Pointlight_1 = {
@@ -381,6 +405,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, 0.5, 10)
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0, 0.5, 9.5)
                     }
                 },
                 Pointlight_1 = {
@@ -467,6 +497,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, -0.225, 9.25)
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0, -0.225, 8.75)
                     }
                 },
                 Pointlight_1 = {
@@ -553,9 +589,15 @@ VEHICLESETTINGS = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
-                        trans = Vec3(-0.525, 0.65, 3),
+                        trans = Vec3(-0.525, 0.65, 2.6),
                         mirrored = true
                     },
+                    lightbeamTransform = {
+                        left = Vec3(-16, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.525, 0.65, 2),
+                    }
                 },
                 Spotlight_2 = {
                     enabled = true,
@@ -574,8 +616,14 @@ VEHICLESETTINGS = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
-                        trans = Vec3(-0.525, 0.65, 3),
+                        trans = Vec3(-0.525, 0.65, 2.6),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.525, 0.65, 2),
                     }
                 },
                 Pointlight_1 = {
@@ -625,6 +673,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.525, 0.65, 3),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.525, 0.65, 3),
                     }
                 },
                 Spotlight_2 = {
@@ -646,6 +700,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.525, 0.65, 3),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.525, 0.65, 3),
                     }
                 },
                 Pointlight_1 = {
@@ -695,6 +755,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.85, 1.265, 3.65),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.85, 1.265, 2.95),
                     }
                 },
                 Pointlight_1 = {
@@ -744,6 +810,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.825, 1.14, 2.9),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.825, 1.14, 2.1),
                     }
                 },
                 Pointlight_1 = {
@@ -793,6 +865,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.6476, 1.13, 2.245),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.6476, 1.13, 1.545),
                     }
                 },
                 Spotlight_2 = {
@@ -814,6 +892,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.4376, 1.13, 2.245),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.4376, 1.13, 2.245),
                     }
                 },
                 Pointlight_1 = {
@@ -863,6 +947,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.44, 0.85, 1.572),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.44, 0.85, 1.572),
                     }
                 },
                 Pointlight_1 = {
@@ -912,6 +1002,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.3125, 0.765, 2.07),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.3125, 0.765, 2.07),
                     }
                 },
                 Pointlight_1 = {
@@ -951,6 +1047,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.1025, 0.765, 2.045),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.1025, 0.765, 2.045),
                     }
                 }
             }
@@ -985,6 +1087,12 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.8, 1.75, 3.5),
                         mirrored = true,
                     },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.8, 1.75, 3.5),
+                    }
                 },
                 Spotlight_2 = {
                     enabled = true,
@@ -1003,6 +1111,12 @@ VEHICLESETTINGS = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.50, 0.09, -1.20),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
                         trans = Vec3(-0.50, 0.09, -1.20),
                     }
                 },
@@ -1054,6 +1168,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.845, 1.765, 3.43),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-14, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.845, 1.765, 2.7),
                     }
                 },
                 Spotlight_3 = {
@@ -1074,6 +1194,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.3525, 0.585, -1.49),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.3525, 0.585, -2.15),
                     }
                 },
                 Pointlight_1 = {
@@ -1123,6 +1249,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.40, 2, 0.66),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.40, 2, 0.66),
                     }
                 },
                 Pointlight_1 = {
@@ -1171,6 +1303,12 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, 0.85, 1),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0, 0.85, 1),
                     }
                 }
             }
@@ -1202,6 +1340,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-1.2335, 1.2865, 3.17),
                         mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.2335, 1.2865, 2.6),
                     }
                 },
                 Pointlight_1 = {
@@ -1267,6 +1411,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.25, 0.8775, 1.1325),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.25, 0.8775, 1.1325),
                     }
                 }
             }
@@ -1298,6 +1448,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-1.1535, 1.3265, 2.0575),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.1535, 1.3265, 2.0575),
                     }
                 },
                 Pointlight_1 = {
@@ -1347,6 +1503,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.875, 1.75, 3.49115),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.875, 1.75, 2.7),
                     }
                 },
                 Pointlight_1 = {
@@ -1390,7 +1552,7 @@ VEHICLESETTINGS = {
         M1128 = {
             -- M1128 Stryker US
             -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XP3/M1128-Stryker/M1128-Stryker.txt
-            name = 'LAV-AD',
+            name = 'M1128',
             partitionGUID = '3EE37540-9833-11E1-A26B-A2AC6EC60B20',
             chassisGUID = '5159CD83-B46E-D7CA-F4B9-27C884280E7A',
             vehicleDataGUID = 'CA5E19E7-AD7B-D91D-5F7F-D5A9843FF2D1',
@@ -1414,6 +1576,12 @@ VEHICLESETTINGS = {
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.86, 1.55, 3.39),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.86, 1.55, 2.7),
                     }
                 },
                 Pointlight_1 = {
@@ -1432,6 +1600,61 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, 2.4, 9.5),
+                    },
+                }
+            }
+        }
+    },
+    Deployable = {
+        SOFLAM = {
+            name = 'SOFLAM',
+            partitionGUID = '7432AA7D-1802-11E0-8BA5-9B1E2E41035E',
+            chassisGUID = 'F45BD7C0-8C8F-124E-DEBA-05F1D59F908F',
+            vehicleDataGUID = '3F6D23B3-9520-F810-1F95-1CE64C22B30C',
+            weaponGUID = '80D6B7EC-636A-4683-B2B9-D156F16F0FC7',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Main Weapon Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = true,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 3.25*SPOTLIGHTMULTIPLICATOR,
+                    radius = 90,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 0, 0.0075),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0.1, 0, -0.725),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Left Main Light Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = true,
+                    radius = 5,
+                    width = 5,
+                    intensity = 6,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1.25, 2.00),
                     },
                 }
             }
