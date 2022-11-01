@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "Shared",
+			"path": "ext\\Shared"
+		},
+		{
+			"name": "Server",
+			"path": "ext\\Server"
+		},
+		{
+			"name": "Client",
+			"path": "ext\\Client"
+		}
+	],
+	"settings": {
+		"Lua.workspace.maxPreload": 10000,
+		"Lua.diagnostics.libraryFiles": "Disable",
+		"workbench.colorCustomizations": {
+			"minimap.background": "#00000000"
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"Imposter.vscode-lua-vu"
+		]
+	}
+}

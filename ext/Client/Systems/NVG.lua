@@ -1,10 +1,16 @@
+---@type MapVEManager
+local m_MapVEManager = require("Systems/MapVEManager")
+
 local m_Logger = Logger("NVG", false)
-class("NVG")
+
+---@class NVG
+---@overload fun(): NVG
+local NVG = class("NVG")
 
 function NVG:__init()
     self:RegisterVars()
     -- Set value on the UI
-	g_UI:Batteries(self.m_BatteryLifeMin, self.m_BatteryLifeMax)
+	UI:Batteries(self.m_BatteryLifeMin, self.m_BatteryLifeMax)
 end
 
 function NVG:RegisterVars()
@@ -19,6 +25,7 @@ end
 
 function NVG:Activate(p_LevelName)
     m_Logger:Write('NVG Activate called!')
+    print(self.m_BatteryLifeCurrent)
     if self.m_BatteryLifeCurrent >= self.m_BatteryLifeMin then
 
         if not self.m_Activated then
@@ -26,7 +33,7 @@ function NVG:Activate(p_LevelName)
             Events:Dispatch("VEManager:FadeIn", "DU_" .. p_LevelName .. "_NVG", self.m_FadeLengthMS)
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             m_Logger:Write('NVG Activate ...')
-            g_UI:GoggleIcon(true) -- Update UI battery icon
+            UI:GoggleIcon(true) -- Update UI battery icon
         else
 			if self.m_Activated then
 				m_Logger:Write('NVG Already active | NVG:Activate()')
@@ -48,7 +55,7 @@ function NVG:Deactivate(p_LevelName)
         --Beep boop sound
         WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
         m_Logger:Write('Deactivate')
-        g_UI:DisableGoggleIcon(true) -- Update UI battery icon
+        UI:DisableGoggleIcon(true) -- Update UI battery icon
     else
 		if not self.m_Activated then
 			m_Logger:Write('NVG not active | NVG:Deactivate()')
@@ -73,17 +80,17 @@ function NVG:Depleting(p_ElapsedTime)
 		self.m_BatteryLifeCurrent = self.m_BatteryLifeCurrent - 1
     end
 
-	g_UI:Battery(self.m_BatteryLifeCurrent) -- Update UI battery
+	UI:Battery(self.m_BatteryLifeCurrent) -- Update UI battery
     m_Logger:Write("Battery Life: " .. self.m_BatteryLifeCurrent)
 
     if self.m_BatteryLifeCurrent <= 0 then
         m_Logger:Write('Battery has depleted!')
 
         if self.m_Activated then
-            g_UI:DisableGoggleIcon(true) -- Update UI battery icon
+            UI:DisableGoggleIcon(true) -- Update UI battery icon
             self.m_BatteryEmptyTime = p_ElapsedTime
             m_Logger:Write('Battery Depletion Animation Started')
-            self:Deactivate(g_MapVEManager.m_LoadedPreset[1])
+            self:Deactivate(m_MapVEManager.m_LoadedPreset[1])
         end
     end
 end
@@ -95,18 +102,14 @@ function NVG:Recharging(p_ElapsedTime)
 
 	-- Show Enabled/Disabled Goggles icon
 	if self.m_BatteryLifeCurrent >= self.m_BatteryLifeMin then
-		g_UI:DisableGoggleIcon(false) -- Update UI battery icon
+		UI:DisableGoggleIcon(false) -- Update UI battery icon
 	end
 
     if self.m_BatteryLifeCurrent < self.m_BatteryLifeMax then
         self.m_BatteryLifeCurrent = self.m_BatteryLifeCurrent + 1
-		g_UI:Battery(self.m_BatteryLifeCurrent) -- Update UI battery
+		UI:Battery(self.m_BatteryLifeCurrent) -- Update UI battery
         m_Logger:Write("Battery Charged To: " .. self.m_BatteryLifeCurrent)
     end
 end
 
-if g_NVG == nil then
-    g_NVG = NVG()
-end
-
-return g_NVG
+return NVG()

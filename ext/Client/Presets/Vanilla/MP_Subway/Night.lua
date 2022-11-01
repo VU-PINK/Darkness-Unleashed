@@ -104,7 +104,7 @@ return [[
         "PanoramicUVMinY":"0.0",
         "PanoramicUVMaxY":"0.5",
         "PanoramicTileFactor":"1.0",
-        "PanoramicRotation":"0.15000000596046",
+        "PanoramicRotation":"0.9200000166893",
         "CloudLayerSunColor":"(3.0, 2.8980000019073, 2.6979999542236)",
         "CloudLayer1Altitude":"5000.0",
         "CloudLayer1TileFactor":"0.20999999344349",

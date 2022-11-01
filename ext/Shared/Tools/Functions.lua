@@ -1,8 +1,8 @@
-class('Functions')
-
-function Functions:has_value (tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
+---@param p_Table table
+---@param p_Value any
+local function hasValue(p_Table, p_Value)
+    for _, l_Value in ipairs(p_Table) do
+        if l_Value == p_Value then
             return true
         end
     end
@@ -10,8 +10,4 @@ function Functions:has_value (tab, val)
     return false
 end
 
-if g_Functions == nil then
-    g_Functions = Functions()
-end
-
-return g_Functions
+return hasValue

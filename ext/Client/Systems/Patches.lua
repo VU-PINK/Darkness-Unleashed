@@ -1,6 +1,6 @@
-class("Patches")
-
 require("Systems/PatchAssets")
+
+Patches = class("Patches")
 
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     --Patch https://github.com/EmulatorNexus/Venice-EBX/blob/f06c290fa43c80e07985eda65ba74c59f4c01aa0/Weapons/Accessories/flashlight/Flashlight_1p.txt
@@ -32,7 +32,7 @@ function PatchFlashLight(instance)
     instance.castShadowsEnable = true
     instance.castShadowsMinLevel = 0
     instance.shape = 1
-    
+
     instance = LocalLightEntityData(instance)
     instance:MakeWritable()
     instance.attenuationOffset = 250
@@ -243,8 +243,4 @@ function PatchEmitters(partition)
 	end
 end
 
-if g_Patches == nil then
-    g_Patches = Patches()
-end
-
-return g_Patches
+return Patches()

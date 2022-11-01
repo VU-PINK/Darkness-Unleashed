@@ -41,5 +41,3 @@ CONFIG = {
     LOGGER_ENABLED = true,
     LOGGER_PRINT_ALL = false
 }
-
-return CONFIG

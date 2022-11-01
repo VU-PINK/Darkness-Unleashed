@@ -1,5 +1,8 @@
+---@class MapVEManager
+---@overload fun():MapVEManager
+MapVEManager = class("MapVEManager")
+
 local m_Logger = Logger("MapVEManager", true)
-class("MapVEManager")
 
 function MapVEManager:__init()
     m_Logger:Write("Initialize MapVEManager")
@@ -11,6 +14,9 @@ function MapVEManager:RegisterVars()
     self.m_LoadedPreset = nil
 end
 
+---@param p_LevelName string
+---@param p_GameMode string
+---@param p_IsDedicatedServer boolean
 function MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     for l_Category, l_CategoryData in pairs(CONFIG) do
         if type(l_CategoryData) == "table" then
@@ -20,7 +26,6 @@ function MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServ
                     break
                 else
                     self.m_LoadedPreset = {p_LevelName:match('/[^/]+'):sub(2), "Night"}
-                    m_Logger:Write("Bad Configuration | MapVEManager:OnLoadResources")
                 end
             end
         end
@@ -34,11 +39,10 @@ end
 function MapVEManager:OnLevelDestroyed()
     MapVEManager:RemovePreset(self.m_CurrentMapPreset)
     MapVEManager:RegisterVars()
-    collectgarbage("collect")
 end
 
 function MapVEManager:ApplyPreset(p_LevelName, p_Preset)
-    local s_Prefix = g_DarknessClient.m_Prefix .. p_LevelName
+    local s_Prefix = DarknessClient.m_Prefix .. p_LevelName
     local s_Preset = s_Prefix .. "_" .. p_Preset
     Events:Dispatch("VEManager:EnablePreset", s_Preset)
     self.m_CurrentMapPreset = s_Preset
@@ -46,15 +50,9 @@ function MapVEManager:ApplyPreset(p_LevelName, p_Preset)
 end
 
 function MapVEManager:RemovePreset(p_Preset)
-    Events:Dispatch("VEManager:DisablePreset", s_Preset)
+    Events:Dispatch("VEManager:DisablePreset", p_Preset)
     self.m_CurrentMapPreset = nil
     m_Logger:Write("Removed Active Preset")
 end
 
-
--- Singleton
-if g_MapVEManager == nil then
-    g_MapVEManager = MapVEManager()
-end
-
-return g_MapVEManager
+return MapVEManager()

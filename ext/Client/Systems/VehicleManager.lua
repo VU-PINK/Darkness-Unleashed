@@ -1,5 +1,8 @@
+---@class VehicleManager
+---@overload fun(): VehicleManager
+VehicleManager = class('VehicleManager')
+
 local m_Logger = Logger("VehicleManager", false)
-class('VehicleManager')
 
 function VehicleManager:__init()
     self:RegisterVars()
@@ -11,11 +14,12 @@ function VehicleManager:RegisterVars()
     self.m_CurrentVehicleData = nil
 end
 
+---@param p_LevelData LevelData
 function VehicleManager:OnEntityRegister(p_LevelData)
     for l_VehicleType, l_Vehicles in pairs(VEHICLESETTINGS) do
 
         for l_Vehicle, l_VehicleData in pairs(l_Vehicles) do
-            self.m_CurrentChassisData = g_RM:Find(l_VehicleData.partitionGUID, l_VehicleData.chassisGUID)
+            self.m_CurrentChassisData = RM:Find(l_VehicleData.partitionGUID, l_VehicleData.chassisGUID)
 
                if self.m_CurrentChassisData ~= nil then
                     self.m_CurrentChassisData = ChassisComponentData(self.m_CurrentChassisData)
@@ -34,13 +38,15 @@ function VehicleManager:OnEntityRegister(p_LevelData)
     end
 end
 
-
+---@param p_PointLightSettingsArray table
+---@param p_ChassisData ChassisComponentData|DataContainer
+---@param p_Vehicle table
 function VehicleManager:AddPointLight(p_PointLightSettingsArray, p_ChassisData, p_Vehicle)
     if p_Vehicle == nil then
 		return
 	end
 
-	self.m_CurrentVehicleData = g_RM:VED(p_Vehicle.partitionGUID, p_Vehicle.vehicleDataGUID)
+	self.m_CurrentVehicleData = RM:VED(p_Vehicle.partitionGUID, p_Vehicle.vehicleDataGUID)
 	self.m_CurrentVehicleData:MakeWritable()
 
  	local s_NewPointLight = PointLightEntityData()
@@ -63,18 +69,21 @@ function VehicleManager:AddPointLight(p_PointLightSettingsArray, p_ChassisData, 
 		local s_WeaponData = nil
 
 		if p_PointLightSettingsArray.weapon2 == true then
-			s_WeaponData = g_RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID2)	
+			s_WeaponData = RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID2)
 	   	else
-            s_WeaponData = g_RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID)	
+            s_WeaponData = RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID)
 	   	end
 
- 		if s_WeaponData.isReadOnly then
-            s_WeaponData:MakeWritable()
- 		end
- 		s_WeaponData.components:add(s_NewPointlightComponentData)
-        self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
+		if s_WeaponData then
+ 			if s_WeaponData.isReadOnly then
+        	    s_WeaponData:MakeWritable()
+ 			end
+ 			s_WeaponData.components:add(s_NewPointlightComponentData)
+        	self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
+		else
+			m_Logger:Error("WeaponData is nil: " .. p_Vehicle.weaponGUID2)
+		end
  	else
-
  		if p_ChassisData.isReadOnly then
             p_ChassisData:MakeWritable()
  		end
@@ -83,13 +92,15 @@ function VehicleManager:AddPointLight(p_PointLightSettingsArray, p_ChassisData, 
  	end
 end
 
-
+---@param p_SpotLightSettingsArray table
+---@param p_ChassisData ChassisComponentData|DataContainer
+---@param p_Vehicle table
 function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_Vehicle)
 	if p_Vehicle == nil then
 	    return
 	end
 
-	self.m_CurrentVehicleData = g_RM:VED(p_Vehicle.partitionGUID, p_Vehicle.vehicleDataGUID)
+	self.m_CurrentVehicleData = RM:VED(p_Vehicle.partitionGUID, p_Vehicle.vehicleDataGUID)
 	self.m_CurrentVehicleData:MakeWritable()
 
  	local s_NewSpotLight = SpotLightEntityData()
@@ -98,7 +109,7 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
  	s_NewSpotLight.color = p_SpotLightSettingsArray.color
  	s_NewSpotLight.frustumFov = p_SpotLightSettingsArray.frustumFov
  	s_NewSpotLight.frustumAspect = p_SpotLightSettingsArray.frustumAspect
- 	s_NewSpotLight.texture = g_RM:Flashlight()
+ 	s_NewSpotLight.texture = RM:Flashlight()
  	s_NewSpotLight.castShadowsMinLevel = 0
  	s_NewSpotLight.castShadowsEnable = false
  	s_NewSpotLight.radius = p_SpotLightSettingsArray.radius
@@ -112,8 +123,8 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
         p_SpotLightSettingsArray.transform.trans
  	)
 
-	 local s_LightBeamMesh = RigidMeshAsset(g_RM:Find("77C2CBE6-7180-C6CB-8282-6235F2B9AC2E", "587C9B0B-B8A1-2675-0CC8-20D6F0F14347"):Clone())
-	 --  s_LightBeamMesh.lodGroup = MeshLodGroup(g_RM:Find("64991A4A-4C5E-11DE-B1F5-FE435F0A1D8F", "6F61313B-C996-C1CB-CE6F-34392F6CC1E1"))
+	 local s_LightBeamMesh = RigidMeshAsset(RM:Find("77C2CBE6-7180-C6CB-8282-6235F2B9AC2E", "587C9B0B-B8A1-2675-0CC8-20D6F0F14347"):Clone())
+	 --  s_LightBeamMesh.lodGroup = MeshLodGroup(RM:Find("64991A4A-4C5E-11DE-B1F5-FE435F0A1D8F", "6F61313B-C996-C1CB-CE6F-34392F6CC1E1"))
 	 --  s_LightBeamMesh.lodScale = 1.0
 	 --  s_LightBeamMesh.cullScale = 1.0
 	 --  s_LightBeamMesh.streamingEnable = true
@@ -122,10 +133,10 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
 	 --  s_LightBeamMesh.destructionMaterialEnable = false
 	 --  s_LightBeamMesh.enlightenType = 0
 	 --  s_LightBeamMesh.name = "weapons/accessories/flashlight/flashlightbeam_3p_Mesh"
-	 --  local s_lightBeamMaterial = MeshMaterial(g_RM:Find("EF4BED7C-B1E4-1B36-0D95-19FF7A173B3D","B1202F61-67E8-4D57-8400-1EAA02E0014D"))
+	 --  local s_lightBeamMaterial = MeshMaterial(RM:Find("EF4BED7C-B1E4-1B36-0D95-19FF7A173B3D","B1202F61-67E8-4D57-8400-1EAA02E0014D"))
 	 --  s_LightBeamMesh.materials:add(s_lightBeamMaterial)
 	 --  s_LightBeamMesh.nameHash = 2097245143
-	 --  s_LightBeamMesh.name = "weapons/accessories/flashlight/big_lightcone_01_3p_Mesh"
+	 --  s_LightBeamMesh.name = "weapons/accessories/flashlight/bilightcone_01_3p_Mesh"
 
 	local s_NewLightBeamEntity = MeshComponentData()
 	s_NewLightBeamEntity.mesh = s_LightBeamMesh
@@ -140,18 +151,22 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
 		local s_WeaponData = nil
 
 		if p_SpotLightSettingsArray.weapon2 == true then
-            s_WeaponData = g_RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID2)
+            s_WeaponData = RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID2)
 		else
-			s_WeaponData = g_RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID)
+			s_WeaponData = RM:WCP(p_Vehicle.partitionGUID, p_Vehicle.weaponGUID)
 		end
 
- 		if s_WeaponData.isReadOnly then
-            s_WeaponData:MakeWritable()
- 		end
-        self:AddLensFlare(p_SpotLightSettingsArray.name, s_WeaponData, p_SpotLightSettingsArray.transform.trans, p_Vehicle) 
-        s_WeaponData.components:add(s_NewSpotlightComponentData)
-		s_WeaponData.components:add(s_NewLightBeamEntity)
-		self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 2
+		if s_WeaponData then
+ 			if s_WeaponData.isReadOnly then
+        	    s_WeaponData:MakeWritable()
+ 			end
+        	self:AddLensFlare(p_SpotLightSettingsArray.name, s_WeaponData, p_SpotLightSettingsArray.transform.trans, p_Vehicle)
+        	s_WeaponData.components:add(s_NewSpotlightComponentData)
+			s_WeaponData.components:add(s_NewLightBeamEntity)
+			self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 2
+		else
+			m_Logger:Error("WeaponData is nil: " .. p_Vehicle.weaponGUID2)
+		end
  	else
  		if p_ChassisData.isReadOnly then
             p_ChassisData:MakeWritable()
@@ -168,7 +183,10 @@ function VehicleManager:AddSpotLight(p_SpotLightSettingsArray, p_ChassisData, p_
  	end
 end
 
-
+---@param p_Name string
+---@param p_Data table
+---@param p_Trans Vec3
+---@param p_Vehicle table
 function VehicleManager:AddLensFlare(p_Name, p_Data, p_Trans, p_Vehicle)
 	if p_Vehicle == nil then
 		return
@@ -178,7 +196,13 @@ function VehicleManager:AddLensFlare(p_Name, p_Data, p_Trans, p_Vehicle)
 		return
 	end
 
-	local s_LensFlare = g_RM:LFED("65A5BFD9-028A-4D4F-8B89-3A60B2E06F83","D8DB98E1-AEBA-485E-9AA4-D5F55C5CDECE")
+	local s_LensFlare = RM:LFED("65A5BFD9-028A-4D4F-8B89-3A60B2E06F83","D8DB98E1-AEBA-485E-9AA4-D5F55C5CDECE")
+
+	if not s_LensFlare then
+		m_Logger:Error("Lensflare is nil")
+		return
+	end
+
 	s_LensFlare:MakeWritable()
 
 	for l_Key, l_Value in pairs(s_LensFlare.elements) do
@@ -212,7 +236,10 @@ function VehicleManager:AddLensFlare(p_Name, p_Data, p_Trans, p_Vehicle)
 	self.m_CurrentVehicleData.runtimeComponentCount = self.m_CurrentVehicleData.runtimeComponentCount + 1
 end
 
-
+---@param p_Name string
+---@param p_Data table
+---@param p_Settings table
+---@param p_Vehicle any
 function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle)
 	local s_NewSpotLight = SpotLightEntityData()
     s_NewSpotLight.shape = p_Settings.shape
@@ -220,7 +247,7 @@ function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle
     s_NewSpotLight.color = p_Settings.color
     s_NewSpotLight.frustumFov = p_Settings.frustumFov
     s_NewSpotLight.frustumAspect = p_Settings.frustumAspect
-    s_NewSpotLight.texture = g_RM:Flashlight()
+    s_NewSpotLight.texture = RM:Flashlight()
     s_NewSpotLight.castShadowsMinLevel = 0
     s_NewSpotLight.castShadowsEnable = false
     s_NewSpotLight.radius = p_Settings.radius
@@ -234,8 +261,8 @@ function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle
 		p_Settings.transform.trans * Vec3((-1), 1, 1)
  	)
 
-	 local s_LightBeamMesh = RigidMeshAsset(g_RM:Find("77C2CBE6-7180-C6CB-8282-6235F2B9AC2E", "587C9B0B-B8A1-2675-0CC8-20D6F0F14347"):Clone())
-	--  s_LightBeamMesh.lodGroup = MeshLodGroup(g_RM:Find("64991A4A-4C5E-11DE-B1F5-FE435F0A1D8F", "6F61313B-C996-C1CB-CE6F-34392F6CC1E1"))
+	 local s_LightBeamMesh = RigidMeshAsset(RM:Find("77C2CBE6-7180-C6CB-8282-6235F2B9AC2E", "587C9B0B-B8A1-2675-0CC8-20D6F0F14347"):Clone())
+	--  s_LightBeamMesh.lodGroup = MeshLodGroup(RM:Find("64991A4A-4C5E-11DE-B1F5-FE435F0A1D8F", "6F61313B-C996-C1CB-CE6F-34392F6CC1E1"))
 	--  s_LightBeamMesh.lodScale = 1.0
 	--  s_LightBeamMesh.cullScale = 1.0
 	--  s_LightBeamMesh.streamingEnable = true
@@ -244,10 +271,10 @@ function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle
 	--  s_LightBeamMesh.destructionMaterialEnable = false
 	--  s_LightBeamMesh.enlightenType = 0
 	--  s_LightBeamMesh.name = "weapons/accessories/flashlight/flashlightbeam_3p_Mesh"
-	--  local s_lightBeamMaterial = MeshMaterial(g_RM:Find("EF4BED7C-B1E4-1B36-0D95-19FF7A173B3D","B1202F61-67E8-4D57-8400-1EAA02E0014D"))
+	--  local s_lightBeamMaterial = MeshMaterial(RM:Find("EF4BED7C-B1E4-1B36-0D95-19FF7A173B3D","B1202F61-67E8-4D57-8400-1EAA02E0014D"))
 	--  s_LightBeamMesh.materials:add(s_lightBeamMaterial)
 	--  s_LightBeamMesh.nameHash = 2097245143
-	--  s_LightBeamMesh.name = "weapons/accessories/flashlight/big_lightcone_01_3p_Mesh"
+	--  s_LightBeamMesh.name = "weapons/accessories/flashlight/bilightcone_01_3p_Mesh"
 
 	local s_NewLightBeamEntity = MeshComponentData()
 	s_NewLightBeamEntity.mesh = s_LightBeamMesh
@@ -264,10 +291,4 @@ function VehicleManager:AddMirrorSpotlight(p_Name, p_Data, p_Settings, p_Vehicle
 	self:AddLensFlare(p_Name, p_Data, p_Settings.transform.trans * Vec3((-1), 1, 1), p_Vehicle)
 end
 
-
--- Singleton
-if g_VehicleManager == nil then
-    g_VehicleManager = VehicleManager()
-end
-
-return g_VehicleManager
+return VehicleManager()

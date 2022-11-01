@@ -1,5 +1,8 @@
+---@class UI
+---@overload fun(): UI
+UI = class('UI')
+
 local m_Logger = Logger("UI", false)
-class('UI')
 
 function UI:__init()
 	UI:RegisterVars()
@@ -23,7 +26,7 @@ end
 -- On player spawn, show night vision goggles hint
 function UI:OnPlayerRespawn(p_Player)
 	self.m_LocalPlayer = p_Player
-	if self.m_LocalPlayer.name == g_DarknessClient.m_PlayerName then
+	if self.m_LocalPlayer.name == DarknessClient.m_PlayerName then
 		WebUI:ExecuteJS('window.showHintUI(' .. tostring(self.m_ShowHintForS) .. ');')
 	end
 end
@@ -111,9 +114,4 @@ Hooks:Install('UI:PushScreen', 999, function(hook, screen, graphPriority, parent
 	end
 end)
 
--- Singleton
-if g_UI == nil then
-	g_UI = UI()
-end
-
-return g_UI
+return UI()

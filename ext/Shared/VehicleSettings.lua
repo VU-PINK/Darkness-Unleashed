@@ -33,7 +33,7 @@ VEHICLESETTINGS = {
                     lightbeamTransform = {
                         left = Vec3(-16, 0, 0),
                         up = Vec3(0, 16, 0),
-                        forward = Vec3(0, 0, 32),   
+                        forward = Vec3(0, 0, 32),
                         trans = Vec3(0, 0, -2.7)
                     }
                 },
@@ -1661,6 +1661,3 @@ VEHICLESETTINGS = {
         }
     }
 }
-
-
-return VEHICLESETTINGS
