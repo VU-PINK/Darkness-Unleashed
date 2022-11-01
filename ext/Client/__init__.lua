@@ -7,7 +7,8 @@ local m_MapVEManager = require("Systems/MapVEManager")
 local m_VehicleManager = require("Systems/VehicleManager")
 ---@type NVG
 local m_NVG = require("Systems/NVG")
---require("Systems/Patches")
+
+require("Systems/Patches")
 
 -- Logger
 local m_Logger = Logger("DarknessClient", true)
@@ -58,6 +59,7 @@ function DarknessClient:RegisterEvents()
     Events:Subscribe('Level:RegisterEntityResources', self, self.OnEntityRegister)
     Events:Subscribe("Engine:Update", self, self.OnEngineUpdate)
     Events:Subscribe("Client:UpdateInput", self, self.OnUpdateInput)
+    Events:Subscribe('Player:Killed', self, self.OnPlayerKilled)
     Events:Subscribe("VEManager:PresetsLoaded", self, self.OnPresetsLoaded)
 end
 
@@ -105,6 +107,13 @@ end
 function DarknessClient:OnPlayerRespawn(p_Player)
     -- Distribute
     m_UI:OnPlayerRespawn(p_Player)
+    m_NVG:Deactivate(m_MapVEManager.m_LoadedPreset[1])
+end
+
+---@param p_Player Player
+function DarknessClient:OnPlayerKilled(p_Player)
+    -- Distribute
+    m_NVG:Deactivate(m_MapVEManager.m_LoadedPreset[1])
 end
 
 ---@param p_LevelData LevelData
@@ -113,11 +122,10 @@ function DarknessClient:OnEntityRegister(p_LevelData)
     m_VehicleManager:OnEntityRegister(p_LevelData)
 end
 
----@param p_Player Player
 ---@param p_DeltaTime integer
-function DarknessClient:OnUpdateInput(p_Player, p_DeltaTime)
+function DarknessClient:OnUpdateInput(p_DeltaTime)
     -- Self
-    self:NVGPlayerInput(p_Player, p_DeltaTime)
+    self:NVGPlayerInput(p_DeltaTime)
 end
 
 function DarknessClient:OnPresetsLoaded()
@@ -126,9 +134,8 @@ function DarknessClient:OnPresetsLoaded()
 end
 
 -- Night Vision Gadget
----@param p_Player Player
 ---@param p_DeltaTime integer
-function DarknessClient:NVGPlayerInput(p_Player, p_DeltaTime)
+function DarknessClient:NVGPlayerInput(p_DeltaTime)
     -- Night Vision Goggles
     if InputManager:WentKeyDown(8) then
         m_Logger:Write('NVG Key detected!')
@@ -146,6 +153,17 @@ function DarknessClient:NVGPlayerInput(p_Player, p_DeltaTime)
             m_Logger:Write('Failed to enable NVG. useNightVisionGadget = ' .. tostring(CONFIG.GENERAL.USE_NIGHTVISION_GADGET) .. ' | isHud = ' .. tostring(m_UI.m_HudActive) .. ' | isKilled = ' .. tostring(m_UI.m_PlayerDead))
         end
     end
+
+    --[[m_NVG.m_AnimationValue = MathUtils:Lerp(0, 2, m_NVG.m_AnimationT)
+    if m_NVG.m_Transitioning then
+        m_NVG.m_AnimationT = m_NVG.m_AnimationT + (p_DeltaTime / 1)
+        Events:Dispatch("VEManager:SetSingleValue", "DU_" .. m_MapVEManager.m_LoadedPreset[1] .. "_NVG", "vignette", "exponent", m_NVG.m_AnimationValue)
+
+        if m_NVG.m_AnimationValue >= 2 then
+            m_NVG.m_Transitioning = false
+            m_NVG.m_AnimationT = 0
+        end
+    end]]
 end
 
 local s_ElapsedTime = 0

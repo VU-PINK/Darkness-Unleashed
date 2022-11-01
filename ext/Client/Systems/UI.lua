@@ -27,6 +27,7 @@ end
 function UI:OnPlayerRespawn(p_Player)
 	self.m_LocalPlayer = p_Player
 	if self.m_LocalPlayer.name == DarknessClient.m_PlayerName then
+		self:DisableGoggleIcon(false)
 		WebUI:ExecuteJS('window.showHintUI(' .. tostring(self.m_ShowHintForS) .. ');')
 	end
 end

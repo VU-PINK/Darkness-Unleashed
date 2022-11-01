@@ -15,12 +15,16 @@ end
 
 function NVG:RegisterVars()
     self.m_Activated = false
+    self.m_Transitioning = false
     self.m_BatteryLifeMax = 60
     self.m_BatteryLifeMin = 10
     self.m_BatteryEmptyTime = 0
     self.m_BatteryLifeCooldown = 10
     self.m_BatteryLifeCurrent = 60
     self.m_FadeLengthMS = 2500
+    self.m_AnimationValue = 0
+    self.m_AnimationT = 0
+    self.m_CurrentNVGVE = "DU_NVG"
 end
 
 function NVG:Activate(p_LevelName)
@@ -34,6 +38,7 @@ function NVG:Activate(p_LevelName)
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             m_Logger:Write('NVG Activate ...')
             UI:GoggleIcon(true) -- Update UI battery icon
+            self.m_Transitioning = true
         else
 			if self.m_Activated then
 				m_Logger:Write('NVG Already active | NVG:Activate()')

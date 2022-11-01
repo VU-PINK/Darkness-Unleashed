@@ -1,7 +1,5 @@
 require("Systems/PatchAssets")
 
-Patches = class("Patches")
-
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     --Patch https://github.com/EmulatorNexus/Venice-EBX/blob/f06c290fa43c80e07985eda65ba74c59f4c01aa0/Weapons/Accessories/flashlight/Flashlight_1p.txt
     PatchFlashLight(ResourceManager:FindInstanceByGuid(Guid('83E2B938-E678-11DF-A7B3-CBA49C34928F'), Guid('995E49EE-8914-4AFD-8EF5-59125CA8F9CD')))
@@ -164,7 +162,7 @@ function PatchEmitters(partition)
 				if not (emitterTemplate.emissive or emitterTemplate.actAsPointLight or emitterTemplate.repeatParticleSpawning or emitterTemplate.opaque) then
 					if emitterTemplate.rootProcessor:Is("UpdateAgeData") then
 						local rootProcessor = UpdateAgeData(emitterTemplate.rootProcessor)
-						
+
 						rootProcessor:MakeWritable()
 						rootProcessor.lifetime = rootProcessor.lifetime * 1.2
 
@@ -178,7 +176,7 @@ function PatchEmitters(partition)
 				emitterTemplate:MakeWritable()
 				emitterTemplate.actAsPointLight = true
                 emitterTemplate.maxCount = emitterTemplate.maxCount * 2
-				
+
 				if emitterTemplate.pointLightColor == Vec3(1,1,1) then
 					emitterTemplate.pointLightColor = Vec3(1,0.25,0)
                     emitterTemplate.pointLightRadius = emitterTemplate.pointLightRadius * 0.65
@@ -242,5 +240,3 @@ function PatchEmitters(partition)
 		end
 	end
 end
-
-return Patches()
