@@ -1,1 +1,6 @@
 oldext/*
+oldcode/*
+ui/*
+.vu/*
+.vscode/*
+.git/*
