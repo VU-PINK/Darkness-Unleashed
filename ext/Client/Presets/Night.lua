@@ -1,6 +1,7 @@
 return [[
 {
     "Name": "DU_Night",
+    "Type": "DefaultDynamic",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting": {
@@ -80,8 +81,8 @@ return [[
     "OutdoorLight": {
         "Realm": "0",
         "Enable": "true",
-        "SunRotationX": "270",
-        "SunRotationY": "0",
+        "SunRotationX": "0",
+        "SunRotationY": "359",
         "SunColor": "0:0:0:",
         "SkyColor": "(0.025, 0.025, 0.025)",
         "GroundColor": "(0.01, 0.01, 0.01)",

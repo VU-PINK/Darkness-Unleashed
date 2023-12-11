@@ -1,6 +1,7 @@
 return [[
 {
     "Name": "DU_MP_011_Night",
+    "Type": "DefaultDynamic",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting":{

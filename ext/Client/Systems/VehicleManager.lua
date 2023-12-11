@@ -16,26 +16,28 @@ end
 
 ---@param p_LevelData LevelData
 function VehicleManager:OnEntityRegister(p_LevelData)
-    for l_VehicleType, l_Vehicles in pairs(VEHICLESETTINGS) do
+	if CONFIG.VEHICLES.USE_VEHICLE_LIGHTS then
+		for l_VehicleType, l_Vehicles in pairs(VEHICLESETTINGS) do
 
-        for l_Vehicle, l_VehicleData in pairs(l_Vehicles) do
-            self.m_CurrentChassisData = RM:Find(l_VehicleData.partitionGUID, l_VehicleData.chassisGUID)
+			for l_Vehicle, l_VehicleData in pairs(l_Vehicles) do
+				self.m_CurrentChassisData = RM:Find(l_VehicleData.partitionGUID, l_VehicleData.chassisGUID)
 
-               if self.m_CurrentChassisData ~= nil then
-                    self.m_CurrentChassisData = ChassisComponentData(self.m_CurrentChassisData)
+				if self.m_CurrentChassisData ~= nil then
+						self.m_CurrentChassisData = ChassisComponentData(self.m_CurrentChassisData)
 
-                    for l_ComponentKey, l_Component in pairs(l_VehicleData.Components) do
+						for l_ComponentKey, l_Component in pairs(l_VehicleData.Components) do
 
-                        if l_Component.type == 1 and l_Component.enabled then
-							VehicleManager:AddPointLight(l_Component, self.m_CurrentChassisData, l_VehicleData)
+							if l_Component.type == 1 and l_Component.enabled then
+								VehicleManager:AddPointLight(l_Component, self.m_CurrentChassisData, l_VehicleData)
 
-                        elseif l_Component.type == 2 and l_Component.enabled then
-							VehicleManager:AddSpotLight(l_Component, self.m_CurrentChassisData, l_VehicleData)
-                        end
-                    end
-               end
-        end
-    end
+							elseif l_Component.type == 2 and l_Component.enabled then
+								VehicleManager:AddSpotLight(l_Component, self.m_CurrentChassisData, l_VehicleData)
+							end
+						end
+				end
+			end
+		end
+	end
 end
 
 ---@param p_PointLightSettingsArray table

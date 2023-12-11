@@ -26,6 +26,7 @@ function DarknessClient:RegisterVars()
     self.m_Presets = {
         ["Night"] = require("Presets/Night"),
         ["NVG"] = require("Presets/NVG"),
+        ["Vehicle_NVG"] = require("Presets/Vehicle_NVG"),
 
         ["MP_001_Night"] = require("Presets/Vanilla/MP_001/Night"),
         ["MP_003_Night"] = require("Presets/Vanilla/MP_003/Night"),
@@ -69,13 +70,16 @@ end
 function DarknessClient:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     m_Logger:Write("Registering Presets")
     local s_LevelName = p_LevelName:match('/[^/]+'):sub(2)
+    m_Logger:Write("The Level Name: " .. s_LevelName)
+
     local s_Prefix = self.m_Prefix
 
     for l_Name, l_Preset in pairs(self.m_Presets) do
         local s_Name = s_Prefix .. l_Name
 
-        if string.find(s_Name, s_LevelName) or l_Name == "Night" or l_Name == "NVG" then
+        if string.find(s_Name, s_LevelName) or l_Name == "Night" or l_Name == "NVG" or l_Name == "Vehicle_NVG" then
             m_Logger:Write("Registering Preset: " .. s_Name)
+            m_Logger:Write("The s_Name " .. s_Name)
             Events:Dispatch("VEManager:RegisterPreset", s_Name, l_Preset)
         end
     end
@@ -88,7 +92,7 @@ function DarknessClient:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedSe
     -- Self
     self:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Distribute
-    m_MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
+    -- m_MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
 end
 
 ---@param p_LevelName string
@@ -107,13 +111,15 @@ end
 function DarknessClient:OnPlayerRespawn(p_Player)
     -- Distribute
     m_UI:OnPlayerRespawn(p_Player)
-    m_NVG:Deactivate(m_MapVEManager.m_LoadedPreset[1])
+    m_NVG:Deactivate()
 end
 
 ---@param p_Player Player
 function DarknessClient:OnPlayerKilled(p_Player)
     -- Distribute
-    m_NVG:Deactivate(m_MapVEManager.m_LoadedPreset[1])
+    if p_player == PlayerManager:GetLocalPlayer() then
+        m_NVG:Deactivate()
+    end
 end
 
 ---@param p_LevelData LevelData
@@ -130,7 +136,7 @@ end
 
 function DarknessClient:OnPresetsLoaded()
     -- Distribute
-    m_MapVEManager:OnPresetsLoaded()
+    -- m_MapVEManager:OnPresetsLoaded()
 end
 
 -- Night Vision Gadget
@@ -140,14 +146,14 @@ function DarknessClient:NVGPlayerInput(p_DeltaTime)
     if InputManager:WentKeyDown(8) then
         m_Logger:Write('NVG Key detected!')
 
-        if CONFIG.GENERAL.USE_NIGHTVISION_GADGET and UI.m_HudActive then
+        if CONFIG.GENERAL.USE_NIGHTVISION_GADGET and m_UI.m_HudActive then
 
             if not m_NVG.m_Activated then
                 m_Logger:Write('Calling NVG:Activate()')
-                m_NVG:Activate(m_MapVEManager.m_LoadedPreset[1])
+                m_NVG:Activate()
 			else
                 m_Logger:Write('Calling NVG:Deactivate()')
-                m_NVG:Deactivate(m_MapVEManager.m_LoadedPreset[1])
+                m_NVG:Deactivate()
             end
         else
             m_Logger:Write('Failed to enable NVG. useNightVisionGadget = ' .. tostring(CONFIG.GENERAL.USE_NIGHTVISION_GADGET) .. ' | isHud = ' .. tostring(m_UI.m_HudActive) .. ' | isKilled = ' .. tostring(m_UI.m_PlayerDead))
@@ -175,11 +181,12 @@ function DarknessClient:OnEngineUpdate(p_DeltaTime, p_SimulationDeltaTime)
 
     if s_ElapsedTime >= s_LastSecond + 1 then
         s_LastSecond = s_LastSecond + 1
-
-        if m_NVG.m_Activated and CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
-            m_NVG:Depleting(s_ElapsedTime)
-        elseif m_NVG.m_BatteryLifeCurrent ~= m_NVG.m_BatteryLifeMax and CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
-            m_NVG:Recharging(s_ElapsedTime)
+        if CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
+            if m_NVG.m_Activated then
+                m_NVG:Depleting(s_ElapsedTime)
+            elseif not m_NVG.m_Activated and m_NVG.m_BatteryLifeCurrent ~= m_NVG.m_BatteryLifeMax and CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
+                m_NVG:Recharging(s_ElapsedTime)
+            end
         end
     end
 end
@@ -187,9 +194,3 @@ end
 DarknessClient = DarknessClient()
 
 return DarknessClient
-
-
-
-
-
-
