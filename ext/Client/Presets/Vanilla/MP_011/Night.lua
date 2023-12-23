@@ -1,7 +1,7 @@
 return [[
 {
     "Name": "DU_MP_011_Night",
-    "Type": "DefaultDynamic",
+    "Type": "Dynamic",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting":{
@@ -76,8 +76,8 @@ return [[
     },
     "OutdoorLight":{
        "Enable":"true",
-       "SunRotationX":"123.0",
-       "SunRotationY":"35.0",
+       "SunRotationX":"0.0",
+       "SunRotationY":"180.0",
        "SunColor":"(0.0, 0.0, 0.0)",
        "SkyColor":"(0.0099999997764826, 0.0099999997764826, 0.0099999997764826)",
        "GroundColor":"(0.0099999997764826, 0.0099999997764826, 0.0099999997764826)",

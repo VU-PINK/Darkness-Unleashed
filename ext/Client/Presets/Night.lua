@@ -1,7 +1,7 @@
 return [[
 {
     "Name": "DU_Night",
-    "Type": "DefaultDynamic",
+    "Type": "Dynamic",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting": {

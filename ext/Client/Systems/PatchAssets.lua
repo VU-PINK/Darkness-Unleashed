@@ -3,8 +3,8 @@ emitters = {
     ['fx/ambient/levelspecific/mp15/emitters/em_amb_mp15_background_smokepillar_m_01'] = true,
 
     -- MP_007
-    ['fx/ambient/levelspecific/mp_07/emitters/em_mp7_distancemist_xxl_smoke'] = true,
-    ['fx/ambient/levelspecific/mp_07/emitters/em_mp7_battlesmoke_xl_smoke'] = true,
+    -- ['fx/ambient/levelspecific/mp_07/emitters/em_mp7_distancemist_xxl_smoke'] = true,
+    -- ['fx/ambient/levelspecific/mp_07/emitters/em_mp7_battlesmoke_xl_smoke'] = true,
 
     -- MP_013
     ['fx/ambient/levelspecific/mp_013/emitters_clouds/em_amb_mp_013_clouds_area_s_01'] = true,
@@ -30,18 +30,18 @@ meshs = {
     ['levels/mp_subway/objects/backdrops/mp_subway_smokepillar02_mesh'] = true,
 
     -- MP_007
-    ['levels/mp_007/terrain/mp007_matte01_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte02_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte03_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte04_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte05_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte06_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte07_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte_far01_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte_far02_mesh'] = true,
-    ['levels/mp_007/terrain/mp007_matte_far03_mesh'] = true,
-    ['levels/mp_007/props/mp007_waterwash_01_mesh'] = true,
-    ['levels/mp_007/props/mp007_waterwash_02_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte01_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte02_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte03_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte04_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte05_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte06_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte07_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte_far01_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte_far02_mesh'] = true,
+    -- ['levels/mp_007/terrain/mp007_matte_far03_mesh'] = true,
+    -- ['levels/mp_007/props/mp007_waterwash_01_mesh'] = true,
+    -- ['levels/mp_007/props/mp007_waterwash_02_mesh'] = true,
 
     -- MP_011
     ['levels/mp_011/objects/mp011_backdrop_01_mesh'] = true,
@@ -122,7 +122,7 @@ variations = {
 
 effects = {
     -- MP_007
-    ['fx/ambient/levelspecific/mp_07/fx_amb_mp_07_godrays'] = true,
+    -- ['fx/ambient/levelspecific/mp_07/fx_amb_mp_07_godrays'] = true,
 
     -- XP2_Factory
     ['fx/dlc/xp2/ambient/levelspecific/mp_factory/fx_factory_newpart_godrays_smallwindows'] = true,

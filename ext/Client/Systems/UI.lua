@@ -24,14 +24,11 @@ function UI:RegisterEvents()
 end
 
 -- On player spawn, show night vision goggles hint
-function UI:OnPlayerRespawn(p_Player)
-	self.m_LocalPlayer = p_Player
-	if self.m_LocalPlayer.name == DarknessClient.m_PlayerName then
-		self:DisableGoggleIcon(false)
-		WebUI:ExecuteJS('window.showHintUI(' .. tostring(self.m_ShowHintForS) .. ');')
-	end
+-- At this point we already validated that the player is the local player.
+function UI:OnPlayerRespawn()
+	self:DisableGoggleIcon(false)
+	WebUI:ExecuteJS('window.showHintUI(' .. tostring(self.m_ShowHintForS) .. ');')
 end
-
 
 -- Change Icons location
 -- bottom = "5%"
@@ -39,8 +36,8 @@ end
 -- WebUI:ExecuteJS('window.iconsLocation("' .. bottom .. '","' .. right .. '");')
 
 -- Update goggle icon
-function UI:GoggleIcon(on)
-	if on then
+function UI:EnableGoggleIcon(enable)
+	if enable then
 		UI:ChangeGoggleIcon(1) -- On
 	else
 		UI:ChangeGoggleIcon(2) -- Off
@@ -62,7 +59,7 @@ end
 function UI:ChangeGoggleIcon(state)
 	-- State: 1 = On, 2 = Off, 3 = Disabled
 	-- print('window.gogglesUpdate(' .. tostring(state) .. ');')
-    WebUI:ExecuteJS('window.gogglesUpdate(' .. tostring(state) .. ');')
+	WebUI:ExecuteJS('window.gogglesUpdate(' .. tostring(state) .. ');')
 end
 
 -- Set min/max battery
@@ -75,10 +72,10 @@ function UI:Battery(battery)
 	WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(battery) .. ');')
 end
 
-
 -- Enable/disable UI
 function UI:DrawHud()
-	if self.m_LocalPlayer == nil or self.m_LocalPlayer == nil then
+	local s_localPlayer = PlayerManager:GetLocalPlayer()
+	if s_localPlayer == nil then
 		if self.m_PlayerDead then
 			WebUI:ExecuteJS('window.hideUI();')
 			return
@@ -111,6 +108,7 @@ Hooks:Install('UI:PushScreen', 999, function(hook, screen, graphPriority, parent
 
 	if screen.name == 'UI/Flow/Screen/KillScreen' then
 		UI.m_PlayerDead = true
+		WebUI:ExecuteJS('window.hideUI();')
 		m_Logger:Write("Player is Dead")
 	end
 end)

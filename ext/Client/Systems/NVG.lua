@@ -1,5 +1,5 @@
----@type MapVEManager
-local m_MapVEManager = require("Systems/MapVEManager")
+-- --@type MapVEManager
+-- local m_MapVEManager = require("Systems/MapVEManager")
 
 local m_Logger = Logger("NVG", false)
 
@@ -17,11 +17,11 @@ end
 function NVG:RegisterVars()
     self.m_Activated = false
     self.m_Transitioning = false
-    self.m_BatteryLifeMax = 60
+    self.m_BatteryLifeMax = 120
     self.m_BatteryLifeMin = 10
     self.m_BatteryEmptyTime = 0
     self.m_BatteryLifeCooldown = 10
-    self.m_BatteryLifeCurrent = 60
+    self.m_BatteryLifeCurrent = 120
     self.m_FadeLengthMS = 1000
     self.m_AnimationValue = 0
     self.m_AnimationT = 0
@@ -29,22 +29,31 @@ function NVG:RegisterVars()
 end
 
 function NVG:RegisterEvents()
-    -- Events:Subscribe('Vehicle:Enter', self, self._OnVehicleEnter)
+    Events:Subscribe('Level:Destroy', self, self._OnLevelDestroy)
+    NetEvents:Subscribe('DarknessServer:VehicleInteract', self, self._OnVehicleInteract)
 end
 
----@param vehicle Entity
----@param player Player
-function NVG:_OnVehicleEnter(vehicle, player)
+function NVG:_OnLevelDestroy()
+    self:RegisterVars()
+end
+
+---@param recievedPlayerName string
+function NVG:_OnVehicleInteract(recievedPlayerName)
     -- What to do when a player (local) enters a vehicle, switch the preset being used.
-    if self.m_Activated then
-        if player == PlayerManager.GetLocalPlayer() then
-            if player.inVehicle then
-                self.m_CurrentNVGVE = "DU_Vehicle_NVG"
-                Events:Dispatch("VEManager:FadeIn", self.m_CurrentNVGVE, self.m_FadeLengthMS)
-            else
-                self.m_CurrentNVGVE = "DU_NVG"
-                Events:Dispatch("VEManager:FadeIn", self.m_CurrentNVGVE, self.m_FadeLengthMS)
-            end
+    local player = PlayerManager:GetLocalPlayer()
+    if self.m_Activated and recievedPlayerName == player.name then
+        if not player.inVehicle then
+            print('The player entered a Vehicle! Swtiching to NVG')
+
+            Events:Dispatch("VEManager:DisablePreset", self.m_CurrentNVGVE)
+            self.m_CurrentNVGVE = "DU_Vehicle_NVG"
+            Events:Dispatch("VEManager:EnablePreset", self.m_CurrentNVGVE)
+        else
+            print('The player exited a Vehicle! Switching to Vehicle NVG')
+
+            Events:Dispatch("VEManager:DisablePreset", self.m_CurrentNVGVE)
+            self.m_CurrentNVGVE = "DU_NVG"
+            Events:Dispatch("VEManager:EnablePreset", self.m_CurrentNVGVE)
         end
     end
 end
@@ -65,7 +74,7 @@ function NVG:Activate(p_LevelName)
 
             WebUI:ExecuteJS('playSound("/sounds/Switch_ON.ogg", 1.0, false);')
             m_Logger:Write('NVG Activate ...')
-            UI:GoggleIcon(true) -- Update UI battery icon
+            UI:EnableGoggleIcon(true) -- Update UI battery icon
             self.m_Transitioning = true
         else
             if self.m_Activated then
@@ -76,12 +85,12 @@ function NVG:Activate(p_LevelName)
         end
     else
         m_Logger:Write('Not enough battery to activate | ' ..
-        tostring(self.m_BatteryLifeCurrent) .. '/' .. tostring(self.m_BatteryLifeMax))
+            tostring(self.m_BatteryLifeCurrent) .. '/' .. tostring(self.m_BatteryLifeMax))
         m_Logger:Write('Needs more than ' .. tostring(self.m_BatteryLifeMin) .. ' to activate!')
     end
 end
 
-function NVG:Deactivate(p_LevelName)
+function NVG:Deactivate()
     m_Logger:Write('NVG Deactivate called!')
     if self.m_Activated and self.m_CurrentNVGVE ~= nil then
         self.m_Activated = false

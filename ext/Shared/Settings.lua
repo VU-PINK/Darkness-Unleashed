@@ -38,8 +38,8 @@ CONFIG = {
         USE_NIGHTVISION_GADGET = true
     },
     TIME = {
-        ENABLED = false,
-        START_HOUR = 9,
+        ENABLED = true,
+        START_HOUR = 18,
         DAY_DURATION = 10
     },
     LOGGER_ENABLED = true,

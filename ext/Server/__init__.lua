@@ -11,9 +11,17 @@ function DarknessServer:__init()
     self:RegisterEvents()
 end
 
-
 function DarknessServer:RegisterEvents()
-    Events:Subscribe("Level:Loaded", self, self._OnLevelLoaded)
+    NetEvents:Subscribe("VEManager:PresetsLoaded", self, self._OnPresetsLoaded)
+
+    Events:Subscribe('Vehicle:Enter', self, self._OnVehicleInteract)
+    Events:Subscribe('Vehicle:Exit', self, self._OnVehicleInteract)
+end
+
+---@param vehicle string
+---@param player Player
+function DarknessServer:_OnVehicleInteract(vehicle, player)
+    NetEvents:BroadcastLocal('DarknessServer:VehicleInteract', player.name)
 end
 
 function setDayNightCycle(p_StartingTime, p_LengthOfCycle)
@@ -30,9 +38,9 @@ function setDayNightCycle(p_StartingTime, p_LengthOfCycle)
     Events:Dispatch('TimeServer:Enable', p_StartingTime, p_LengthOfCycle)
 end
 
-function DarknessServer:_OnLevelLoaded()
+function DarknessServer:_OnPresetsLoaded()
     if CONFIG.TIME.ENABLED then
-        setDayNightCycle(CONFIG.TIME.START_HOUR, CONFIG.TIME.DAY_DURATION)  
+        setDayNightCycle(CONFIG.TIME.START_HOUR, CONFIG.TIME.DAY_DURATION)
     end
 end
 

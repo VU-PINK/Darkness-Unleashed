@@ -25,8 +25,8 @@ end
 function DarknessClient:RegisterVars()
     self.m_Presets = {
         ["Night"] = require("Presets/Night"),
-        ["NVG"] = require("Presets/NVG"),
-        ["Vehicle_NVG"] = require("Presets/Vehicle_NVG"),
+        ["NVG"] = require("Presets/Special/NVG"),
+        ["Vehicle_NVG"] = require("Presets/Special/Vehicle_NVG"),
 
         ["MP_001_Night"] = require("Presets/Vanilla/MP_001/Night"),
         ["MP_003_Night"] = require("Presets/Vanilla/MP_003/Night"),
@@ -46,11 +46,10 @@ function DarknessClient:RegisterVars()
         ["MP_013_NVG"] = require("Presets/Vanilla/MP_013/NVG"),
         ["MP_017_NVG"] = require("Presets/Vanilla/MP_017/NVG"),
         ["MP_018_NVG"] = require("Presets/Vanilla/MP_018/NVG"),
-        ["MP_Subway_NVG"] = require("Presets/Vanilla/MP_Subway/NVG"),
+        ["MP_Subway_NVG"] = require("Presets/Vanilla/MP_Subway/NVG")
     }
 
     self.m_Prefix = "DU_"
-    self.m_PlayerName = PlayerManager:GetLocalPlayer().name
 end
 
 function DarknessClient:RegisterEvents()
@@ -61,7 +60,8 @@ function DarknessClient:RegisterEvents()
     Events:Subscribe("Engine:Update", self, self.OnEngineUpdate)
     Events:Subscribe("Client:UpdateInput", self, self.OnUpdateInput)
     Events:Subscribe('Player:Killed', self, self.OnPlayerKilled)
-    Events:Subscribe("VEManager:PresetsLoaded", self, self.OnPresetsLoaded)
+    -- Events:Subscribe("VEManager:PresetsLoaded", self, self.OnPresetsLoaded)
+    Events:Subscribe("Player:Respawn", self, self.OnPlayerRespawn)
 end
 
 ---@param p_LevelName string
@@ -70,8 +70,6 @@ end
 function DarknessClient:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     m_Logger:Write("Registering Presets")
     local s_LevelName = p_LevelName:match('/[^/]+'):sub(2)
-    m_Logger:Write("The Level Name: " .. s_LevelName)
-
     local s_Prefix = self.m_Prefix
 
     for l_Name, l_Preset in pairs(self.m_Presets) do
@@ -79,7 +77,6 @@ function DarknessClient:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedSe
 
         if string.find(s_Name, s_LevelName) or l_Name == "Night" or l_Name == "NVG" or l_Name == "Vehicle_NVG" then
             m_Logger:Write("Registering Preset: " .. s_Name)
-            m_Logger:Write("The s_Name " .. s_Name)
             Events:Dispatch("VEManager:RegisterPreset", s_Name, l_Preset)
         end
     end
@@ -90,6 +87,7 @@ end
 ---@param p_IsDedicatedServer boolean
 function DarknessClient:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Self
+
     self:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Distribute
     -- m_MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
@@ -110,14 +108,17 @@ end
 ---@param p_Player Player
 function DarknessClient:OnPlayerRespawn(p_Player)
     -- Distribute
-    m_UI:OnPlayerRespawn(p_Player)
-    m_NVG:Deactivate()
+    local s_localPlayer = PlayerManager:GetLocalPlayer()
+    if s_localPlayer == p_Player then
+        m_UI:OnPlayerRespawn()
+    end
 end
 
 ---@param p_Player Player
 function DarknessClient:OnPlayerKilled(p_Player)
     -- Distribute
-    if p_player == PlayerManager:GetLocalPlayer() then
+    local s_localPlayer = PlayerManager:GetLocalPlayer()
+    if s_localPlayer == p_Player then
         m_NVG:Deactivate()
     end
 end
@@ -131,7 +132,10 @@ end
 ---@param p_DeltaTime integer
 function DarknessClient:OnUpdateInput(p_DeltaTime)
     -- Self
-    self:NVGPlayerInput(p_DeltaTime)
+    local s_localPlayer = PlayerManager:GetLocalPlayer()
+    if s_localPlayer ~= nil and s_localPlayer.soldier ~= nil and s_localPlayer.alive then
+        self:NVGPlayerInput(p_DeltaTime)
+    end
 end
 
 function DarknessClient:OnPresetsLoaded()
@@ -143,20 +147,21 @@ end
 ---@param p_DeltaTime integer
 function DarknessClient:NVGPlayerInput(p_DeltaTime)
     -- Night Vision Goggles
-    if InputManager:WentKeyDown(8) then
+    if InputManager:WentKeyDown(InputDeviceKeys.IDK_7) then
         m_Logger:Write('NVG Key detected!')
 
         if CONFIG.GENERAL.USE_NIGHTVISION_GADGET and m_UI.m_HudActive then
-
             if not m_NVG.m_Activated then
                 m_Logger:Write('Calling NVG:Activate()')
                 m_NVG:Activate()
-			else
+            else
                 m_Logger:Write('Calling NVG:Deactivate()')
                 m_NVG:Deactivate()
             end
         else
-            m_Logger:Write('Failed to enable NVG. useNightVisionGadget = ' .. tostring(CONFIG.GENERAL.USE_NIGHTVISION_GADGET) .. ' | isHud = ' .. tostring(m_UI.m_HudActive) .. ' | isKilled = ' .. tostring(m_UI.m_PlayerDead))
+            m_Logger:Write('Failed to enable NVG. useNightVisionGadget = ' ..
+                tostring(CONFIG.GENERAL.USE_NIGHTVISION_GADGET) ..
+                ' | isHud = ' .. tostring(m_UI.m_HudActive) .. ' | isKilled = ' .. tostring(m_UI.m_PlayerDead))
         end
     end
 
