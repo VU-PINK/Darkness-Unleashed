@@ -189,7 +189,7 @@ function DarknessClient:OnEngineUpdate(p_DeltaTime, p_SimulationDeltaTime)
         if CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
             if m_NVG.m_Activated then
                 m_NVG:Depleting(s_ElapsedTime)
-            elseif not m_NVG.m_Activated and m_NVG.m_BatteryLifeCurrent ~= m_NVG.m_BatteryLifeMax and CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
+            elseif not m_NVG.m_Activated and m_NVG.m_BatteryLifeCurrent ~= m_NVG.m_BatteryLifeMax then
                 m_NVG:Recharging(s_ElapsedTime)
             end
         end

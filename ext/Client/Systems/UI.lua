@@ -72,6 +72,10 @@ function UI:Battery(battery)
 	WebUI:ExecuteJS('window.batteryUpdate(' .. tostring(battery) .. ');')
 end
 
+function UI:UnableToActivateWarning()
+	WebUI:ExecuteJS('window.showNVGAlert();')
+end
+
 -- Enable/disable UI
 function UI:DrawHud()
 	local s_localPlayer = PlayerManager:GetLocalPlayer()

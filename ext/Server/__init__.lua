@@ -24,33 +24,26 @@ function DarknessServer:_OnVehicleInteract(vehicle, player)
     NetEvents:BroadcastLocal('DarknessServer:VehicleInteract', player.name)
 end
 
-function setDayNightCycle(p_StartingTime, p_LengthOfCycle)
-    -- Is time static?
-    if p_LengthOfCycle <= 0 then
-        ---@diagnostic disable-next-line: cast-local-type
-        p_LengthOfCycle = nil
-    end
+-- function setDayNightCycle(p_StartingTime, p_LengthOfCycle)
+--     -- Is time static?
+--     if p_LengthOfCycle <= 0 then
+--         ---@diagnostic disable-next-line: cast-local-type
+--         p_LengthOfCycle = nil
+--     end
 
-    -- Fix incorrect time
-    if p_StartingTime < 0 or p_StartingTime >= 24 then
-        p_StartingTime = 0
-    end
-    Events:Dispatch('TimeServer:Enable', p_StartingTime, p_LengthOfCycle)
-end
+--     -- Fix incorrect time
+--     if p_StartingTime < 0 or p_StartingTime >= 24 then
+--         p_StartingTime = 0
+--     end
+--     Events:Dispatch('TimeServer:Enable', p_StartingTime, p_LengthOfCycle)
+-- end
 
 function DarknessServer:_OnPresetsLoaded()
-    if CONFIG.TIME.ENABLED then
-        setDayNightCycle(CONFIG.TIME.START_HOUR, CONFIG.TIME.DAY_DURATION)
-    end
+    -- This causes crashes when some maps start loading and spawning bots. Delegating this responsability to VEManager directly.
+    -- if CONFIG.TIME.ENABLED then
+    --     -- setDayNightCycle(CONFIG.TIME.START_HOUR, CONFIG.TIME.DAY_DURATION)
+    -- end
 end
-
--- function stopDayNightVECycle()
---     Events:Dispatch('TimeServer:Pause')
--- end
-
--- function disableDayNightVECycle()
---     Events:Dispatch('TimeServer:Disable')
--- end
 
 DarknessServer = DarknessServer()
 

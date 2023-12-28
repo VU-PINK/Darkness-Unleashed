@@ -37,11 +37,12 @@ CONFIG = {
     GENERAL = {
         USE_NIGHTVISION_GADGET = true
     },
+
     TIME = {
-        ENABLED = true,
+        ENABLED = false,
         START_HOUR = 18,
         DAY_DURATION = 10
     },
-    LOGGER_ENABLED = true,
-    LOGGER_PRINT_ALL = true
+    LOGGER_ENABLED = false,
+    LOGGER_PRINT_ALL = false
 }

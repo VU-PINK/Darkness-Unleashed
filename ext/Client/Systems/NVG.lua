@@ -21,11 +21,16 @@ function NVG:RegisterVars()
     self.m_BatteryLifeMin = 10
     self.m_BatteryEmptyTime = 0
     self.m_BatteryLifeCooldown = 10
-    self.m_BatteryLifeCurrent = 120
-    self.m_FadeLengthMS = 1000
+    self.m_BatteryLifeCurrent = 0
+    self.m_FadeLengthMS = 2000
     self.m_AnimationValue = 0
     self.m_AnimationT = 0
     self.m_CurrentNVGVE = nil
+    self.m_Depleted = false
+    self.m_NVGVES = {
+        ["Vehicle"] = "DU_Vehicle_NVG",
+        ["Soldier"] = "DU_NVG"
+    }
 end
 
 function NVG:RegisterEvents()
@@ -46,13 +51,13 @@ function NVG:_OnVehicleInteract(recievedPlayerName)
             print('The player entered a Vehicle! Swtiching to NVG')
 
             Events:Dispatch("VEManager:DisablePreset", self.m_CurrentNVGVE)
-            self.m_CurrentNVGVE = "DU_Vehicle_NVG"
+            self.m_CurrentNVGVE = self.m_NVGVES["Vehicle"]
             Events:Dispatch("VEManager:EnablePreset", self.m_CurrentNVGVE)
         else
             print('The player exited a Vehicle! Switching to Vehicle NVG')
 
             Events:Dispatch("VEManager:DisablePreset", self.m_CurrentNVGVE)
-            self.m_CurrentNVGVE = "DU_NVG"
+            self.m_CurrentNVGVE = self.m_NVGVES["Soldier"]
             Events:Dispatch("VEManager:EnablePreset", self.m_CurrentNVGVE)
         end
     end
@@ -66,9 +71,9 @@ function NVG:Activate(p_LevelName)
             self.m_Activated = true
             local localPlayer = PlayerManager:GetLocalPlayer()
             if not localPlayer.inVehicle then
-                self.m_CurrentNVGVE = "DU_NVG"
+                self.m_CurrentNVGVE = self.m_NVGVES["Soldier"]
             else
-                self.m_CurrentNVGVE = "DU_Vehicle_NVG"
+                self.m_CurrentNVGVE = self.m_NVGVES["Vehicle"]
             end
             Events:Dispatch("VEManager:FadeIn", self.m_CurrentNVGVE, self.m_FadeLengthMS)
 
@@ -87,6 +92,8 @@ function NVG:Activate(p_LevelName)
         m_Logger:Write('Not enough battery to activate | ' ..
             tostring(self.m_BatteryLifeCurrent) .. '/' .. tostring(self.m_BatteryLifeMax))
         m_Logger:Write('Needs more than ' .. tostring(self.m_BatteryLifeMin) .. ' to activate!')
+        WebUI:ExecuteJS('window.showNVGAlert();')
+        WebUI:ExecuteJS('playSound("/sounds/Switch_EMPTY.ogg", 1.0, false);')
     end
 end
 
@@ -94,12 +101,18 @@ function NVG:Deactivate()
     m_Logger:Write('NVG Deactivate called!')
     if self.m_Activated and self.m_CurrentNVGVE ~= nil then
         self.m_Activated = false
-        Events:Dispatch("VEManager:FadeOut", self.m_CurrentNVGVE, self.m_FadeLengthMS)
+
+        --Beep boop sound
+        if self.m_Depleted then
+            Events:Dispatch("VEManager:FadeOut", self.m_CurrentNVGVE, self.m_FadeLengthMS)
+            WebUI:ExecuteJS('playSound("/sounds/Switch_EMPTY.ogg", 1.0, false);')
+        else
+            Events:Dispatch("VEManager:FadeOut", self.m_CurrentNVGVE, self.m_FadeLengthMS)
+            WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
+        end
 
         self.m_CurrentNVGVE = nil
 
-        --Beep boop sound
-        WebUI:ExecuteJS('playSound("/sounds/Switch_OFF.ogg", 1.0, false);')
         m_Logger:Write('Deactivate')
         UI:DisableGoggleIcon(true) -- Update UI battery icon
     else
@@ -136,6 +149,7 @@ function NVG:Depleting(p_ElapsedTime)
             UI:DisableGoggleIcon(true) -- Update UI battery icon
             self.m_BatteryEmptyTime = p_ElapsedTime
             m_Logger:Write('Battery Depletion Animation Started')
+            self.m_Depleted = true
             self:Deactivate()
         end
     end
@@ -149,6 +163,7 @@ function NVG:Recharging(p_ElapsedTime)
     -- Show Enabled/Disabled Goggles icon
     if self.m_BatteryLifeCurrent >= self.m_BatteryLifeMin then
         UI:DisableGoggleIcon(false) -- Update UI battery icon
+        self.m_Depleted = false
     end
 
     if self.m_BatteryLifeCurrent < self.m_BatteryLifeMax then

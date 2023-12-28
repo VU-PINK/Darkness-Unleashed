@@ -1,5 +1,3 @@
-require("Systems/PatchAssets")
-
 Events:Subscribe('Level:Loaded', function(levelName, gameMode)
     --Patch https://github.com/EmulatorNexus/Venice-EBX/blob/f06c290fa43c80e07985eda65ba74c59f4c01aa0/Weapons/Accessories/flashlight/Flashlight_1p.txt
     PatchFlashLight(ResourceManager:FindInstanceByGuid(Guid('83E2B938-E678-11DF-A7B3-CBA49C34928F'),
@@ -12,7 +10,6 @@ Events:Subscribe('Level:Loaded', function(levelName, gameMode)
 end)
 
 Events:Subscribe('Partition:Loaded', function(partition)
-    -- PatchComponents(partition)
     PatchEmitters(partition)
 end)
 

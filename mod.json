@@ -12,6 +12,6 @@
     "HasWebUI": true,
     "Dependencies": {
         "veniceext": "^1.10.0",
-        "VEManager": "^0.2.2"
+        "VEManager": "^0.5.1"
     }
 }

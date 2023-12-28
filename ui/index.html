@@ -70,7 +70,7 @@
 			right: 4%;
 			padding: 2px 4px;
 			opacity: 0.70;
-			filter: drop-shadow(1px 1px 2px #52b0ff);
+			filter: drop-shadow(1px 1px 2px #52b0ff) brightness(99%) contrast(98%);
 		}
 
 		#goggles-icon {
@@ -99,6 +99,56 @@
 			border-radius: 2px;
 			box-shadow: 0 0 2px 1px #62c5ffb8;
 			margin-right: 7px;
+		}
+
+		.bounce {
+			outline: 0;
+			filter: drop-shadow(1px 1px 2px #ff5252) brightness(99%) contrast(200%) !important;
+			animation-name: bounce;
+			animation-duration: .5s;
+			animation-delay: 0.25s;
+		}
+
+		@keyframes bounce {
+			0% {
+				transform: translateX(0px);
+				timing-function: ease-in;
+			}
+
+			37% {
+				transform: translateX(5px);
+				timing-function: ease-out;
+			}
+
+			55% {
+				transform: translateX(-5px);
+				timing-function: ease-in;
+			}
+
+			73% {
+				transform: translateX(4px);
+				timing-function: ease-out;
+			}
+
+			82% {
+				transform: translateX(-4px);
+				timing-function: ease-in;
+			}
+
+			91% {
+				transform: translateX(2px);
+				timing-function: ease-out;
+			}
+
+			96% {
+				transform: translateX(-2px);
+				timing-function: ease-in;
+			}
+
+			100% {
+				transform: translateX(0px);
+				timing-function: ease-in;
+			}
 		}
 	</style>
 </head>
@@ -138,6 +188,12 @@
 			setTimeout(function () {
 				hint.style.display = 'none';
 			}, seconds * 1000);
+		};
+		window.showNVGAlert = () => {
+			goggle.classList.add("bounce");
+			setTimeout(function () {
+				goggle.classList.remove("bounce");
+			}, 1000);
 		};
 
 		// Set settings
@@ -199,15 +255,15 @@
 
 				if (lastBattery != newBattery) {
 					if (newBattery == 4 && lastBattery != newBattery) {
-						playSound("/sounds/NVG_Charged.ogg", 0.3, false);
+						playSound("/sounds/NVG_Charged.ogg", 0.8, false);
 					}
 					else if (newBattery == 0 && lastBattery != newBattery) {
-						playSound("/sounds/NVG_Depleted.ogg", 0.3, false);
+						playSound("/sounds/NVG_Depleted.ogg", 0.8, false);
 					}
 					else if (lastBattery >= newBattery && lastBattery != newBattery) {
-						playSound("/sounds/NVG_Depleting.ogg", 0.3, false);
+						playSound("/sounds/NVG_Depleting.ogg", 0.8, false);
 					} else {
-						playSound("/sounds/NVG_Charging.ogg", 0.3, false);
+						playSound("/sounds/NVG_Charging.ogg", 0.8, false);
 					}
 				}
 
