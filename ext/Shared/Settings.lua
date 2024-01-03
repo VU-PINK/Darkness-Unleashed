@@ -1,5 +1,5 @@
 -- Default MapVE Configuration
-CONFIG = {
+DU_CONFIG = {
     MAPS = {
         MP_001 = 'Night',      -- Grand Bazaar
         MP_003 = 'Night',      -- Teheran Highway
@@ -37,11 +37,10 @@ CONFIG = {
     GENERAL = {
         USE_NIGHTVISION_GADGET = true
     },
-
     TIME = {
-        ENABLED = false,
-        START_HOUR = 18,
-        DAY_DURATION = 10
+        ENABLED = true,
+        START_HOUR = 6,
+        DAY_DURATION = 12
     },
     LOGGER_ENABLED = false,
     LOGGER_PRINT_ALL = false

@@ -2,12 +2,12 @@
 ---@overload fun(): UI
 UI = class('UI')
 
-local m_Logger = Logger("UI", false)
+local m_Logger = DULogger("UI", false)
 
 function UI:__init()
 	UI:RegisterVars()
 	UI:RegisterEvents()
-	if CONFIG.GENERAL.USE_NIGHTVISION_GADGET == true then
+	if DU_CONFIG.GENERAL.USE_NIGHTVISION_GADGET == true then
 		m_Logger:Write('Initializing NVG UI')
 		WebUI:Init()
 	end

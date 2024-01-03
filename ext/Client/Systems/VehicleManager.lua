@@ -2,7 +2,7 @@
 ---@overload fun(): VehicleManager
 VehicleManager = class('VehicleManager')
 
-local m_Logger = Logger("VehicleManager", false)
+local m_Logger = DULogger("VehicleManager", false)
 
 function VehicleManager:__init()
 	self:RegisterVars()
@@ -16,7 +16,7 @@ end
 
 ---@param p_LevelData LevelData
 function VehicleManager:OnEntityRegister(p_LevelData)
-	if CONFIG.VEHICLES.USE_VEHICLE_LIGHTS then
+	if DU_CONFIG.VEHICLES.USE_VEHICLE_LIGHTS then
 		for l_VehicleType, l_Vehicles in pairs(VEHICLESETTINGS) do
 			for l_Vehicle, l_VehicleData in pairs(l_Vehicles) do
 				self.m_CurrentChassisData = RM:Find(l_VehicleData.partitionGUID, l_VehicleData.chassisGUID)

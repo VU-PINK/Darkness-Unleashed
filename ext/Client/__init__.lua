@@ -11,7 +11,7 @@ local m_NVG = require("Systems/NVG")
 require("Systems/Patches")
 
 -- Logger
-local m_Logger = Logger("DarknessClient", true)
+local m_Logger = DULogger("DarknessClient", true)
 
 ---@class DarknessClient
 ---@overload fun(): DarknessClient
@@ -150,7 +150,7 @@ function DarknessClient:NVGPlayerInput(p_DeltaTime)
     if InputManager:WentKeyDown(InputDeviceKeys.IDK_7) then
         m_Logger:Write('NVG Key detected!')
 
-        if CONFIG.GENERAL.USE_NIGHTVISION_GADGET and m_UI.m_HudActive then
+        if DU_CONFIG.GENERAL.USE_NIGHTVISION_GADGET and m_UI.m_HudActive then
             if not m_NVG.m_Activated then
                 m_Logger:Write('Calling NVG:Activate()')
                 m_NVG:Activate()
@@ -160,7 +160,7 @@ function DarknessClient:NVGPlayerInput(p_DeltaTime)
             end
         else
             m_Logger:Write('Failed to enable NVG. useNightVisionGadget = ' ..
-                tostring(CONFIG.GENERAL.USE_NIGHTVISION_GADGET) ..
+                tostring(DU_CONFIG.GENERAL.USE_NIGHTVISION_GADGET) ..
                 ' | isHud = ' .. tostring(m_UI.m_HudActive) .. ' | isKilled = ' .. tostring(m_UI.m_PlayerDead))
         end
     end
@@ -186,7 +186,7 @@ function DarknessClient:OnEngineUpdate(p_DeltaTime, p_SimulationDeltaTime)
 
     if s_ElapsedTime >= s_LastSecond + 1 then
         s_LastSecond = s_LastSecond + 1
-        if CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
+        if DU_CONFIG.GENERAL.USE_NIGHTVISION_GADGET then
             if m_NVG.m_Activated then
                 m_NVG:Depleting(s_ElapsedTime)
             elseif not m_NVG.m_Activated and m_NVG.m_BatteryLifeCurrent ~= m_NVG.m_BatteryLifeMax then

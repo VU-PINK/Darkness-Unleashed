@@ -2,7 +2,7 @@
 ---@overload fun():MapVEManager
 MapVEManager = class("MapVEManager")
 
-local m_Logger = Logger("MapVEManager", true)
+local m_Logger = DULogger("MapVEManager", true)
 
 function MapVEManager:__init()
     m_Logger:Write("Initialize MapVEManager")
@@ -18,7 +18,7 @@ end
 -- ---@param p_GameMode string
 -- ---@param p_IsDedicatedServer boolean
 -- function MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
---     for l_key, l_Value in pairs(CONFIG.MAPS) do
+--     for l_key, l_Value in pairs(DU_CONFIG.MAPS) do
 --         if string.find(p_LevelName, l_key) then
 --             self.m_LoadedPreset = {p_LevelName:match('/[^/]+'):sub(2), l_Value}
 --             break

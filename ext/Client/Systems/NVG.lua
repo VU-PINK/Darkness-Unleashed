@@ -1,7 +1,7 @@
 -- --@type MapVEManager
 -- local m_MapVEManager = require("Systems/MapVEManager")
 
-local m_Logger = Logger("NVG", false)
+local m_Logger = DULogger("NVG", false)
 
 ---@class NVG
 ---@overload fun(): NVG
