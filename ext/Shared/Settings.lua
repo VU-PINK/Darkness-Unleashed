@@ -40,8 +40,9 @@ DU_CONFIG = {
     TIME = {
         ENABLED = true,
         START_HOUR = 6,
-        DAY_DURATION = 12
+        DAY_DURATION = 12,
+        ONLY_DYNAMIC_PRESETS = false
     },
-    LOGGER_ENABLED = false,
+    LOGGER_ENABLED = true,
     LOGGER_PRINT_ALL = false
 }

@@ -35,7 +35,10 @@ function DarknessServer:setDayNightCycle(p_StartingTime, p_LengthOfCycle)
     if p_StartingTime < 0 or p_StartingTime >= 24 then
         p_StartingTime = 0
     end
-    Events:Dispatch('TimeServer:Enable', p_StartingTime, p_LengthOfCycle)
+
+    local l_OnlyDynamicPresets = DU_CONFIG.TIME.ONLY_DYNAMIC_PRESETS
+
+    Events:Dispatch('TimeServer:Enable', p_StartingTime, p_LengthOfCycle, l_OnlyDynamicPresets)
 end
 
 function DarknessServer:_OnPresetsLoaded()

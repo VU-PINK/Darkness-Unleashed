@@ -31,6 +31,7 @@ function DarknessClient:RegisterVars()
         ["MP_001_Night"] = require("Presets/Vanilla/MP_001/Night"),
         ["MP_003_Night"] = require("Presets/Vanilla/MP_003/Night"),
         ["MP_007_Night"] = require("Presets/Vanilla/MP_007/Night"),
+        ["MP_007_Morning"] = require("Presets/Vanilla/MP_007/Morning"),
         ["MP_011_Night"] = require("Presets/Vanilla/MP_011/Night"),
         ["MP_012_Night"] = require("Presets/Vanilla/MP_012/Night"),
         ["MP_013_Night"] = require("Presets/Vanilla/MP_013/Night"),

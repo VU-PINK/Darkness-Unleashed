@@ -76,7 +76,7 @@ return [[
     },
     "OutdoorLight":{
         "Enable":"true",
-        "SunRotationX":"0.0",
+        "SunRotationX": "150.0",
         "SunRotationY":"180.0",
         "SunColor":"(0.0, 0.0, 0.0)",
         "SkyColor":"(0.0024999999441206, 0.0024999999441206, 0.003000000026077)",
