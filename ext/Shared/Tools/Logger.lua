@@ -1,11 +1,13 @@
-Logger = class("Logger")
+DULogger = class("DULogger")
 
-function Logger:__init(p_ClassName, p_ActivateLogging)
+function DULogger:__init(p_ClassName, p_ActivateLogging)
 	if type(p_ClassName) ~= "string" then
-		error("Logger: Wrong arguments creating object, className is not a string. ClassName: "..tostring(p_ClassName))
+		error("DULogger: Wrong arguments creating object, className is not a string. ClassName: " ..
+		tostring(p_ClassName))
 		return
 	elseif type(p_ActivateLogging) ~= "boolean" then
-		error("Logger: Wrong arguments creating object, ActivateLogging is not a boolean. ActivateLogging: " ..tostring(p_ActivateLogging))
+		error("DULogger: Wrong arguments creating object, ActivateLogging is not a boolean. ActivateLogging: " ..
+			tostring(p_ActivateLogging))
 		return
 	end
 
@@ -14,59 +16,57 @@ function Logger:__init(p_ClassName, p_ActivateLogging)
 	self.className = p_ClassName
 end
 
-function Logger:Write(p_Message)
-	if not CONFIG.LOGGER_ENABLED then
+function DULogger:Write(p_Message)
+	if not DU_CONFIG.DULogger_ENABLED then
 		return
 	end
 
-	if CONFIG.LOGGER_PRINT_ALL == true and self.className ~= nil then
+	if DU_CONFIG.DULogger_PRINT_ALL == true and self.className ~= nil then
 		goto continue
-
 	elseif self.debug == false or
-		 self.debug == nil or
-		 self.className == nil then
+		self.debug == nil or
+		self.className == nil then
 		return
 	end
 
 	::continue::
 
-	print("["..self.className.."] " .. tostring(p_Message))
+	print("[" .. self.className .. "] " .. tostring(p_Message))
 end
 
-function Logger:WriteTable(p_Table)
-	if not CONFIG.LOGGER_ENABLED then
+function DULogger:WriteTable(p_Table)
+	if not DU_CONFIG.DULogger_ENABLED then
 		return
 	end
 
-    if CONFIG.LOGGER_PRINT_ALL == true and self.className ~= nil then
-        goto continue
+	if DU_CONFIG.DULogger_PRINT_ALL == true and self.className ~= nil then
+		goto continue
+	elseif self.debug == false or
+		self.debug == nil or
+		self.className == nil then
+		return
+	end
 
-    elseif self.debug == false or
-        self.debug == nil or
-        self.className == nil then
-        return
-    end
+	::continue::
 
-    ::continue::
-
-    print("["..self.className.."] Table:")
-    print(p_Table)
+	print("[" .. self.className .. "] Table:")
+	print(p_Table)
 end
 
-function Logger:Warning(p_Message)
+function DULogger:Warning(p_Message)
 	if self.className == nil then
 		return
 	end
 
-	print("["..self.className.."] WARNING: " .. tostring(p_Message))
+	print("[" .. self.className .. "] WARNING: " .. tostring(p_Message))
 end
 
-function Logger:Error(p_Message)
+function DULogger:Error(p_Message)
 	if self.className == nil then
 		return
 	end
 
-	error("["..self.className.."] " .. tostring(p_Message))
+	error("[" .. self.className .. "] " .. tostring(p_Message))
 end
 
-return Logger
+return DULogger

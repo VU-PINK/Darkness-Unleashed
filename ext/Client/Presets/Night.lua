@@ -1,6 +1,7 @@
 return [[
 {
     "Name": "DU_Night",
+    "Type": "Dynamic",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting": {
@@ -80,8 +81,8 @@ return [[
     "OutdoorLight": {
         "Realm": "0",
         "Enable": "true",
-        "SunRotationX": "270",
-        "SunRotationY": "0",
+        "SunRotationX": "150.0",
+        "SunRotationY": "359.0",
         "SunColor": "0:0:0:",
         "SkyColor": "(0.025, 0.025, 0.025)",
         "GroundColor": "(0.01, 0.01, 0.01)",
@@ -103,12 +104,8 @@ return [[
         "Realm": "0",
         "Enable": "true",
         "BrightnessScale": "0.015",
-        "SunSize": "0.1",
-        "SunScale": "0",
-        "PanoramicUVMinX": "0",
-        "PanoramicUVMaxX": "1",
-        "PanoramicUVMinY": "0",
-        "PanoramicUVMaxY": "1",
+        "SunSize": "0.0005",
+        "SunScale": "80",
         "PanoramicRotation":"0.9200000166893",
         "CloudLayerSunColor": "(1.000000, 0.852000, 0.708000)",
         "CloudLayer1Altitude": "2000000.0",

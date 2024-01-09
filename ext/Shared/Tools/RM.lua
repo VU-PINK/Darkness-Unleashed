@@ -1,4 +1,4 @@
-local m_Logger = Logger("ResourceManager", false)
+local m_Logger = DULogger("ResourceManager", false)
 RM = class('RM')
 
 -- Easier Loading of different VU / Battlefield Components
@@ -29,7 +29,8 @@ end
 
 function RM:Flashlight()
     local s_FlashLightTexture = RM:Find('04C62561-2236-11DF-A528-EA655525F02D', '2EE018E8-1451-908C-0974-DB7676407D61')
-    if not s_FlashLightTexture then return nil
+    if not s_FlashLightTexture then
+        return nil
     else
         return TextureAsset(s_FlashLightTexture)
     end

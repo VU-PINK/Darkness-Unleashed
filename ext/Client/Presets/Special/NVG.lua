@@ -1,7 +1,7 @@
 return [[
 {
-    "Name": "DU_MP_017_NVG",
-    "Priority": "2",
+    "Name": "DU_NVG",
+    "Priority": "100",
     "Visibility": "1",
     "CharacterLighting":{
         "CharacterLightEnable":"false",
@@ -16,12 +16,12 @@ return [[
         "TopLightDirY":"0.0"
     },
     "ColorCorrection":{
-        "Enable":"false",
+        "Enable":"true",
         "ColorGradingTexture":"FX/VisualEnviroments/NightVision/colorCube_flir_IRNVG_CoOp",
         "ColorGradingEnable":"true",
-        "Brightness": "1:1:1:",
-        "Contrast": "1.00:1.00:1.00:",
-        "Saturation": "1.0:1.0:1.0:",
+        "Brightness": "1.75:1.75:1.75:",
+        "Contrast": "1.35999997616:1.35999997616:1.35999997616:",
+        "Saturation": "0.800000011921:0.800000011921:0.800000011921:",
         "Hue": "0.0"
     },
     "Dof":{
@@ -38,7 +38,7 @@ return [[
         "DiffusionDofFocalLength":"0.20000000298023"
     },
     "DynamicAO":{
-        "Enable":"true",
+        "Enable":"false",
         "SsaoFade":"1.0",
         "SsaoRadius":"0.75",
         "SsaoMaxDistanceInner":"1.0",
@@ -67,42 +67,19 @@ return [[
         "SkyBoxBackLightRotationY":"26.563999176025"
     },
     "Fog":{
-        "Enable":"true",
-        "FogDistanceMultiplier":"1.0",
-        "FogGradientEnable":"true",
-        "Start":"-50.0",
-        "EndValue":"500.0",
-        "Curve":"(0.40000000596046, -0.76999998092651, 1.2999999523163, -0.0099999997764826)",
-        "FogColorEnable":"true",
-        "FogColor":"(0.0020000000949949, 0.0020000000949949, 0.0020000000949949)",
-        "FogColorStart":"0.0",
-        "FogColorEnd":"1630.4348144531",
-        "FogColorCurve":"(6.0999999046326, -11.699999809265, 5.6199998855591, -0.18000000715256)",
-        "TransparencyFadeStart":"0.0",
-        "TransparencyFadeEnd":"0.0",
-        "TransparencyFadeClamp":"0.91299998760223",
-        "HeightFogEnable":"false",
-        "HeightFogFollowCamera":"0.0",
-        "HeightFogAltitude":"0.0",
-        "HeightFogDepth":"100.0",
-        "HeightFogVisibilityRange":"100.0"
+
     },
     "OutdoorLight":{
         "Enable":"true",
         "SunRotationX": "150.0",
-        "SunRotationY":"180.0",
-        "SunColor":"(0.0, 0.0, 0.0)",
+        "SunRotationY":"0.0",
+        "SunColor":"(0.1, 0.1, 0.1)",
         "SkyColor":"(0.25, 0.25, 0.25)",
-        "GroundColor":"(0.25, 0.25, 0.25)",
+        "GroundColor":"(0.4, 0.4, 0.4)",
         "SkyLightAngleFactor":"0.0089999996125698",
         "SunSpecularScale":"0.0",
         "SkyEnvmapShadowScale":"0.25",
         "SunShadowHeightScale":"0.0",
-        "CloudShadowEnable":"false",
-        "CloudShadowSpeed":"(-15.0, -15.0)",
-        "CloudShadowSize":"53.260898590088",
-        "CloudShadowCoverage":"0.0",
-        "CloudShadowExponent":"5.108699798584",
         "TranslucencyAmbient":"0.0",
         "TranslucencyScale":"1.0",
         "TranslucencyPower":"80.0",
@@ -116,9 +93,10 @@ return [[
         "RandomEnable":"true"
     },
     "Tonemap":{
+        "TonemapMethod": "2",
         "MiddleGray":"0.50",
-        "MinExposure":"0.5",
-        "MaxExposure":"2",
+        "MinExposure":"1",
+        "MaxExposure":"4",
         "ExposureAdjustTime":"3.0",
         "BloomScale":"(0.30000000149012, 0.30000000149012, 0.30000000149012)",
         "ChromostereopsisEnable":"true",
@@ -127,20 +105,16 @@ return [[
     },
     "Vignette":{
         "Enable":"true",
-        "Scale":"(2.4000000953674, 2.4000000953674)",
-        "Exponent":"1.5",
+        "Scale":"(1.4000000953674, 1.4000000953674)",
+        "Exponent":"1.0",
         "Color":"(0.0, 0.20000000298023, 0.20000000298023)",
         "Opacity":"0.80000001192093"
     },
     "Sky":{
-        "Enable":"true",
-       	"BrightnessScale":"1",
+        "Enable":"false",
+       	"BrightnessScale":"2.25",
        	"SunSize":"0.014999999664724",
        	"SunScale":"0.20000000298023",
-        "PanoramicUVMinX":"0.0",
-        "PanoramicUVMaxX":"1.0",
-        "PanoramicUVMinY":"0.0",
-        "PanoramicUVMaxY":"0.5",
         "PanoramicTileFactor":"1.0",
         "PanoramicRotation":"0.9200000166893",
         "CloudLayerSunColor":"(3.0, 2.8980000019073, 2.6979999542236)",
@@ -170,9 +144,54 @@ return [[
         "SkyVisibilityExponent":"1.0",
         "SkyGradientTexture":"FX/VisualEnviroments/NightVision/IRNVG_Sky_Gradient_01"
     },
+    "SunFlare": {
+        "Realm": "0",
+        "Enable": "false",
+        "DebugDrawOccluder": "false",
+        "OccluderSize": "300.0",
+        "Element1Enable": "false",
+        "Element1RayDistance": "0.0",
+        "Element1Size": "0.1:0.1:",
+        "Element1SizeOccluderCurve": "(0.000000, 0.000000, -2.971014, 3.561449)",
+        "Element1SizeScreenPosCurve": "(0.000000, 0.000000, -0.468144, 1.045845)",
+        "Element1AlphaOccluderCurve": "(-0.169719, -0.203206, -0.130994, 0.596260)",
+        "Element1AlphaScreenPosCurve": "(0.000000, 0.000000, 0.000000, 0.130000)",
+        "Element2Enable": "false",
+        "Element2RayDistance": "0",
+        "Element2Size": "0.1:0.1:",
+        "Element2SizeOccluderCurve": "(0.000000, 0.000000, 0.000000, 1.005000)",
+        "Element2SizeScreenPosCurve": "(0.000000, 0.000000, 1.046446, 0.001858)",
+        "Element2AlphaOccluderCurve": "(0.000000, 0.000000, -1.125922, 0.364515)",
+        "Element2AlphaScreenPosCurve": "(0.000000, 0.000000, 0.016854, -0.005730)",
+        "Element3Enable": "false",
+        "Element3RayDistance": "0.0",
+        "Element3Size": "0.1:0.1:",
+        "Element3SizeOccluderCurve": "(0.000000, 0.000000, 0.000000, 1.005000)",
+        "Element3SizeScreenPosCurve": "(0.000000, 0.000000, 0.743084, 0.278439)",
+        "Element3AlphaOccluderCurve": "(0.000000, 0.000000, -0.564839, 0.343529)",
+        "Element3AlphaScreenPosCurve": "(0.000000, 0.000000, 0.701987, 0.365265)",
+        "Element4Enable": "false",
+        "Element4RayDistance": "0.0",
+        "Element4Size": "(1.000000, 1.000000)",
+        "Element4SizeOccluderCurve": "(0.000000, 0.000000, 0.000000, 0.985000)",
+        "Element4SizeScreenPosCurve": "(0.000000, 0.000000, 0.000000, 0.975000)",
+        "Element4AlphaOccluderCurve": "(0.000000, 0.000000, -12.026724, 0.478798)",
+        "Element4AlphaScreenPosCurve": "(0.000000, 0.000000, 0.000000, 1.000000)",
+        "Element5Enable": "false",
+        "Element5RayDistance": "1.0",
+        "Element5Size": "(0.800000, 0.800000)",
+        "Element5SizeOccluderCurve": "(0.000000, 0.000000, 0.000000, 1.000000)",
+        "Element5SizeScreenPosCurve": "(0.000000, 0.000000, 0.000000, 0.820000)",
+        "Element5AlphaOccluderCurve": "(0.000000, 0.000000, -0.289483, 0.029082)",
+        "Element5AlphaScreenPosCurve": "(0.000000, 0.000000, -0.930245, 0.629199)"
+    },
     "Wind":{
         "WindDirection":"211.25799560547",
         "WindStrength":"1.7000000476837"
+    },
+    "ShaderParams": {
+        "ParameterName":"FlirData",
+        "Value": "(0.05, 0.05, 0.05, 0.05)"
     }
 }
 ]]

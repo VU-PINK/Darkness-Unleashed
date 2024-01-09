@@ -1,6 +1,7 @@
 return [[
 {
     "Name": "DU_MP_007_Night",
+	"Type": "Dynamic",
     "Priority": "1",
     "Visibility": "1",
     "CharacterLighting":{
@@ -75,8 +76,8 @@ return [[
     },
     "OutdoorLight":{
        	"Enable":"true",
-       	"SunRotationX":"270.0",
-       	"SunRotationY":"0.0",
+       	"SunRotationX": "150.0",
+		"SunRotationY":"180.0",
        	"SunColor":"(0.0, 0.0, 0.0)",
        	"SkyColor":"(0.025000000372529, 0.025000000372529, 0.025000000372529)",
        	"GroundColor":"(0.0099999997764826, 0.0099999997764826, 0.0099999997764826)",
@@ -99,10 +100,6 @@ return [[
        	"BrightnessScale":"0.0037000000011176",
        	"SunSize":"0.014999999664724",
        	"SunScale":"0.20000000298023",
-       	"PanoramicUVMinX":"0.0",
-       	"PanoramicUVMaxX":"1.0",
-       	"PanoramicUVMinY":"0.0",
-       	"PanoramicUVMaxY":"1.0",
        	"PanoramicTileFactor":"1.0",
         "PanoramicRotation":"0.9200000166893",
        	"CloudLayerSunColor":"(3.0, 2.8980000019073, 2.6979999542236)",
