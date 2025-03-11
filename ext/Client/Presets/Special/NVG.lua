@@ -98,7 +98,7 @@ return [[
         "MinExposure":"1",
         "MaxExposure":"4",
         "ExposureAdjustTime":"3.0",
-        "BloomScale":"(0.30000000149012, 0.30000000149012, 0.30000000149012)",
+        "BloomScale":"(0.1, 0.1, 0.1)",
         "ChromostereopsisEnable":"true",
         "ChromostereopsisScale":"1.0",
         "ChromostereopsisOffset":"0.1"
