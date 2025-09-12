@@ -3,11 +3,26 @@ return [[
     "Name": "DU_Vehicle_NVG",
     "Priority": "10",
     "Visibility": "1",
+    "CharacterLighting": {
+
+    },
+    "DynamicEnvmap": {
+
+    },
+    "MotionBlur":{
+
+    },
+    "PlanarReflection":{
+
+    },
+    "ScreenEffect":{
+
+    },
     "ColorCorrection":{
         "Enable":"true",
         "ColorGradingTexture":"FX/VisualEnviroments/NightVision/colorCube_flir_IRNVG_CoOp",
         "ColorGradingEnable":"true",
-        "Brightness": "2.0:2.0:2.0:",
+        "Brightness": "50.0:50.0:50.0:",
         "Contrast": "2.0:2.0:2.0:",
         "Saturation": "0.0:0.0:0.0:",
         "Hue": "0.0"
@@ -16,7 +31,7 @@ return [[
         "Enable":"false"
     },
     "Fog":{
-
+        "Enable":"false"
     },
     "Dof": {
 		  "Enable": "false",
@@ -32,23 +47,13 @@ return [[
 		  "DiffusionDofFocalLength": "0.20000000298023"
 	},
     "DynamicAO": {
-		  "Enable": "false",
-		  "SsaoFade": "1.0",
-		  "SsaoRadius": "1.0",
-		  "SsaoMaxDistanceInner": "1.0",
-		  "SsaoMaxDistanceOuter": "1.0",
-		  "HbaoRadius": "42.66699981689453",
-		  "HbaoAngleBias": "3.1530001163482666",
-		  "HbaoAttenuation": "0.699999988079071",
-		  "HbaoContrast": "1.399999976158142",
-		  "HbaoMaxFootprintRadius": "0.10000000149011612",
-		  "HbaoPowerExponent": "1.0"
+		  "Enable": "false"
 		},
     "OutdoorLight":{
-
+        "GroundColor":"(10.0, 40.00, 10.0)"
     },
     "FilmGrain":{
-        "Enable":"true",
+        "Enable":"false",
         "TextureScale":"(0.029999999329447746, 0.30000001192092896)",
         "ColorScale":"(0.029999999329447746, 0.029999999329447746, 0.029999999329447746)",
         "LinearFilteringEnable":"false",
@@ -57,17 +62,14 @@ return [[
     },
     "Tonemap":{
         "TonemapMethod": "2",
-        "MiddleGray":"0.15000000596046448",
-        "MinExposure":"0.30000001192092896",
-        "MaxExposure":"50.0",
-        "ExposureAdjustTime":"0.05000000074505806",
-        "BloomScale":"(0.125, 0.125, 0.125)",
-        "ChromostereopsisEnable":"true",
-        "ChromostereopsisScale":"1.0",
-        "ChromostereopsisOffset":"0.1"
+        "MiddleGray":"15.15000000596046448",
+        "MinExposure":"10.30000001192092896",
+        "MaxExposure":"100.0",
+        "ExposureAdjustTime":"0.01",
+        "BloomScale":"(0.0, 0.0, 0.0)"
     },
     "Vignette":{
-        "Enable":"true",
+        "Enable":"false",
         "Scale":"(2.5, 1.0)",
         "Exponent":"10.0",
         "Color":"(0.0, 0.0, 0.0)",
@@ -96,7 +98,7 @@ return [[
     },
     "ShaderParams": {
         "ParameterName":"FlirData",
-        "Value": "(5, 5, 5, 5)"
+        "Value": "(1.0, 1.0, 1.0, 1.0)"
     }
 }
 ]]

@@ -131,7 +131,7 @@ end
 ---@param p_LevelData LevelData
 function DarknessClient:OnEntityRegister(p_LevelData)
     -- Distribute
-    VehicleManager:OnEntityRegister(p_LevelData)
+    -- VehicleManager:OnEntityRegister(p_LevelData)
 end
 
 ---@param p_DeltaTime integer

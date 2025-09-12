@@ -6,7 +6,7 @@ local m_Logger = DULogger("DarknessServer", false)
 ---@class DarknessServer
 ---@overload fun(): DarknessServer
 DarknessServer = class("DarknessServer")
-local m_ServiceVehicleController = require("ServerVehicleController")
+-- local m_ServiceVehicleController = require("ServerVehicleController")
 
 function DarknessServer:__init()
     self:RegisterEvents()

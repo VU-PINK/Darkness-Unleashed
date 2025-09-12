@@ -21,7 +21,7 @@ function NVG:RegisterVars()
     self.m_BatteryLifeMin = 10
     self.m_BatteryEmptyTime = 0
     self.m_BatteryLifeCooldown = 10
-    self.m_BatteryLifeCurrent = 0
+    self.m_BatteryLifeCurrent = 200
     self.m_FadeLengthMS = 2000
     self.m_AnimationValue = 0
     self.m_AnimationT = 0
