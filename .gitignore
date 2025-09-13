@@ -1,0 +1,7 @@
+oldext/*
+oldcode/*
+ui/*
+.vu/*
+.vscode/*
+.git/*
+vuicc.exe
