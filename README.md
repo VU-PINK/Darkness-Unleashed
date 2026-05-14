@@ -1,7 +1,7 @@
 # Darkness Unleashed
 
 > **A true darkness mod – and so much more**  
-> Now featuring fully customisable settings, random mode switching, and a complete night vision system. The new features and configuration system are inspired by *Insurgency: Sandstorm*.
+> Now featuring fully customisable settings, random mode switching, and a complete night vision system.
 
 ## What is this mod?
 
@@ -9,33 +9,28 @@
 Maps that were once bright daylight can now become genuine night, dusk, dawn, or anything in between.  
 You no longer see the same lighting over and over – instead, you experience:
 
-- 🌙 **True darkness** – you'll need flashlights and night vision to fight
-- 🌅 **Day‑to‑night transitions** – morning mist, warm evening light
-- 🔦 **Enhanced light sources** – vehicle headlights, searchlights, and weapon flashlights all work and have been added where missing
-- 🥽 **Complete night vision system** – battery, recharging, cooldown – as realistic as in *Insurgency: Sandstorm*
-- 🎲 **Random mode selection** – each map can automatically cycle through different lighting presets
+- **True darkness** – you'll need flashlights and night vision to fight
+- **Day‑to‑night transitions** – morning mist, warm evening light
+- **Enhanced light sources** – vehicle headlights, searchlights, and weapon flashlights all work and have been added where missing
+- **Complete night vision system** – battery, recharging, cooldown
+- **Random mode selection** – each map can automatically cycle through different lighting presets
 
-The core functionality was originally built by **Lesley and IllustrisJack**.  
-Later, **AugustaKit** extended it with a **fully configurable system**, **random modes**, a **night vision battery system**, and many other new features.
+## Key Features
 
-> 💡 **Inspiration**: The night vision design and battery mechanics are based on the *Nightfall* update of **Insurgency: Sandstorm**. NV is not just a green filter – it’s a tactical tool that needs to be managed.
-
-## ✨ Key Features
-
-### 🌓 Brand New Visual Experience
+### Brand New Visual Experience
 
 - **4 base presets**: Night, NVG (night vision style), Morning, Evening
 - **Easily extendable** – you can add your own presets like Noon, Sunset, etc.
 - **Global + per‑map control** – brightness, fog, contrast, colour tint can be tweaked individually
 - **Enhanced specular reflections** and dynamic lighting
 
-### 🚗 Vehicle Lighting System
+### Vehicle Lighting System
 
 - Headlights / searchlights have been added to **all vehicles** (tanks, helicopters, Humvees, etc.) and they work properly
 - Supports **light beams + flood lights + lens flares**
 - Drivers can toggle lights with **`T`**
 
-### 🔦 Weapon Flashlight Enhancement
+### Weapon Flashlight Enhancement
 
 - Flashlight **radius / intensity / cone angle / shadows** completely rebalanced
 - Realistic beam model + cast shadows + lens flare
@@ -66,9 +61,9 @@ Later, **AugustaKit** extended it with a **fully configurable system**, **random
 - **Enhanced smoke, dust, explosion debris particles**
 - **Fixed UI issues** for VU 20079+
 
-## 📁 Installation & File Structure
+## Installation & File Structure
 
-### 1️⃣ Download & Place
+### Download & Place
 
 | Step | Action |
 |------|--------|
@@ -78,7 +73,7 @@ Later, **AugustaKit** extended it with a **fully configurable system**, **random
 | 4 | (Optional) Edit `Settings.lua` according to the configuration guide |
 | 5 | Start your server and enjoy the darkness! |
 
-### 2️⃣ Key File Structure (paths you need to know)
+### Key File Structure (paths you need to know)
 
 ```
 Darkness-Unleashed/
@@ -103,7 +98,7 @@ Darkness-Unleashed/
 └── ModList.txt                   ← Your mod list
 ```
 
-### 3️⃣ Preset File Naming Rules (very important!)
+### Preset File Naming Rules (very important!)
 
 Inside each preset file (e.g., `Night.lua`) there is a **`"Name"` field**. This field is what VEManager actually recognises – **not the filename**.
 
@@ -114,13 +109,13 @@ Inside each preset file (e.g., `Night.lua`) there is a **`"Name"` field**. This 
 | NVG infantry preset | `Presets/Special/FLIR.lua` | `"DU_FLIR"` |
 | NVG vehicle preset | `Presets/Special/Vehicle_NVG.lua` | `"DU_Vehicle_NVG"` |
 
-> 💡 In short: **the filename is only used for `require`; the `"Name"` field is the real name used in‑game.**
+> In short: **the filename is only used for `require`; the `"Name"` field is the real name used in‑game.**
 
-## ⚙️ Configuration Guide (`Settings.lua`)
+## Configuration Guide (`Settings.lua`)
 
 All configurable options are inside the `DU_CONFIG` table.
 
-### 🔧 Basic Mode Selection
+### Basic Mode Selection
 
 ```lua
 DU_CONFIG = {
@@ -134,7 +129,7 @@ DU_CONFIG = {
 - `MODE_TYPE = "generic"` enables generic mode. All maps share the same preset. The system randomly picks a mode from `MODE_LIST` (e.g., `"Night"`) and enables the preset `DU_Night`.
 - If `MODE_LIST` contains only one element (e.g., `{ "Night" }`), there is no randomness – that mode is always used.
 
-### 🥽 Night Vision Configuration
+### Night Vision Configuration
 
 ```lua
 NVG = {
@@ -162,7 +157,7 @@ NVG = {
 - `MODE_PRESETS`: For each game mode (e.g., `Night`), defines which VEManager preset names are used when NVG is active.  
   `Soldier` – infantry night vision, `Vehicle` – inside a vehicle, `Vehicle_Thermal` – when spawning inside a vehicle (usually brighter). These preset names must match the `"Name"` field inside the actual preset files located in `Presets/Special/`.
 
-### 🌍 MAPS – Per‑Map Fixed Mode (Alternative)
+### MAPS – Per‑Map Fixed Mode (Alternative)
 
 If you prefer to manually assign which preset each map uses (no randomness), use the **MAPS** scheme.
 
@@ -186,40 +181,29 @@ MAPS = {
 
 **Behaviour**: The system looks up the current map (e.g., `MP_007`), gets the assigned mode (`"NVG"`), then tries to enable the preset `DU_MP_007_NVG`. If the preset does not exist, no visual effect is applied.
 
-> ✅ The two systems are completely independent and you can switch between them at any time.
+> The two systems are completely independent and you can switch between them at any time.
 
-## 🖼️ Preset Preview (original screenshots)
+## Preset Preview (original screenshots)
 
 The following are in‑game screenshots showing the visual differences:
 
-### 🌙 Preset Night
+### Preset Night
 
-![Night 1](https://cdn.discordapp.com/attachments/799963847842070568/799987928565678120/unknown.png)
-![Night 2](https://cdn.discordapp.com/attachments/799963847842070568/800000645703794688/unknown.png)
-![Night 3](https://cdn.discordapp.com/attachments/799963847842070568/800001895249739786/unknown.png)
-![Night 4](https://cdn.discordapp.com/attachments/799963847842070568/800075716334845952/unknown.png)
-![Night 5](https://cdn.discordapp.com/attachments/799963847842070568/800075843278995496/unknown.png)
+TBD
 
-### ☀️ Preset Bright Night
+### Preset Bright Night
 
-![Bright Night 1](https://cdn.discordapp.com/attachments/799963847842070568/800027108066983986/unknown.png)
-![Bright Night 2](https://cdn.discordapp.com/attachments/799963847842070568/800027233296187392/unknown.png)
+TBD
 
-### 🌅 Preset Morning
+### Preset Morning
 
-![Morning 1](https://cdn.discordapp.com/attachments/799963847842070568/800083453579231292/Client_Screenshot_2021.01.16_-_20.23.56.55.png)
-![Morning 2](https://cdn.discordapp.com/attachments/799963847842070568/800092188288876554/Client_Screenshot_2021.01.16_-_20.58.05.46.png)
-![Morning 3](https://cdn.discordapp.com/attachments/799963847842070568/800094068323123210/Client_Screenshot_2021.01.16_-_21.07.41.64.png)
-![Morning 4](https://cdn.discordapp.com/attachments/799963847842070568/800094333159997470/Client_Screenshot_2021.01.16_-_21.09.03.09.png)
+TBD
 
-### 🌆 Preset Evening
+### Preset Evening
 
-![Evening 1](https://cdn.discordapp.com/attachments/799963847842070568/799963940088053760/unknown.png)
-![Evening 2](https://cdn.discordapp.com/attachments/799963847842070568/799977404390965278/unknown.png)
-![Evening 3](https://cdn.discordapp.com/attachments/799963847842070568/799972039539949598/unknown.png)
-![Evening 4](https://cdn.discordapp.com/attachments/799963847842070568/799971215510601728/unknown.png)
+TBD
 
-## 🧪 Compatibility & Dependencies
+## Compatibility & Dependencies
 
 | Item | Description |
 |------|-------------|
@@ -232,33 +216,31 @@ The following are in‑game screenshots showing the visual differences:
 
 If you want to **fine‑tune or create new visual presets** (e.g., change brightness, fog, colour grading), you can use **VEEditor**.
 
-### 🔗 What is VEEditor?
+### What is VEEditor?
 
 > VEEditor is a visual editor for creating and modifying VE presets that VEManager can load.  
 > GitHub: [https://github.com/BF3RM/VEEditor](https://github.com/BF3RM/VEEditor)
 
 It allows you to **adjust lighting, fog, colour correction, and other parameters in real time** inside the game, then save them directly as `.lua` preset files.
 
-### ⚠️ Important Compatibility Note
+### Important Compatibility Note
 
 Due to VU updates, **VEEditor may not work on the latest VU version**.  
 If you need to edit presets, **it is recommended to downgrade your VU server/client to version `20079`** – VEEditor works correctly with that version. See VU community guides for downgrade instructions.
 
-> 📌 The built‑in presets (Night, NVG, Morning, etc.) are already well configured. Most users **do not need to use VEEditor**.
+> The built‑in presets (Night, NVG, Morning, etc.) are already well configured. Most users **do not need to use VEEditor**.
 
-## 📝 Version History
+## Version History
 
 - **v2.0.0 (current)** – Complete configuration system refactor: two‑mode + random pool, fully configurable NVG, MAPS alternative, vehicle lights, enhanced Yell notifications, clarified preset naming
 - **v1.1.0** – Previous version (initial config migration)
 - **v1.0.0** – Original version (Lesley & IllustrisJack)
 
-## 🙏 Credits & Links
+## Credits & Links
 
-- **Original authors**: Lesley and IllustrisJack
-- **Configuration system extension & NVG overhaul**: AugustaKit
-- **Inspiration**: *Insurgency: Sandstorm* – Nightfall update
+- **Authors**: "Community Project (Reirei, GreatApo, Lesley, IllustrisJack, Matias Pastori, AugustaKit)"
 
-### 🔗 Related Links
+### Related Links
 
 - GitHub repository: [https://github.com/VU-PINK/Darkness-Unleashed](https://github.com/VU-PINK/Darkness-Unleashed)
 - VU community thread: [https://community.veniceunleashed.net/t/darkness-unleashed-...](https://community.veniceunleashed.net/t/darkness-unleashed-a-true-dark-night-mod-and-more-v1-0-0-v1-0-9-in-testing/2298)
