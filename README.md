@@ -248,7 +248,7 @@ If you need to edit presets, **it is recommended to downgrade your VU server/cli
 
 ## 📝 Version History
 
-- **v1.2.0 (current)** – Complete configuration system refactor: two‑mode + random pool, fully configurable NVG, MAPS alternative, vehicle lights, enhanced Yell notifications, clarified preset naming
+- **v2.0.0 (current)** – Complete configuration system refactor: two‑mode + random pool, fully configurable NVG, MAPS alternative, vehicle lights, enhanced Yell notifications, clarified preset naming
 - **v1.1.0** – Previous version (initial config migration)
 - **v1.0.0** – Original version (Lesley & IllustrisJack)
 
