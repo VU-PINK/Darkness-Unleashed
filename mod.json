@@ -1,0 +1,17 @@
+{
+    "Name": "Darkness Unleashed Development Build",
+    "Description": "Custom Night Mode Experience",
+    "Authors": [
+        "Community Project (Reirei, GreatApo, Lesley, IllustrisJack, Matias Pastori)"
+    ],
+    "Tags": [
+        "darkness-unleashed"
+    ],
+    "Version": "1.2.0",
+    "HasVeniceEXT": true,
+    "HasWebUI": true,
+    "Dependencies": {
+        "veniceext": "^1.14.0",
+        "VEManager": "^0.5.7"
+    }
+}
