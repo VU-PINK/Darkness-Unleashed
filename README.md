@@ -5,45 +5,94 @@
 All player-customizable settings are located in the `DU_CONFIG` table inside **`Darkness-Unleashed\ext\Shared\Settings.lua`**.  
 You no longer need to modify hardcoded values in `Client\__init.lua` or `NVG.lua`.
 
-**Note:** The mod provides two independent map mode control systems – you can choose which one to use (**they cannot be enabled at the same time**).  
+The mod provides **two independent** map mode control systems (they cannot be enabled at the same time):
 - **System A (default)**: Supports map‑fixed mode and generic mode, with random selection.  
-- **System B (alternative)**: Uses a `MAPS` table to assign a fixed mode per map (no randomness).  
+- **System B (alternative)**: Uses a `MAPS` table to assign a fixed mode per map (no randomness).
+
 Both systems are described below with their usage and switching instructions.
 
 ---
 
-## 2. System A (Default): Map‑Fixed Mode / Generic Mode + Random Pool
+## 2. Preset File Structure & Naming Convention (Must Read)
 
-### 2.1 Core Configuration Fields
+### 2.1 What is a Preset File?
 
-Locate and modify these fields in `Settings.lua`:
+Each preset file is a `.lua` file that returns a JSON‑formatted string (or a Lua table) containing all visual parameters (color grading, lighting, fog, etc.). **Key point**: Inside the file there is a `"Name"` field – this value is what VEManager actually uses to identify the preset. The filename (e.g., `Night.lua`) is only used for `require` in code and does not affect in‑game identification.
+
+**Example:** Beginning of `Presets/Vanilla/MP_003/NVG.lua`
+```json
+{
+    "Name": "DU_MP_003_NVG",
+    "Priority": "2",
+    ...
+}
+```
+Here `"Name": "DU_MP_003_NVG"` is the name used when enabling the preset.
+
+### 2.2 Preset File Locations and Naming Conventions
+
+| Preset Type               | Path                                                   | Example File                 | Example `"Name"` inside file  | Description                                                                 |
+| ------------------------- | ------------------------------------------------------ | ---------------------------- | ----------------------------- | --------------------------------------------------------------------------- |
+| **Generic mode preset**   | `Presets/`                                             | `Night.lua`                  | `"DU_Night"`                  | Shared by all maps, usually named `DU_` + mode name.                        |
+| **Map‑fixed mode preset** | `Presets/Vanilla/<map_short_name>/`                    | `MP_003/NVG.lua`             | `"DU_MP_003_NVG"`             | Dedicated to a specific map, naming: `DU_` + map_short_name + `_` + mode name. |
+| **NVG preset**            | `Presets/Special/`                                     | `FLIR.lua`, `Vehicle_NVG.lua`| `"DU_FLIR"`, `"DU_Vehicle_NVG"`| Visual effects applied when NVG is active, stored separately.              |
+
+**Mode names** are usually `"Night"`, `"NVG"`, `"Morning"`, `"Evening"`, `"Noon"`, etc. – you can customise them.
+
+### 2.3 How to Add a New Preset (Example: `Evening` mode)
+
+1. **Create the preset file**  
+   - For generic mode: copy `Presets/Night.lua` to `Presets/Evening.lua`, change the `"Name"` field to `"DU_Evening"`, and adjust visual parameters.  
+   - For map‑fixed mode: copy `Presets/Vanilla/MP_003/NVG.lua` to `Presets/Vanilla/MP_003/Evening.lua`, change `"Name"` to `"DU_MP_003_Evening"`, and tweak parameters.
+
+2. **Register the preset** (in `Client\__init.lua`)  
+   Open the `DarknessClient:RegisterVars()` function and add the corresponding entries to the `self.m_Presets` table:
+   ```lua
+   self.m_Presets = {
+       -- existing entries...
+       ["Evening"] = require("Presets/Evening"),              -- generic mode
+       ["MP_003_Evening"] = require("Presets/Vanilla/MP_003/Evening"), -- map‑fixed mode
+   }
+   ```
+
+3. **Update the configuration**  
+   In `DU_CONFIG` inside `Settings.lua`, add `"Evening"` to `MODE_LIST`:
+   ```lua
+   MODE_LIST = { "Night", "NVG", "Morning", "Evening" }
+   ```
+   Also add an NVG mapping for `Evening` inside `NVG.MODE_PRESETS` (see Section 5).
+
+---
+
+## 3. System A (Default): Map‑Fixed Mode / Generic Mode + Random Pool
+
+### 3.1 Core Configuration Fields (in `Settings.lua`)
 
 ```lua
 DU_CONFIG = {
-    -- Mode selection
-    MODE_TYPE = "fixed_map",   -- Options: "fixed_map" (map‑fixed) or "generic"
-    MODE_LIST = { "Night", "NVG", "Morning" },   -- Random pool (one mode is chosen randomly)
-
-    -- Other settings (vehicles, NVG, etc.) ...
+    MODE_TYPE = "fixed_map",   -- "fixed_map" or "generic"
+    MODE_LIST = { "Night", "NVG", "Morning" },   -- random mode pool
+    -- other settings...
 }
 ```
 
-### 2.2 Behaviour of the Two Modes
+### 3.2 Behaviour of the Two Modes
 
 #### Map‑Fixed Mode (`MODE_TYPE = "fixed_map"`)
 
-- The system first gets the short map name (e.g., `MP_007`).  
+- The system gets the current map short name (e.g., `MP_007`).  
 - It **randomly** selects a mode name from `MODE_LIST` (e.g., `"Night"`).  
-- Then it tries to enable the preset: `DU_` + map name + `_` + mode name, e.g. `DU_MP_007_Night`.  
-- If that preset does not exist (you haven't created a dedicated preset for that map), **no visual effect is applied** – the game uses its original lighting.
+- It builds the preset name: `DU_` + map name + `_` + mode name, e.g. `DU_MP_007_Night`.  
+- Then it looks for a corresponding entry in `self.m_Presets` (which must have `require`d the correct file) and enables it if found.  
+- **If that preset does not exist (not registered), no visual effect is applied** – the game uses original lighting.
 
 #### Generic Mode (`MODE_TYPE = "generic"`)
 
-- Ignores the map name and directly picks a random mode from `MODE_LIST`.  
-- Enables the preset: `DU_` + mode name, e.g. `DU_Night`.  
-- Suitable when you want all maps to share the same visual configuration (e.g., a universal night mode).
+- Ignores the map name and directly picks a random mode name from `MODE_LIST`.  
+- Builds the preset name: `DU_` + mode name, e.g. `DU_Night`.  
+- Enables the corresponding generic preset (must be registered in `self.m_Presets` as e.g. `["Night"] = require("Presets/Night")`).
 
-### 2.3 How to Disable Randomness (Fix a Single Mode)
+### 3.3 How to Disable Randomness (Fix a Single Mode)
 
 Simply set `MODE_LIST` to contain only one element, for example:
 
@@ -53,50 +102,31 @@ MODE_LIST = { "Night" }   -- Always uses Night mode
 
 Then both map‑fixed and generic modes will always use `"Night"`.
 
-### 2.4 Example: Adding a New Mode `Evening`
+### 3.4 Configuration Example: Use the Same Preset for All Maps (e.g., all night vision)
 
-Suppose you want to add a "Evening" mode. Steps:
-
-1. **Create the preset files**  
-   - For generic mode: create `Presets/Special/Evening.lua` (you can copy `Night.lua` and adjust lighting parameters).  
-   - For map‑fixed mode: create map‑specific presets, e.g. `Presets/Vanilla/MP_007/Evening.lua`.
-
-2. **Register the presets**  
-   Open `Client\__init.lua`, inside `DarknessClient:RegisterVars()` add to the `self.m_Presets` table:
-   ```lua
-   ["Evening"] = require("Presets/Special/Evening"),   -- generic mode
-   ["MP_007_Evening"] = require("Presets/Vanilla/MP_007/Evening"), -- map‑fixed (if created)
-   ```
-
-3. **Update the configuration**  
-   In `Settings.lua`:
-   ```lua
-   MODE_LIST = { "Night", "NVG", "Morning", "Evening" }
-   ```
-   Also add an NVG mapping for `Evening` inside `NVG.MODE_PRESETS` (see Section 4).
+```lua
+MODE_TYPE = "generic"
+MODE_LIST = { "NVG" }   -- or "Night"
+```
+Make sure `Presets/NVG.lua` or `Presets/Night.lua` exists and its `"Name"` is correct.
 
 ---
 
-## 3. System B (Alternative): Per‑Map Fixed Mode (MAPS)
+## 4. System B (Alternative): Per‑Map Fixed Mode (MAPS)
 
-If you want each map to always use a specific mode without any randomness, use the **MAPS** approach.  
-This system ignores `MODE_TYPE` and `MODE_LIST` and determines the mode directly from a lookup table based on the map name.
+### 4.1 When to Use
 
-### 3.1 How to Configure
+You want each map to always use a specific mode, with no randomness. This scheme ignores `MODE_TYPE` and `MODE_LIST`.
 
-1. **Copy the backup configuration file**  
-   The mod provides `Shared\SettingsDev.lua` (which contains a complete `MAPS` configuration example).  
-   **Copy its entire content** and overwrite `Shared\Settings.lua` with it.
+### 4.2 Configuration Steps
 
-2. **Modify the MAPS table**  
-   Your `Settings.lua` should then contain something like:
+1. **Copy the backup configuration**  
+   Overwrite `Shared\Settings.lua` with the contents of `Shared\SettingsDev.lua` (that file already contains a complete `MAPS` example).
+
+2. **Modify the MAPS table** (in `Settings.lua`)
    ```lua
    DU_CONFIG = {
-       VEHICLES = { ... },      -- keep as is
-       GENERAL = { ... },
-       LOGGER_ENABLED = true,
-       
-       -- MAPS table: assign a mode to each map
+       -- keep other fields...
        MAPS = {
            MP_001 = "Night",    -- Grand Bazaar uses Night
            MP_007 = "NVG",      -- Caspian Border uses NVG
@@ -106,104 +136,78 @@ This system ignores `MODE_TYPE` and `MODE_LIST` and determines the mode directly
    }
    ```
 
-3. **Enable the MAPS logic**  
-   - Open `Client\__init.lua`.  
-   - Find the `DarknessClient:OnPresetsLoaded()` function. You will see two code blocks separated by comments:  
-     - Version A (two modes): currently active by default.  
-     - Version B (MAPS mode): commented out.  
-   - **Comment out all code of Version A** (in Lua, wrap it with `--[[ ... ]]`).  
-   - **Uncomment Version B** (remove the `--[[` and `--]]`).  
+3. **Enable the MAPS logic** (in `Client\__init.lua`)  
+   - Locate the `DarknessClient:OnPresetsLoaded()` function.  
+   - Comment out all code of Version A (two modes), uncomment Version B (MAPS mode).  
    - Save the file.
 
-### 3.2 Behaviour of MAPS Mode
+### 4.3 Behaviour of MAPS Mode
 
-- The system reads the `DU_CONFIG.MAPS` table, looks up the current map (e.g., `MP_007`) and gets the corresponding mode (e.g., `"NVG"`).  
-- It then tries to enable the preset: `DU_` + map name + `_` + mode name, e.g. `DU_MP_007_NVG`.  
-- If that preset does not exist, **no visual effect is applied** – the game uses original lighting.  
+- The system reads the `DU_CONFIG.MAPS` table, looks up the current map short name to get the corresponding mode (e.g., `MP_007` → `"NVG"`).  
+- Builds the preset name: `DU_` + map name + `_` + mode name, e.g. `DU_MP_007_NVG`.  
+- If that preset is registered, it is enabled; otherwise no preset is applied.  
 - Maps not listed in `MAPS` also have no preset enabled.
 
-### 3.3 Switching Back to System A
+### 4.4 Switching Back to System A
 
-To revert to the two‑mode + random pool system:
-- Restore `Settings.lua` to a version that contains `MODE_TYPE` and `MODE_LIST` (you can get it from the backup `SettingsDev.lua` or from the original mod archive).  
+- Restore `Settings.lua` to a version that contains `MODE_TYPE` and `MODE_LIST`.  
 - In `Client\__init.lua`: comment out Version B and uncomment Version A.
 
 ---
 
-## 4. NVG (Night Vision Goggles) Configuration
+## 5. NVG (Night Vision Goggles) Configuration
 
-All NVG‑related parameters are now centralised in `DU_CONFIG.NVG` – no need to modify `NVG.lua`.
+All NVG‑related parameters are in `DU_CONFIG.NVG`.
 
-### 4.1 Battery Parameters Example
+### 5.1 Battery Parameters
 
 ```lua
 NVG = {
-    BATTERY_MAX = 120,           -- Maximum battery (seconds), e.g. 120 seconds
-    BATTERY_MIN = 10,            -- Minimum battery required to activate NVG
-    BATTERY_COOLDOWN = 10,       -- Cooldown seconds after battery is fully depleted before recharging starts
-    FADE_LENGTH_MS = 2000,       -- Fade duration when toggling NVG (milliseconds)
+    BATTERY_MAX = 120,           -- Maximum battery (seconds)
+    BATTERY_MIN = 10,            -- Minimum battery required to activate
+    BATTERY_COOLDOWN = 10,       -- Cooldown seconds after depletion
+    FADE_LENGTH_MS = 2000,       -- Fade duration (milliseconds)
 }
 ```
 
-### 4.2 NVG Visual Effects per Mode
+### 5.2 NVG Visual Effects per Mode
 
-`MODE_PRESETS` defines which VEManager preset is activated when you press `7` in each game mode (`Night`, `NVG`, `Morning`, etc.).
+`MODE_PRESETS` defines, for each game mode (e.g., `"Night"`), which VEManager preset names are activated when you press `7`. These preset files are typically placed in `Presets/Special/`.
 
 Default configuration:
-
 ```lua
 MODE_PRESETS = {
     Night = {
         Soldier = "DU_FLIR",              -- Infantry NVG effect
-        Vehicle = "DU_Vehicle_NVG",       -- NVG effect when inside a vehicle
+        Vehicle = "DU_Vehicle_NVG",       -- NVG effect inside a vehicle
         Vehicle_Thermal = "DU_Vehicle_Thermal",   -- Thermal effect when spawning inside a vehicle
     },
-    NVG = { ... },    -- same as above (usually shares with Night)
+    NVG = { ... },    -- same as above
     Morning = { ... },
 }
 ```
 
-You can freely change the preset names (as long as you have created the corresponding preset files in the `Presets` folder).  
-For example, if you want a brighter infantry NVG preset for `Night` mode called `DU_BrightFLIR`, just change it to `Soldier = "DU_BrightFLIR"`.
+**Note:** These preset names (e.g., `DU_FLIR`) must match the `"Name"` field inside the corresponding file (e.g., `Presets/Special/FLIR.lua`). You can change them freely, but ensure the files exist and are registered.
 
-### 4.3 Adding NVG Mapping for a New Mode
+### 5.3 Adding NVG Mapping for a New Mode
 
-Assuming you added an `Evening` mode (see 2.4), you can add an entry to `NVG.MODE_PRESETS`:
-
+If you added an `Evening` mode, add an entry to `NVG.MODE_PRESETS`:
 ```lua
-MODE_PRESETS = {
-    -- existing Night, NVG, Morning ...
-    Evening = {
-        Soldier = "DU_Evening_FLIR",
-        Vehicle = "DU_Evening_Vehicle_NVG",
-        Vehicle_Thermal = "DU_Evening_Vehicle_Thermal",
-    },
+Evening = {
+    Soldier = "DU_Evening_FLIR",
+    Vehicle = "DU_Evening_Vehicle_NVG",
+    Vehicle_Thermal = "DU_Evening_Vehicle_Thermal",
 }
 ```
-
-Make sure those preset files (e.g., `DU_Evening_FLIR.lua`) are placed in `Presets/Special/` or the appropriate map folder, and have been registered in `Client\__init.lua`.
-
----
-
-## 5. Preset File Directories and Naming Convention
-
-| Mode Type                    | Preset File Location                 | Preset Naming Format               | Example                          |
-| ---------------------------- | ------------------------------------ | ---------------------------------- | -------------------------------- |
-| Generic mode preset          | `Presets/Special/`                   | `DU_` + mode name                  | `DU_Night.lua`                   |
-| Map‑fixed mode preset        | `Presets/Vanilla/<mapname>/`         | `DU_` + map name + `_` + mode name | `DU_MP_007_Night.lua`            |
-| NVG infantry effect preset   | `Presets/Special/`                   | any (but must match the config)    | `DU_FLIR.lua`                    |
-| NVG in‑vehicle effect preset | `Presets/Special/`                   | any                                | `DU_Vehicle_NVG.lua`             |
-| NVG vehicle thermal preset   | `Presets/Special/`                   | any                                | `DU_Vehicle_Thermal.lua`         |
-
-**Note:** Map‑fixed mode presets must be registered in the `self.m_Presets` table in `Client\__init.lua`. Generic mode presets also need to be registered (the default ones like `Night`, `NVG`, `Morning` are already there; new ones must be added manually).
+Then create the corresponding preset files (e.g., `Presets/Special/Evening_FLIR.lua`) with `"Name"` set to `"DU_Evening_FLIR"`, etc.
 
 ---
 
 ## 6. Notification Features (Yell)
 
-- When you enter a game or respawn, a **yell** message appears showing the currently enabled visual preset (e.g., `Current preset: DU_MP_007_Night`).  
-- When activating NVG, if battery is sufficient you will be notified: `"Battery sufficient, NVG ready"`; if battery drops below **10%**, you will see `"Battery below 10%, use sparingly"`.  
-- Code locations for these notifications:  
+- On respawn, a **yell** message shows the currently enabled preset name (e.g., `Current preset: DU_MP_007_Night`).  
+- When activating NVG, if battery is sufficient you will be notified: `"Battery sufficient"`; if battery drops below 10%, you will see `"Battery below 10%, use sparingly"`.  
+- Code locations:  
   - Client: `Client\__init.lua` → `DarknessClient:OnYellPreset`  
   - Server: `Server\__init.lua` → `DarknessServer:OnBatteryStatus` and `OnPlayerRespawn`
 
@@ -213,47 +217,39 @@ Make sure those preset files (e.g., `DU_Evening_FLIR.lua`) are placed in `Preset
 
 - **Vehicle headlights**: `DU_CONFIG.VEHICLES.USE_VEHICLE_LIGHTS = true/false`  
 - **NVG master switch**: `DU_CONFIG.GENERAL.USE_NIGHTVISION_GADGET = true/false`  
-- **Logging**: `DU_CONFIG.LOGGER_ENABLED = true/false` and `LOGGER_PRINT_ALL = true/false`
+- **Logging**: `DU_CONFIG.LOGGER_ENABLED` and `LOGGER_PRINT_ALL`
 
 ---
 
-## 8. Dependencies & Compatibility
+## 8. Frequently Asked Questions (FAQ)
+
+**Q1: I modified `Settings.lua` but it doesn't take effect.**  
+A: Make sure the server has been fully restarted and that the file is saved as UTF‑8 without BOM.
+
+**Q2: In map‑fixed mode, some maps don't enable any preset.**  
+A: Check whether you have created the corresponding preset file (e.g., `Presets/Vanilla/MP_007/Night.lua`) and correctly registered `MP_007_Night` in `self.m_Presets` inside `Client\__init.lua`. Also ensure the file's `"Name"` field is `DU_MP_007_Night`.
+
+**Q3: In generic mode, why doesn't `DU_Night` work?**  
+A: Make sure `Presets/Night.lua` exists and its internal `"Name"` is `"DU_Night"`. Also check that `self.m_Presets["Night"]` is properly `require`d.
+
+**Q4: How can I make NVG use completely different visual effects for a certain mode?**  
+A: Modify the corresponding preset names in `DU_CONFIG.NVG.MODE_PRESETS`, then create or edit the preset files in `Presets/Special/` to have matching `"Name"` fields.
+
+**Q5: In the MAPS scheme, can I assign the same mode to different maps?**  
+A: Yes. For example: `MAPS = { MP_001 = "Night", MP_007 = "Night" }`.
+
+---
+
+## 9. Dependencies & Compatibility
 
 - Requires **VEManager** 0.5.7 or higher.  
 - Compatible with the `fun‑bots` mod.  
-- Fixes UI issues for official client versions 20079 and above.  
-- The console may print client logs – this does not affect gameplay performance or stability.
-
----
-
-## 9. Frequently Asked Questions (FAQ)
-
-**Q1: I modified `Settings.lua` but it doesn't take effect.**  
-A: Make sure the server has been fully restarted (or the mod reloaded), and that the file is saved as UTF‑8 without BOM.
-
-**Q2: In map‑fixed mode, some maps don't enable any preset.**  
-A: Check whether you have created a dedicated preset for that map, and that you have correctly registered the `mapname_modename` entry in the `self.m_Presets` table inside `Client\__init.lua`.
-
-**Q3: How can I make all maps use the same preset (e.g., all night)?**  
-A: Set `MODE_TYPE = "generic"`, `MODE_LIST = { "Night" }` (or whichever mode you want), and ensure that `Presets/Special/Night.lua` exists.
-
-**Q4: I want each map to have a fixed mode but don't want to use the MAPS system. Is that possible?**  
-A: Yes. Use System A with map‑fixed mode, but set `MODE_LIST` to contain only one mode (e.g., `{ "Night" }`). Then create a dedicated preset for each map for that mode. This way every map will always use Night, and you can change the global mode by editing `MODE_LIST`.
-
-**Q5: How do I completely disable the NVG feature?**  
-A: In `Settings.lua`, set `GENERAL.USE_NIGHTVISION_GADGET = false`.
+- Fixes UI issues for official client versions 20079 and above.
 
 ---
 
 **Version History**  
-- Configuration system refactored: all behaviour is now controlled by `Shared/Settings.lua`.  
-- Added two‑mode + random pool (System A).  
+- Refactored configuration system: all behaviour controlled by `Shared/Settings.lua`.  
+- Added map‑fixed mode / generic mode + random pool (System A).  
 - Retained per‑map MAPS mode (System B) as an alternative.  
-- NVG battery parameters and visual effect presets are fully configurable.  
-- Documentation includes detailed examples and switching instructions.
-
----
-
-*Feel free to adjust the paths and details to match your actual mod version and file structure. If you need more examples (e.g., a complete walkthrough for adding a new map‑specific preset), please let us know.*
-
----
+- NVG battery and visual effects are fully configurable.
