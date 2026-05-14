@@ -36,7 +36,7 @@ You no longer see the same lighting over and over – instead, you experience:
 - Realistic beam model + cast shadows + lens flare
 - Muzzle flash, tracers, sparks and other particle effects enhanced and now emit point lights
 
-### 🥽 Complete Night Vision System (NVG)
+### Complete Night Vision System (NVG)
 
 - Toggle with **`7`**
 - **Battery system** – drains on foot, recharges inside vehicles (works in air vehicles too)
@@ -44,7 +44,7 @@ You no longer see the same lighting over and over – instead, you experience:
 - **Three visual modes** – infantry / inside vehicle / vehicle thermal, each independently configurable
 - Fade‑in / fade‑out effect with sound when toggling
 
-### 🎲 Flexible Mode Selection
+### Flexible Mode Selection
 
 | Mode Type | Behaviour | Use Case |
 |-----------|-----------|----------|
@@ -54,7 +54,7 @@ You no longer see the same lighting over and over – instead, you experience:
 
 > The random list and all switches are configured in a single line inside `Settings.lua`.
 
-### 🛠 Other Visual Enhancements
+### Other Visual Enhancements
 
 - **Improved tracer visibility** + point lights attached
 - **Reduced sun glare / no lens flare** (kept only for flashlights)
