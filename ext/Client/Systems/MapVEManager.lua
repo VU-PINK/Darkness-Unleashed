@@ -2,7 +2,7 @@
 ---@overload fun():MapVEManager
 MapVEManager = class("MapVEManager")
 
-local m_Logger = DULogger("MapVEManager", true)
+local m_Logger = DULogger("MapVEManager", false)
 
 function MapVEManager:__init()
     m_Logger:Write("Initialize MapVEManager")

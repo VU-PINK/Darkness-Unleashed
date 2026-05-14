@@ -59,7 +59,7 @@ function RM:GetVehicleEntityData(p_Partition, p_Instance)
 end
 
 -- ChassisComponentData
-function RM:GetChasisComponentData(p_Partition, p_Instance)
+function RM:GetChassisComponentData(p_Partition, p_Instance)
     local s_ChassisComponentData = RM:Find(p_Partition, p_Instance)
     if s_ChassisComponentData == nil then return nil end
     return ChassisComponentData(s_ChassisComponentData)

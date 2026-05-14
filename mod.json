@@ -7,11 +7,11 @@
     "Tags": [
         "darkness-unleashed"
     ],
-    "Version": "1.1",
+    "Version": "1.2.0",
     "HasVeniceEXT": true,
     "HasWebUI": true,
     "Dependencies": {
-        "veniceext": "^1.10.0",
-        "VEManager": "^0.5.1"
+        "veniceext": "^1.14.0",
+        "VEManager": "^0.5.7"
     }
 }
