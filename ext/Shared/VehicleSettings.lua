@@ -12,18 +12,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '81D83886-888B-3962-61B1-4A1FC1AD49DB',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
-                    description = 'Gunner Searchlight',
+                    enabled = true,  --Whether to enable this light source, true = enabled
+                    description = 'Gunner Searchlight',  --Gunner searchlight  
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
-                    frustumFov = 35.6789,
-                    frustumAspect = 1.0,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
+                    frustumFov = 35.6789,  --Field of view of the light cone. Increasing makes the flashlight beam wider.
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
-                    radius = 200,
-                    color = Vec3(1, 0.9, 0.8),
+                    radius = 200,  --Illumination radius
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -37,8 +37,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0, -2.7)
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Gunner Searchlight Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
@@ -55,15 +55,15 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0.35, 0)
                     }
                 },
-                Pointlight_2 = {
-                    enabled = true,
+                Pointlight_2 = {  --Top red blinker
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Top Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 2.35,
                     width = 2,
                     -- intensity = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red 
                     intensity = 5.25,
                     visible = true,
                     enlightenEnable = false,
@@ -74,14 +74,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 1, -2.25)
                     }
                 },
-                Pointlight_3 = {
-                    enabled = true,
+                Pointlight_3 = {  --Cockpit green light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Cockpit Green Light',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 3,
                     width = 2,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green 
                     intensity = 5.5,
                     visible = true,
                     enlightenEnable = false,
@@ -92,14 +92,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0.25, 2.5)
                     }
                 },
-                Pointlight_4 = {
-                    enabled = true,
+                Pointlight_4 = {  --Bottom red navigation light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Bottom Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 120,
                     width = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 0.0125,
                     visible = true,
                     enlightenEnable = true,
@@ -122,17 +122,17 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '89BEA1D7-2FF4-11DE-8C23-DAB1D69416DE',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
-                    description = 'Gunner Searchlight',
+                    enabled = true,  --Whether to enable this light source, true = enabled
+                    description = 'Gunner Searchlight',  --Gunner searchlight  
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
-                    frustumFov = 35.6789,
-                    frustumAspect = 1.0,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
+                    frustumFov = 35.6789,  --Field of view of the light cone. Increasing makes the flashlight beam wider.
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
-                    radius = 200,
+                    radius = 200,  --Illumination radius
                     color = Vec3(1, 0.9, 0.9),
                     transform = {
                         left = Vec3(-1, 0, 0),
@@ -147,8 +147,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0, -1.4)
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Gunner Searchlight Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
@@ -165,15 +165,15 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0.35, 0)
                     }
                 },
-                Pointlight_2 = {
-                    enabled = true,
+                Pointlight_2 = {  --Top red blinker
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Top Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 6.25,
                     width = 6,
                     -- intensity = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 6,
                     visible = true,
                     enlightenEnable = false,
@@ -184,14 +184,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 1.2, -2.25)
                     }
                 },
-                Pointlight_3 = {
-                    enabled = true,
+                Pointlight_3 = {  --Cockpit green light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Cockpit Green Light Lower',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 4,
                     width = 3,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green
                     intensity = 1.1,
                     visible = true,
                     enlightenEnable = false,
@@ -202,14 +202,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0.20, 2.85)
                     }
                 },
-                Pointlight_4 = {
-                    enabled = true,
+                Pointlight_4 = {  --Bottom red navigation light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Cockpit Green Light 2',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 4,
                     width = 3,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green
                     intensity = 1.1,
                     visible = true,
                     enlightenEnable = false,
@@ -221,13 +221,13 @@ VEHICLESETTINGS = {
                     }
                 },
                 Pointlight_5 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Bottom Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 115,
                     width = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 0.0115,
                     visible = true,
                     enlightenEnable = false,
@@ -251,19 +251,19 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '88F274DD-7C84-1EE5-6EE7-DD1D980148B3',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Gunner 1 Searchlight',
                     weapon2 = false,
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
-                    frustumFov = 35.6789,
-                    frustumAspect = 1.0,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
+                    frustumFov = 35.6789,  --Field of view of the light cone. Increasing makes the flashlight beam wider.
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
-                    radius = 200,
-                    color = Vec3(1, 0.9, 0.8),
+                    radius = 200,  --Illumination radius
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1.0, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -278,19 +278,19 @@ VEHICLESETTINGS = {
                     }
                 },
                 Spotlight_2 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Gunner 2 Searchlight',
                     weapon2 = true,
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
-                    frustumFov = 35.6789,
-                    frustumAspect = 1.0,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
+                    frustumFov = 35.6789,  --Field of view of the light cone. Increasing makes the flashlight beam wider.
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 2.5 * SPOTLIGHTMULTIPLICATOR,
-                    radius = 200,
-                    color = Vec3(1, 0.9, 0.8),
+                    radius = 200,  --Illumination radius
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -304,14 +304,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0.125, -0.025, -0.65)
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Top Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 5,
                     width = 2,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 5,
                     visible = true,
                     enlightenEnable = false,
@@ -322,14 +322,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 1, -2.25),
                     }
                 },
-                Pointlight_2 = {
-                    enabled = true,
+                Pointlight_2 = {  --Top red blinker
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Passenger Green Light',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 5.5,
                     width = 1,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green
                     intensity = 1,
                     visible = true,
                     enlightenEnable = true,
@@ -340,14 +340,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, -0.6, 1.07),
                     }
                 },
-                Pointlight_3 = {
-                    enabled = true,
+                Pointlight_3 = {  --Cockpit green light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Bottom Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 100,
                     width = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 0.01,
                     visible = true,
                     enlightenEnable = true,
@@ -358,14 +358,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, -1.45, -2.0)
                     }
                 },
-                Pointlight_4 = {
-                    enabled = true,
+                Pointlight_4 = {  --Bottom red navigation light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Cockpit Green Light',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 6.25,
                     width = 1,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green
                     intensity = 0.9,
                     visible = true,
                     enlightenEnable = true,
@@ -387,19 +387,19 @@ VEHICLESETTINGS = {
             vehicleDataGUID = 'F2CD2BE1-4B72-59F0-A715-AA8E73F71751',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Front Spotlight',
                     weapon2 = false,
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 40,
-                    frustumAspect = 1.0,
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 35 * SPOTLIGHTMULTIPLICATOR,
                     radius = 120,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -413,15 +413,15 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 0.5, 9.5)
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Top Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 130,
                     width = 1,
                     intensity = 1.325,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     -- intensity = 0.01,
                     visible = true,
                     enlightenEnable = false,
@@ -432,14 +432,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 1.75, -2.25)
                     }
                 },
-                Pointlight_2 = {
-                    enabled = true,
+                Pointlight_2 = {  --Top red blinker
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Cockpit Green Light',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 5.575,
                     width = 1,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green
                     intensity = 4.15,
                     visible = true,
                     enlightenEnable = true,
@@ -450,14 +450,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 2, 8)
                     }
                 },
-                Pointlight_3 = {
-                    enabled = true,
+                Pointlight_3 = {  --Cockpit green light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Bottom Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 115,
                     width = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 0.0115,
                     visible = true,
                     enlightenEnable = true,
@@ -479,19 +479,19 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '922E0FF3-5BEA-78C1-4FD1-EDAE142D2289',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Front Spotlight',
                     weapon2 = false,
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 40,
-                    frustumAspect = 1.0,
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 32.5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 120,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -505,15 +505,15 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, -0.225, 8.75)
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Top Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 6.35,
                     width = 1,
                     intensity = 5.15,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     visible = true,
                     enlightenEnable = false,
                     transform = {
@@ -523,14 +523,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 1.5, -2.25),
                     }
                 },
-                Pointlight_2 = {
-                    enabled = true,
+                Pointlight_2 = {  --Top red blinker
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Cockpit Green Light',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 4.75,
                     width = 1,
-                    color = Vec3(0, 1, 0),
+                    color = Vec3(0, 1, 0),  --Green
                     intensity = 4.4,
                     visible = true,
                     enlightenEnable = true,
@@ -541,14 +541,14 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 1.175, 6.35)
                     }
                 },
-                Pointlight_3 = {
-                    enabled = true,
+                Pointlight_3 = {  --Cockpit green light
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Bottom Red Blinker',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     radius = 7.25,
                     width = 1,
-                    color = Vec3(1, 0, 0),
+                    color = Vec3(1, 0, 0),  --Pure red
                     intensity = 5,
                     visible = true,
                     enlightenEnable = true,
@@ -573,18 +573,18 @@ VEHICLESETTINGS = {
 
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 100,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -625,8 +625,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(0.85, 1.0, 2.6),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -654,18 +654,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '1DE37416-42D8-461E-B727-2159DB141204',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 100,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -681,18 +681,18 @@ VEHICLESETTINGS = {
                     }
                 },
                 Spotlight_2 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Far',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 55,
                     frustumAspect = 1,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 70,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -707,8 +707,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.525, 0.65, 3),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -736,18 +736,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = 'B06A08AC-EECF-11DD-8117-9421284A74E5',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -762,8 +762,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.85, 1.265, 2.95),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -791,18 +791,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '60106976-DD7D-11DD-A030-B04E425BA11E',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 65,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 6.25 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -817,8 +817,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.825, 1.14, 2.1),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -846,18 +846,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '02158D2F-08AC-EC79-EE0D-15F41D9D59A2',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -873,18 +873,18 @@ VEHICLESETTINGS = {
                     }
                 },
                 Spotlight_2 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Far',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 40,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 6 * SPOTLIGHTMULTIPLICATOR,
                     radius = 80,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -899,8 +899,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.4376, 1.13, 2.245),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -928,18 +928,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '21987A58-FF12-90E7-3B02-5122E534A06B',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 75,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5.25 * SPOTLIGHTMULTIPLICATOR,
                     radius = 60,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -954,8 +954,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.44, 0.85, 1.572),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -983,18 +983,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = 'E5D5D798-E452-0E56-1132-D7C85AB29402',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5.75 * SPOTLIGHTMULTIPLICATOR,
                     radius = 40,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -1009,8 +1009,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.3125, 0.765, 2.07),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1028,18 +1028,18 @@ VEHICLESETTINGS = {
                     },
                 },
                 Spotlight_2 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Far Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 35,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5.75 * SPOTLIGHTMULTIPLICATOR,
                     radius = 80,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -1067,15 +1067,15 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '687DB918-EBC5-4445-9CEF-911981203EB1',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 18.75 * SPOTLIGHTMULTIPLICATOR,
                     radius = 40,
                     color = Vec3(1, 0.9, 0.7),
@@ -1094,15 +1094,15 @@ VEHICLESETTINGS = {
                     }
                 },
                 Spotlight_2 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Weapon Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 35,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 20 * SPOTLIGHTMULTIPLICATOR,
                     radius = 30,
                     color = Vec3(1, 0.9, 0.7),
@@ -1119,8 +1119,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.50, 0.09, -1.20),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1149,15 +1149,15 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '0AA2C0B7-6B2C-76F5-B7CE-50276A615E3A',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
                     color = Vec3(1, 0.9, 0.7),
@@ -1206,11 +1206,11 @@ VEHICLESETTINGS = {
                     description = 'Main Weapon Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 60,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 20 * SPOTLIGHTMULTIPLICATOR,
                     radius = 30,
                     color = Vec3(1, 0.9, 0.7),
@@ -1230,8 +1230,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.3525, 0.585, -2.15),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1259,15 +1259,15 @@ VEHICLESETTINGS = {
             vehicleDataGUID = 'D531D9AC-6FB4-DF6E-26DE-32D3E2471779',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 120,
-                    frustumAspect = 1.0,
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 1 * SPOTLIGHTMULTIPLICATOR,
                     radius = 30,
                     color = Vec3(1, 0.9, 0.7),
@@ -1285,8 +1285,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.40, 2, 0.66),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'God sent',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1314,15 +1314,15 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '33960E31-BB2A-4CAD-80B9-FBDA32E36745',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 50,
-                    frustumAspect = 1.0,
+                    frustumAspect = 1.0, --frustumAspect usually refers to the aspect ratio of the frustum
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 1 * SPOTLIGHTMULTIPLICATOR,
                     radius = 140,
                     color = Vec3(1, 0.9, 0.7),
@@ -1350,18 +1350,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = 'AA668FE2-903B-62A9-13DB-6CA72BF63729',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -1376,8 +1376,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-1.2335, 1.2865, 2.6),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1409,7 +1409,7 @@ VEHICLESETTINGS = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
-                        trans = Vec3(0, 2.5, 0),
+                        trans = Vec3(0, 2.2, -0.5),
                     }
                 }
             }
@@ -1547,18 +1547,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '0E347B4B-B579-F65D-BC97-D11B28D7EDC8',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 55,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5.25 * SPOTLIGHTMULTIPLICATOR,
                     radius = 65,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -1584,18 +1584,18 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '00839CC5-087D-48B5-A3CE-15290FABF83D',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
-                    color = Vec3(1, 0.9, 0.8),
+                    color = Vec3(1, 0.9, 0.8),  --Warm white
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
@@ -1610,8 +1610,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-1.1535, 1.3265, 2.0575),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1639,15 +1639,15 @@ VEHICLESETTINGS = {
             vehicleDataGUID = '86A71B49-87A7-4A4D-B7E2-7C835B2F27C9',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 80,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
                     radius = 50,
                     color = Vec3(1, 0.9, 0.7),
@@ -1665,8 +1665,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.875, 1.75, 2.7),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1683,8 +1683,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(0, 2.5, 9.44),
                     }
                 },
-                Pointlight_2 = {
-                    enabled = true,
+                Pointlight_2 = {  --Top red blinker
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Top Blinker Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
@@ -1712,6 +1712,222 @@ VEHICLESETTINGS = {
             vehicleDataGUID = 'CA5E19E7-AD7B-D91D-5F7F-D5A9843FF2D1',
             Components = {
                 Spotlight_1 = {
+                    enabled = true,  --Whether to enable this light source, true = enabled
+                    description = 'Left Main Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
+                    frustumFov = 80,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,  --Whether to cast shadows
+                    intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.86, 1.55, 3.39),
+                        mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.86, 1.55, 2.7),
+                    }
+                },
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
+                    description = 'Left Main Light Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    radius = 5,
+                    width = 5,
+                    intensity = 10,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 2.4, 9.5),
+                    },
+                }
+            }
+        },
+    
+        GAZ_3937_Vodnik = {
+            -- GAZ-3937-Vodnik RU
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/GAZ-3937_Vodnik/GAZ-3937_Vodnik.txt
+            name = 'GAZ_3937_Vodnik',
+            partitionGUID = 'B9E8F531-DF6E-4221-BD32-A8D15CB2E8C8',
+            chassisGUID = '43966848-0899-4602-A95D-B75840B40696',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Interior Cabin Light',
+                    type = 1,
+                    weaponmounted = false,
+                    radius = 5,
+                    width = 5,
+                    intensity = 8,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1.2, 0.5),
+                    },
+                }
+            }
+        },
+
+        VodnikPhoenix = {
+            -- GAZ-3937-Vodnik Phoenix (XP5) - Same lights as GAZ_3937_Vodnik
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XP5/VodnikPhoenix/VodnikPhoenix.txt
+            name = 'VodnikPhoenix',
+            partitionGUID = '4DBB5F24-30D5-4CF1-819B-D6E95561D62F',
+            chassisGUID = 'FA9B2770-4EF0-4C88-B7FE-099DA2C3D769',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Interior Cabin Light',
+                    type = 1,
+                    weaponmounted = false,
+                    radius = 5,
+                    width = 5,
+                    intensity = 8,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1.2, 0.5),
+                    },
+                }
+            }
+        },
+
+        LAV_Paradrop = {
+            -- LAV25 Paradrop (XP5) - Same lights as LAV25
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XP5/LAV_Paradrop/LAV25_Paradrop.txt
+            name = 'LAV_Paradrop',
+            partitionGUID = 'B791D5BE-5010-49EF-895D-677F5DCE16CB',
+            chassisGUID = '6E34C659-3E17-4021-843D-32199C1F0D6E',
+            weaponGUID = '47C126D0-D93D-46E7-BAA5-00707D7F70AC',
+            Components = {
+                Spotlight_1 = {
                     enabled = true,
                     description = 'Left Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
@@ -1728,14 +1944,66 @@ VEHICLESETTINGS = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
-                        trans = Vec3(-0.86, 1.55, 3.39),
+                        trans = Vec3(-0.845, 1.765, 3.43),
                         mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-14, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.845, 1.765, 2.7),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Main Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 80,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0.845, 1.765, 3.43),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-14, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0.845, 1.765, 2.7),
+                    }
+                },
+                Spotlight_3 = {
+                    enabled = true,
+                    description = 'Main Weapon Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = true,
+                    shape = 1,
+                    frustumFov = 60,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 20 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 30,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.3525, 0.585, -1.49),
                     },
                     lightbeamTransform = {
                         left = Vec3(-8, 0, 0),
                         up = Vec3(0, 8, 0),
                         forward = Vec3(0, 0, 8),
-                        trans = Vec3(-0.86, 1.55, 2.7),
+                        trans = Vec3(-0.3525, 0.585, -1.49),
                     }
                 },
                 Pointlight_1 = {
@@ -2163,15 +2431,15 @@ VEHICLESETTINGS = {
             weaponGUID = '80D6B7EC-636A-4683-B2B9-D156F16F0FC7',
             Components = {
                 Spotlight_1 = {
-                    enabled = true,
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Main Weapon Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,
-                    shape = 1,
+                    shape = 1, --1 0 = cone, 1 = flat-top cone, 2 = cuboid
                     frustumFov = 55,
                     frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
-                    castShadowsEnable = true,
+                    castShadowsEnable = true,  --Whether to cast shadows
                     intensity = 3.25 * SPOTLIGHTMULTIPLICATOR,
                     radius = 90,
                     color = Vec3(1, 0.9, 0.7),
@@ -2188,8 +2456,8 @@ VEHICLESETTINGS = {
                         trans = Vec3(0.1, 0, -0.725),
                     }
                 },
-                Pointlight_1 = {
-                    enabled = true,
+                Pointlight_1 = {  --Used to simulate the "flood" effect in the area near the searchlight
+                    enabled = true,  --Whether to enable this light source, true = enabled
                     description = 'Left Main Light Pointlight',
                     type = 1, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = true,

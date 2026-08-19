@@ -1,299 +1,147 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<style>
-		@font-face {
-			font-family: "bffont";
-			src: url("bffont.ttf");
-		}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        @font-face {
+            font-family: 'bffont';
+            src: url('bffont.ttf');
+        }
+    </style>
 
-		body,
-		html {
-			padding: 0;
-			margin: 0;
-			width: 100%;
-			height: 100%;
-			background: transparent;
-			overflow: hidden;
-		}
-
-		.bf3-blue-block {
-			background-color: #0065b969;
-			/* #52b0ff66; */
-			border-radius: 3px;
-			opacity: 0.8;
-			box-shadow: 0 0 4px 1px #0f83e466;
-			/* #52b0ff66; */
-		}
-
-		#goggles-key-hint {
-			position: absolute;
-			bottom: 35vh;
-			/* 40%; */
-			right: 3%;
-			padding: 8px 8px;
-		}
-
-		#goggles-key-hint .hint {
-			/*font-family: Arial, Helvetica, sans-serif;*/
-			/*font-family: Consolas;*/
-			/*font-style: italic;*/
-			font-family: bffont;
-			font-size: 0.8em;
-			color: #fff;
-			text-align: left;
-			line-height: 22px;
-			display: inline-block;
-			vertical-align: top;
-		}
-
-		#goggles-key-hint .title {
-			text-align: center;
-			padding: 4px 4px 4px 30px;
-		}
-
-		.goggles-hint-icon {
-			width: 22px;
-			height: 16px;
-			background-image: url('img/goggles-icon.png');
-			background-size: 100% 100%;
-			display: inline-block;
-			vertical-align: top;
-			margin-top: 6px;
-			position: absolute;
-		}
-
-		#goggles {
-			position: absolute;
-			bottom: 1%;
-			right: 4%;
-			padding: 2px 4px;
-			opacity: 0.70;
-			filter: drop-shadow(1px 1px 2px #52b0ff) brightness(99%) contrast(98%);
-		}
-
-		#goggles-icon {
-			width: 28px;
-			height: 20px;
-			background-image: url('img/goggles-off-icon.png');
-			background-size: 100% 100%;
-			display: inline-block;
-			vertical-align: top;
-		}
-
-		#goggles-battery-icon {
-			width: 9px;
-			height: 14px;
-			background-image: url('img/battery-4.png');
-			background-size: 100% 100%;
-			display: inline-block;
-			vertical-align: top;
-			margin-top: 4px;
-		}
-
-		#key {
-			text-shadow: 1px 1px 4px white;
-			background-color: #62c5ffb8;
-			padding: 0px 0px 2px 0px;
-			border-radius: 2px;
-			box-shadow: 0 0 2px 1px #62c5ffb8;
-			margin-right: 7px;
-		}
-
-		.bounce {
-			outline: 0;
-			filter: drop-shadow(1px 1px 2px #ff5252) brightness(99%) contrast(200%) !important;
-			animation-name: bounce;
-			animation-duration: .5s;
-			animation-delay: 0.25s;
-		}
-
-		@keyframes bounce {
-			0% {
-				transform: translateX(0px);
-				timing-function: ease-in;
-			}
-
-			37% {
-				transform: translateX(5px);
-				timing-function: ease-out;
-			}
-
-			55% {
-				transform: translateX(-5px);
-				timing-function: ease-in;
-			}
-
-			73% {
-				transform: translateX(4px);
-				timing-function: ease-out;
-			}
-
-			82% {
-				transform: translateX(-4px);
-				timing-function: ease-in;
-			}
-
-			91% {
-				transform: translateX(2px);
-				timing-function: ease-out;
-			}
-
-			96% {
-				transform: translateX(-2px);
-				timing-function: ease-in;
-			}
-
-			100% {
-				transform: translateX(0px);
-				timing-function: ease-in;
-			}
-		}
-	</style>
+    <!-- 🔥 Fallback functions: prevent load order issues -->
+    <script>
+        (function() {
+            var funcs = ['showUI','hideUI','showHintUI','showNVGAlert','iconsLocation','setKey','gogglesUpdate','setBatteries','batteryUpdate','playSound'];
+            for (var i = 0; i < funcs.length; i++) {
+                if (typeof window[funcs[i]] !== 'function') {
+                    window[funcs[i]] = function(){};
+                }
+            }
+        })();
+    </script>
 </head>
-
 <body>
 
-	<script type="text/javascript" src="AudioManager.js"> </script>
+    <!-- 🔹 Hint area -->
+    <div id="goggles-key-hint" class="bf3-blue-block" style="display: none;">
+        <img class="goggles-hint-icon" src="img/goggles-icon.png" alt="NVG">
+        <div class="hint">
+                <div class="title-text">Night</div>
+                <div class="action-row">
+                    <span class="key-badge" id="key">[7]</span>
+                    <span class="action-text">Enable/Disable</span>
+                </div>
+        </div>
+    </div>
 
-	<div id="goggles-key-hint" class="bf3-blue-block" style="display: none;">
-		<div class="hint">
-			<div class="goggles-hint-icon"></div>
-			<div class="title">NIGHT VISION GOGGLES</div>
-			<b id="key">[ 7 ]</b>TO ENABLE / DISABLE
-		</div>
-	</div>
-	<div id="goggles" style="display: none;">
-		<div id="goggles-icon"></div>
-		<div id="goggles-battery-icon" class="battery-4"></div>
-	</div>
-	<script type="application/javascript">
-		// Get Elements
-		const hint = document.getElementById('goggles-key-hint');
-		const goggle = document.getElementById('goggles');
-		//const goggleIcon = document.getElementById('goggles-icon');
-		//const batteryIcon = document.getElementById('goggles-battery-icon');
+    <!-- 🔹 Bottom-right icon area -->
+    <div id="goggles" style="display: none;">
+        <img id="goggles-icon" src="img/goggles-off-icon.png" alt="NVG">
+        <img id="goggles-battery-icon" src="img/battery-4.png" alt="Battery">
+    </div>
 
-		// Show/Hide UI functions
-		window.showUI = () => {
-			goggle.style.display = 'block';
-		};
-		window.hideUI = () => {
-			goggle.style.display = 'none';
-			hint.style.display = 'none';
-		};
-		window.showHintUI = (seconds) => {
-			hint.style.display = 'block';
-			setTimeout(function () {
-				hint.style.display = 'none';
-			}, seconds * 1000);
-		};
-		window.showNVGAlert = () => {
-			goggle.classList.add("bounce");
-			setTimeout(function () {
-				goggle.classList.remove("bounce");
-			}, 1000);
-		};
+    <!-- 🔹 Core logic script -->
+    <script>
+        var hint = document.getElementById('goggles-key-hint');
+        var goggle = document.getElementById('goggles');
+        var icon = document.getElementById('goggles-icon');
+        var battery = document.getElementById('goggles-battery-icon');
+        var key = document.getElementById('key');
+        
+        var batteryMin = 10;
+        var batteryMax = 200;
+        var batteryLast = -1;
+        var batteryFlashing = false;
+        
+        window.showUI = function() {
+            if (goggle) goggle.style.display = 'flex';
+        };
+        
+        window.hideUI = function() {
+            if (goggle) goggle.style.display = 'none';
+            if (hint) hint.style.display = 'none';
+        };
+        
+        window.showHintUI = function(seconds) {
+            if (!hint) return;
+            hint.style.display = 'block';
+            var t = hint;
+            setTimeout(function() { if (t) t.style.display = 'none'; }, (seconds || 10) * 1000);
+        };
+        
+        window.showNVGAlert = function() {
+            if (!goggle) return;
+            goggle.classList.add("bounce");
+            setTimeout(function() { if (goggle) goggle.classList.remove("bounce"); }, 1000);
+        };
+        
+        window.iconsLocation = function(bottom, right) {
+            if (goggle) {
+                goggle.style.bottom = (typeof bottom === 'string') ? bottom : bottom + '%';
+                goggle.style.right = (typeof right === 'string') ? right : right + '%';
+            }
+        };
+        
+        window.setKey = function(text) {
+            if (key) key.textContent = "[ " + text.trim() + "]";
+        };
+        
+        window.gogglesUpdate = function(state) {
+            if (!icon) return;
+            var img = "img/goggles-off-icon.png";
+            if (state == 1) img = "img/goggles-icon.png";
+            else if (state == 3) img = "img/goggles-disabled-icon.png";
+            icon.src = img;
+        };
+        
+        window.setBatteries = function(min, max) {
+            batteryMin = min;
+            batteryMax = max;
+        };
+        
+        window.batteryUpdate = function(currentBattery) {
+            if (!battery) return;
+            
+            if (currentBattery < batteryMin && currentBattery > 0) {
+                if (!batteryFlashing) {
+                    batteryFlashing = true;
+                    flashBattery();
+                }
+            } else {
+                batteryFlashing = false;
+                var newBat = Math.ceil(currentBattery / batteryMax * 4);
+                
+                if (batteryLast != newBat && typeof window.playSound === 'function') {
+                    try {
+                        if (newBat == 4) playSound("sounds/NVG_Charged.ogg", 0.8, false);
+                        else if (newBat == 0) playSound("sounds/NVG_Depleted.ogg", 0.8, false);
+                        else if (batteryLast > newBat) playSound("sounds/NVG_Depleting.ogg", 0.8, false);
+                        else playSound("sounds/NVG_Charging.ogg", 0.8, false);
+                    } catch(e) {
+                        console.log("[NVG] Sound error: " + e.message);
+                    }
+                }
+                
+                batteryLast = newBat;
+                var batImg = "img/battery-" + Math.floor(newBat) + ".png";
+                battery.src = batImg;
+            }
+        };
+        
+        function flashBattery() {
+            if (!batteryFlashing || !battery) return;
+            var currentSrc = battery.src;
+            var isZero = currentSrc.indexOf('battery-0.png') >= 0;
+            battery.src = isZero ? "img/battery-1.png" : "img/battery-0.png";
+            setTimeout(flashBattery, 500);
+        }
+    </script>
 
-		// Set settings
-		window.iconsLocation = (bottom, right) => {
-			document.getElementById('goggles').style.bottom = bottom;
-			document.getElementById('goggles').style.right = right;
-		};
+    <!-- 🔹 AudioManager.js: GameFace compatible version (placed at the end) -->
+    <script type="text/javascript" src="AudioManager.js"></script>
 
-		// Set key in hint
-		window.setKey = (text) => {
-			document.getElementById('key').textContent = "[ " + text.trim() + "]";
-		};
-
-		// Update goggles image
-		window.gogglesUpdate = (state) => {
-			//console.log("Goggles state: "+state);
-			if (state == 1) // ON
-				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-icon.png')";
-			else if (state == 2) // OFF
-				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-off-icon.png')";
-			else { // DISABLED
-				document.getElementById('goggles-icon').style.backgroundImage = "url('img/goggles-disabled-icon.png')";
-			}
-		};
-
-		// Battery
-		var battery = {};
-		battery.min = 10; // flashing battery icon below 10% battery
-		battery.max = 200; // = 100% battery
-		window.setBatteries = (min, max) => {
-			battery.min = min;
-			battery.max = max;
-		};
-
-		// Update battery image
-		var flashing_ms = 500; // time between icon show/hide
-		var flashing = false; // flashing battery icon state
-		var lastBattery;
-		window.batteryUpdate = (currentBattery) => {
-			// battery= 0 - 100
-			// Images:
-			// 		0 = empty battery
-			// 		1 = 1/4 battery
-			//		2 = 2/4 battery
-			// 		3 = 3/4 battery
-			//		4 = full battery
-
-			// Flash icon for low battery
-			if (currentBattery < battery.min && currentBattery > 0) {
-				//console.log("Battery below 10%");
-				if (!flashing) {
-					flashing = true;
-					//console.log("Run flash code");
-					window.flashBattery();
-				}
-			} else {
-				flashing = false;
-				var newBattery = Math.ceil(currentBattery / battery.max * 4);
-
-				if (lastBattery != newBattery) {
-					if (newBattery == 4 && lastBattery != newBattery) {
-						playSound("/sounds/NVG_Charged.ogg", 0.8, false);
-					}
-					else if (newBattery == 0 && lastBattery != newBattery) {
-						playSound("/sounds/NVG_Depleted.ogg", 0.8, false);
-					}
-					else if (lastBattery >= newBattery && lastBattery != newBattery) {
-						playSound("/sounds/NVG_Depleting.ogg", 0.8, false);
-					} else {
-						playSound("/sounds/NVG_Charging.ogg", 0.8, false);
-					}
-				}
-
-
-
-
-				lastBattery = newBattery
-				document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-" + Math.floor(newBattery) + ".png')";
-			}
-		};
-
-		window.flashBattery = () => {
-			if (!flashing)
-				return;
-
-			// Check current icon
-			var state_0 = (document.getElementById('goggles-battery-icon').style.backgroundImage == 'url("img/battery-0.png")');
-
-			//console.log("Flash state: "+state_0);
-
-			// Change between Empty-Almost Empty battery icon
-			if (state_0)
-				document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-1.png')"
-			else
-				document.getElementById('goggles-battery-icon').style.backgroundImage = "url('img/battery-0.png')"
-
-			// Run the code again
-			setTimeout(window.flashBattery, flashing_ms);
-		};
-	</script>
 </body>
-
 </html>

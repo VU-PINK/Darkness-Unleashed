@@ -1,0 +1,167 @@
+/* =========================================
+   NVG UI Styles - GameFace 100% Compatible
+   Optimized for English text & Fully Documented
+   ========================================= */
+
+body, html {
+    padding: 0; /* Clear default padding to prevent white edges on UI */
+    margin: 0; /* Clear default margin */
+    width: 100%; /* Fill viewport width */
+    height: 100%; /* Fill viewport height */
+    background: transparent; /* Transparent background, does not block game view */
+    overflow: hidden; /* Hide scrollbars to prevent UI elements from overflowing the screen */
+    font-family: 'bffont', sans-serif; /* Global font family | Ensure the font file is correctly registered */
+}
+
+/* 🔹 Hint container - optimized for English display */
+.bf3-blue-block {
+    background-color: #0065b969; /* Background color (RGB + Alpha in hex) | Modify first 6 digits to change color, last 2 digits to change opacity */
+    border-radius: 3px; /* Border radius | Larger = rounder, smaller = sharper */
+    opacity: 0.8; /* Overall opacity (0.0~1.0) | Lower = more transparent, higher = more solid */
+    box-shadow: 0 0 4px 1px #0f83e466; /* Outer glow (X offset Y offset blur radius spread radius color) | Adjust blur/spread to control halo size */
+    
+    display: block; /* Block-level element, takes its own line */
+    position: relative; /* Relative positioning, reference for absolutely positioned child elements */
+    
+    min-width: 180px; /* Minimum width limit | Prevents the background box from being compressed when text is too long */
+    width: auto; /* Width adapts to content or parent container */
+    
+    padding: 8px 16px; /* Padding (top/bottom left/right) | Controls safe distance between text/icon and blue background edge */
+    
+    position: absolute; /* Absolute positioning, out of document flow, positioned relative to browser viewport */
+    bottom: 35%; /* Distance from bottom as percentage | Larger = move up, smaller = move down */
+    right: 3%; /* Distance from right as percentage | Larger = move left, smaller = move right */
+    z-index: 9999; /* Stack order | Higher value appears in front, ensures it is not blocked by game HUD */
+}
+
+/* 🔹 Icon: absolute positioning */
+.goggles-hint-icon {
+    width: 22px; /* Icon width | Should match image pixel dimensions to prevent stretching */
+    height: 16px; /* Icon height */
+    position: absolute; /* Absolute positioning, precisely fixed inside container */
+    left: 12px; /* Distance from container left edge | Aligns with .bf3-blue-block padding-left */
+    top: 12px; /* Distance from container top edge | Controls vertical starting position of icon */
+}
+
+.hint {
+    font-family: 'bffont', sans-serif; /* Local font override | Can be independent of global settings */
+    font-size: 16px; /* Base font size | Affects baseline for line height and text size */
+    color: #fff; /* Text color (white) */
+    text-align: left; /* Left-aligned text */
+    line-height: 1.2; /* Line height multiplier (1.2 times font size) | Controls vertical density of multi-line text */
+    display: block; /* Block-level display, fills available width */
+    padding-left: 0; /* Zero left padding | Position control delegated to child element margins */
+}
+
+.title-text {
+    margin: 0; /* Zero margin to avoid browser default style interference */
+    padding: 0; /* Zero padding */
+    
+    /* 🎛️ Knob 1: Horizontal position (larger = move right, smaller = move left) */
+    margin-left: 38px; 
+    
+    line-height: 18px; /* Override parent line height, fix first line height | Ensures visual match with icon height */
+    white-space: nowrap; /* Force no line break | Prevents long text from accidentally breaking layout */
+    
+    /* 🎛️ Knob 2: Title font weight (100~900) */
+    font-weight: 500; /* 400=normal, 500=medium, 700=bold | GameFace supports numeric mapping */
+}
+
+/* 🔹 Second row: container (only responsible for horizontal arrangement, no position interference) */
+.action-row {
+    /* 🎛️ Knob 3: Line spacing (larger = rows separate, smaller = rows closer) */
+    margin-top: 12px; /* Controls vertical distance between "Night" and the action row below */
+    
+    white-space: nowrap; /* Force content of this row not to wrap */
+    display: flex; /* Enable Flex layout | Child elements automatically arrange horizontally */
+    align-items: center; /* Vertically center align | Ensures [7] and text are on the same horizontal line */
+}
+
+/* 🔹 [7] blue key badge */
+.key-badge {
+    background-color: #62c5ffb8; /* Background color (with transparency) | Blue semi-transparent */
+    color: #fff; /* Text color (white) */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Text shadow (X Y blur color) | Adds depth / prevents highlight bleed-through */
+    
+    /* 🎛️ Knob 4: Blue bar height control */
+    padding-top: 0px;    /* Top padding | Larger = bar taller, text moves down */
+    padding-bottom: 0px; /* Bottom padding | Larger = bar taller, text moves up */
+    padding-left: 0px;   /* Left padding | Controls distance between text and left edge of bar */
+    padding-right: 0px;  /* Right padding | Controls distance between text and right edge of bar */
+    
+    /* 🎛️ Knob 5: Line height (assists in compressing bar height) */
+    line-height: 1.2; /* 1.0 flattest, 1.2 normal | Tune with padding to adjust bar compactness */
+    
+    border-radius: 2px; /* Border radius | Controls roundness of the four corners of the blue banner */
+    box-shadow: 0 0 2px 1px #62c5ffb8; /* Outer glow | Gives the banner a slight glow to blend with background */
+    font-size: 15px; /* Dedicated font size | Can be adjusted independently of .hint */
+    
+    /* 🎛️ Knob 6: [7] individual boldness (100~900) */
+    font-weight: 900; /* Note: CSS standard max is 900, GameFace will clamp to 900 (very bold) | Recommend writing 900 for compliance */
+    
+    /* ️ Knob 7: [7] horizontal fine-tuning (larger = move right, smaller = move left) */
+    margin-left: -4px; /* Negative value pulls left, counteracts default flex spacing of parent */
+    margin-right: 0; /* Zero right margin */
+}
+
+/* 🔹 "Enable/Disable" text */
+.action-text {
+    font-size: 15px; /* Dedicated font size */
+    color: #fff; /* Text color */
+    
+    /* ️ Knob 8: Individual boldness for English text (100~900) */
+    font-weight: 900; /* Same as above, GameFace will render as 900 (very bold) | Should visually coordinate with [7] */
+    
+    /* 🎛️ Knob 9: Spacing between English text and [7] (larger = farther apart) */
+    margin-left: 17px; /* Positive margin, pushes away from the element on the left */
+}
+
+/* 🔹 Bottom-right icon area (NVG state + battery) */
+#goggles {
+    position: absolute; /* Absolute positioning */
+    bottom: 0.5%; /* Distance from bottom | Larger = move up, smaller = move down */
+    right: 4%; /* Distance from right */
+    padding: 2px 4px 4px 4px; /* Padding (top right bottom left) | 4px bottom to prevent edge sticking */
+    opacity: 0.70; /* Opacity | 0.7 maintains a semi-transparent floating feel */
+    z-index: 9999; /* Top layer display */
+    
+    display: flex; /* Flex layout */
+    flex-direction: row; /* Child elements arranged horizontally */
+    align-items: flex-end; /* Bottom alignment | Allows taller icons to sink naturally, creating a staggered look */
+    
+    box-shadow: 0 0 4px 2px #52b0ff66; /* Bottom icon group outer glow | Enhances UI presence */
+}
+
+#goggles-icon {
+    width: 28px; /* Icon width */
+    height: 20px; /* Icon height */
+    flex-shrink: 0; /* Prevent Flex container from shrinking this element | Maintains original icon proportion */
+    margin-right: 4px; /* Spacing from battery icon on the right */
+}
+
+#goggles-battery-icon {
+    width: 9px; /* Battery icon width */
+    height: 14px; /* Battery icon height */
+    flex-shrink: 0; /* Prevent shrinking */
+    margin-bottom: 2px; /* Bottom margin | Combined with align-items: flex-end to create visual drop */
+}
+
+/* 🔹 Animation (low battery / toggle warning) */
+.bounce {
+    box-shadow: 0 0 6px 2px #ff5252 !important; /* Red glow on warning | !important ensures override of original style */
+    animation-name: bounce; /* Bind animation name */
+    animation-duration: .5s; /* Animation total duration (seconds) */
+    animation-delay: 0.25s; /* Delay start time (seconds) */
+}
+
+@keyframes bounce {
+    /* Keyframes define left-right shake effect | 0%~100% is a full cycle, GameFace fully supports translateX */
+    0% { transform: translateX(0px); }
+    37% { transform: translateX(5px); }
+    55% { transform: translateX(-5px); }
+    73% { transform: translateX(4px); }
+    82% { transform: translateX(-4px); }
+    91% { transform: translateX(2px); }
+    96% { transform: translateX(-2px); }
+    100% { transform: translateX(0px); }
+}
