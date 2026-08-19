@@ -32,7 +32,7 @@ DU_CONFIG = {
         XP5_004 = 'Night'      -- Sabalan Pipeline
     },
     VEHICLES = {
-        USE_VEHICLE_LIGHTS = false
+        USE_VEHICLE_LIGHTS = true
     },
     GENERAL = {
         USE_NIGHTVISION_GADGET = true

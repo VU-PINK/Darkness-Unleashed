@@ -589,41 +589,40 @@ VEHICLESETTINGS = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
-                        trans = Vec3(-0.525, 0.65, 2.6),
+                        trans = Vec3(-0.85, 1.0, 2.6),
                         mirrored = true
                     },
                     lightbeamTransform = {
                         left = Vec3(-16, 0, 0),
                         up = Vec3(0, 8, 0),
                         forward = Vec3(0, 0, 8),
-                        trans = Vec3(-0.525, 0.65, 2),
+                        trans = Vec3(-0.85, 1.0, 2.6),
                     }
                 },
                 Spotlight_2 = {
                     enabled = true,
-                    description = 'Left Main Light Far',
+                    description = 'Right Main Light',
                     type = 2, -- Pointlight [1] ; Spotlight [2]
                     weaponmounted = false,
                     shape = 1,
-                    frustumFov = 55,
-                    frustumAspect = 1,
+                    frustumFov = 100,
+                    frustumAspect = 1.25,
                     castShadowsMinLevel = 0,
                     castShadowsEnable = true,
-                    intensity = 1.5 * SPOTLIGHTMULTIPLICATOR,
-                    radius = 70,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
                     color = Vec3(1, 0.9, 0.8),
                     transform = {
                         left = Vec3(-1, 0, 0),
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
-                        trans = Vec3(-0.525, 0.65, 2.6),
-                        mirrored = true
+                        trans = Vec3(0.85, 1.0, 2.6),
                     },
                     lightbeamTransform = {
-                        left = Vec3(-8, 0, 0),
+                        left = Vec3(-16, 0, 0),
                         up = Vec3(0, 8, 0),
                         forward = Vec3(0, 0, 8),
-                        trans = Vec3(-0.525, 0.65, 2),
+                        trans = Vec3(0.85, 1.0, 2.6),
                     }
                 },
                 Pointlight_1 = {
@@ -1176,6 +1175,32 @@ VEHICLESETTINGS = {
                         trans = Vec3(-0.845, 1.765, 2.7),
                     }
                 },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Main Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 80,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0.845, 1.765, 3.43),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-14, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0.845, 1.765, 2.7),
+                    }
+                },
                 Spotlight_3 = {
                     enabled = true,
                     description = 'Main Weapon Light',
@@ -1194,6 +1219,9 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(-0.3525, 0.585, -1.49),
+                            -- x 7.82310962677002e-08
+                            -- y -0.010842561721801758
+                            -- z 1.6598516702651978
                     },
                     lightbeamTransform = {
                         left = Vec3(-8, 0, 0),
@@ -1382,6 +1410,132 @@ VEHICLESETTINGS = {
                         up = Vec3(0, 1, 0),
                         forward = Vec3(0, 0, 1),
                         trans = Vec3(0, 2.5, 0),
+                    }
+                }
+            }
+        },
+        BMP2 = {
+            -- BMP-2 RUS IFV
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/BMP2/BMP2.txt
+            name = 'BMP2',
+            partitionGUID = 'AAE95906-AFD4-11DD-84FB-9FA71F68ED5E',
+            chassisGUID = 'AAE95907-AFD4-11DD-84FB-9FA71F68ED5E',
+            weaponGUID = '6FC54E51-D0BE-49D9-982C-431FC7113065', 
+            vehicleDataGUID = 'AAE95909-AFD4-11DD-84FB-9FA71F68ED5E',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Headlight',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 75,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 6 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 55,
+                    color = Vec3(1, 0.9, 0.8),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-1.2, 1.3, 2.9),
+                        mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.2, 1.3, 2.9),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Headlight',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 75,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 6 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 55,
+                    color = Vec3(1, 0.9, 0.8),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(1.2, 1.3, 2.9),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(1.2, 1.3, 2.9),
+                    }
+                },
+                Spotlight_3 = {
+                    enabled = true,
+                    description = 'Main Weapon Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = true,
+                    shape = 1,
+                    frustumFov = 50,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 8 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 35,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.3525, 0.585, -1.49),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.3525, 0.585, -2.15),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Headlight Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    radius = 3,
+                    width = 1,
+                    intensity = 10,
+                    color = Vec3(1, 0.9, 0.9),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1, 5.5)
+                    }
+                },
+                Pointlight_2 = {
+                    enabled = true,
+                    description = 'Top Red Blinker Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    radius = 8,
+                    width = 1,
+                    intensity = 5,
+                    color = Vec3(1, 0.1, 0.1),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 2.2, -0.5),
                     }
                 }
             }
@@ -1603,8 +1757,403 @@ VEHICLESETTINGS = {
                     },
                 }
             }
-        }
+        },
+    
+        GAZ_3937_Vodnik = {
+            -- GAZ-3937-Vodnik RU
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/GAZ-3937_Vodnik/GAZ-3937_Vodnik.txt
+            name = 'GAZ_3937_Vodnik',
+            partitionGUID = 'B9E8F531-DF6E-4221-BD32-A8D15CB2E8C8',
+            chassisGUID = '43966848-0899-4602-A95D-B75840B40696',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Interior Cabin Light',
+                    type = 1,
+                    weaponmounted = false,
+                    radius = 5,
+                    width = 5,
+                    intensity = 8,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1.2, 0.5),
+                    },
+                }
+            }
+        },
+
+        VodnikPhoenix = {
+            -- GAZ-3937-Vodnik Phoenix (XP5) - Same lights as GAZ_3937_Vodnik
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XP5/VodnikPhoenix/VodnikPhoenix.txt
+            name = 'VodnikPhoenix',
+            partitionGUID = '4DBB5F24-30D5-4CF1-819B-D6E95561D62F',
+            chassisGUID = 'FA9B2770-4EF0-4C88-B7FE-099DA2C3D769',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.05, 1.05, 2.6),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Headlight',
+                    type = 2,
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 55,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(1.05, 1.05, 2.6),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Interior Cabin Light',
+                    type = 1,
+                    weaponmounted = false,
+                    radius = 5,
+                    width = 5,
+                    intensity = 8,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1.2, 0.5),
+                    },
+                }
+            }
+        },
+
+        LAV_Paradrop = {
+            -- LAV25 Paradrop (XP5) - Same lights as LAV25
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XP5/LAV_Paradrop/LAV25_Paradrop.txt
+            name = 'LAV_Paradrop',
+            partitionGUID = 'B791D5BE-5010-49EF-895D-677F5DCE16CB',
+            chassisGUID = '6E34C659-3E17-4021-843D-32199C1F0D6E',
+            weaponGUID = '47C126D0-D93D-46E7-BAA5-00707D7F70AC',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Main Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 80,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.845, 1.765, 3.43),
+                        mirrored = true,
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-14, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.845, 1.765, 2.7),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Main Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 80,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 17.5 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 50,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0.845, 1.765, 3.43),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-14, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(0.845, 1.765, 2.7),
+                    }
+                },
+                Spotlight_3 = {
+                    enabled = true,
+                    description = 'Main Weapon Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = true,
+                    shape = 1,
+                    frustumFov = 60,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 20 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 30,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.3525, 0.585, -1.49),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.3525, 0.585, -1.49),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Left Main Light Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    radius = 5,
+                    width = 5,
+                    intensity = 10,
+                    color = Vec3(1, 0.9, 0.7),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 2.4, 9.5),
+                    },
+                }
+            }
+        },
+
+        BMP2_Paradrop = {
+            -- BMP2 Paradrop (XP5) - Same lights as BMP2
+            -- https://github.com/EmulatorNexus/Venice-EBX/blob/master/Vehicles/XP5/BMP2_Paradrop/BMP2_Paradrop.txt
+            name = 'BMP2_Paradrop',
+            partitionGUID = 'DD6BCB51-A4FA-4743-910E-E7B953834089',
+            chassisGUID = 'A0DA7276-0D42-44AD-BC84-EC7FF772A34E',
+            weaponGUID = 'D73BF8E2-E240-43E8-92E4-7A7A2A72C26B',
+            Components = {
+                Spotlight_1 = {
+                    enabled = true,
+                    description = 'Left Headlight',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 75,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 6 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 55,
+                    color = Vec3(1, 0.9, 0.8),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-1.2, 1.3, 2.9),
+                        mirrored = true
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-1.2, 1.3, 2.9),
+                    }
+                },
+                Spotlight_2 = {
+                    enabled = true,
+                    description = 'Right Headlight',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    shape = 1,
+                    frustumFov = 75,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 6 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 55,
+                    color = Vec3(1, 0.9, 0.8),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(1.2, 1.3, 2.9),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(1.2, 1.3, 2.9),
+                    }
+                },
+                Spotlight_3 = {
+                    enabled = true,
+                    description = 'Main Weapon Light',
+                    type = 2, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = true,
+                    shape = 1,
+                    frustumFov = 50,
+                    frustumAspect = 1.25,
+                    castShadowsMinLevel = 0,
+                    castShadowsEnable = true,
+                    intensity = 8 * SPOTLIGHTMULTIPLICATOR,
+                    radius = 35,
+                    color = Vec3(1, 0.9, 0.7),
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(-0.3525, 0.585, -1.49),
+                    },
+                    lightbeamTransform = {
+                        left = Vec3(-8, 0, 0),
+                        up = Vec3(0, 8, 0),
+                        forward = Vec3(0, 0, 8),
+                        trans = Vec3(-0.3525, 0.585, -2.15),
+                    }
+                },
+                Pointlight_1 = {
+                    enabled = true,
+                    description = 'Headlight Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    radius = 3,
+                    width = 1,
+                    intensity = 10,
+                    color = Vec3(1, 0.9, 0.9),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 1, 5.5)
+                    }
+                },
+                Pointlight_2 = {
+                    enabled = true,
+                    description = 'Top Red Blinker Pointlight',
+                    type = 1, -- Pointlight [1] ; Spotlight [2]
+                    weaponmounted = false,
+                    radius = 8,
+                    width = 1,
+                    intensity = 5,
+                    color = Vec3(1, 0.1, 0.1),
+                    visible = true,
+                    enlightenEnable = false,
+                    transform = {
+                        left = Vec3(-1, 0, 0),
+                        up = Vec3(0, 1, 0),
+                        forward = Vec3(0, 0, 1),
+                        trans = Vec3(0, 2.2, -0.5),
+                    }
+                }
+            }
+        },
     },
+
     Deployable = {
         SOFLAM = {
             name = 'SOFLAM',

@@ -61,7 +61,7 @@ function DarknessClient:RegisterEvents()
     Events:Subscribe("Level:Loaded", self, self.OnLevelLoaded)
     Events:Subscribe("Level:LoadResources", self, self.OnLoadResources)
     Events:Subscribe("Level:Destroy", self, self.OnLevelDestroyed)
-    Events:Subscribe('Level:RegisterEntityResources', self, self.OnEntityRegister)
+    -- Vehicle modification runs on server only - client does NOT subscribe to Level:RegisterEntityResources
     Events:Subscribe("Engine:Update", self, self.OnEngineUpdate)
     Events:Subscribe("Player:UpdateInput", self, self.OnUpdateInput)
     Events:Subscribe('Player:Killed', self, self.OnPlayerKilled)
@@ -92,7 +92,6 @@ end
 ---@param p_IsDedicatedServer boolean
 function DarknessClient:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Self
-
     self:RegisterPresets(p_LevelName, p_GameMode, p_IsDedicatedServer)
     -- Distribute
     -- m_MapVEManager:OnLoadResources(p_LevelName, p_GameMode, p_IsDedicatedServer)
@@ -128,11 +127,7 @@ function DarknessClient:OnPlayerKilled(p_Player)
     end
 end
 
----@param p_LevelData LevelData
-function DarknessClient:OnEntityRegister(p_LevelData)
-    -- Distribute
-    -- VehicleManager:OnEntityRegister(p_LevelData)
-end
+-- Removed: OnEntityRegister - vehicle modification now runs on server only
 
 ---@param p_DeltaTime integer
 function DarknessClient:OnUpdateInput(p_DeltaTime)
